@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <item parent="/quiqqer/"
+          name="quiqqer-dashboard"
+          require="package/quiqqer/dashboard/bin/backend/utils/open"
+          icon="fa fa-database"
+    >
+        <locale group="quiqqer/dashboard" var="panel.title"/>
+    </item>
+
+</menu>

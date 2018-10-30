@@ -1,0 +1,101 @@
+.quiqqer-dashboard {
+    background: #F2F2F2 !important;
+}
+
+.quiqqer-dashboard .qui-panel-content,
+.quiqqer-dashboard .qui-panel-header {
+    background: #F2F2F2 !important;
+}
+
+.quiqqer-dashboard .qui-panel-header {
+    border-bottom: none;
+}
+
+.quiqqer-dashboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.quiqqer-dashboard-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/** design
+ ========================================= */
+
+.quiqqer-dashboard-one-stat .quiqqer-dashboard-card-container {
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.quiqqer-dashboard-one-stat-text {
+    clear: both;
+    color: rgb(154, 160, 172);
+    display: block;
+}
+
+.quiqqer-dashboard-one-stat-value {
+    color: rgb(73, 80, 87);
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 32px;
+    padding: 10px 0;
+}
+
+/** default widths
+ ========================================= */
+
+.qdc-w10 {
+    width: 10%;
+}
+
+.qdc-w20 {
+    width: 20%;
+}
+
+.qdc-w25 {
+    width: 25%;
+}
+
+.qdc-w30 {
+    width: 30%;
+}
+
+.qdc-w40 {
+    width: 40%;
+}
+
+.qdc-w50 {
+    width: 50%;
+}
+
+.qdc-w60 {
+    width: 60%;
+}
+
+.qdc-w70 {
+    width: 70%;
+}
+
+.qdc-w80 {
+    width: 80%;
+}
+
+.qdc-w90 {
+    width: 90%;
+}
+
+.qdc-w100 {
+    width: 100%;
+}
+
+.qdc-w16 {
+    width: calc(100% / 6);
+}
+
+.qdc-w33 {
+    width: calc(100% / 3);
+}

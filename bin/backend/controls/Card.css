@@ -1,0 +1,19 @@
+
+.quiqqer-dashboard-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    padding: 0 0.75rem;
+}
+
+.quiqqer-dashboard-card-container {
+    background: #fff;
+    border: 1px solid rgba(0, 40, 100, 0.12);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    width: 100%;
+}
+
+.quiqqer-dashboard-card-title {
+    padding: 0.5rem 1.5rem;
+}

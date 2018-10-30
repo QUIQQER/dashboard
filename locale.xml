@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locales>
+    <groups name="quiqqer/dashboard" datatype="php,js">
+        <locale name="package.title">
+            <de><![CDATA[QUIQQER - Dashboard]]></de>
+            <en><![CDATA[QUIQQER - Dashboard]]></en>
+        </locale>
+        <locale name="package.description">
+            <de><![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht]]></de>
+            <en><![CDATA[Extend QUIQQER with a dashboard view]]></en>
+        </locale>
+
+        <locale name="panel.title">
+            <de><![CDATA[Dashboard]]></de>
+            <en><![CDATA[Dashboard]]></en>
+        </locale>
+    </groups>
+</locales>
