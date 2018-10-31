@@ -19,7 +19,7 @@
 
 .quiqqer-dashboard-cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 /** design
@@ -43,6 +43,19 @@
     font-weight: bold;
     line-height: 32px;
     padding: 10px 0;
+}
+
+.newest-blog-entry {
+    cursor: pointer;
+}
+
+.newest-blog-entry header {
+    padding: 0 !important;
+}
+
+.newest-blog-entry header img {
+    display: block;
+    max-width: 100%;
 }
 
 /** default widths

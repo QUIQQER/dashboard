@@ -53,9 +53,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             this.getContent().set('html', template);
 
+            // stats
             Dashboard.getStats().then(function (result) {
-                console.log(result);
-
                 var Projects = self.getElm().getElement('.quiqqer-dashboard-projects .quiqqer-dashboard-one-stat-value');
                 var Sites    = self.getElm().getElement('.quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
                 var Users    = self.getElm().getElement('.quiqqer-dashboard-users .quiqqer-dashboard-one-stat-value');
@@ -72,6 +71,66 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
                 Groups.removeClass('fa fa-circle-o-notch fa-spin');
                 Groups.set('html', result.groups);
+            });
+
+            // site activity
+            Dashboard.getNewestEditedSites().then(function (result) {
+                var Container = self.getElm().getElement('.quiqqer-dashboard-siteActivity');
+                var Tbody     = Container.getElement('tbody');
+
+                var i, len, entry, Row;
+
+                var click = function (event) {
+                    var Target = event.target;
+
+                    if (Target.nodeName !== 'TR') {
+                        Target = Target.getParent('tr');
+                    }
+
+                    var project = Target.get('data-project');
+                    var lang    = Target.get('data-lang');
+                    var id      = Target.get('data-id');
+
+                    require(['utils/Panels'], function (PanelUtils) {
+                        PanelUtils.openSitePanel(project, lang, id);
+                    });
+                };
+
+                for (i = 0, len = result.length; i < len; i++) {
+                    entry = result[i];
+
+                    Row = new Element('tr', {
+                        'class'       : 'can-be-hovered',
+                        'data-project': entry.project,
+                        'data-lang'   : entry.lang,
+                        'data-id'     : entry.id,
+                        html          : '<td>' + entry.id + '</td>' +
+                            '<td>' + entry.name + '</td>' +
+                            '<td>' + entry.title + '</td>' +
+                            '<td>' + entry.e_date + '</td>',
+                        events        : {
+                            click: click
+                        }
+                    }).inject(Tbody);
+                }
+            });
+
+            // latest blog
+            Dashboard.getLatestBlog().then(function (result) {
+                var BlogEntry   = self.getElm().getElement('.newest-blog-entry');
+                var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-body');
+
+                BlogEntry.getElement('header')
+                         .set('html', '<img src="' + result.image + '" />');
+
+                BlogContent.set({
+                    html: '<h2>' + result.title + '</h2>' +
+                        '<div style="padding: 0 1.5rem 1.5rem">' + result.description + '</div>'
+                });
+
+                BlogEntry.addEvent('click', function () {
+                    window.open(result.link);
+                });
             });
         }
     });

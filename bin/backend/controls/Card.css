@@ -14,6 +14,78 @@
     width: 100%;
 }
 
+.quiqqer-dashboard-card header,
 .quiqqer-dashboard-card-title {
-    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+    font-size: 1.125rem;
+    line-height: 3.5rem;
+    min-height: 3.5rem;
+    padding: 0 1.5rem;
+}
+
+.quiqqer-dashboard-card-body {
+    width: 100%;
+}
+
+.quiqqer-dashboard-card-body table {
+    border: none;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    max-width: 100%;
+    vertical-align: middle;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.quiqqer-dashboard-card-body tbody tr:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.quiqqer-dashboard-card-body tbody tr.can-be-hovered {
+    cursor: pointer;
+}
+
+.quiqqer-dashboard-card-body tbody tr.can-be-hovered:hover {
+    background: #2F8FC6;
+    color: #fff;
+}
+
+.quiqqer-dashboard-card-body th {
+    border-bottom: 2px solid #dee2e6;
+    color: #9aa0ac;
+    padding: 1.5rem 0.75rem;
+}
+
+.quiqqer-dashboard-card-body td {
+    color: #495057;
+    padding: 0.75rem;
+}
+
+.quiqqer-dashboard-card-body tbody tr.can-be-hovered:hover td {
+    color: #fff;
+}
+
+.quiqqer-dashboard-card-body h2 {
+    font-size: 1.1rem;
+    padding: 0.75rem 0 0 1.5rem;
+}
+
+.quiqqer-dashboard-card-body .fa-ul {
+    margin-left: 3.5rem;
+}
+
+.quiqqer-dashboard-card-body a {
+    color: rgb(73, 80, 87);
+    display: block;
+    padding: 0.2rem 0;
+    text-decoration: none;
+}
+
+.quiqqer-dashboard-card-body a:hover {
+    color: #295a9f;
+    text-decoration: underline;
+}
+
+.quiqqer-dashboard-card-body .fa-li {
+    top: 0.4rem;
 }
