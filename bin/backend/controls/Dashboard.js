@@ -138,7 +138,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             // latest blog
             Dashboard.getLatestBlog(window.USER.lang).then(function (result) {
-                var BlogEntry   = self.getElm().getElement('.newest-blog-entry');
+                var BlogEntry = self.getElm().getElement(
+                    '.newest-blog-entry .quiqqer-dashboard-card-container'
+                );
+
                 var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-body');
 
                 BlogEntry.getElement('header')

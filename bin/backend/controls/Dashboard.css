@@ -45,7 +45,7 @@
     padding: 10px 0;
 }
 
-.newest-blog-entry {
+.newest-blog-entry .quiqqer-dashboard-card-container {
     cursor: pointer;
 }
 
