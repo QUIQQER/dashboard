@@ -37,5 +37,9 @@
             <de><![CDATA[Neueste Seiten Änderungen]]></de>
             <en><![CDATA[Latest page changes]]></en>
         </locale>
+        <locale name="dashboard.last.user.login">
+            <de><![CDATA[Letzte Benutzeranmeldungen]]></de>
+            <en><![CDATA[Last user logins]]></en>
+        </locale>
     </groups>
 </locales>

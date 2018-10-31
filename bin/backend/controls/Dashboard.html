@@ -1,72 +1,106 @@
-<div class="quiqqer-dashboard-row">
-    <!-- projects -->
-    <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-projects">
-        <div class="quiqqer-dashboard-card-container">
-            <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">{{projectTitle}}</span>
-        </div>
-    </section>
-
-    <!-- sites -->
-    <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-sites">
-        <div class="quiqqer-dashboard-card-container">
-            <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">{{sitesTitle}}</span>
-        </div>
-    </section>
-
-    <!-- user -->
-    <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-users">
-        <div class="quiqqer-dashboard-card-container">
-            <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">{{usersTitle}}</span>
-        </div>
-    </section>
-
-    <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-groups">
-        <div class="quiqqer-dashboard-card-container">
-            <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">{{groupsTitle}}</span>
-        </div>
-    </section>
+<div class="quiqqer-dashboard-loader">
+    <span class="fa fa-circle-o-notch fa-spin"></span>
 </div>
-
-<div class="quiqqer-dashboard-row">
-    <section class="quiqqer-dashboard-card qdc-w50 quiqqer-dashboard-siteActivity">
-        <div class="quiqqer-dashboard-card-container">
-            <header>{{pageChangesTitle}}</header>
-            <div class="quiqqer-dashboard-card-body">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>{{pageChangesId}}</th>
-                        <th>{{pageChangesName}}</th>
-                        <th>{{pageChangesTitle}}</th>
-                        <th>{{pageChangesDate}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+<div>
+    <div class="quiqqer-dashboard-row">
+        <!-- projects -->
+        <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-projects">
+            <div class="quiqqer-dashboard-card-container">
+                <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
+                <span class="quiqqer-dashboard-one-stat-text">{{projectTitle}}</span>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="quiqqer-dashboard-card qdc-w25">
-        <div class="quiqqer-dashboard-card-container">
-            {{{help}}}
-        </div>
-    </section>
-
-    <section class="quiqqer-dashboard-card qdc-w25 newest-blog-entry">
-        <div class="quiqqer-dashboard-card-container">
-            <header>
-                <span class="fa fa-circle-o-notch fa-spin" style="margin: 1.5rem"></span>
-            </header>
-            <div class="quiqqer-dashboard-card-body">
-                <span class="fa fa-circle-o-notch fa-spin" style="margin: 1.5rem"></span>
+        <!-- sites -->
+        <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-sites">
+            <div class="quiqqer-dashboard-card-container">
+                <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
+                <span class="quiqqer-dashboard-one-stat-text">{{sitesTitle}}</span>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- user -->
+        <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-users">
+            <div class="quiqqer-dashboard-card-container">
+                <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
+                <span class="quiqqer-dashboard-one-stat-text">{{usersTitle}}</span>
+            </div>
+        </section>
+
+        <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-groups">
+            <div class="quiqqer-dashboard-card-container">
+                <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
+                <span class="quiqqer-dashboard-one-stat-text">{{groupsTitle}}</span>
+            </div>
+        </section>
+    </div>
+
+    <div class="quiqqer-dashboard-row">
+        <section class="quiqqer-dashboard-card qdc-w50 quiqqer-dashboard-siteActivity">
+            <div class="quiqqer-dashboard-card-container">
+                <header>
+                    <span class="fa fa-file-text-o"></span>
+                    {{pageChangesTitle}}
+                </header>
+                <div class="quiqqer-dashboard-card-body">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>{{pageChangesId}}</th>
+                            <th>{{pageChangesName}}</th>
+                            <th>{{pageChangesTitle}}</th>
+                            <th>{{pageChangesDate}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="quiqqer-dashboard-card qdc-w25">
+            <div class="quiqqer-dashboard-card-container">
+                {{{help}}}
+            </div>
+        </section>
+
+        <section class="quiqqer-dashboard-card qdc-w25 newest-blog-entry">
+            <div class="quiqqer-dashboard-card-container">
+                <header>
+                    <span class="fa fa-circle-o-notch fa-spin" style="margin: 1.5rem"></span>
+                </header>
+                <div class="quiqqer-dashboard-card-body">
+                    <span class="fa fa-circle-o-notch fa-spin" style="margin: 1.5rem"></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="quiqqer-dashboard-row">
+
+        <section class="quiqqer-dashboard-card qdc-w50 quiqqer-dashboard-userLogins">
+            <div class="quiqqer-dashboard-card-container">
+                <header>
+                    <span class="fa fa-user"></span>
+                    {{userLogin}}
+                </header>
+                <div class="quiqqer-dashboard-card-body">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>{{userLoginUsername}}</th>
+                            <th>{{userLoginName}}</th>
+                            <th>{{userLoginDate}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>

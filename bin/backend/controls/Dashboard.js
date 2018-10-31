@@ -50,10 +50,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          * event: on create
          */
         $onCreate: function () {
-            var self = this;
-
             this.getElm().addClass('quiqqer-dashboard');
             this.getContent().addClass('quiqqer-dashboard-cards');
+            this.getContent().addClass('quiqqer-dashboard--loading');
 
             var help = templateHelpEn;
 
@@ -62,20 +61,54 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             }
 
             this.getContent().set('html', Mustache.render(template, {
-                projectTitle    : QUILocale.get(lg, 'dashboard.projects.count'),
-                sitesTitle      : QUILocale.get(lg, 'dashboard.sites.count'),
-                usersTitle      : QUILocale.get(lg, 'dashboard.users.count'),
-                groupsTitle     : QUILocale.get(lg, 'dashboard.groups.count'),
+                projectTitle: QUILocale.get(lg, 'dashboard.projects.count'),
+                sitesTitle  : QUILocale.get(lg, 'dashboard.sites.count'),
+                usersTitle  : QUILocale.get(lg, 'dashboard.users.count'),
+                groupsTitle : QUILocale.get(lg, 'dashboard.groups.count'),
+
                 pageChangesTitle: QUILocale.get(lg, 'dashboard.page.changes'),
                 pageChangesId   : QUILocale.get('quiqqer/system', 'id'),
                 pageChangesName : QUILocale.get('quiqqer/system', 'name'),
                 pageChangesTit  : QUILocale.get('quiqqer/system', 'title'),
                 pageChangesDate : QUILocale.get('quiqqer/system', 'e_date'),
-                help            : help
+
+                help: help,
+
+                userLogin        : QUILocale.get(lg, 'dashboard.last.user.login'),
+                userLoginUsername: QUILocale.get('quiqqer/system', 'username'),
+                userLoginName    : QUILocale.get('quiqqer/system', 'name'),
+                userLoginDate    : QUILocale.get('quiqqer/system', 'date')
             }));
 
             // stats
-            Dashboard.getStats().then(function (result) {
+            Promise.all([
+                this.loadStats(),
+                this.loadSiteActivity(),
+                this.loadBlogPost(),
+                this.loadLatestLogins()
+            ]).then(function () {
+                var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
+
+                this.getContent().removeClass('quiqqer-dashboard--loading');
+
+                moofx(Loader).animate({
+                    opacity: 0
+                }, {
+                    callback: function () {
+                        Loader.destroy();
+                    }
+                });
+            }.bind(this));
+        },
+
+        /**
+         *
+         * @return {*}
+         */
+        loadStats: function () {
+            var self = this;
+
+            return Dashboard.getStats().then(function (result) {
                 var Projects = self.getElm().getElement('.quiqqer-dashboard-projects .quiqqer-dashboard-one-stat-value');
                 var Sites    = self.getElm().getElement('.quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
                 var Users    = self.getElm().getElement('.quiqqer-dashboard-users .quiqqer-dashboard-one-stat-value');
@@ -93,13 +126,17 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 Groups.removeClass('fa fa-circle-o-notch fa-spin');
                 Groups.set('html', result.groups);
             });
+        },
+
+        loadSiteActivity: function () {
+            var self = this;
 
             // site activity
-            Dashboard.getNewestEditedSites().then(function (result) {
+            return Dashboard.getNewestEditedSites().then(function (result) {
                 var Container = self.getElm().getElement('.quiqqer-dashboard-siteActivity');
                 var Tbody     = Container.getElement('tbody');
 
-                var i, len, entry, Row;
+                var i, len, entry;
 
                 var click = function (event) {
                     var Target = event.target;
@@ -120,7 +157,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 for (i = 0, len = result.length; i < len; i++) {
                     entry = result[i];
 
-                    Row = new Element('tr', {
+                    new Element('tr', {
                         'class'       : 'can-be-hovered',
                         'data-project': entry.project,
                         'data-lang'   : entry.lang,
@@ -135,9 +172,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }).inject(Tbody);
                 }
             });
+        },
+
+        /**
+         * Loads the latest blog post
+         *
+         * @return {Promise}
+         */
+        loadBlogPost: function () {
+            var self = this;
 
             // latest blog
-            Dashboard.getLatestBlog(window.USER.lang).then(function (result) {
+            return Dashboard.getLatestBlog(window.USER.lang).then(function (result) {
                 var BlogEntry = self.getElm().getElement(
                     '.newest-blog-entry .quiqqer-dashboard-card-container'
                 );
@@ -155,6 +201,52 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 BlogEntry.addEvent('click', function () {
                     window.open(result.link);
                 });
+            });
+        },
+
+        /**
+         *
+         * @return {Promise}
+         */
+        loadLatestLogins: function () {
+            var self = this;
+
+            // latest user logins
+            return Dashboard.getLatestLogins().then(function (result) {
+                var Container = self.getElm().getElement('.quiqqer-dashboard-userLogins');
+                var Tbody     = Container.getElement('tbody');
+
+                var i, len, entry;
+
+                var click = function (event) {
+                    var Target = event.target;
+
+                    if (Target.nodeName !== 'TR') {
+                        Target = Target.getParent('tr');
+                    }
+
+                    var uid = Target.get('data-uid');
+
+                    require(['utils/Panels'], function (PanelUtils) {
+                        PanelUtils.openUserPanel(uid);
+                    });
+                };
+
+                for (i = 0, len = result.length; i < len; i++) {
+                    entry = result[i];
+
+                    new Element('tr', {
+                        'class'   : 'can-be-hovered',
+                        'data-uid': entry.uid,
+                        html      : '' +
+                            '<td>' + entry.username + '</td>' +
+                            '<td>' + entry.name + '</td>' +
+                            '<td>' + entry.date + '</td>',
+                        events    : {
+                            click: click
+                        }
+                    }).inject(Tbody);
+                }
             });
         }
     });
