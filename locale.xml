@@ -15,4 +15,27 @@
             <en><![CDATA[Dashboard]]></en>
         </locale>
     </groups>
+
+    <groups name="quiqqer/dashboard" datatype="js">
+        <locale name="dashboard.projects.count">
+            <de><![CDATA[Projekte]]></de>
+            <en><![CDATA[Projects]]></en>
+        </locale>
+        <locale name="dashboard.sites.count">
+            <de><![CDATA[Seiten]]></de>
+            <en><![CDATA[Pages]]></en>
+        </locale>
+        <locale name="dashboard.users.count">
+            <de><![CDATA[Benutzer]]></de>
+            <en><![CDATA[Users]]></en>
+        </locale>
+        <locale name="dashboard.groups.count">
+            <de><![CDATA[Gruppen]]></de>
+            <en><![CDATA[Groups]]></en>
+        </locale>
+        <locale name="dashboard.page.changes">
+            <de><![CDATA[Neueste Seiten Änderungen]]></de>
+            <en><![CDATA[Latest page changes]]></en>
+        </locale>
+    </groups>
 </locales>

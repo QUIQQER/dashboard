@@ -9,8 +9,15 @@
  */
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getBlogEntry',
-    function () {
-        $rss = QUI\Utils\Request\Url::get('https://www.quiqqer.com/feed=3.xml');
+    function ($language) {
+        switch ($language) {
+            case 'de':
+                $rss = QUI\Utils\Request\Url::get('https://www.quiqqer.com/feed=4.xml');
+                break;
+
+            default:
+                $rss = QUI\Utils\Request\Url::get('https://www.quiqqer.com/feed=3.xml');
+        }
 
         try {
             $Dom = new \DOMDocument();
@@ -33,6 +40,6 @@ QUI::$Ajax->registerFunction(
             'image'       => $Item->getElementsByTagName('enclosure')->item(0)->getAttribute('url')
         ];
     },
-    false,
+    ['language'],
     'Permission::checkAdminUser'
 );

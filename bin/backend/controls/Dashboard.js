@@ -10,17 +10,21 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'package/quiqqer/dashboard/bin/backend/Dashboard',
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'Ajax',
     'Locale',
     'Mustache',
 
     'text!package/quiqqer/dashboard/bin/backend/controls/Dashboard.html',
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/help.de.html',
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/help.en.html',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css',
     'css!package/quiqqer/dashboard/bin/backend/controls/Card.css'
 
-], function (QUI, QUIPanel, Dashboard, Card, Ajax, Locale, Mustache, template) {
+], function (QUI, QUIPanel, Dashboard, Card, QUILocale, Mustache,
+             template, templateHelpDe, templateHelpEn) {
     "use strict";
+
+    var lg = 'quiqqer/dashboard';
 
     return new Class({
 
@@ -51,7 +55,24 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getElm().addClass('quiqqer-dashboard');
             this.getContent().addClass('quiqqer-dashboard-cards');
 
-            this.getContent().set('html', template);
+            var help = templateHelpEn;
+
+            if (window.USER.lang === 'de') {
+                help = templateHelpDe;
+            }
+
+            this.getContent().set('html', Mustache.render(template, {
+                projectTitle    : QUILocale.get(lg, 'dashboard.projects.count'),
+                sitesTitle      : QUILocale.get(lg, 'dashboard.sites.count'),
+                usersTitle      : QUILocale.get(lg, 'dashboard.users.count'),
+                groupsTitle     : QUILocale.get(lg, 'dashboard.groups.count'),
+                pageChangesTitle: QUILocale.get(lg, 'dashboard.page.changes'),
+                pageChangesId   : QUILocale.get('quiqqer/system', 'id'),
+                pageChangesName : QUILocale.get('quiqqer/system', 'name'),
+                pageChangesTit  : QUILocale.get('quiqqer/system', 'title'),
+                pageChangesDate : QUILocale.get('quiqqer/system', 'e_date'),
+                help            : help
+            }));
 
             // stats
             Dashboard.getStats().then(function (result) {
@@ -116,7 +137,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             });
 
             // latest blog
-            Dashboard.getLatestBlog().then(function (result) {
+            Dashboard.getLatestBlog(window.USER.lang).then(function (result) {
                 var BlogEntry   = self.getElm().getElement('.newest-blog-entry');
                 var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-body');
 

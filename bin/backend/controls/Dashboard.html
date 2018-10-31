@@ -3,7 +3,7 @@
     <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-projects">
         <div class="quiqqer-dashboard-card-container">
             <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">Projekte</span>
+            <span class="quiqqer-dashboard-one-stat-text">{{projectTitle}}</span>
         </div>
     </section>
 
@@ -11,7 +11,7 @@
     <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-sites">
         <div class="quiqqer-dashboard-card-container">
             <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">Seiten</span>
+            <span class="quiqqer-dashboard-one-stat-text">{{sitesTitle}}</span>
         </div>
     </section>
 
@@ -19,14 +19,14 @@
     <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-users">
         <div class="quiqqer-dashboard-card-container">
             <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">Benutzer</span>
+            <span class="quiqqer-dashboard-one-stat-text">{{usersTitle}}</span>
         </div>
     </section>
 
     <section class="quiqqer-dashboard-card quiqqer-dashboard-one-stat qdc-w16 quiqqer-dashboard-groups">
         <div class="quiqqer-dashboard-card-container">
             <span class="quiqqer-dashboard-one-stat-value fa fa-circle-o-notch fa-spin"></span>
-            <span class="quiqqer-dashboard-one-stat-text">Gruppen</span>
+            <span class="quiqqer-dashboard-one-stat-text">{{groupsTitle}}</span>
         </div>
     </section>
 </div>
@@ -34,15 +34,15 @@
 <div class="quiqqer-dashboard-row">
     <section class="quiqqer-dashboard-card qdc-w50 quiqqer-dashboard-siteActivity">
         <div class="quiqqer-dashboard-card-container">
-            <header>Site Aktivitäten</header>
+            <header>{{pageChangesTitle}}</header>
             <div class="quiqqer-dashboard-card-body">
                 <table>
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th>Änderungsdatum</th>
+                        <th>{{pageChangesId}}</th>
+                        <th>{{pageChangesName}}</th>
+                        <th>{{pageChangesTitle}}</th>
+                        <th>{{pageChangesDate}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,43 +55,7 @@
 
     <section class="quiqqer-dashboard-card qdc-w25">
         <div class="quiqqer-dashboard-card-container">
-            <header>
-                QUIQQER
-            </header>
-            <div class="quiqqer-dashboard-card-body">
-                <h2>
-                    QUIQQER Allgemein
-                </h2>
-                <ul>
-                    <li>
-                        <a href="https://www.quiqqer.com/Discover" target="_blank">Hilfe</a>
-                    </li>
-                    <li>
-                        <a href="https://www.quiqqer.com/Blog" target="_blank">Blog</a>
-                    </li>
-                    <li>
-                        <a href="https://store.quiqqer.com/" target="_blank">Erweiterungen</a>
-                    </li>
-                </ul>
-
-                <h2>
-                    QUIQQER Social
-                </h2>
-                <ul class="fa-ul">
-                    <li>
-                        <i class="fa-li fa fa-comments-o"></i>
-                        <a href="https://community.quiqqer.com" target="_blank">
-                            Community
-                        </a>
-                    </li>
-                    <li>
-                        <i class="fa-li fa fa-github"></i>
-                        <a href="https://github.com/quiqqer" target="_blank">
-                            Github
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            {{{help}}}
         </div>
     </section>
 
