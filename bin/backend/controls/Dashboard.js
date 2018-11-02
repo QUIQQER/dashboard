@@ -40,6 +40,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             this.setAttribute('icon', URL_BIN_DIR + '16x16/quiqqer.png');
             this.setAttribute('dragable', false);
+            this.setAttribute('displayNoTaskText', true);
 
             this.addEvents({
                 onCreate: this.$onCreate
