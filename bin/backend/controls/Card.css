@@ -94,3 +94,36 @@
 .quiqqer-dashboard-card-body .fa-li {
     top: 0.4rem;
 }
+
+/** CSS API
+ ================================= */
+
+.quiqqer-dashboard--clickable .quiqqer-dashboard-card-container {
+    cursor: pointer;
+}
+
+.quiqqer-dashboard--clickable:hover .quiqqer-dashboard-card-container {
+    background: #2F8FC6;
+}
+
+.quiqqer-dashboard--clickable:hover .quiqqer-dashboard-card-container * {
+    color: #fff !important;
+}
+
+/** custom
+ ================================= */
+
+.quiqqer-dashboard-sites-active,
+.quiqqer-dashboard-sites-inActive {
+    color: #5eba00;
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.quiqqer-dashboard-sites-inActive {
+    color: #cd201f;
+    left: 0;
+    right: inherit;
+}

@@ -29,15 +29,34 @@ QUI::$Ajax->registerFunction(
         $projects = QUI::getProjectManager()->getProjectList();
 
         /* @var $Project \QUI\Projects\Project */
+        $active   = 0;
+        $inActive = 0;
+
         foreach ($projects as $Project) {
+            // active
             $count = $Project->getSitesIds([
-                'count' => true
+                'count' => true,
+                'where' => [
+                    'active' => 1
+                ]
             ]);
 
-            $sites = $sites + $count[0]['count'];
+            $active = $active + $count[0]['count'];
+
+            // inactive
+            $count = $Project->getSitesIds([
+                'count' => true,
+                'where' => [
+                    'active' => 0
+                ]
+            ]);
+
+            $inActive = $inActive + $count[0]['count'];
         }
 
-        $result['sites'] = $sites;
+        $result['sites']['total']    = $active + $inActive;
+        $result['sites']['active']   = $active;
+        $result['sites']['inActive'] = $inActive;
 
         return $result;
     },

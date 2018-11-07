@@ -13,6 +13,11 @@ QUI::$Ajax->registerFunction(
         $result   = [];
         $projects = QUI::getProjectManager()->getProjectList();
 
+        $Formatter = QUI::getLocale()->getDateFormatter(
+            \IntlDateFormatter::SHORT,
+            \IntlDateFormatter::SHORT
+        );
+
         foreach ($projects as $Project) {
             /* @var $Project \QUI\Projects\Project */
             $sites = $Project->getSites([
@@ -26,7 +31,7 @@ QUI::$Ajax->registerFunction(
                     'id'      => $Site->getId(),
                     'name'    => $Site->getAttribute('name'),
                     'title'   => $Site->getAttribute('title'),
-                    'e_date'  => $Site->getAttribute('e_date'),
+                    'e_date'  => $Formatter->format(strtotime($Site->getAttribute('e_date'))),
                     'project' => $Project->getName(),
                     'lang'    => $Project->getLang(),
                 ];

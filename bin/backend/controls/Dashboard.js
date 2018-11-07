@@ -67,11 +67,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 usersTitle  : QUILocale.get(lg, 'dashboard.users.count'),
                 groupsTitle : QUILocale.get(lg, 'dashboard.groups.count'),
 
-                pageChangesTitle: QUILocale.get(lg, 'dashboard.page.changes'),
-                pageChangesId   : QUILocale.get('quiqqer/system', 'id'),
-                pageChangesName : QUILocale.get('quiqqer/system', 'name'),
-                pageChangesTit  : QUILocale.get('quiqqer/system', 'title'),
-                pageChangesDate : QUILocale.get('quiqqer/system', 'e_date'),
+                pageChangesTitle      : QUILocale.get(lg, 'dashboard.page.changes'),
+                pageChangesId         : QUILocale.get('quiqqer/system', 'id'),
+                pageChangesName       : QUILocale.get('quiqqer/system', 'name'),
+                pageChangesTitleHeader: QUILocale.get('quiqqer/system', 'title'),
+                pageChangesDate       : QUILocale.get('quiqqer/system', 'e_date'),
 
                 help: help,
 
@@ -103,8 +103,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         },
 
         /**
+         * load general stats
          *
-         * @return {*}
+         * @return {Promise}
          */
         loadStats: function () {
             var self = this;
@@ -119,16 +120,48 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 Projects.set('html', result.projects);
 
                 Sites.removeClass('fa fa-circle-o-notch fa-spin');
-                Sites.set('html', result.sites);
+                Sites.set('html', result.sites.total);
+                self.getElm().getElement('.quiqqer-dashboard-sites-active').set('html', result.sites.active);
+                self.getElm().getElement('.quiqqer-dashboard-sites-inActive').set('html', result.sites.inActive);
 
                 Users.removeClass('fa fa-circle-o-notch fa-spin');
                 Users.set('html', result.users);
 
                 Groups.removeClass('fa fa-circle-o-notch fa-spin');
                 Groups.set('html', result.groups);
+            }).then(function () {
+                // events
+                return new Promise(function (resolve) {
+                    require([
+                        'utils/Panels',
+                        'controls/users/Panel',
+                        'controls/groups/Panel'
+                    ], function (PanelUtils, UsersPanel, GroupsPanel) {
+                        self.getElm().getElement('.quiqqer-dashboard-users')
+                            .addEvent('click', function () {
+                                PanelUtils.openPanelInTasks(
+                                    new UsersPanel()
+                                );
+                            });
+
+                        self.getElm().getElement('.quiqqer-dashboard-groups')
+                            .addEvent('click', function () {
+                                PanelUtils.openPanelInTasks(
+                                    new GroupsPanel()
+                                );
+                            });
+
+                        resolve();
+                    });
+                });
             });
         },
 
+        /**
+         * Load the site activity -> latest changes
+         *
+         * @return {Promise}
+         */
         loadSiteActivity: function () {
             var self = this;
 
@@ -164,7 +197,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         'data-lang'   : entry.lang,
                         'data-id'     : entry.id,
                         html          : '<td>' + entry.id + '</td>' +
-                            '<td>' + entry.name + '</td>' +
                             '<td>' + entry.title + '</td>' +
                             '<td>' + entry.e_date + '</td>',
                         events        : {
