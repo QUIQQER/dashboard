@@ -28,6 +28,7 @@
 }
 
 .quiqqer-dashboard-card-body {
+    overflow-x: auto;
     width: 100%;
 }
 
