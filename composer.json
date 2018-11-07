@@ -2,7 +2,7 @@
   "name": "quiqqer\/dashboard",
   "type": "quiqqer-module",
   "description": "Dashboard for the QUIQQER Management System",
-  "version": "dev-dev",
+  "version": "dev-master",
   "license": "GPL-3.0+",
   "authors": [
     {
