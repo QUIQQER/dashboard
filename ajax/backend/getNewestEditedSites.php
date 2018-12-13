@@ -21,7 +21,7 @@ QUI::$Ajax->registerFunction(
             $projectLang = $Project->getLang();
 
             $query .= "SELECT id, name, title, e_date, '{$projectName}' AS project, '{$projectLang}' AS lang ";
-            $query .= "FROM {$projectName}_{$projectLang}_sites ";
+            $query .= "FROM `{$projectName}_{$projectLang}_sites` ";
 
 
             if (next($projects)) {
