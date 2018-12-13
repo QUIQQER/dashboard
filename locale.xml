@@ -25,6 +25,14 @@
             <de><![CDATA[Seiten]]></de>
             <en><![CDATA[Pages]]></en>
         </locale>
+        <locale name="dashboard.sites.active">
+            <de><![CDATA[Aktive Seiten]]></de>
+            <en><![CDATA[Active Pages]]></en>
+        </locale>
+        <locale name="dashboard.sites.inactive">
+            <de><![CDATA[Deaktivierte Seiten]]></de>
+            <en><![CDATA[Deactivated Pages]]></en>
+        </locale>
         <locale name="dashboard.users.count">
             <de><![CDATA[Benutzer]]></de>
             <en><![CDATA[Users]]></en>

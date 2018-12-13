@@ -62,10 +62,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             }
 
             this.getContent().set('html', Mustache.render(template, {
-                projectTitle: QUILocale.get(lg, 'dashboard.projects.count'),
-                sitesTitle  : QUILocale.get(lg, 'dashboard.sites.count'),
-                usersTitle  : QUILocale.get(lg, 'dashboard.users.count'),
-                groupsTitle : QUILocale.get(lg, 'dashboard.groups.count'),
+                projectTitle : QUILocale.get(lg, 'dashboard.projects.count'),
+                sitesTitle   : QUILocale.get(lg, 'dashboard.sites.count'),
+                sitesActive  : QUILocale.get(lg, 'dashboard.sites.active'),
+                sitesInactive: QUILocale.get(lg, 'dashboard.sites.inactive'),
+                usersTitle   : QUILocale.get(lg, 'dashboard.users.count'),
+                groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count'),
 
                 pageChangesTitle      : QUILocale.get(lg, 'dashboard.page.changes'),
                 pageChangesId         : QUILocale.get('quiqqer/system', 'id'),
