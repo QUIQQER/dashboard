@@ -114,7 +114,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             return Dashboard.getStats().then(function (result) {
                 var Projects = self.getElm().getElement('.quiqqer-dashboard-projects .quiqqer-dashboard-one-stat-value');
-                var Sites    = self.getElm().getElement('.quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
+                var Sites    = self.getElm().getElement('#quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
                 var Users    = self.getElm().getElement('.quiqqer-dashboard-users .quiqqer-dashboard-one-stat-value');
                 var Groups   = self.getElm().getElement('.quiqqer-dashboard-groups .quiqqer-dashboard-one-stat-value');
 
@@ -123,8 +123,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
                 Sites.removeClass('fa fa-circle-o-notch fa-spin');
                 Sites.set('html', result.sites.total);
-                self.getElm().getElement('.quiqqer-dashboard-sites-active').set('html', result.sites.active);
-                self.getElm().getElement('.quiqqer-dashboard-sites-inActive').set('html', result.sites.inActive);
+                self.getElm().getElement('#quiqqer-dashboard-sites-active').set('html', result.sites.active);
+                self.getElm().getElement('#quiqqer-dashboard-sites-inActive').set('html', result.sites.inActive);
 
                 Users.removeClass('fa fa-circle-o-notch fa-spin');
                 Users.set('html', result.users);

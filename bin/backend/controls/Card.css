@@ -113,8 +113,8 @@
 /** custom
  ================================= */
 
-.quiqqer-dashboard-sites-active,
-.quiqqer-dashboard-sites-inActive {
+#quiqqer-dashboard-sites-active,
+#quiqqer-dashboard-sites-inActive {
     color: #5eba00;
     padding: 5px 10px;
     position: absolute;
@@ -122,7 +122,7 @@
     top: 0;
 }
 
-.quiqqer-dashboard-sites-inActive {
+#quiqqer-dashboard-sites-inActive {
     color: rgb(161, 170, 187);
     left: 0;
     right: inherit;
