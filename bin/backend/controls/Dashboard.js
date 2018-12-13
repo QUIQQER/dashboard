@@ -124,7 +124,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 Sites.removeClass('fa fa-circle-o-notch fa-spin');
                 Sites.set('html', result.sites.total);
                 self.getElm().getElement('#quiqqer-dashboard-sites-active').set('html', result.sites.active);
-                self.getElm().getElement('#quiqqer-dashboard-sites-inActive').set('html', result.sites.inActive);
+                self.getElm().getElement('#quiqqer-dashboard-sites-inactive').set('html', result.sites.inactive);
 
                 Users.removeClass('fa fa-circle-o-notch fa-spin');
                 Users.set('html', result.users);

@@ -30,7 +30,7 @@ QUI::$Ajax->registerFunction(
 
         /* @var $Project \QUI\Projects\Project */
         $active   = 0;
-        $inActive = 0;
+        $inactive = 0;
 
         foreach ($projects as $Project) {
             // active
@@ -51,12 +51,12 @@ QUI::$Ajax->registerFunction(
                 ]
             ]);
 
-            $inActive = $inActive + $count[0]['count'];
+            $inactive = $inactive + $count[0]['count'];
         }
 
-        $result['sites']['total']    = $active + $inActive;
+        $result['sites']['total']    = $active + $inactive;
         $result['sites']['active']   = $active;
-        $result['sites']['inActive'] = $inActive;
+        $result['sites']['inactive'] = $inactive;
 
         return $result;
     },
