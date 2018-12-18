@@ -10,6 +10,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'package/quiqqer/dashboard/bin/backend/Dashboard',
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
+    'controls/projects/Select',
+
+    'utils/Color',
+
     'Locale',
     'Mustache',
 
@@ -20,7 +24,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css',
     'css!package/quiqqer/dashboard/bin/backend/controls/Card.css'
 
-], function (QUI, QUIPanel, Dashboard, Card, QUILocale, Mustache,
+], function (QUI, QUIPanel, Dashboard, Card, ProjectSelect, ColorUtil, QUILocale, Mustache,
              template, templateHelpDe, templateHelpEn) {
     "use strict";
 
@@ -34,6 +38,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         Binds: [
             '$onCreate'
         ],
+
+        $MediaInfoChart: undefined,
 
         initialize: function (options) {
             this.parent(options);
@@ -51,6 +57,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          * event: on create
          */
         $onCreate: function () {
+            var self = this;
+
             this.getElm().addClass('quiqqer-dashboard');
             this.getContent().addClass('quiqqer-dashboard-cards');
             this.getContent().addClass('quiqqer-dashboard--loading');
@@ -80,8 +88,26 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 userLogin        : QUILocale.get(lg, 'dashboard.last.user.login'),
                 userLoginUsername: QUILocale.get('quiqqer/system', 'username'),
                 userLoginName    : QUILocale.get('quiqqer/system', 'name'),
-                userLoginDate    : QUILocale.get('quiqqer/system', 'date')
+                userLoginDate    : QUILocale.get('quiqqer/system', 'date'),
+
+                mediaInfo               : QUILocale.get(lg, 'dashboard.media.info'),
+                mediaInfoTableTitle     : QUILocale.get(lg, 'dashboard.media.info.table.title'),
+                mediaInfoFilesCount     : QUILocale.get(lg, 'dashboard.media.info.files.count'),
+                mediaInfoFolderCount    : QUILocale.get(lg, 'dashboard.media.info.folder.count'),
+                mediaInfoFolderSize     : QUILocale.get(lg, 'dashboard.media.info.folder.size'),
+                mediaInfoCacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size'),
+                mediaInfoChartTitle     : QUILocale.get(lg, 'dashboard.media.info.chart.title')
             }));
+
+            new ProjectSelect({
+                langSelect : false,
+                emptyselect: false,
+                events     : {
+                    onChange: function (selectedProject) {
+                        self.loadMediaInfo(selectedProject);
+                    }
+                }
+            }).inject(self.getContent().getElement('#media-info-project-select'));
 
             // stats
             Promise.all([
@@ -89,6 +115,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 this.loadSiteActivity(),
                 this.loadBlogPost(),
                 this.loadLatestLogins()
+                // Don't load the MediaInfo here.
+                // Because it's ProjectSelect (see above) automatically triggers a change event on page load.
+                // Therefore the MediaInfo is loaded automatically.
             ]).then(function () {
                 var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
 
@@ -114,9 +143,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             return Dashboard.getStats().then(function (result) {
                 var Projects = self.getElm().getElement('.quiqqer-dashboard-projects .quiqqer-dashboard-one-stat-value');
-                var Sites    = self.getElm().getElement('#quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
-                var Users    = self.getElm().getElement('.quiqqer-dashboard-users .quiqqer-dashboard-one-stat-value');
-                var Groups   = self.getElm().getElement('.quiqqer-dashboard-groups .quiqqer-dashboard-one-stat-value');
+                var Sites = self.getElm().getElement('#quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
+                var Users = self.getElm().getElement('.quiqqer-dashboard-users .quiqqer-dashboard-one-stat-value');
+                var Groups = self.getElm().getElement('.quiqqer-dashboard-groups .quiqqer-dashboard-one-stat-value');
 
                 Projects.removeClass('fa fa-circle-o-notch fa-spin');
                 Projects.set('html', result.projects);
@@ -170,7 +199,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             // site activity
             return Dashboard.getNewestEditedSites().then(function (result) {
                 var Container = self.getElm().getElement('.quiqqer-dashboard-siteActivity');
-                var Tbody     = Container.getElement('tbody');
+                var Tbody = Container.getElement('tbody');
 
                 var i, len, entry;
 
@@ -182,8 +211,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }
 
                     var project = Target.get('data-project');
-                    var lang    = Target.get('data-lang');
-                    var id      = Target.get('data-id');
+                    var lang = Target.get('data-lang');
+                    var id = Target.get('data-id');
 
                     require(['utils/Panels'], function (PanelUtils) {
                         PanelUtils.openSitePanel(project, lang, id);
@@ -199,8 +228,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         'data-lang'   : entry.lang,
                         'data-id'     : entry.id,
                         html          : '<td>' + entry.id + '</td>' +
-                            '<td>' + entry.title + '</td>' +
-                            '<td>' + entry.e_date + '</td>',
+                                        '<td>' + entry.title + '</td>' +
+                                        '<td>' + entry.e_date + '</td>',
                         events        : {
                             click: click
                         }
@@ -226,11 +255,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-body');
 
                 BlogEntry.getElement('header')
-                         .set('html', '<img src="' + result.image + '" />');
+                    .set('html', '<img src="' + result.image + '" />');
 
                 BlogContent.set({
                     html: '<h2>' + result.title + '</h2>' +
-                        '<div style="padding: 0 1.5rem 1.5rem">' + result.description + '</div>'
+                          '<div style="padding: 0 1.5rem 1.5rem">' + result.description + '</div>'
                 });
 
                 BlogEntry.addEvent('click', function () {
@@ -249,7 +278,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             // latest user logins
             return Dashboard.getLatestLogins().then(function (result) {
                 var Container = self.getElm().getElement('.quiqqer-dashboard-userLogins');
-                var Tbody     = Container.getElement('tbody');
+                var Tbody = Container.getElement('tbody');
 
                 var i, len, entry;
 
@@ -274,14 +303,88 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         'class'   : 'can-be-hovered',
                         'data-uid': entry.uid,
                         html      : '' +
-                            '<td>' + entry.username + '</td>' +
-                            '<td>' + entry.name + '</td>' +
-                            '<td>' + entry.date + '</td>',
+                                    '<td>' + entry.username + '</td>' +
+                                    '<td>' + entry.name + '</td>' +
+                                    '<td>' + entry.date + '</td>',
                         events    : {
                             click: click
                         }
                     }).inject(Tbody);
                 }
+            });
+        },
+
+
+        /**
+         *
+         * @return {Promise}
+         */
+        loadMediaInfo: function (project) {
+            var self = this;
+
+            if (project === undefined) {
+                project = QUIQQER_PROJECT.name;
+            }
+
+            // latest user logins
+            return Dashboard.getMediaInfo(project).then(function (result) {
+                var Container = self.getElm().getElement('#quiqqer-dashboard-media-info');
+
+                // Convert folder sizes to Megabytes and round to two fractional digits
+                var FACTOR_BYTE_TO_MEGABYTE  = 1e+6,
+                    mediaFolderSizeInMB      = (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2),
+                    mediaCacheFolderSizeInMB = (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2);
+
+                Container.getElement('#media-info-files-count .value').set('html', result.filesCount);
+                Container.getElement('#media-info-folder-count .value').set('html', result.folderCount);
+                Container.getElement('#media-info-folder-size .value').set('html', mediaFolderSizeInMB + " MB");
+                Container.getElement('#media-info-cache-folder-size .value').set('html', mediaCacheFolderSizeInMB + " MB");
+
+                var ChartContainer = Container.getElement('#chart-container');
+
+                if (result.filesCount === 0) {
+                    ChartContainer.hide();
+                    Container.removeClass('qdc-w50');
+                    Container.addClass('qdc-w25');
+                    return;
+                }
+
+                ChartContainer.show();
+                Container.addClass('qdc-w50');
+                Container.removeClass('qdc-w25');
+
+                require([URL_OPT_DIR + 'bin/chart.js/dist/Chart.js'], function (Chart) {
+                    if (self.$MediaInfoChart !== undefined) {
+                        self.$MediaInfoChart.destroy();
+                        self.$MediaInfoChart = undefined;
+                    }
+
+                    var colors = ColorUtil.getRandomHexColorsFromPallet(
+                        Object.keys(result.filetypesCount).length
+                    );
+
+                    self.$MediaInfoChart = new Chart(Container.getElement('#chart'), {
+                        type   : 'pie',
+                        data   : {
+                            datasets: [{
+                                // values contain the amounts of different file-types
+                                data: Object.values(result.filetypesCount),
+
+                                // Generate a random color for each file-type
+                                backgroundColor: colors,
+
+                                borderWidth: 1.5
+                            }],
+                            // Keys contain the file-types
+                            labels  : Object.keys(result.filetypesCount)
+                        },
+                        options: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    });
+                });
             });
         }
     });

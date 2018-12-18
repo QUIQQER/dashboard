@@ -49,5 +49,36 @@
             <de><![CDATA[Letzte Benutzeranmeldungen]]></de>
             <en><![CDATA[Last user logins]]></en>
         </locale>
+
+        <!-- region Media Info -->
+        <locale name="dashboard.media.info">
+            <de><![CDATA[Medien Info]]></de>
+            <en><![CDATA[Media Info]]></en>
+        </locale>
+        <locale name="dashboard.media.info.table.title">
+            <de><![CDATA[Statistiken]]></de>
+            <en><![CDATA[Statistics]]></en>
+        </locale>
+        <locale name="dashboard.media.info.files.count">
+            <de><![CDATA[Anzahl Dateien]]></de>
+            <en><![CDATA[File Count]]></en>
+        </locale>
+        <locale name="dashboard.media.info.folder.count">
+            <de><![CDATA[Anzahl Ordner]]></de>
+            <en><![CDATA[Folder Count]]></en>
+        </locale>
+        <locale name="dashboard.media.info.folder.size">
+            <de><![CDATA[Größe des Medien Ordners]]></de>
+            <en><![CDATA[Media Folder Size]]></en>
+        </locale>
+        <locale name="dashboard.media.info.cache.folder.size">
+            <de><![CDATA[Größe des Medien Cache Ordners]]></de>
+            <en><![CDATA[Media Cache Folder Size]]></en>
+        </locale>
+        <locale name="dashboard.media.info.chart.title">
+            <de><![CDATA[Dateitypen Verteilung]]></de>
+            <en><![CDATA[Filetype Distribution]]></en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

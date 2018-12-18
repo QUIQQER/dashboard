@@ -115,5 +115,44 @@
                 </div>
             </div>
         </section>
+
+        <section id="quiqqer-dashboard-media-info" class="quiqqer-dashboard-card qdc-w50">
+            <div class="quiqqer-dashboard-card-container">
+                <header>
+                    <span class="fa fa-picture-o"></span>
+                    {{mediaInfo}}
+                    <div id="media-info-project-select"></div>
+                </header>
+                <div class="quiqqer-dashboard-card-body">
+                    <div id="table-container">
+                        <h2>{{mediaInfoTableTitle}}</h2>
+                        <table>
+                            <tbody>
+                                <tr id="media-info-files-count">
+                                    <td class="title">{{mediaInfoFilesCount}}</td>
+                                    <td class="value"></td>
+                                </tr>
+                                <tr id="media-info-folder-count">
+                                    <td class="title">{{mediaInfoFolderCount}}</td>
+                                    <td class="value"></td>
+                                </tr>
+                                <tr id="media-info-folder-size">
+                                    <td class="title">{{mediaInfoFolderSize}}</td>
+                                    <td class="value"></td>
+                                </tr>
+                                <tr id="media-info-cache-folder-size">
+                                    <td class="title">{{mediaInfoCacheFolderSize}}</td>
+                                    <td class="value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="chart-container">
+                        <h2>{{mediaInfoChartTitle}}</h2>
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>

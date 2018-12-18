@@ -71,6 +71,24 @@ define('package/quiqqer/dashboard/bin/backend/classes/Dashboard', [
                     onError  : reject
                 });
             });
+        },
+
+
+        /**
+         * Returns information about project's media
+         *
+         * @param {string} projectName - The project to get the media info for
+         *
+         * @return {Promise}
+         */
+        getMediaInfo: function (projectName) {
+            return new Promise(function (resolve, reject) {
+                Ajax.get('package_quiqqer_dashboard_ajax_backend_getMediaInfo', resolve, {
+                    'package'  : 'quiqqer/dashboard',
+                    projectName: projectName,
+                    onError    : reject
+                });
+            });
         }
     });
 });
