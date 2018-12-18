@@ -16,7 +16,8 @@
     "email": "support@pcsg.de"
   },
   "require": {
-    "quiqqer\/quiqqer": "^1.2.8 | dev-master | dev-dev"
+    "quiqqer\/quiqqer": "^1.2.8 | dev-master | dev-dev",
+    "npm-asset/chart.js": "^2.7.3"
   },
   "autoload": {
     "psr-4": {
