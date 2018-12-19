@@ -15,12 +15,14 @@ QUI::$Ajax->registerFunction(
         $Project = \QUI\Projects\Manager::getProject($projectName);
 
         return [
-            'folderCount'          => MediaUtils::countFoldersForProject($Project),
-            'filesCount'           => MediaUtils::countFilesForProject($Project),
-            'filetypesCount'       => MediaUtils::countFiletypesForProject($Project),
-            'mediaFolderSize'      => MediaUtils::getMediaFolderSizeForProject($Project),
-            'mediaCacheFolderSize' => MediaUtils::getMediaCacheFolderSizeForProject($Project),
-            'projectName'          => $projectName
+            'folderCount'                   => MediaUtils::countFoldersForProject($Project),
+            'filesCount'                    => MediaUtils::countFilesForProject($Project),
+            'filetypesCount'                => MediaUtils::countFiletypesForProject($Project),
+            'mediaFolderSize'               => MediaUtils::getMediaFolderSizeForProject($Project),
+            'mediaFolderSizeTimestamp'      => MediaUtils::getMediaFolderSizeTimestampForProject($Project),
+            'mediaCacheFolderSize'          => MediaUtils::getMediaCacheFolderSizeForProject($Project),
+            'mediaCacheFolderSizeTimestamp' => MediaUtils::getMediaCacheFolderSizeTimestampForProject($Project),
+            'projectName'                   => $projectName
         ];
     },
     ['projectName'],
