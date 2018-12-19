@@ -330,15 +330,27 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             return Dashboard.getMediaInfo(project).then(function (result) {
                 var Container = self.getElm().getElement('#quiqqer-dashboard-media-info');
 
-                // Convert folder sizes to Megabytes and round to two fractional digits
-                var FACTOR_BYTE_TO_MEGABYTE  = 1e+6,
-                    mediaFolderSizeInMB      = (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2),
-                    mediaCacheFolderSizeInMB = (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2);
+                var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
+
+                var mediaFolderDataUnavailableText = QUILocale.get(lg, 'dashboard.media.info.folder.unavailable');
+
+                var mediaFolderSize      = "<span title='" + mediaFolderDataUnavailableText + "'>–</span>",
+                    mediaCacheFolderSize = mediaFolderSize;
+
+                if (result.mediaFolderSize) {
+                    // Convert folder sizes to Megabytes and round to two fractional digits
+                    mediaFolderSize = (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB";
+                }
+
+                if (result.mediaCacheFolderSize) {
+                    // Convert folder sizes to Megabytes and round to two fractional digits
+                    mediaCacheFolderSize = (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB";
+                }
 
                 Container.getElement('#media-info-files-count .value').set('html', result.filesCount);
                 Container.getElement('#media-info-folder-count .value').set('html', result.folderCount);
-                Container.getElement('#media-info-folder-size .value').set('html', mediaFolderSizeInMB + " MB");
-                Container.getElement('#media-info-cache-folder-size .value').set('html', mediaCacheFolderSizeInMB + " MB");
+                Container.getElement('#media-info-folder-size .value').set('html', mediaFolderSize);
+                Container.getElement('#media-info-cache-folder-size .value').set('html', mediaCacheFolderSize);
 
                 var ChartContainer = Container.getElement('#chart-container');
 

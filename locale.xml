@@ -67,6 +67,10 @@
             <de><![CDATA[Anzahl Ordner]]></de>
             <en><![CDATA[Folder Count]]></en>
         </locale>
+        <locale name="dashboard.media.info.folder.unavailable">
+            <de><![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
+            <en><![CDATA[This folder's size is not available. Change this by running the "Media Folder"-CRON.]]></en>
+        </locale>
         <locale name="dashboard.media.info.folder.size">
             <de><![CDATA[Größe des Medien Ordners]]></de>
             <en><![CDATA[Media Folder Size]]></en>
