@@ -110,6 +110,10 @@
     margin: 0;
 }
 
+#quiqqer-dashboard-media-info #table-container .value {
+    text-align: center;
+}
+
 #quiqqer-dashboard-media-info #chart-container h2 {
     text-align: center;
     padding-left: 0;
