@@ -353,7 +353,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     var MediaFolderSizeDate                   = new Date(result.mediaFolderSizeTimestamp * 1000),
                         timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
 
-                    mediaFolderSize += "<br><small>(" + timeSinceMediaFolderSizeTimestampText + ")</small>";
+                    mediaFolderSize.innerHTML += "<br><small>(" + timeSinceMediaFolderSizeTimestampText + ")</small>";
                 }
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
@@ -368,7 +368,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     var MediaCacheFolderSizeDate          = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
                         timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
 
-                    mediaCacheFolderSize += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
+                    mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
 
                 Container.getElement('#media-info-files-count .value').set('html', result.filesCount);
