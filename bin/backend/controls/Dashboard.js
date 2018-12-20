@@ -404,7 +404,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }
 
                     var colors = ColorUtil.getRandomHexColorsFromPallet(
-                        Object.keys(result.filetypesCount).length
+                        Object.keys(result.filetypesCount).length,
+                        [
+                            ColorUtil.ColorPalette.black,
+                            ColorUtil.ColorPalette.gray,
+                            ColorUtil.ColorPalette.silver,
+                            ColorUtil.ColorPalette.white
+                        ]
                     );
 
                     self.$MediaInfoChart = new Chart(Container.getElement('#chart'), {
