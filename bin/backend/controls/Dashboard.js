@@ -13,6 +13,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'controls/projects/Select',
 
     'utils/Color',
+    'utils/Date',
 
     'Locale',
     'Mustache',
@@ -24,7 +25,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css',
     'css!package/quiqqer/dashboard/bin/backend/controls/Card.css'
 
-], function (QUI, QUIPanel, Dashboard, Card, ProjectSelect, ColorUtil, QUILocale, Mustache,
+], function (QUI, QUIPanel, Dashboard, Card, ProjectSelect, ColorUtil, DateUtil, QUILocale, Mustache,
              template, templateHelpDe, templateHelpEn) {
     "use strict";
 
@@ -332,28 +333,58 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
                 var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
 
-                var mediaFolderDataUnavailableText = QUILocale.get(lg, 'dashboard.media.info.folder.unavailable');
+                // We can't use a plain string here because the text contains ' and "
+                var mediaFolderSize = new Element('span', {
+                    title: QUILocale.get(lg, 'dashboard.media.info.folder.unavailable'),
+                    html : '–'
+                });
 
-                var mediaFolderSize      = "<span title='" + mediaFolderDataUnavailableText + "'>–</span>",
-                    mediaCacheFolderSize = mediaFolderSize;
+                var mediaCacheFolderSize = mediaFolderSize.clone();
 
+                // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (result.mediaFolderSize) {
-                    // Convert folder sizes to Megabytes and round to two fractional digits
-                    mediaFolderSize = (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB";
+                    mediaFolderSize = new Element('span', {
+                        html: (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
+                    });
                 }
 
+                // If there is a timestamp calculate how much time passed since then
+                if (result.mediaFolderSizeTimestamp) {
+                    var MediaFolderSizeDate                   = new Date(result.mediaFolderSizeTimestamp * 1000),
+                        timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
+
+                    mediaFolderSize += "<br><small>(" + timeSinceMediaFolderSizeTimestampText + ")</small>";
+                }
+
+                // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (result.mediaCacheFolderSize) {
-                    // Convert folder sizes to Megabytes and round to two fractional digits
-                    mediaCacheFolderSize = (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB";
+                    mediaCacheFolderSize = new Element('span', {
+                        html: (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
+                    });
+                }
+
+                // If there is a timestamp calculate how much time passed since then
+                if (result.mediaCacheFolderSizeTimestamp) {
+                    var MediaCacheFolderSizeDate          = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
+                        timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
+
+                    mediaCacheFolderSize += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
 
                 Container.getElement('#media-info-files-count .value').set('html', result.filesCount);
                 Container.getElement('#media-info-folder-count .value').set('html', result.folderCount);
-                Container.getElement('#media-info-folder-size .value').set('html', mediaFolderSize);
-                Container.getElement('#media-info-cache-folder-size .value').set('html', mediaCacheFolderSize);
+
+                // Clear the element's content and add the folder size
+                Container.getElement('#media-info-folder-size .value').empty();
+                Container.getElement('#media-info-folder-size .value').adopt(mediaFolderSize);
+
+                // Clear the element's content and add the folder size
+                Container.getElement('#media-info-cache-folder-size .value').empty();
+                Container.getElement('#media-info-cache-folder-size .value').adopt(mediaCacheFolderSize);
 
                 var ChartContainer = Container.getElement('#chart-container');
 
+                // If there are no files, hide the pie chart
                 if (result.filesCount === 0) {
                     ChartContainer.hide();
                     Container.removeClass('qdc-w50');
@@ -361,6 +392,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     return;
                 }
 
+                // Show the pie chart, in case it was hidden before
                 ChartContainer.show();
                 Container.addClass('qdc-w50');
                 Container.removeClass('qdc-w25');
