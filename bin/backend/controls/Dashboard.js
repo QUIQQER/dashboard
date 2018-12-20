@@ -342,7 +342,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 var mediaCacheFolderSize = mediaFolderSize.clone();
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaFolderSize) {
+                if (result.mediaFolderSize !== null) {
                     mediaFolderSize = new Element('span', {
                         html: (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
                     });
@@ -357,7 +357,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 }
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaCacheFolderSize) {
+                if (result.mediaCacheFolderSize !== null) {
                     mediaCacheFolderSize = new Element('span', {
                         html: (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
                     });
