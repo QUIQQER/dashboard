@@ -20,6 +20,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
 
         options: {
+            id     : false,
             icon   : false,
             title  : false,
             content: false,
@@ -59,6 +60,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
             this.$Title   = this.$Elm.getElement('.quiqqer-dashboard-card-title');
             this.$Content = this.$Elm.getElement('.quiqqer-dashboard-card-content');
             this.$Footer  = this.$Elm.getElement('.quiqqer-dashboard-card-footer');
+
+            if (this.getAttribute('id') !== false) {
+                this.setId(this.getAttribute('id'));
+            }
 
             if (this.getAttribute('title') === false) {
                 this.$Title.setStyle('display', 'none');
@@ -108,6 +113,24 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          */
         refresh: function () {
             // Should be overwritten by inheriting class
+        },
+
+        /**
+         * Returns the element's id
+         *
+         * @return {string}
+         */
+        getId: function () {
+            return this.getAttribute('id');
+        },
+
+        /**
+         * Set's the element's id
+         *
+         * @param {string} id
+         */
+        setId: function (id) {
+            this.$Elm.set('id', id);
         },
 
         /**
