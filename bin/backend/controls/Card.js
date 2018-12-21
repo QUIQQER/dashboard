@@ -20,11 +20,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
 
         options: {
-            icon: false,
-            title : false,
+            icon   : false,
+            title  : false,
             content: false,
-            footer: false,
-            styles: false
+            footer : false,
+            styles : false,
+            size   : false
         },
 
         initialize: function (options) {
@@ -79,6 +80,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
                 this.$Footer.setStyle('display', 'none');
             } else if (typeof this.getAttribute('footer') === 'string') {
                 this.setFooter(this.getAttribute('footer'));
+            }
+
+            if (this.getAttribute('footer') === false) {
+                this.$Footer.setStyle('display', 'none');
+            } else if (typeof this.getAttribute('footer') === 'string') {
+                this.setFooter(this.getAttribute('footer'));
+            }
+
+            if (this.getAttribute('size') !== false) {
+                this.setSize(this.getAttribute('size'));
             }
 
             if (this.getAttribute('styles')) {
@@ -169,6 +180,29 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          */
         setFooter: function (footer) {
             this.$Footer.set('html', footer);
+        },
+
+        /**
+         * Returns the card's size
+         *
+         * @return {number}
+         */
+        getSize: function () {
+            return this.getAttribute('size');
+        },
+
+        /**
+         * Sets the card's width (in percent).
+         * Should be one of the defined CSS width-classes (see Dashboard.css for all values)
+         * Currently there are:
+         * 10, 16, 20, 25, 30, 33, 40, 50, 60, 70, 80, 90 and 100
+         *
+         * @param {number} size
+         */
+        setSize: function (size) {
+            this.setAttribute('size', size);
+            this.$Elm.className = this.$Elm.className.replace(/qdc-w\d+/, '');
+            this.$Elm.classList.add('qdc-w' + size);
         }
     });
 });
