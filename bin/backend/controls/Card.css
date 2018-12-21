@@ -109,12 +109,31 @@
     color: #fff !important;
 }
 
+
+/** region Value Status Colors */
+.quiqqer-dashboard-card .good-value {
+    color: #2ECC40;
+}
+
+.quiqqer-dashboard-card .bad-value {
+    color: #FF4136;
+}
+
+.quiqqer-dashboard-card .inactive-value {
+    color: #AAAAAA;
+}
+
+.quiqqer-dashboard-card .warning-value {
+    color: #FFDC00;
+}
+/** endregion */
+
+
 /** custom
  ================================= */
 
 #quiqqer-dashboard-sites-active,
 #quiqqer-dashboard-sites-inactive {
-    color: #5eba00;
     padding: 5px 10px;
     position: absolute;
     right: 0;
