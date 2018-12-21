@@ -26,6 +26,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
             this.parent(options);
 
             this.setAttributes({
+                id     : 'quiqqer-dashboard-card-system-info',
                 icon   : 'fa fa-microchip',
                 title  : QUILocale.get(lg, 'dashboard.system.info'),
                 content: Mustache.render(contentTemplate, {
