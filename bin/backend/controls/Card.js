@@ -87,7 +87,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
 
             this.fireEvent('create', [this]);
 
+            this.refresh();
+
             return this.$Elm;
+        },
+
+        /**
+         * Refreshes the cards content
+         */
+        refresh: function () {
+            // Should be overwritten by inheriting class
         },
 
         /**
