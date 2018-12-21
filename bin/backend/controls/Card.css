@@ -14,8 +14,7 @@
     width: 100%;
 }
 
-.quiqqer-dashboard-card header,
-.quiqqer-dashboard-card-title {
+.quiqqer-dashboard-card header {
     border-bottom: 1px solid rgba(0, 40, 100, 0.12);
     font-size: 1.125rem;
     line-height: 3.5rem;
