@@ -43,8 +43,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
         refresh: function () {
             var self = this;
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCronHistory', function (result) {
-                console.log(result);
-
                 var rows = "";
                 result.forEach(function (cronData) {
                     rows += "<tr>" +
