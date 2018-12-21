@@ -253,7 +253,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     '.newest-blog-entry .quiqqer-dashboard-card-container'
                 );
 
-                var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-body');
+                var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-content');
 
                 BlogEntry.getElement('header')
                     .set('html', '<img src="' + result.image + '" />');
