@@ -84,5 +84,36 @@
             <en><![CDATA[Filetype Distribution]]></en>
         </locale>
         <!-- endregion -->
+
+        <!-- region System Info -->
+        <locale name="dashboard.system.info">
+            <de><![CDATA[System Info]]></de>
+            <en><![CDATA[System Info]]></en>
+        </locale>
+        <locale name="dashboard.system.info.quiqqer.version">
+            <de><![CDATA[QUIQQER Version]]></de>
+            <en><![CDATA[QUIQQER Version]]></en>
+        </locale>
+        <locale name="dashboard.system.info.modules.count">
+            <de><![CDATA[Anzahl Module]]></de>
+            <en><![CDATA[Amount of modules]]></en>
+        </locale>
+        <locale name="dashboard.system.info.devmode.active">
+            <de><![CDATA[Entwicklermodus]]></de>
+            <en><![CDATA[Developer-Mode]]></en>
+        </locale>
+        <locale name="dashboard.system.info.devmode.active.true">
+            <de><![CDATA[Aktiviert]]></de>
+            <en><![CDATA[Active]]></en>
+        </locale>
+        <locale name="dashboard.system.info.devmode.active.false">
+            <de><![CDATA[Deaktiviert]]></de>
+            <en><![CDATA[Disabled]]></en>
+        </locale>
+        <locale name="dashboard.system.info.cache.type">
+            <de><![CDATA[Cache Typ]]></de>
+            <en><![CDATA[Cache Type]]></en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

@@ -100,6 +100,21 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 mediaInfoChartTitle     : QUILocale.get(lg, 'dashboard.media.info.chart.title')
             }));
 
+
+            // Add System Info Card
+            require(['package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo'], function (SystemInfoCard) {
+                // Has a width of 25
+                self.$SystemInfoCard = new SystemInfoCard();
+
+                // Create a new row
+                var Row = new Element('div', {'class': 'quiqqer-dashboard-row'});
+
+                // Space left 100 - 25 = 75 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                self.$SystemInfoCard.inject(Row);
+                Row.inject(self.getContent(), 'bottom');
+            });
+
+
             new ProjectSelect({
                 langSelect : false,
                 emptyselect: false,
