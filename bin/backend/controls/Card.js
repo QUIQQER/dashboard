@@ -65,13 +65,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
                 this.setTitle(this.getAttribute('title'));
             }
 
-            if (this.getAttribute('icon')) {
+            if (this.getAttribute('icon') && (typeof this.getAttribute('content') === 'string')) {
                 this.setIcon(this.getAttribute('icon'));
             }
 
             if (this.getAttribute('content') === false) {
                 this.$Content.setStyle('display', 'none');
-            } else if (typeof this.getAttribute('title') === 'string') {
+            } else if (typeof this.getAttribute('content') === 'string') {
                 this.setContent(this.getAttribute('content'));
             }
 
