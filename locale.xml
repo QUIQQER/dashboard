@@ -115,5 +115,24 @@
             <en><![CDATA[Cache Type]]></en>
         </locale>
         <!-- endregion -->
+
+        <!-- region Cron History -->
+        <locale name="dashboard.cron.history">
+            <de><![CDATA[CRON Historie]]></de>
+            <en><![CDATA[CRON History]]></en>
+        </locale>
+        <locale name="dashboard.cron.history.date">
+            <de><![CDATA[Datum]]></de>
+            <en><![CDATA[Date]]></en>
+        </locale>
+        <locale name="dashboard.cron.history.cron">
+            <de><![CDATA[CRON Titel]]></de>
+            <en><![CDATA[CRON Title]]></en>
+        </locale>
+        <locale name="dashboard.cron.history.user">
+            <de><![CDATA[Ausführender Benutzer]]></de>
+            <en><![CDATA[Executing User]]></en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

@@ -102,15 +102,20 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
 
             // Add System Info Card
-            require(['package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo'], function (SystemInfoCard) {
+            require([
+                'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory'
+            ], function (SystemInfoCard, CronHistoryCard) {
                 // Has a width of 25
-                self.$SystemInfoCard = new SystemInfoCard();
+                self.$SystemInfoCard  = new SystemInfoCard();
+                self.$CronHistoryCard = new CronHistoryCard();
 
                 // Create a new row
                 var Row = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
-                // Space left 100 - 25 = 75 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                // Space left 100 - 25 - 40 = 35 ; or programmatically (100 - self.$SystemInfoCard.getSize())
                 self.$SystemInfoCard.inject(Row);
+                self.$CronHistoryCard.inject(Row);
                 Row.inject(self.getContent(), 'bottom');
             });
 
