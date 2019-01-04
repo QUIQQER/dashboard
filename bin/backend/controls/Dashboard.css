@@ -42,8 +42,7 @@
 }
 
 .quiqqer-dashboard-cards {
-    display: flex;
-    flex-direction: column;
+    display: block;
 }
 
 /** design
