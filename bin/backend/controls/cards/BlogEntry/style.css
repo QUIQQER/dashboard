@@ -1,0 +1,11 @@
+#quiqqer-dashboard-card-newest-blog-entry {
+    cursor: pointer;
+}
+
+#quiqqer-dashboard-card-newest-blog-entry #blog-entry-image {
+    max-width: 100%;
+}
+
+#quiqqer-dashboard-card-newest-blog-entry #blog-entry-text {
+    padding: 0 1.5rem 1.5rem
+}

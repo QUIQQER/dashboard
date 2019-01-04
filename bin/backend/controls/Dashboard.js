@@ -101,25 +101,35 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             }));
 
 
-            // Add System Info Card
             require([
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard) {
-                // Has a width of 25
+                'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry'
+            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard) {
+                // Create a new row
+                var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
+
                 self.$SystemInfoCard  = new SystemInfoCard();
                 self.$CronHistoryCard = new CronHistoryCard();
                 self.$FilesystemInfoCard = new FilesystemInfoCard();
 
-                // Create a new row
-                var Row = new Element('div', {'class': 'quiqqer-dashboard-row'});
-
                 // Space left 100 - 25 - 40 - 33 = 98 ; or programmatically (100 - self.$SystemInfoCard.getSize())
-                self.$SystemInfoCard.inject(Row);
-                self.$CronHistoryCard.inject(Row);
-                self.$FilesystemInfoCard.inject(Row);
-                Row.inject(self.getContent(), 'bottom');
+                self.$SystemInfoCard.inject(Row1);
+                self.$CronHistoryCard.inject(Row1);
+                self.$FilesystemInfoCard.inject(Row1);
+
+                Row1.inject(self.getContent(), 'bottom');
+
+
+                // Create a new row
+                var Row2 = new Element('div', {'class': 'quiqqer-dashboard-row'});
+                self.$BlogEntryCard = new BlogEntryCard();
+
+                // Space left 100 - 25 = 75 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                self.$BlogEntryCard.inject(Row2);
+
+                Row2.inject(self.getContent(), 'bottom');
             });
 
 
@@ -137,7 +147,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             Promise.all([
                 this.loadStats(),
                 this.loadSiteActivity(),
-                this.loadBlogPost(),
                 this.loadLatestLogins()
                 // Don't load the MediaInfo here.
                 // Because it's ProjectSelect (see above) automatically triggers a change event on page load.
@@ -259,36 +268,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         }
                     }).inject(Tbody);
                 }
-            });
-        },
-
-        /**
-         * Loads the latest blog post
-         *
-         * @return {Promise}
-         */
-        loadBlogPost: function () {
-            var self = this;
-
-            // latest blog
-            return Dashboard.getLatestBlog(window.USER.lang).then(function (result) {
-                var BlogEntry = self.getElm().getElement(
-                    '.newest-blog-entry .quiqqer-dashboard-card-container'
-                );
-
-                var BlogContent = BlogEntry.getElement('.quiqqer-dashboard-card-content');
-
-                BlogEntry.getElement('header')
-                    .set('html', '<img src="' + result.image + '" />');
-
-                BlogContent.set({
-                    html: '<h2>' + result.title + '</h2>' +
-                          '<div style="padding: 0 1.5rem 1.5rem">' + result.description + '</div>'
-                });
-
-                BlogEntry.addEvent('click', function () {
-                    window.open(result.link);
-                });
             });
         },
 
