@@ -134,5 +134,43 @@
             <en><![CDATA[Executing User]]></en>
         </locale>
         <!-- endregion -->
+
+
+        <!-- region Filesystem Info -->
+        <locale name="dashboard.filesystem.info">
+            <de><![CDATA[Dateisystem]]></de>
+            <en><![CDATA[Filesystem]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.unavailable">
+            <de><![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
+            <en><![CDATA[This value is not available. Change this by running the corresponding CRON.]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.installation">
+            <de><![CDATA[Gesamte Installation]]></de>
+            <en><![CDATA[Whole Installation]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.packages">
+            <de><![CDATA[Paket-Ordner]]></de>
+            <en><![CDATA[Packages-Folder]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.cache">
+            <de><![CDATA[Cache-Ordner]]></de>
+            <en><![CDATA[Cache-Folder]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.var">
+            <de><![CDATA[Var-Ordner]]></de>
+            <en><![CDATA[Var-Folder]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.count.files">
+            <de><![CDATA[Gesamtzahl Dateien]]></de>
+            <en><![CDATA[Total file count]]></en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

@@ -115,7 +115,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 // Create a new row
                 var Row = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
-                // Space left 100 - 25 - 40 - 25 = 10 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                // Space left 100 - 25 - 40 - 33 = 98 ; or programmatically (100 - self.$SystemInfoCard.getSize())
                 self.$SystemInfoCard.inject(Row);
                 self.$CronHistoryCard.inject(Row);
                 self.$FilesystemInfoCard.inject(Row);

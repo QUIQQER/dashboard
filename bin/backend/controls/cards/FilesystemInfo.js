@@ -8,11 +8,15 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
     'Locale',
     'Mustache',
 
+    'utils/Date',
+
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfoContent.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.html',
 
-], function (QUIAjax, QUILocale, Mustache, QUICard, contentTemplate) {
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.css'
+
+], function (QUIAjax, QUILocale, Mustache, DateUtil, QUICard, contentTemplate) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -26,50 +30,112 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-file-system-info',
-                icon   : 'fa fa-folder-open-o',
+                id     : 'quiqqer-dashboard-card-filesystem-info',
+                icon   : 'fa fa-hdd-o',
                 title  : QUILocale.get(lg, 'dashboard.filesystem.info'),
-//                content: Mustache.render(contentTemplate, {
-//                    quiqqerVersion: QUILocale.get(lg, 'dashboard.system.info.quiqqer.version'),
-//                    modulesCount  : QUILocale.get(lg, 'dashboard.system.info.modules.count'),
-//                    devmodeActive : QUILocale.get(lg, 'dashboard.system.info.devmode.active'),
-//                    cacheType     : QUILocale.get(lg, 'dashboard.system.info.cache.type')
-//                }),
+                content: Mustache.render(contentTemplate, {
+                    sizeInstallation: QUILocale.get(lg, 'dashboard.filesystem.info.size.installation'),
+                    sizePackages    : QUILocale.get(lg, 'dashboard.filesystem.info.size.packages'),
+                    sizeCache       : QUILocale.get(lg, 'dashboard.filesystem.info.size.cache'),
+                    sizeVar         : QUILocale.get(lg, 'dashboard.filesystem.info.size.var'),
+                    countFiles      : QUILocale.get(lg, 'dashboard.filesystem.info.count.files')
+                }),
                 footer : false,
                 styles : false,
-                size   : 25
+                size   : 33
             });
         },
 
         refresh: function () {
             var self = this;
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getFilesystemInfo', function (result) {
-                console.log(result);
-                return;
+                var Card = self.getElm();
 
-                self.getElm().getElement('#system-info-quiqqer-version .value').set('html', result.quiqqerVersion);
-                self.getElm().getElement('#system-info-modules-count .value').set('html', result.modulesCount);
-
-                var DevModeActiveElement = new Element('span', {
-                    // Determine value status depending on Dev-Mode being active or not
-                    'class': result.isDevModeActive ? 'good-value' : 'inactive-value',
-                    // Get text from locale variable depending on Dev-Mode being active or not
-                    'html' : QUILocale.get(
-                        lg,
-                        'dashboard.system.info.devmode.active.' + (result.isDevModeActive ? 'true' : 'false')
-                    )
-                });
-
-                self.getElm().getElement('#system-info-devmode-active .value').set(
-                    'html',
-                    DevModeActiveElement.outerHTML
+                // Total size
+                var SizeInstallationValue = Card.getElement('#filesystem-info-size-installation .value');
+                SizeInstallationValue.empty();
+                SizeInstallationValue.adopt(
+                    self.buildValue(result.sizeInstallation, result.sizeInstallationTimestamp)
                 );
 
-                self.getElm().getElement('#system-info-cache-type .value').set('html', result.cacheType);
+                // Packages size
+                var SizePackagesValue = Card.getElement('#filesystem-info-size-packages .value');
+                SizePackagesValue.empty();
+                SizePackagesValue.adopt(
+                    self.buildValue(result.sizePackages, result.sizePackagesTimestamp)
+                );
+
+                // Cache size
+                var SizeCacheValue = Card.getElement('#filesystem-info-size-cache .value');
+                SizeCacheValue.empty();
+                SizeCacheValue.adopt(
+                    self.buildValue(result.sizeCache, result.sizeCacheTimestamp)
+                );
+
+                // Var size
+                var SizeVarValue = Card.getElement('#filesystem-info-size-var .value');
+                SizeVarValue.empty();
+                SizeVarValue.adopt(
+                    self.buildValue(result.sizeVar, result.sizeVarTimestamp)
+                );
+
+                // File count
+                var CountFilesValue = Card.getElement('#filesystem-info-count-files .value');
+                CountFilesValue.empty();
+                CountFilesValue.adopt(
+                    self.buildValue(result.countFiles, result.countFilesTimestamp, false)
+                );
             }, {
                 'package': 'quiqqer/dashboard',
                 onError  : console.error
             });
+        },
+
+
+        /**
+         * Builds a value element (span) that can be inserted into the table.
+         * Takes a value and a timestamp.
+         *
+         * @param {number} value
+         * @param {number} [timestamp]
+         * @param {boolean} [convertToMegabytes]
+         *
+         * @return {Element}
+         */
+        buildValue: function (value, timestamp, convertToMegabytes) {
+            if (convertToMegabytes === undefined) {
+                convertToMegabytes = true;
+            }
+
+            var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
+
+            var ValueElement = new Element('span', {
+                title: QUILocale.get(lg, 'dashboard.filesystem.info.unavailable'),
+                html : '–'
+            });
+
+            if (value !== null) {
+                var html = value;
+
+                // Convert to Megabytes and round to two fractional digits
+                if (convertToMegabytes) {
+                    html = (value / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB";
+                }
+
+                ValueElement = new Element('span', {
+                    html: html
+                });
+
+                // If there is a timestamp, calculate how much time passed since then
+                if (timestamp) {
+                    var DateFromTimestamp = new Date(timestamp * 1000),
+                        timeSinceDateText = DateUtil.getTimeSinceAsString(DateFromTimestamp);
+
+                    ValueElement.innerHTML += "<br><small>(" + timeSinceDateText + ")</small>";
+                }
+            }
+
+            return ValueElement;
         }
     });
 });

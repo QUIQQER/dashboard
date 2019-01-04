@@ -10,15 +10,21 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getFilesystemInfo',
     function () {
-        // TODO: https://dev.quiqqer.com/quiqqer/dashboard/issues/7
-        $packageFolderSize = QUI::getPackageManager()->getPackageFolderSize();
-
         return [
-            'totalSize' => 0,
-            'totalFileCount' => 0,
-            'packageFolderSize' => $packageFolderSize,
-            'cacheFolderSize' => 0,
-            'varFolderSize' => 0
+            'sizeInstallation'          => \QUI\Utils\Installation::getWholeFolderSize(),
+            'sizeInstallationTimestamp' => \QUI\Utils\Installation::getWholeFolderSizeTimestamp(),
+
+            'sizePackages'          => QUI::getPackageManager()->getPackageFolderSize(),
+            'sizePackagesTimestamp' => QUI::getPackageManager()->getPackageFolderSizeTimestamp(),
+
+            'sizeCache'          => \QUI\Cache\Manager::getCacheFolderSize(),
+            'sizeCacheTimestamp' => \QUI\Cache\Manager::getCacheFolderSizeTimestamp(),
+
+            'sizeVar'          => \QUI\Utils\Installation::getVarFolderSize(),
+            'sizeVarTimestamp' => \QUI\Utils\Installation::getVarFolderSizeTimestamp(),
+
+            'countFiles'          => \QUI\Utils\Installation::getAllFileCount(),
+            'countFilesTimestamp' => \QUI\Utils\Installation::getAllFileCountTimestamp()
         ];
     },
     false,
