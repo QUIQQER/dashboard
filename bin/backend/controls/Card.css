@@ -93,6 +93,11 @@
     top: 0.4rem;
 }
 
+.quiqqer-dashboard-card-footer {
+    padding: 0.75rem;
+    padding-top: 0;
+}
+
 /** CSS API
  ================================= */
 
