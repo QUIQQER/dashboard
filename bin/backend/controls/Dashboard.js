@@ -136,7 +136,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             // stats
             Promise.all([
                 this.loadStats(),
-//                this.loadSiteActivity(),
                 this.loadLatestLogins()
                 // Don't load the MediaInfo here.
                 // Because it's ProjectSelect (see above) automatically triggers a change event on page load.
