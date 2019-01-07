@@ -227,15 +227,6 @@
             <de><![CDATA[https://community.quiqqer.de]]></de>
             <en><![CDATA[https://community.quiqqer.com]]></en>
         </locale>
-
-        <locale name="dashboard.links.social.github">
-            <de><![CDATA[GitHub]]></de>
-            <en><![CDATA[GitHub]]></en>
-        </locale>
-        <locale name="dashboard.links.social.github.url">
-            <de><![CDATA[https://github.com/quiqqer]]></de>
-            <en><![CDATA[https://github.com/quiqqer]]></en>
-        </locale>
         <!-- endregion -->
     </groups>
 </locales>

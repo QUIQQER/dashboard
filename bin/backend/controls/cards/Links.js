@@ -31,20 +31,21 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
                 title  : QUILocale.get(lg, 'dashboard.links'),
                 content: Mustache.render(content, {
                     quiqqer: QUILocale.get(lg, 'dashboard.links.quiqqer'),
-                    quiqqerUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.url'),
-                    help: QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
+
+                    help   : QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
                     helpUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.help.url'),
-                    blog: QUILocale.get(lg, 'dashboard.links.quiqqer.blog'),
+
+                    blog   : QUILocale.get(lg, 'dashboard.links.quiqqer.blog'),
                     blogUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.blog.url'),
-                    packages: QUILocale.get(lg, 'dashboard.links.quiqqer.packages'),
+
+                    packages   : QUILocale.get(lg, 'dashboard.links.quiqqer.packages'),
                     packagesUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.packages.url'),
 
+
                     social: QUILocale.get(lg, 'dashboard.links.social'),
-                    socialUrl: QUILocale.get(lg, 'dashboard.links.social.url'),
-                    community: QUILocale.get(lg, 'dashboard.links.social.community'),
-                    communityUrl: QUILocale.get(lg, 'dashboard.links.social.community.url'),
-                    github: QUILocale.get(lg, 'dashboard.links.social.github'),
-                    githubUrl: QUILocale.get(lg, 'dashboard.links.social.github.url')
+
+                    community   : QUILocale.get(lg, 'dashboard.links.social.community'),
+                    communityUrl: QUILocale.get(lg, 'dashboard.links.social.community.url')
                 }),
                 footer : false,
                 styles : false,
