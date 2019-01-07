@@ -17,30 +17,38 @@
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="js">
-        <locale name="dashboard.projects.count">
+
+        <!-- region Stats -->
+        <locale name="dashboard.stats.projects">
             <de><![CDATA[Projekte]]></de>
             <en><![CDATA[Projects]]></en>
         </locale>
-        <locale name="dashboard.sites.count">
+
+        <locale name="dashboard.stats.pages">
             <de><![CDATA[Seiten]]></de>
             <en><![CDATA[Pages]]></en>
         </locale>
-        <locale name="dashboard.sites.active">
+        <locale name="dashboard.stats.pages.active">
             <de><![CDATA[Aktive Seiten]]></de>
             <en><![CDATA[Active Pages]]></en>
         </locale>
-        <locale name="dashboard.sites.inactive">
+        <locale name="dashboard.stats.pages.inactive">
             <de><![CDATA[Deaktivierte Seiten]]></de>
             <en><![CDATA[Deactivated Pages]]></en>
         </locale>
-        <locale name="dashboard.users.count">
+
+        <locale name="dashboard.stats.users">
             <de><![CDATA[Benutzer]]></de>
             <en><![CDATA[Users]]></en>
         </locale>
-        <locale name="dashboard.groups.count">
+
+        <locale name="dashboard.stats.groups">
             <de><![CDATA[Gruppen]]></de>
             <en><![CDATA[Groups]]></en>
         </locale>
+        <!-- endregion -->
+
+
         <locale name="dashboard.page.changes">
             <de><![CDATA[Zuletzt geänderte Seiten]]></de>
             <en><![CDATA[Latest page changes]]></en>

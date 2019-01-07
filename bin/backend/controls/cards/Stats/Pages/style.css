@@ -1,0 +1,13 @@
+#quiqqer-dashboard-pages-active,
+#quiqqer-dashboard-pages-inactive {
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#quiqqer-dashboard-pages-inactive {
+    color: rgb(161, 170, 187);
+    left: 0;
+    right: inherit;
+}

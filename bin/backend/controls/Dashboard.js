@@ -57,14 +57,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getContent().addClass('quiqqer-dashboard-cards');
             this.getContent().addClass('quiqqer-dashboard--loading');
 
-            this.getContent().set('html', Mustache.render(template, {
-                projectTitle : QUILocale.get(lg, 'dashboard.projects.count'),
-                sitesTitle   : QUILocale.get(lg, 'dashboard.sites.count'),
-                sitesActive  : QUILocale.get(lg, 'dashboard.sites.active'),
-                sitesInactive: QUILocale.get(lg, 'dashboard.sites.inactive'),
-                usersTitle   : QUILocale.get(lg, 'dashboard.users.count'),
-                groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count')
-            }));
+            this.getContent().set('html', Mustache.render(template));
 
 
             require([
@@ -75,12 +68,34 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard, LinksCard, LatestLoginsCard, MediaInfoCard) {
+                'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups'
+            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard,
+                         LinksCard, LatestLoginsCard, MediaInfoCard,
+                         StatsProjectsCard, StatsPagesCard, StatsUsersCard, StatsGroupsCard) {
+                // Create a new row
+                var Row4 = new Element('div', {'class': 'quiqqer-dashboard-row'});
+                self.$StatsProjectsCard = new StatsProjectsCard();
+                self.$StatsPagesCard = new StatsPagesCard();
+                self.$StatsUsersCard = new StatsUsersCard();
+                self.$StatsGroupsCard = new StatsGroupsCard();
+
+                // Space left 100 - (16 * 4) = 36 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                self.$StatsProjectsCard.inject(Row4);
+                self.$StatsPagesCard.inject(Row4);
+                self.$StatsUsersCard.inject(Row4);
+                self.$StatsGroupsCard.inject(Row4);
+
+                Row4.inject(self.getContent(), 'bottom');
+
+
                 // Create a new row
                 var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
-                self.$SystemInfoCard  = new SystemInfoCard();
+                self.$SystemInfoCard = new SystemInfoCard();
                 self.$CronHistoryCard = new CronHistoryCard();
                 self.$FilesystemInfoCard = new FilesystemInfoCard();
 
@@ -119,10 +134,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             });
 
 
-            // stats
-            Promise.all([
-                this.loadStats()
-            ]).then(function () {
+            Promise.all([]).then(function () {
                 var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
 
                 this.getContent().removeClass('quiqqer-dashboard--loading');
@@ -135,61 +147,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }
                 });
             }.bind(this));
-        },
-
-        /**
-         * load general stats
-         *
-         * @return {Promise}
-         */
-        loadStats: function () {
-            var self = this;
-
-            return Dashboard.getStats().then(function (result) {
-                var Projects = self.getElm().getElement('.quiqqer-dashboard-projects .quiqqer-dashboard-one-stat-value');
-                var Sites = self.getElm().getElement('#quiqqer-dashboard-sites .quiqqer-dashboard-one-stat-value');
-                var Users = self.getElm().getElement('.quiqqer-dashboard-users .quiqqer-dashboard-one-stat-value');
-                var Groups = self.getElm().getElement('.quiqqer-dashboard-groups .quiqqer-dashboard-one-stat-value');
-
-                Projects.removeClass('fa fa-circle-o-notch fa-spin');
-                Projects.set('html', result.projects);
-
-                Sites.removeClass('fa fa-circle-o-notch fa-spin');
-                Sites.set('html', result.sites.total);
-                self.getElm().getElement('#quiqqer-dashboard-sites-active').set('html', result.sites.active);
-                self.getElm().getElement('#quiqqer-dashboard-sites-inactive').set('html', result.sites.inactive);
-
-                Users.removeClass('fa fa-circle-o-notch fa-spin');
-                Users.set('html', result.users);
-
-                Groups.removeClass('fa fa-circle-o-notch fa-spin');
-                Groups.set('html', result.groups);
-            }).then(function () {
-                // events
-                return new Promise(function (resolve) {
-                    require([
-                        'utils/Panels',
-                        'controls/users/Panel',
-                        'controls/groups/Panel'
-                    ], function (PanelUtils, UsersPanel, GroupsPanel) {
-                        self.getElm().getElement('.quiqqer-dashboard-users')
-                            .addEvent('click', function () {
-                                PanelUtils.openPanelInTasks(
-                                    new UsersPanel()
-                                );
-                            });
-
-                        self.getElm().getElement('.quiqqer-dashboard-groups')
-                            .addEvent('click', function () {
-                                PanelUtils.openPanelInTasks(
-                                    new GroupsPanel()
-                                );
-                            });
-
-                        resolve();
-                    });
-                });
-            });
         }
     });
 });

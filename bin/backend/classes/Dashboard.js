@@ -5,10 +5,9 @@
 define('package/quiqqer/dashboard/bin/backend/classes/Dashboard', [
 
     'qui/QUI',
-    'qui/classes/DOM',
-    'Ajax'
+    'qui/classes/DOM'
 
-], function (QUI, QUIDOM, Ajax) {
+], function (QUI, QUIDOM) {
     "use strict";
 
     return new Class({
@@ -16,18 +15,5 @@ define('package/quiqqer/dashboard/bin/backend/classes/Dashboard', [
         Extends: QUIDOM,
         Type   : 'package/quiqqer/dashboard/bin/backend/classes/Dashboard',
 
-        /**
-         * Return the basic stats
-         *
-         * @return {Promise}
-         */
-        getStats: function () {
-            return new Promise(function (resolve, reject) {
-                Ajax.get('package_quiqqer_dashboard_ajax_backend_getStatNumbers', resolve, {
-                    'package': 'quiqqer/dashboard',
-                    onError  : reject
-                });
-            });
-        }
     });
 });
