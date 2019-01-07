@@ -42,7 +42,7 @@
             <en><![CDATA[Groups]]></en>
         </locale>
         <locale name="dashboard.page.changes">
-            <de><![CDATA[Zuletzte geänderte Seiten]]></de>
+            <de><![CDATA[Zuletzt geänderte Seiten]]></de>
             <en><![CDATA[Latest page changes]]></en>
         </locale>
         <locale name="dashboard.last.user.login">
