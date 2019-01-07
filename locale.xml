@@ -45,10 +45,13 @@
             <de><![CDATA[Zuletzt geänderte Seiten]]></de>
             <en><![CDATA[Latest page changes]]></en>
         </locale>
-        <locale name="dashboard.last.user.login">
+
+        <!-- region Latest Logins -->
+        <locale name="dashboard.logins">
             <de><![CDATA[Letzte Benutzeranmeldungen]]></de>
-            <en><![CDATA[Last user logins]]></en>
+            <en><![CDATA[Last User Logins]]></en>
         </locale>
+        <!-- endregion -->
 
         <!-- region Media Info -->
         <locale name="dashboard.media.info">

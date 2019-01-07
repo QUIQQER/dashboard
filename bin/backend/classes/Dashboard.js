@@ -32,21 +32,6 @@ define('package/quiqqer/dashboard/bin/backend/classes/Dashboard', [
 
 
         /**
-         * Return the latest user logins
-         *
-         * @return {Promise}
-         */
-        getLatestLogins: function () {
-            return new Promise(function (resolve, reject) {
-                Ajax.get('package_quiqqer_dashboard_ajax_backend_getLatestLogins', resolve, {
-                    'package': 'quiqqer/dashboard',
-                    onError  : reject
-                });
-            });
-        },
-
-
-        /**
          * Returns information about project's media
          *
          * @param {string} projectName - The project to get the media info for

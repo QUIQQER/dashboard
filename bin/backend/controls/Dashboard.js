@@ -70,11 +70,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 usersTitle   : QUILocale.get(lg, 'dashboard.users.count'),
                 groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count'),
 
-                userLogin        : QUILocale.get(lg, 'dashboard.last.user.login'),
-                userLoginUsername: QUILocale.get('quiqqer/system', 'username'),
-                userLoginName    : QUILocale.get('quiqqer/system', 'name'),
-                userLoginDate    : QUILocale.get('quiqqer/system', 'date'),
-
                 mediaInfo               : QUILocale.get(lg, 'dashboard.media.info'),
                 mediaInfoTableTitle     : QUILocale.get(lg, 'dashboard.media.info.table.title'),
                 mediaInfoFilesCount     : QUILocale.get(lg, 'dashboard.media.info.files.count'),
@@ -91,8 +86,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Links'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard, LinksCard) {
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins'
+            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard, LinksCard, LatestLoginsCard) {
                 // Create a new row
                 var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
@@ -100,7 +96,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 self.$CronHistoryCard = new CronHistoryCard();
                 self.$FilesystemInfoCard = new FilesystemInfoCard();
 
-                // Space left 100 - 25 - 40 - 33 = 98 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                // Space left 100 - 25 - 40 - 33 = 2 ; or programmatically (100 - self.$SystemInfoCard.getSize())
                 self.$SystemInfoCard.inject(Row1);
                 self.$CronHistoryCard.inject(Row1);
                 self.$FilesystemInfoCard.inject(Row1);
@@ -120,6 +116,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 self.$LinksCard.inject(Row2);
 
                 Row2.inject(self.getContent(), 'bottom');
+
+
+                // Create a new row
+                var Row3 = new Element('div', {'class': 'quiqqer-dashboard-row'});
+                self.$LatestLoginsCard = new LatestLoginsCard();
+
+                // Space left 100 - 50 = 50 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                self.$LatestLoginsCard.inject(Row3);
+
+                Row3.inject(self.getContent(), 'bottom');
             });
 
 
@@ -135,8 +141,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             // stats
             Promise.all([
-                this.loadStats(),
-                this.loadLatestLogins()
+                this.loadStats()
                 // Don't load the MediaInfo here.
                 // Because it's ProjectSelect (see above) automatically triggers a change event on page load.
                 // Therefore the MediaInfo is loaded automatically.
@@ -207,52 +212,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         resolve();
                     });
                 });
-            });
-        },
-
-        /**
-         *
-         * @return {Promise}
-         */
-        loadLatestLogins: function () {
-            var self = this;
-
-            // latest user logins
-            return Dashboard.getLatestLogins().then(function (result) {
-                var Container = self.getElm().getElement('.quiqqer-dashboard-userLogins');
-                var Tbody = Container.getElement('tbody');
-
-                var i, len, entry;
-
-                var click = function (event) {
-                    var Target = event.target;
-
-                    if (Target.nodeName !== 'TR') {
-                        Target = Target.getParent('tr');
-                    }
-
-                    var uid = Target.get('data-uid');
-
-                    require(['utils/Panels'], function (PanelUtils) {
-                        PanelUtils.openUserPanel(uid);
-                    });
-                };
-
-                for (i = 0, len = result.length; i < len; i++) {
-                    entry = result[i];
-
-                    new Element('tr', {
-                        'class'   : 'can-be-hovered',
-                        'data-uid': entry.uid,
-                        html      : '' +
-                                    '<td>' + entry.username + '</td>' +
-                                    '<td>' + entry.name + '</td>' +
-                                    '<td>' + entry.date + '</td>',
-                        events    : {
-                            click: click
-                        }
-                    }).inject(Tbody);
-                }
             });
         },
 
