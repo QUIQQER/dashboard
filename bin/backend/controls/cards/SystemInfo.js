@@ -10,7 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfoContent.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo/content.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, contentTemplate) {
     "use strict";

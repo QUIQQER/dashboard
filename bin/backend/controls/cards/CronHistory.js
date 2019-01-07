@@ -10,7 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/CronHistoryContent.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory/content.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, contentTemplate) {
     "use strict";

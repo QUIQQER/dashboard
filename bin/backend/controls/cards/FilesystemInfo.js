@@ -12,9 +12,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.html',
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/content.html',
 
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.css'
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/style.css'
 
 ], function (QUIAjax, QUILocale, Mustache, DateUtil, QUICard, contentTemplate) {
     "use strict";
