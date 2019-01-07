@@ -30,19 +30,6 @@ define('package/quiqqer/dashboard/bin/backend/classes/Dashboard', [
             });
         },
 
-        /**
-         * Return the newest edited sites
-         *
-         * @return {Promise}
-         */
-        getNewestEditedSites: function () {
-            return new Promise(function (resolve, reject) {
-                Ajax.get('package_quiqqer_dashboard_ajax_backend_getNewestEditedSites', resolve, {
-                    'package': 'quiqqer/dashboard',
-                    onError  : reject
-                });
-            });
-        },
 
         /**
          * Return the latest blog / news entry

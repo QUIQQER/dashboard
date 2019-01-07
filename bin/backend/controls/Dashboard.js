@@ -78,12 +78,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 usersTitle   : QUILocale.get(lg, 'dashboard.users.count'),
                 groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count'),
 
-                pageChangesTitle      : QUILocale.get(lg, 'dashboard.page.changes'),
-                pageChangesId         : QUILocale.get('quiqqer/system', 'id'),
-                pageChangesName       : QUILocale.get('quiqqer/system', 'name'),
-                pageChangesTitleHeader: QUILocale.get('quiqqer/system', 'title'),
-                pageChangesDate       : QUILocale.get('quiqqer/system', 'e_date'),
-
                 help: help,
 
                 userLogin        : QUILocale.get(lg, 'dashboard.last.user.login'),
@@ -105,8 +99,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard) {
+                'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity'
+            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard) {
                 // Create a new row
                 var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
@@ -125,9 +120,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 // Create a new row
                 var Row2 = new Element('div', {'class': 'quiqqer-dashboard-row'});
                 self.$BlogEntryCard = new BlogEntryCard();
+                self.$SiteActivityCard = new SiteActivityCard();
 
-                // Space left 100 - 25 = 75 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                // Space left 100 - 25 - 50 = 25 ; or programmatically (100 - self.$SystemInfoCard.getSize())
                 self.$BlogEntryCard.inject(Row2);
+                self.$SiteActivityCard.inject(Row2);
 
                 Row2.inject(self.getContent(), 'bottom');
             });
@@ -146,7 +143,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             // stats
             Promise.all([
                 this.loadStats(),
-                this.loadSiteActivity(),
+//                this.loadSiteActivity(),
                 this.loadLatestLogins()
                 // Don't load the MediaInfo here.
                 // Because it's ProjectSelect (see above) automatically triggers a change event on page load.
@@ -218,56 +215,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         resolve();
                     });
                 });
-            });
-        },
-
-        /**
-         * Load the site activity -> latest changes
-         *
-         * @return {Promise}
-         */
-        loadSiteActivity: function () {
-            var self = this;
-
-            // site activity
-            return Dashboard.getNewestEditedSites().then(function (result) {
-                var Container = self.getElm().getElement('.quiqqer-dashboard-siteActivity');
-                var Tbody = Container.getElement('tbody');
-
-                var i, len, entry;
-
-                var click = function (event) {
-                    var Target = event.target;
-
-                    if (Target.nodeName !== 'TR') {
-                        Target = Target.getParent('tr');
-                    }
-
-                    var project = Target.get('data-project');
-                    var lang = Target.get('data-lang');
-                    var id = Target.get('data-id');
-
-                    require(['utils/Panels'], function (PanelUtils) {
-                        PanelUtils.openSitePanel(project, lang, id);
-                    });
-                };
-
-                for (i = 0, len = result.length; i < len; i++) {
-                    entry = result[i];
-
-                    new Element('tr', {
-                        'class'       : 'can-be-hovered',
-                        'data-project': entry.project,
-                        'data-lang'   : entry.lang,
-                        'data-id'     : entry.id,
-                        html          : '<td>' + entry.id + '</td>' +
-                                        '<td>' + entry.title + '</td>' +
-                                        '<td>' + entry.e_date + '</td>',
-                        events        : {
-                            click: click
-                        }
-                    }).inject(Tbody);
-                }
             });
         },
 
