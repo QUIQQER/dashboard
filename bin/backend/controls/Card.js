@@ -32,10 +32,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         initialize: function (options) {
             this.parent(options);
 
-            this.$Title   = null;
-            this.$Icon    = null;
+            this.$Title = null;
+            this.$Icon = null;
             this.$Content = null;
-            this.$Footer  = null;
+            this.$Footer = null;
         },
 
         /**
@@ -47,19 +47,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
             this.$Elm.addClass('quiqqer-dashboard-card');
             this.$Elm.set({
                 html: '<div class="quiqqer-dashboard-card-container">' +
-                    '   <header class="quiqqer-dashboard-card-header">' +
-                    '       <span class="quiqqer-dashboard-card-icon"></span>'  +
-                    '       <span class="quiqqer-dashboard-card-title"></span>' +
-                    '   </header>' +
-                    '   <div class="quiqqer-dashboard-card-content"></div>' +
-                    '   <div class="quiqqer-dashboard-card-footer"></div>'  +
-                    '</div>'
+                      '   <header class="quiqqer-dashboard-card-header">' +
+                      '       <span class="quiqqer-dashboard-card-icon"></span>' +
+                      '       <span class="quiqqer-dashboard-card-title"></span>' +
+                      '   </header>' +
+                      '   <div class="quiqqer-dashboard-card-content"></div>' +
+                      '   <div class="quiqqer-dashboard-card-footer"></div>' +
+                      '</div>'
             });
 
-            this.$Icon    = this.$Elm.getElement('.quiqqer-dashboard-card-icon');
-            this.$Title   = this.$Elm.getElement('.quiqqer-dashboard-card-title');
+            this.$Icon = this.$Elm.getElement('.quiqqer-dashboard-card-icon');
+            this.$Title = this.$Elm.getElement('.quiqqer-dashboard-card-title');
             this.$Content = this.$Elm.getElement('.quiqqer-dashboard-card-content');
-            this.$Footer  = this.$Elm.getElement('.quiqqer-dashboard-card-footer');
+            this.$Footer = this.$Elm.getElement('.quiqqer-dashboard-card-footer');
 
             if (this.getAttribute('id') !== false) {
                 this.setId(this.getAttribute('id'));
@@ -67,8 +67,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
 
             if (this.getAttribute('title') === false) {
                 this.$Title.setStyle('display', 'none');
-            } else if (typeof this.getAttribute('title') === 'string') {
-                this.setTitle(this.getAttribute('title'));
+            } else {
+                if (typeof this.getAttribute('title') === 'string') {
+                    this.setTitle(this.getAttribute('title'));
+                }
             }
 
             if (this.getAttribute('icon') && (typeof this.getAttribute('content') === 'string')) {
@@ -77,20 +79,26 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
 
             if (this.getAttribute('content') === false) {
                 this.$Content.setStyle('display', 'none');
-            } else if (typeof this.getAttribute('content') === 'string') {
-                this.setContent(this.getAttribute('content'));
+            } else {
+                if (typeof this.getAttribute('content') === 'string') {
+                    this.setContent(this.getAttribute('content'));
+                }
             }
 
             if (this.getAttribute('footer') === false) {
                 this.$Footer.setStyle('display', 'none');
-            } else if (typeof this.getAttribute('footer') === 'string') {
-                this.setFooter(this.getAttribute('footer'));
+            } else {
+                if (typeof this.getAttribute('footer') === 'string') {
+                    this.setFooter(this.getAttribute('footer'));
+                }
             }
 
             if (this.getAttribute('footer') === false) {
                 this.$Footer.setStyle('display', 'none');
-            } else if (typeof this.getAttribute('footer') === 'string') {
-                this.setFooter(this.getAttribute('footer'));
+            } else {
+                if (typeof this.getAttribute('footer') === 'string') {
+                    this.setFooter(this.getAttribute('footer'));
+                }
             }
 
             if (this.getAttribute('size') !== false) {
@@ -148,6 +156,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {string} title
          */
         setTitle: function (title) {
+            this.$Title.setStyle('display', title ? 'block' : 'none');
             this.$Title.set('html', title);
         },
 
@@ -184,6 +193,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {string} content
          */
         setContent: function (content) {
+            this.$Content.setStyle('display', content ? 'block' : 'none');
             this.$Content.set('html', content);
         },
 
@@ -202,6 +212,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {string} footer
          */
         setFooter: function (footer) {
+            this.$Footer.setStyle('display', footer ? 'block' : 'none');
             this.$Footer.set('html', footer);
         },
 
