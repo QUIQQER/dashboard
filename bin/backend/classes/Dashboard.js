@@ -32,21 +32,6 @@ define('package/quiqqer/dashboard/bin/backend/classes/Dashboard', [
 
 
         /**
-         * Return the latest blog / news entry
-         *
-         * @return {Promise}
-         */
-        getLatestBlog: function (language) {
-            return new Promise(function (resolve, reject) {
-                Ajax.get('package_quiqqer_dashboard_ajax_backend_getBlogEntry', resolve, {
-                    'package': 'quiqqer/dashboard',
-                    onError  : reject,
-                    language : language
-                });
-            });
-        },
-
-        /**
          * Return the latest user logins
          *
          * @return {Promise}
