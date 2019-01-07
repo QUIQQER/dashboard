@@ -1,0 +1,38 @@
+#media-info-project-select {
+    float: right;
+    padding: 7px 0;
+}
+
+#media-info-project-select .qui-select .text {
+    width: initial;
+}
+
+#quiqqer-dashboard-card-media-info #table-container,
+#quiqqer-dashboard-card-media-info #chart-container {
+    width: 50%;
+    float: left;
+}
+
+#quiqqer-dashboard-card-media-info.qdc-w25 #table-container{
+    width: 100%;
+}
+
+#quiqqer-dashboard-card-media-info #table-container h2 {
+    text-align: left;
+    padding-left: 10px;
+    margin: 0;
+}
+
+#quiqqer-dashboard-card-media-info #table-container .value {
+    text-align: center;
+}
+
+#quiqqer-dashboard-card-media-info #chart-container h2 {
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 5px;
+}
+
+#quiqqer-dashboard-card-media-info #chart-note {
+    display: none;
+}

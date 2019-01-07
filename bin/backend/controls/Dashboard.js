@@ -10,11 +10,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'package/quiqqer/dashboard/bin/backend/Dashboard',
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'controls/projects/Select',
-
-    'utils/Color',
-    'utils/Date',
-
     'Locale',
     'Mustache',
 
@@ -23,7 +18,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css',
     'css!package/quiqqer/dashboard/bin/backend/controls/Card.css'
 
-], function (QUI, QUIPanel, Dashboard, Card, ProjectSelect, ColorUtil, DateUtil, QUILocale, Mustache,
+], function (QUI, QUIPanel, Dashboard, Card, QUILocale, Mustache,
              template) {
     "use strict";
 
@@ -68,15 +63,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 sitesActive  : QUILocale.get(lg, 'dashboard.sites.active'),
                 sitesInactive: QUILocale.get(lg, 'dashboard.sites.inactive'),
                 usersTitle   : QUILocale.get(lg, 'dashboard.users.count'),
-                groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count'),
-
-                mediaInfo               : QUILocale.get(lg, 'dashboard.media.info'),
-                mediaInfoTableTitle     : QUILocale.get(lg, 'dashboard.media.info.table.title'),
-                mediaInfoFilesCount     : QUILocale.get(lg, 'dashboard.media.info.files.count'),
-                mediaInfoFolderCount    : QUILocale.get(lg, 'dashboard.media.info.folder.count'),
-                mediaInfoFolderSize     : QUILocale.get(lg, 'dashboard.media.info.folder.size'),
-                mediaInfoCacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size'),
-                mediaInfoChartTitle     : QUILocale.get(lg, 'dashboard.media.info.chart.title')
+                groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count')
             }));
 
 
@@ -87,8 +74,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard, LinksCard, LatestLoginsCard) {
+                'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo'
+            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard, LinksCard, LatestLoginsCard, MediaInfoCard) {
                 // Create a new row
                 var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
@@ -121,30 +109,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 // Create a new row
                 var Row3 = new Element('div', {'class': 'quiqqer-dashboard-row'});
                 self.$LatestLoginsCard = new LatestLoginsCard();
+                self.$MediaInfoCard = new MediaInfoCard();
 
                 // Space left 100 - 50 = 50 ; or programmatically (100 - self.$SystemInfoCard.getSize())
                 self.$LatestLoginsCard.inject(Row3);
+                self.$MediaInfoCard.inject(Row3);
 
                 Row3.inject(self.getContent(), 'bottom');
             });
 
 
-            new ProjectSelect({
-                langSelect : false,
-                emptyselect: false,
-                events     : {
-                    onChange: function (selectedProject) {
-                        self.loadMediaInfo(selectedProject);
-                    }
-                }
-            }).inject(self.getContent().getElement('#media-info-project-select'));
-
             // stats
             Promise.all([
                 this.loadStats()
-                // Don't load the MediaInfo here.
-                // Because it's ProjectSelect (see above) automatically triggers a change event on page load.
-                // Therefore the MediaInfo is loaded automatically.
             ]).then(function () {
                 var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
 
@@ -210,129 +187,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                             });
 
                         resolve();
-                    });
-                });
-            });
-        },
-
-
-        /**
-         *
-         * @return {Promise}
-         */
-        loadMediaInfo: function (project) {
-            var self = this;
-
-            if (project === undefined) {
-                project = QUIQQER_PROJECT.name;
-            }
-
-            // latest user logins
-            return Dashboard.getMediaInfo(project).then(function (result) {
-                var Container = self.getElm().getElement('#quiqqer-dashboard-media-info');
-
-                var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
-
-                // We can't use a plain string here because the text contains ' and "
-                var mediaFolderSize = new Element('span', {
-                    title: QUILocale.get(lg, 'dashboard.media.info.folder.unavailable'),
-                    html : '–'
-                });
-
-                var mediaCacheFolderSize = mediaFolderSize.clone();
-
-                // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaFolderSize !== null) {
-                    mediaFolderSize = new Element('span', {
-                        html: (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
-                    });
-                }
-
-                // If there is a timestamp calculate how much time passed since then
-                if (result.mediaFolderSizeTimestamp) {
-                    var MediaFolderSizeDate                   = new Date(result.mediaFolderSizeTimestamp * 1000),
-                        timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
-
-                    mediaFolderSize.innerHTML += "<br><small>(" + timeSinceMediaFolderSizeTimestampText + ")</small>";
-                }
-
-                // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaCacheFolderSize !== null) {
-                    mediaCacheFolderSize = new Element('span', {
-                        html: (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
-                    });
-                }
-
-                // If there is a timestamp calculate how much time passed since then
-                if (result.mediaCacheFolderSizeTimestamp) {
-                    var MediaCacheFolderSizeDate          = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
-                        timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
-
-                    mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
-                }
-
-                Container.getElement('#media-info-files-count .value').set('html', result.filesCount);
-                Container.getElement('#media-info-folder-count .value').set('html', result.folderCount);
-
-                // Clear the element's content and add the folder size
-                Container.getElement('#media-info-folder-size .value').empty();
-                Container.getElement('#media-info-folder-size .value').adopt(mediaFolderSize);
-
-                // Clear the element's content and add the folder size
-                Container.getElement('#media-info-cache-folder-size .value').empty();
-                Container.getElement('#media-info-cache-folder-size .value').adopt(mediaCacheFolderSize);
-
-                var ChartContainer = Container.getElement('#chart-container');
-
-                // If there are no files, hide the pie chart
-                if (result.filesCount === 0) {
-                    ChartContainer.hide();
-                    Container.removeClass('qdc-w50');
-                    Container.addClass('qdc-w25');
-                    return;
-                }
-
-                // Show the pie chart, in case it was hidden before
-                ChartContainer.show();
-                Container.addClass('qdc-w50');
-                Container.removeClass('qdc-w25');
-
-                require([URL_OPT_DIR + 'bin/chart.js/dist/Chart.js'], function (Chart) {
-                    if (self.$MediaInfoChart !== undefined) {
-                        self.$MediaInfoChart.destroy();
-                        self.$MediaInfoChart = undefined;
-                    }
-
-                    var colors = ColorUtil.getRandomHexColorsFromPallet(
-                        Object.keys(result.filetypesCount).length,
-                        [
-                            ColorUtil.ColorPalette.black,
-                            ColorUtil.ColorPalette.gray,
-                            ColorUtil.ColorPalette.silver,
-                            ColorUtil.ColorPalette.white
-                        ]
-                    );
-
-                    self.$MediaInfoChart = new Chart(Container.getElement('#chart'), {
-                        type   : 'pie',
-                        data   : {
-                            datasets: [{
-                                // values contain the amounts of different file-types
-                                data: Object.values(result.filetypesCount),
-
-                                // Generate a random color for each file-type
-                                backgroundColor: colors,
-
-                                borderWidth: 1.5
-                            }],
-                            // Keys contain the file-types
-                            labels  : Object.keys(result.filetypesCount)
-                        },
-                        options: {
-                            legend: {
-                                position: 'bottom'
-                            }
-                        }
                     });
                 });
             });
