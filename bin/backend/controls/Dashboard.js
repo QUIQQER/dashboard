@@ -4,25 +4,16 @@
  */
 define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
-    'qui/QUI',
     'qui/controls/desktop/Panel',
 
-    'package/quiqqer/dashboard/bin/backend/Dashboard',
-    'package/quiqqer/dashboard/bin/backend/controls/Card',
-
-    'Locale',
     'Mustache',
 
     'text!package/quiqqer/dashboard/bin/backend/controls/Dashboard.html',
 
-    'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css',
-    'css!package/quiqqer/dashboard/bin/backend/controls/Card.css'
+    'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css'
 
-], function (QUI, QUIPanel, Dashboard, Card, QUILocale, Mustache,
-             template) {
+], function (QUIPanel, Mustache, template) {
     "use strict";
-
-    var lg = 'quiqqer/dashboard';
 
     return new Class({
 

@@ -93,14 +93,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
                 }
             }
 
-            if (this.getAttribute('footer') === false) {
-                this.$Footer.setStyle('display', 'none');
-            } else {
-                if (typeof this.getAttribute('footer') === 'string') {
-                    this.setFooter(this.getAttribute('footer'));
-                }
-            }
-
             if (this.getAttribute('size') !== false) {
                 this.setSize(this.getAttribute('size'));
             }
