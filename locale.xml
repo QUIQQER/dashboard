@@ -172,5 +172,70 @@
             <en><![CDATA[Total file count]]></en>
         </locale>
         <!-- endregion -->
+
+
+        <!-- region Links -->
+        <locale name="dashboard.links">
+            <de><![CDATA[Nützliche Links]]></de>
+            <en><![CDATA[Useful Links]]></en>
+        </locale>
+
+
+        <locale name="dashboard.links.quiqqer">
+            <de><![CDATA[QUIQQER Allgemein]]></de>
+            <en><![CDATA[QUIQQER General]]></en>
+        </locale>
+
+        <locale name="dashboard.links.quiqqer.help">
+            <de><![CDATA[Hilfe]]></de>
+            <en><![CDATA[Help]]></en>
+        </locale>
+        <locale name="dashboard.links.quiqqer.help.url">
+            <de><![CDATA[https://www.quiqqer.de/Entdecken]]></de>
+            <en><![CDATA[https://www.quiqqer.com/Discover]]></en>
+        </locale>
+
+        <locale name="dashboard.links.quiqqer.blog">
+            <de><![CDATA[Blog]]></de>
+            <en><![CDATA[Blog]]></en>
+        </locale>
+        <locale name="dashboard.links.quiqqer.blog.url">
+            <de><![CDATA[https://www.quiqqer.de/Blog]]></de>
+            <en><![CDATA[https://www.quiqqer.com/Blog]]></en>
+        </locale>
+
+        <locale name="dashboard.links.quiqqer.packages">
+            <de><![CDATA[Erweiterungen]]></de>
+            <en><![CDATA[Packages]]></en>
+        </locale>
+        <locale name="dashboard.links.quiqqer.packages.url">
+            <de><![CDATA[https://store.quiqqer.de/]]></de>
+            <en><![CDATA[https://store.quiqqer.com/]]></en>
+        </locale>
+
+
+        <locale name="dashboard.links.social">
+            <de><![CDATA[QUIQQER Social]]></de>
+            <en><![CDATA[QUIQQER Social]]></en>
+        </locale>
+
+        <locale name="dashboard.links.social.community">
+            <de><![CDATA[Community]]></de>
+            <en><![CDATA[Community]]></en>
+        </locale>
+        <locale name="dashboard.links.social.community.url">
+            <de><![CDATA[https://community.quiqqer.de]]></de>
+            <en><![CDATA[https://community.quiqqer.com]]></en>
+        </locale>
+
+        <locale name="dashboard.links.social.github">
+            <de><![CDATA[GitHub]]></de>
+            <en><![CDATA[GitHub]]></en>
+        </locale>
+        <locale name="dashboard.links.social.github.url">
+            <de><![CDATA[https://github.com/quiqqer]]></de>
+            <en><![CDATA[https://github.com/quiqqer]]></en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

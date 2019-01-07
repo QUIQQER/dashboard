@@ -19,14 +19,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     'Mustache',
 
     'text!package/quiqqer/dashboard/bin/backend/controls/Dashboard.html',
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/help.de.html',
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/help.en.html',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css',
     'css!package/quiqqer/dashboard/bin/backend/controls/Card.css'
 
 ], function (QUI, QUIPanel, Dashboard, Card, ProjectSelect, ColorUtil, DateUtil, QUILocale, Mustache,
-             template, templateHelpDe, templateHelpEn) {
+             template) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -64,12 +62,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getContent().addClass('quiqqer-dashboard-cards');
             this.getContent().addClass('quiqqer-dashboard--loading');
 
-            var help = templateHelpEn;
-
-            if (window.USER.lang === 'de') {
-                help = templateHelpDe;
-            }
-
             this.getContent().set('html', Mustache.render(template, {
                 projectTitle : QUILocale.get(lg, 'dashboard.projects.count'),
                 sitesTitle   : QUILocale.get(lg, 'dashboard.sites.count'),
@@ -77,8 +69,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 sitesInactive: QUILocale.get(lg, 'dashboard.sites.inactive'),
                 usersTitle   : QUILocale.get(lg, 'dashboard.users.count'),
                 groupsTitle  : QUILocale.get(lg, 'dashboard.groups.count'),
-
-                help: help,
 
                 userLogin        : QUILocale.get(lg, 'dashboard.last.user.login'),
                 userLoginUsername: QUILocale.get('quiqqer/system', 'username'),
@@ -100,8 +90,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard) {
+                'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Links'
+            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard, LinksCard) {
                 // Create a new row
                 var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
 
@@ -121,10 +112,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 var Row2 = new Element('div', {'class': 'quiqqer-dashboard-row'});
                 self.$BlogEntryCard = new BlogEntryCard();
                 self.$SiteActivityCard = new SiteActivityCard();
+                self.$LinksCard = new LinksCard();
 
-                // Space left 100 - 25 - 50 = 25 ; or programmatically (100 - self.$SystemInfoCard.getSize())
+                // Space left 100 - 25 - 50 - 25 = 0 ; or programmatically (100 - self.$SystemInfoCard.getSize())
                 self.$BlogEntryCard.inject(Row2);
                 self.$SiteActivityCard.inject(Row2);
+                self.$LinksCard.inject(Row2);
 
                 Row2.inject(self.getContent(), 'bottom');
             });
