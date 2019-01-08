@@ -24,8 +24,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             '$onCreate'
         ],
 
-        $MediaInfoChart: undefined,
-
         initialize: function (options) {
             this.parent(options);
 
