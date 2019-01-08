@@ -48,80 +48,27 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             this.getContent().set('html', Mustache.render(template));
 
-
-            require([
-                'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
+            var cards = [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
+
                 'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
+
+                'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
+
+                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups'
-            ], function (SystemInfoCard, CronHistoryCard, FilesystemInfoCard, BlogEntryCard, SiteActivityCard,
-                         LinksCard, LatestLoginsCard, MediaInfoCard,
-                         StatsProjectsCard, StatsPagesCard, StatsUsersCard, StatsGroupsCard) {
-                // Create a new row
-                var Row4 = new Element('div', {'class': 'quiqqer-dashboard-row'});
-                self.$StatsProjectsCard = new StatsProjectsCard();
-                self.$StatsPagesCard = new StatsPagesCard();
-                self.$StatsUsersCard = new StatsUsersCard();
-                self.$StatsGroupsCard = new StatsGroupsCard();
+            ];
 
-                // Space left 100 - (16 * 4) = 36 ; or programmatically (100 - self.$SystemInfoCard.getSize())
-                self.$StatsProjectsCard.inject(Row4);
-                self.$StatsPagesCard.inject(Row4);
-                self.$StatsUsersCard.inject(Row4);
-                self.$StatsGroupsCard.inject(Row4);
-
-                Row4.inject(self.getContent(), 'bottom');
-
-
-                // Create a new row
-                var Row1 = new Element('div', {'class': 'quiqqer-dashboard-row'});
-
-                self.$SystemInfoCard = new SystemInfoCard();
-                self.$CronHistoryCard = new CronHistoryCard();
-                self.$FilesystemInfoCard = new FilesystemInfoCard();
-
-                // Space left 100 - 25 - 40 - 33 = 2 ; or programmatically (100 - self.$SystemInfoCard.getSize())
-                self.$SystemInfoCard.inject(Row1);
-                self.$CronHistoryCard.inject(Row1);
-                self.$FilesystemInfoCard.inject(Row1);
-
-                Row1.inject(self.getContent(), 'bottom');
-
-
-                // Create a new row
-                var Row2 = new Element('div', {'class': 'quiqqer-dashboard-row'});
-                self.$BlogEntryCard = new BlogEntryCard();
-                self.$SiteActivityCard = new SiteActivityCard();
-                self.$LinksCard = new LinksCard();
-
-                // Space left 100 - 25 - 50 - 25 = 0 ; or programmatically (100 - self.$SystemInfoCard.getSize())
-                self.$BlogEntryCard.inject(Row2);
-                self.$SiteActivityCard.inject(Row2);
-                self.$LinksCard.inject(Row2);
-
-                Row2.inject(self.getContent(), 'bottom');
-
-
-                // Create a new row
-                var Row3 = new Element('div', {'class': 'quiqqer-dashboard-row'});
-                self.$LatestLoginsCard = new LatestLoginsCard();
-                self.$MediaInfoCard = new MediaInfoCard();
-
-                // Space left 100 - 50 = 50 ; or programmatically (100 - self.$SystemInfoCard.getSize())
-                self.$LatestLoginsCard.inject(Row3);
-                self.$MediaInfoCard.inject(Row3);
-
-                Row3.inject(self.getContent(), 'bottom');
+            cards.forEach(function (card) {
+                self.addCardByString(card);
             });
-
 
             Promise.all([]).then(function () {
                 var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
@@ -136,6 +83,64 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }
                 });
             }.bind(this));
+        },
+
+        /**
+         * Adds a card to the Dashboard.
+         * Expects a instantiated Card-element.
+         *
+         * @param {Element} Card-element
+         */
+        addCard: function (Card) {
+            var RowWithFreeSpace = this.getRowWithFreeSpace(Card.getSize());
+
+            Card.inject(RowWithFreeSpace);
+        },
+
+        /**
+         * Adds a card from a given Card-control name to the Dashboard.
+         *
+         * @param {string} cardString
+         */
+        addCardByString: function (cardString) {
+            var self = this;
+            require([cardString], function (Card) {
+                self.addCard((new Card()));
+            });
+        },
+
+        /**
+         * Returns a Dashboard-row that has the given amount of space left.
+         * @param {number} requiredSpace
+         *
+         * @return {Element}
+         */
+        getRowWithFreeSpace: function (requiredSpace) {
+
+            var Rows = this.getContent().getElements('.quiqqer-dashboard-row');
+
+            var RowWithFreeSpace = null;
+
+            Rows.some(function (Row) {
+                var spaceLeftInRow = Row.getProperty('data-space-left') - requiredSpace;
+
+                if (spaceLeftInRow >= 0) {
+                    RowWithFreeSpace = Row;
+                }
+            });
+
+            if (RowWithFreeSpace === null) {
+                RowWithFreeSpace = new Element('div', {
+                    'class'          : 'quiqqer-dashboard-row',
+                    'data-space-left': 100
+                });
+                RowWithFreeSpace.inject(this.getContent(), 'bottom');
+
+            }
+
+            RowWithFreeSpace.setProperty('data-space-left', RowWithFreeSpace.getProperty('data-space-left') - requiredSpace);
+
+            return RowWithFreeSpace;
         }
     });
 });
