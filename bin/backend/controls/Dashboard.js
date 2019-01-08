@@ -6,13 +6,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
     'qui/controls/desktop/Panel',
 
+    'Ajax',
     'Mustache',
 
     'text!package/quiqqer/dashboard/bin/backend/controls/Dashboard.html',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css'
 
-], function (QUIPanel, Mustache, template) {
+], function (QUIPanel, QUIAjax, Mustache, template) {
     "use strict";
 
     return new Class({
@@ -40,46 +41,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          * event: on create
          */
         $onCreate: function () {
-            var self = this;
-
             this.getElm().addClass('quiqqer-dashboard');
             this.getContent().addClass('quiqqer-dashboard-cards');
             this.getContent().addClass('quiqqer-dashboard--loading');
 
             this.getContent().set('html', Mustache.render(template));
 
-            [
-                'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
-
-                'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
-
-                'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory'
-            ].forEach(function (card) {
-                self.addCardByString(card);
-            });
-
-            var smallCards = [
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
-                'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups'
-            ];
-
-
-            // Add all small cards to their own row
-            // This is not very nice, but it does it's job
-            var RowForSmallCards = this.createRow();
-            this.addRow(RowForSmallCards);
-            smallCards.forEach(function (card) {
-                self.addCardByString(card, RowForSmallCards);
-            });
-            // Set the space left to zero, so no other cards get placed in this row
-            RowForSmallCards.setProperty('data-space-left', 0);
+            this.refresh();
 
             Promise.all([]).then(function () {
                 var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
@@ -94,6 +62,35 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }
                 });
             }.bind(this));
+        },
+
+        /**
+         * Refreshes the dashboard's content
+         */
+        refresh: function () {
+            var self = this;
+            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (result) {
+                result.forEach(function (entry) {
+                    if (typeof entry === "string") {
+                        self.addCardByString(entry);
+                    }
+
+                    if (Array.isArray(entry)) {
+                        // Add a fixed row
+                        // This is not very nice, but it does it's job
+                        var Row = self.createRow();
+                        self.addRow(Row);
+                        entry.forEach(function (card) {
+                            self.addCardByString(card, Row);
+                        });
+                        // Set the space left to zero, so no other cards get placed in this row
+                        Row.setProperty('data-space-left', 0);
+                    }
+                });
+            }, {
+                'package': 'quiqqer/dashboard',
+                onError  : console.error
+            });
         },
 
         /**
