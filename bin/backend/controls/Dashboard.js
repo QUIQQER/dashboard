@@ -48,7 +48,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             this.getContent().set('html', Mustache.render(template));
 
-            var cards = [
+            [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
@@ -58,17 +58,28 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
                 'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory'
+            ].forEach(function (card) {
+                self.addCardByString(card);
+            });
 
-                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
+            var smallCards = [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups'
             ];
 
-            cards.forEach(function (card) {
-                self.addCardByString(card);
+
+            // Add all small cards to their own row
+            // This is not very nice, but it does it's job
+            var RowForSmallCards = this.createRow();
+            this.addRow(RowForSmallCards);
+            smallCards.forEach(function (card) {
+                self.addCardByString(card, RowForSmallCards);
             });
+            // Set the space left to zero, so no other cards get placed in this row
+            RowForSmallCards.setProperty('data-space-left', 0);
 
             Promise.all([]).then(function () {
                 var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
@@ -89,24 +100,57 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          * Adds a card to the Dashboard.
          * Expects a instantiated Card-element.
          *
-         * @param {Element} Card-element
+         * Optionally a Row-element can be passed as a second argument.
+         * If a Row is passed the card is injected into it.
+         *
+         * @param {Element} Card - Card-element
+         * @param {Element} [Row] - Row to inject the card into
          */
-        addCard: function (Card) {
-            var RowWithFreeSpace = this.getRowWithFreeSpace(Card.getSize());
+        addCard: function (Card, Row) {
+            if (Row === undefined) {
+                Row = this.getRowWithFreeSpace(Card.getSize());
+            }
 
-            Card.inject(RowWithFreeSpace);
+            Card.inject(Row);
         },
 
         /**
          * Adds a card from a given Card-control name to the Dashboard.
          *
+         * Optionally a Row-element can be passed as a second argument.
+         * If a Row is passed the card is injected into it.
+         *
          * @param {string} cardString
+         * @param {Element} [Row] - Row to inject the card into
          */
-        addCardByString: function (cardString) {
+        addCardByString: function (cardString, Row) {
             var self = this;
             require([cardString], function (Card) {
-                self.addCard((new Card()));
+                self.addCard((new Card()), Row);
             });
+        },
+
+        /**
+         * Adds a whole Row-element to the end of the dashboard.
+         * You can use createRow() to get such an element.
+         *
+         * @param {Element} Row
+         */
+        addRow: function (Row) {
+            Row.inject(this.getContent(), 'bottom');
+        },
+
+        /**
+         * Returns a standardized Row-element.
+         * @example Can be used by addRow()
+         *
+         * @return {Element}
+         */
+        createRow: function () {
+            return (new Element('div', {
+                'class'          : 'quiqqer-dashboard-row',
+                'data-space-left': 100
+            }));
         },
 
         /**
@@ -130,12 +174,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             });
 
             if (RowWithFreeSpace === null) {
-                RowWithFreeSpace = new Element('div', {
-                    'class'          : 'quiqqer-dashboard-row',
-                    'data-space-left': 100
-                });
-                RowWithFreeSpace.inject(this.getContent(), 'bottom');
-
+                RowWithFreeSpace = this.createRow();
+                this.addRow(RowWithFreeSpace);
             }
 
             RowWithFreeSpace.setProperty('data-space-left', RowWithFreeSpace.getProperty('data-space-left') - requiredSpace);
