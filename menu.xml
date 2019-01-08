@@ -3,7 +3,7 @@
     <item parent="/quiqqer/"
           name="quiqqer-dashboard"
           require="package/quiqqer/dashboard/bin/backend/utils/open"
-          icon="fa fa-database"
+          icon="URL_BIN_DIR/16x16/quiqqer.png"
     >
         <locale group="quiqqer/dashboard" var="panel.title"/>
     </item>
