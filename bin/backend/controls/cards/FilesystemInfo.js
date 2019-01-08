@@ -42,7 +42,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 }),
                 footer : false,
                 styles : false,
-                size   : 33
+                size   : 25
             });
         },
 

@@ -36,7 +36,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
                 }),
                 footer : false,
                 styles : false,
-                size   : 50
+                size   : 33
             });
         },
 
