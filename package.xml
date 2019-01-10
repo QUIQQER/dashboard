@@ -30,6 +30,11 @@
             <license><![CDATA[GPL-3.0+]]></license>
         </copyright>
 
+        <languages>
+            <language>de</language>
+            <language>en</language>
+        </languages>
+
         <provider>
             <dashboard src="\QUI\Dashboard\DashboardProvider"/>
         </provider>
