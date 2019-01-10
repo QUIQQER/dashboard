@@ -30,5 +30,8 @@
             <license><![CDATA[GPL-3.0+]]></license>
         </copyright>
 
+        <provider>
+            <dashboard src="\QUI\Dashboard\DashboardProvider"/>
+        </provider>
     </package>
 </quiqqer>

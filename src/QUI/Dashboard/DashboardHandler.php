@@ -7,7 +7,6 @@
 namespace QUI\Dashboard;
 
 use QUI;
-use QUI\Utils\Text\XML;
 use QUI\Utils\Singleton;
 
 /**
@@ -16,7 +15,9 @@ use QUI\Utils\Singleton;
  */
 class DashboardHandler extends Singleton
 {
-    const CACHE_KEY_CARD_LIST = 'quiqqer/dashboard/dashboardHandler/cardList';
+    const CACHE_KEY_DASHBOARD_PROVIDERS = 'quiqqer/dashboard/dashboardHandler/cardProviders';
+
+    const PROVIDER_KEY = 'dashboard';
 
     /**
      * @var array
@@ -36,95 +37,64 @@ class DashboardHandler extends Singleton
             return $this->cardList;
         }
 
-        try {
-            $this->cardList = QUI\Cache\Manager::get(self::CACHE_KEY_CARD_LIST);
-
-            return $this->cardList;
-        } catch (QUI\Exception $Exception) {
-        }
-
-        $result   = [];
         $packages = QUI::getPackageManager()->getInstalled();
+        $cards    = [];
 
-        foreach ($packages as $package) {
-            try {
-                $Package = QUI::getPackage($package['name']);
-            } catch (QUI\Exception $Exception) {
-                continue;
-            }
+        try {
+            $dashboardProviders = QUI\Cache\Manager::get(self::CACHE_KEY_DASHBOARD_PROVIDERS);
+        } catch (QUI\Cache\Exception $Exception) {
+            $dashboardProviders = [];
 
-            $dashboardXML = $Package->getDir() . 'dashboard.xml';
-
-            if (!file_exists($dashboardXML)) {
-                continue;
-            }
-
-            $Dom  = XML::getDomFromXml($dashboardXML);
-            $Path = new \DOMXPath($Dom);
-
-            /** @var \DOMNodeList $Dashboard */
-            $Dashboard = $Path->query("//quiqqer/dashboard");
-
-            if (!isset($Dashboard[0])) {
-                continue;
-            }
-
-            /** @var \DOMElement $Dashboard */
-            $Dashboard = $Dashboard[0];
-
-            // Get all direct cards
-            $result = array_merge($result, self::getCardsFromNode($Dashboard));
-
-            /** @var \DOMNodeList $childNodes */
-            $childNodes = $Dashboard->childNodes;
-
-            // Search for rows
-            foreach ($childNodes as $Node) {
-                // If the child is not a row , we skip this node
-                if ($Node->nodeName != "row") {
+            /* @var QUI\Package\Package $Package */
+            foreach ($packages as $package) {
+                try {
+                    $Package = QUI::getPackage($package['name']);
+                } catch (QUI\Exception $Exception) {
+                    QUI\System\Log::writeException($Exception);
                     continue;
                 }
 
-                // Add all child-nodes (cards) from this row-node as an array (arrays in the result indicate rows)
-                $result[] = self::getCardsFromNode($Node);
+                // Get all providers of this package
+                $packagesDashboardProviders = $Package->getProvider(self::PROVIDER_KEY);
+
+                // Check if the specified classes really exist
+                foreach ($packagesDashboardProviders as $dashboardProvider) {
+                    if (!class_exists($dashboardProvider)) {
+                        continue;
+                    }
+                }
+
+                // Add the packages dashboard providers to all providers
+                $dashboardProviders = array_merge($dashboardProviders, $packagesDashboardProviders);
+            }
+
+            try {
+                // Cache the providers
+                QUI\Cache\Manager::set(self::CACHE_KEY_DASHBOARD_PROVIDERS, $dashboardProviders);
+            } catch (\Exception $Exception) {
+                QUI\System\Log::writeDebugException($Exception);
             }
         }
 
-        $this->cardList = $result;
+        // initialize the instances
+        foreach ($dashboardProviders as $dashboardProvider) {
+            try {
+                /** @var DashboardProviderInterface $Provider */
+                $Provider = new $dashboardProvider();
 
-        try {
-            QUI\Cache\Manager::set(self::CACHE_KEY_CARD_LIST, $result);
-        } catch (\Exception $Exception) {
-            QUI\System\Log::addError("Something failed while trying to cache the dashboard's card list");
-            QUI\System\Log::writeException($Exception);
+                // Check if the given provider is really a DashboardProvider
+                if (!($Provider instanceof DashboardProviderInterface)) {
+                    unset($Provider);
+                    continue;
+                }
+
+                // Add the providers' cards to the methods' result
+                $cards = array_merge($Provider->getCards(), $cards);
+            } catch (\Exception $Exception) {
+                QUI\System\Log::writeException($Exception);
+            }
         }
 
-        return $result;
-    }
-
-    protected static function getCardsFromNode($Node)
-    {
-        $result = [];
-
-        /** @var \DOMNodeList $childNodes */
-        $childNodes = $Node->childNodes;
-
-        foreach ($childNodes as $Node) {
-            // If the child is not a card (e.g. a row), we skip this node
-            if ($Node->nodeName != "card") {
-                continue;
-            }
-
-            /** @var \DOMElement $Node */
-            $require = $Node->getAttribute('require');
-
-            if (empty($require)) {
-                continue;
-            }
-
-            $result[] = $require;
-        }
-
-        return $result;
+        return $cards;
     }
 }
