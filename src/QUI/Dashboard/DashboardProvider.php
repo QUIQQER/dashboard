@@ -20,17 +20,13 @@ class DashboardProvider implements DashboardProviderInterface
      */
     public static function getCards()
     {
-        return [
-            'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
+        $cards = [
             'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
             'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
 
             'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
-            'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
 
-            'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
             'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
-            'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
 
             // A whole row of cards. No other cards will be added to this row.
             [
@@ -40,5 +36,16 @@ class DashboardProvider implements DashboardProviderInterface
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups'
             ]
         ];
+
+        if (\QUI::getUserBySession()->isSU()) {
+            $cards = array_merge($cards, [
+                'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
+                'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
+            ]);
+        }
+
+        return $cards;
     }
 }
