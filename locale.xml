@@ -7,7 +7,7 @@
         </locale>
         <locale name="package.description">
             <de><![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht]]></de>
-            <en><![CDATA[Extend QUIQQER with a dashboard view]]></en>
+            <en><![CDATA[Extends QUIQQER with a dashboard view]]></en>
         </locale>
 
         <locale name="panel.title">
