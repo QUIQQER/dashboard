@@ -6,8 +6,56 @@
             <en><![CDATA[QUIQQER - Dashboard]]></en>
         </locale>
         <locale name="package.description">
-            <de><![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht]]></de>
-            <en><![CDATA[Extend QUIQQER with a dashboard view]]></en>
+            <de>
+                <![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht. Alle wichtigen Informationen auf einen Blick.]]></de>
+            <en><![CDATA[Extends QUIQQER with a dashboard view. All important information at a glance]]></en>
+        </locale>
+        <locale name="package.description.big">
+            <de><![CDATA[
+                Das Dashboard von QUIQQER bietet dem Benutzer einen ersten Überblick über alle wichtigen Informationen von seinem QUIQQER System.
+                Darüberhinaus bietet das Dashboard eine API für Module an.
+                Jedes Modul / Plugin hat so die Möglichkeit das Dashboard zu erweitern und dem Benutzer weitere Informationen anzubieten.
+
+                Grundfunktionen:
+
+                - Wie viele Seiten im System vorhanden sind
+                - Wie viele Benutzer im System existieren
+                - Wie viele Gruppen im System existieren
+                - Wie viele Projekte im System existieren
+
+                - Die neusten News rund um QUIQQER
+                - Nützliche Links
+                - Übersicht über den Medienbereich
+
+                - Die letzten Änderunge
+                - Die letzten Logins
+                - Generelle System Informationen
+                - Generelle Filesystem Informationen
+                - bersicht der Cron Ausführungen
+            ]]></de>
+            <en><![CDATA[
+                The QUIQQER dashboard provides the user with a first overview of all important information from his QUIQQER system.
+                In addition, the dashboard provides an API for modules.
+                Each module / plugin has the possibility to extend the dashboard and provide the user with further information.
+
+                Basic features:
+
+                - How many pages are created in the system
+                - How many users exist in the system
+                - How many groups exist in the system
+                - How many projects exist in the system
+
+                - The latest news about QUIQQER
+                - Useful links
+                - Overview of the media area
+
+                - The latest changes
+                - The last logins
+                - General System Information
+                - General file system information
+                - Overview of Cron designs
+
+            ]]></en>
         </locale>
 
         <locale name="panel.title">
@@ -17,29 +65,229 @@
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="js">
-        <locale name="dashboard.projects.count">
+
+        <!-- region Stats -->
+        <locale name="dashboard.stats.projects">
             <de><![CDATA[Projekte]]></de>
             <en><![CDATA[Projects]]></en>
         </locale>
-        <locale name="dashboard.sites.count">
+
+        <locale name="dashboard.stats.pages">
             <de><![CDATA[Seiten]]></de>
             <en><![CDATA[Pages]]></en>
         </locale>
-        <locale name="dashboard.users.count">
+        <locale name="dashboard.stats.pages.active">
+            <de><![CDATA[Aktive Seiten]]></de>
+            <en><![CDATA[Active Pages]]></en>
+        </locale>
+        <locale name="dashboard.stats.pages.inactive">
+            <de><![CDATA[Deaktivierte Seiten]]></de>
+            <en><![CDATA[Deactivated Pages]]></en>
+        </locale>
+
+        <locale name="dashboard.stats.users">
             <de><![CDATA[Benutzer]]></de>
             <en><![CDATA[Users]]></en>
         </locale>
-        <locale name="dashboard.groups.count">
+
+        <locale name="dashboard.stats.groups">
             <de><![CDATA[Gruppen]]></de>
             <en><![CDATA[Groups]]></en>
         </locale>
+        <!-- endregion -->
+
+
         <locale name="dashboard.page.changes">
-            <de><![CDATA[Zuletzte geänderte Seiten]]></de>
+            <de><![CDATA[Zuletzt geänderte Seiten]]></de>
             <en><![CDATA[Latest page changes]]></en>
         </locale>
-        <locale name="dashboard.last.user.login">
+
+        <!-- region Latest Logins -->
+        <locale name="dashboard.logins">
             <de><![CDATA[Letzte Benutzeranmeldungen]]></de>
-            <en><![CDATA[Last user logins]]></en>
+            <en><![CDATA[Last User Logins]]></en>
         </locale>
+        <!-- endregion -->
+
+        <!-- region Media Info -->
+        <locale name="dashboard.media.info">
+            <de><![CDATA[Medien Info]]></de>
+            <en><![CDATA[Media Info]]></en>
+        </locale>
+        <locale name="dashboard.media.info.table.title">
+            <de><![CDATA[Statistiken]]></de>
+            <en><![CDATA[Statistics]]></en>
+        </locale>
+        <locale name="dashboard.media.info.files.count">
+            <de><![CDATA[Anzahl Dateien]]></de>
+            <en><![CDATA[File Count]]></en>
+        </locale>
+        <locale name="dashboard.media.info.folder.count">
+            <de><![CDATA[Anzahl Ordner]]></de>
+            <en><![CDATA[Folder Count]]></en>
+        </locale>
+        <locale name="dashboard.media.info.folder.unavailable">
+            <de>
+                <![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
+            <en><![CDATA[This folder's size is not available. Change this by running the "Media Folder"-CRON.]]></en>
+        </locale>
+        <locale name="dashboard.media.info.folder.size">
+            <de><![CDATA[Größe des Medien Ordners]]></de>
+            <en><![CDATA[Media Folder Size]]></en>
+        </locale>
+        <locale name="dashboard.media.info.cache.folder.size">
+            <de><![CDATA[Größe des Medien Cache Ordners]]></de>
+            <en><![CDATA[Media Cache Folder Size]]></en>
+        </locale>
+        <locale name="dashboard.media.info.chart.title">
+            <de><![CDATA[Dateitypen Verteilung]]></de>
+            <en><![CDATA[Filetype Distribution]]></en>
+        </locale>
+        <!-- endregion -->
+
+        <!-- region System Info -->
+        <locale name="dashboard.system.info">
+            <de><![CDATA[System Info]]></de>
+            <en><![CDATA[System Info]]></en>
+        </locale>
+        <locale name="dashboard.system.info.quiqqer.version">
+            <de><![CDATA[QUIQQER Version]]></de>
+            <en><![CDATA[QUIQQER Version]]></en>
+        </locale>
+        <locale name="dashboard.system.info.modules.count">
+            <de><![CDATA[Anzahl Module]]></de>
+            <en><![CDATA[Amount of modules]]></en>
+        </locale>
+        <locale name="dashboard.system.info.devmode.active">
+            <de><![CDATA[Entwicklermodus]]></de>
+            <en><![CDATA[Developer-Mode]]></en>
+        </locale>
+        <locale name="dashboard.system.info.devmode.active.true">
+            <de><![CDATA[Aktiviert]]></de>
+            <en><![CDATA[Active]]></en>
+        </locale>
+        <locale name="dashboard.system.info.devmode.active.false">
+            <de><![CDATA[Deaktiviert]]></de>
+            <en><![CDATA[Disabled]]></en>
+        </locale>
+        <locale name="dashboard.system.info.cache.type">
+            <de><![CDATA[Cache Typ]]></de>
+            <en><![CDATA[Cache Type]]></en>
+        </locale>
+        <!-- endregion -->
+
+        <!-- region Cron History -->
+        <locale name="dashboard.cron.history">
+            <de><![CDATA[CRON Historie]]></de>
+            <en><![CDATA[CRON History]]></en>
+        </locale>
+        <locale name="dashboard.cron.history.date">
+            <de><![CDATA[Datum]]></de>
+            <en><![CDATA[Date]]></en>
+        </locale>
+        <locale name="dashboard.cron.history.cron">
+            <de><![CDATA[CRON Titel]]></de>
+            <en><![CDATA[CRON Title]]></en>
+        </locale>
+        <locale name="dashboard.cron.history.user">
+            <de><![CDATA[Ausführender Benutzer]]></de>
+            <en><![CDATA[Executing User]]></en>
+        </locale>
+        <!-- endregion -->
+
+
+        <!-- region Filesystem Info -->
+        <locale name="dashboard.filesystem.info">
+            <de><![CDATA[Dateisystem]]></de>
+            <en><![CDATA[Filesystem]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.unavailable">
+            <de>
+                <![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
+            <en><![CDATA[This value is not available. Change this by running the corresponding CRON.]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.installation">
+            <de><![CDATA[Gesamte Installation]]></de>
+            <en><![CDATA[Whole Installation]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.packages">
+            <de><![CDATA[Paket-Ordner]]></de>
+            <en><![CDATA[Packages-Folder]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.cache">
+            <de><![CDATA[Cache-Ordner]]></de>
+            <en><![CDATA[Cache-Folder]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.size.var">
+            <de><![CDATA[Var-Ordner]]></de>
+            <en><![CDATA[Var-Folder]]></en>
+        </locale>
+
+        <locale name="dashboard.filesystem.info.count.files">
+            <de><![CDATA[Gesamtzahl Dateien]]></de>
+            <en><![CDATA[Total file count]]></en>
+        </locale>
+        <!-- endregion -->
+
+
+        <!-- region Links -->
+        <locale name="dashboard.links">
+            <de><![CDATA[Nützliche Links]]></de>
+            <en><![CDATA[Useful Links]]></en>
+        </locale>
+
+
+        <locale name="dashboard.links.quiqqer">
+            <de><![CDATA[QUIQQER Allgemein]]></de>
+            <en><![CDATA[QUIQQER General]]></en>
+        </locale>
+
+        <locale name="dashboard.links.quiqqer.help">
+            <de><![CDATA[Hilfe]]></de>
+            <en><![CDATA[Help]]></en>
+        </locale>
+        <locale name="dashboard.links.quiqqer.help.url">
+            <de><![CDATA[https://www.quiqqer.de/Entdecken]]></de>
+            <en><![CDATA[https://www.quiqqer.com/Discover]]></en>
+        </locale>
+
+        <locale name="dashboard.links.quiqqer.blog">
+            <de><![CDATA[Blog]]></de>
+            <en><![CDATA[Blog]]></en>
+        </locale>
+        <locale name="dashboard.links.quiqqer.blog.url">
+            <de><![CDATA[https://www.quiqqer.de/Blog]]></de>
+            <en><![CDATA[https://www.quiqqer.com/Blog]]></en>
+        </locale>
+
+        <locale name="dashboard.links.quiqqer.packages">
+            <de><![CDATA[Erweiterungen]]></de>
+            <en><![CDATA[Packages]]></en>
+        </locale>
+        <locale name="dashboard.links.quiqqer.packages.url">
+            <de><![CDATA[https://store.quiqqer.de/]]></de>
+            <en><![CDATA[https://store.quiqqer.com/]]></en>
+        </locale>
+
+
+        <locale name="dashboard.links.social">
+            <de><![CDATA[QUIQQER Social]]></de>
+            <en><![CDATA[QUIQQER Social]]></en>
+        </locale>
+
+        <locale name="dashboard.links.social.community">
+            <de><![CDATA[Community]]></de>
+            <en><![CDATA[Community]]></en>
+        </locale>
+        <locale name="dashboard.links.social.community.url">
+            <de><![CDATA[https://community.quiqqer.de]]></de>
+            <en><![CDATA[https://community.quiqqer.com]]></en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

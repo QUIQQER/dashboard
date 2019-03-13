@@ -10,39 +10,39 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getNewestEditedSites',
     function () {
-        $result   = [];
         $projects = QUI::getProjectManager()->getProjectList();
+        $query    = "";
+
+        // Generate the query
+        foreach ($projects as $Project) {
+            /* @var $Project \QUI\Projects\Project */
+
+            $projectName = $Project->getName();
+            $projectLang = $Project->getLang();
+
+            $query .= "SELECT id, name, title, e_date, '{$projectName}' AS project, '{$projectLang}' AS lang ";
+            $query .= "FROM `{$projectName}_{$projectLang}_sites` ";
+
+
+            if (next($projects)) {
+                $query .= "UNION ALL ";
+            }
+        }
+        $query .= "ORDER BY e_date DESC ";
+        $query .= "LIMIT 10;";
+
+        $result = QUI::getDataBase()->fetchSQL($query);
 
         $Formatter = QUI::getLocale()->getDateFormatter(
             \IntlDateFormatter::SHORT,
             \IntlDateFormatter::SHORT
         );
 
-        foreach ($projects as $Project) {
-            /* @var $Project \QUI\Projects\Project */
-            $sites = $Project->getSites([
-                'limit' => 10,
-                'order' => 'e_date DESC'
-            ]);
-
-            /* @var $Site \QUI\Projects\Site */
-            foreach ($sites as $Site) {
-                $result[] = [
-                    'id'      => $Site->getId(),
-                    'name'    => $Site->getAttribute('name'),
-                    'title'   => $Site->getAttribute('title'),
-                    'e_date'  => $Formatter->format(strtotime($Site->getAttribute('e_date'))),
-                    'project' => $Project->getName(),
-                    'lang'    => $Project->getLang(),
-                ];
-            }
+        foreach ($result as $key => $siteData) {
+            $result[$key]['e_date'] = $Formatter->format(strtotime($siteData['e_date']));
         }
 
-        usort($result, function ($a, $b) {
-            return strtotime($a['e_date']) < strtotime($b['e_date']);
-        });
-
-        return array_slice($result, 0, 10);
+        return $result;
     },
     false,
     'Permission::checkAdminUser'

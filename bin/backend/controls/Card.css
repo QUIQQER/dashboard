@@ -2,24 +2,25 @@
 .quiqqer-dashboard-card {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.5rem;
-    padding: 0 0.75rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
 }
 
 .quiqqer-dashboard-card-container {
     background: #fff;
     border: 1px solid rgba(0, 40, 100, 0.12);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     position: relative;
     width: 100%;
 }
 
-.quiqqer-dashboard-card header,
-.quiqqer-dashboard-card-title {
+.quiqqer-dashboard-card header {
     border-bottom: 1px solid rgba(0, 40, 100, 0.12);
     font-size: 1.125rem;
     line-height: 3.5rem;
-    min-height: 3.5rem;
     padding: 0 1.5rem;
 }
 
@@ -27,12 +28,13 @@
     margin-right: 1rem;
 }
 
-.quiqqer-dashboard-card-body {
+.quiqqer-dashboard-card-content {
+    flex-grow: 1;
     overflow-x: auto;
     width: 100%;
 }
 
-.quiqqer-dashboard-card-body table {
+.quiqqer-dashboard-card-content table {
     border: none;
     border-collapse: collapse;
     font-size: 0.875rem;
@@ -42,57 +44,62 @@
     width: 100%;
 }
 
-.quiqqer-dashboard-card-body tbody tr:nth-child(odd) {
+.quiqqer-dashboard-card-content tbody tr:nth-child(odd) {
     background: rgba(0, 0, 0, 0.02);
 }
 
-.quiqqer-dashboard-card-body tbody tr.can-be-hovered {
+.quiqqer-dashboard-card-content tbody tr.can-be-hovered {
     cursor: pointer;
 }
 
-.quiqqer-dashboard-card-body tbody tr.can-be-hovered:hover {
+.quiqqer-dashboard-card-content tbody tr.can-be-hovered:hover {
     background: #2F8FC6;
     color: #fff;
 }
 
-.quiqqer-dashboard-card-body th {
+.quiqqer-dashboard-card-content th {
     border-bottom: 2px solid #dee2e6;
     color: #9aa0ac;
     padding: 1.5rem 0.75rem;
 }
 
-.quiqqer-dashboard-card-body td {
+.quiqqer-dashboard-card-content td {
     color: #495057;
     padding: 0.75rem;
 }
 
-.quiqqer-dashboard-card-body tbody tr.can-be-hovered:hover td {
+.quiqqer-dashboard-card-content tbody tr.can-be-hovered:hover td {
     color: #fff;
 }
 
-.quiqqer-dashboard-card-body h2 {
+.quiqqer-dashboard-card-content h2 {
     font-size: 1.1rem;
     padding: 0.75rem 0 0 1.5rem;
 }
 
-.quiqqer-dashboard-card-body .fa-ul {
+.quiqqer-dashboard-card-content .fa-ul {
     margin-left: 3.5rem;
 }
 
-.quiqqer-dashboard-card-body a {
+.quiqqer-dashboard-card-content a {
     color: rgb(73, 80, 87);
     display: block;
     padding: 0.2rem 0;
     text-decoration: none;
 }
 
-.quiqqer-dashboard-card-body a:hover {
+.quiqqer-dashboard-card-content a:hover {
     color: #295a9f;
     text-decoration: underline;
 }
 
-.quiqqer-dashboard-card-body .fa-li {
+.quiqqer-dashboard-card-content .fa-li {
     top: 0.4rem;
+}
+
+.quiqqer-dashboard-card-footer {
+    padding: 0.75rem;
+    padding-top: 0;
 }
 
 /** CSS API
@@ -110,20 +117,22 @@
     color: #fff !important;
 }
 
-/** custom
- ================================= */
 
-.quiqqer-dashboard-sites-active,
-.quiqqer-dashboard-sites-inActive {
-    color: #5eba00;
-    padding: 5px 10px;
-    position: absolute;
-    right: 0;
-    top: 0;
+/** region Value Status Colors */
+.quiqqer-dashboard-card .good-value {
+    color: #2ECC40;
 }
 
-.quiqqer-dashboard-sites-inActive {
-    color: #cd201f;
-    left: 0;
-    right: inherit;
+.quiqqer-dashboard-card .bad-value {
+    color: #FF4136;
 }
+
+.quiqqer-dashboard-card .inactive-value {
+    color: #AAAAAA;
+}
+
+.quiqqer-dashboard-card .warning-value {
+    color: #FFDC00;
+}
+
+/** endregion */

@@ -51,6 +51,6 @@ define('package/quiqqer/dashboard/bin/backend/utils/load', [
     };
 
     QUI.addEvent('onQuiqqerLoaded', function () {
-        run.delay(500);
+        run.delay(1650);
     });
 });

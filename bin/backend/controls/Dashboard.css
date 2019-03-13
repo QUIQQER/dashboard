@@ -42,8 +42,12 @@
 }
 
 .quiqqer-dashboard-cards {
+    display: block;
+}
+
+.quiqqer-dashboard-card {
     display: flex;
-    flex-direction: column;
+    flex-grow: 1;
 }
 
 /** design
@@ -69,18 +73,6 @@
     padding: 10px 0;
 }
 
-.newest-blog-entry .quiqqer-dashboard-card-container {
-    cursor: pointer;
-}
-
-.newest-blog-entry header {
-    padding: 0 !important;
-}
-
-.newest-blog-entry header img {
-    display: block;
-    max-width: 100%;
-}
 
 /** default widths
  ========================================= */
