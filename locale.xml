@@ -6,8 +6,56 @@
             <en><![CDATA[QUIQQER - Dashboard]]></en>
         </locale>
         <locale name="package.description">
-            <de><![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht]]></de>
-            <en><![CDATA[Extends QUIQQER with a dashboard view]]></en>
+            <de>
+                <![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht. Alle wichtigen Informationen auf einen Blick.]]></de>
+            <en><![CDATA[Extends QUIQQER with a dashboard view. All important information at a glance]]></en>
+        </locale>
+        <locale name="package.description.big">
+            <de><![CDATA[
+                Das Dashboard von QUIQQER bietet dem Benutzer einen ersten Überblick über alle wichtigen Informationen von seinem QUIQQER System.
+                Darüberhinaus bietet das Dashboard eine API für Module an.
+                Jedes Modul / Plugin hat so die Möglichkeit das Dashboard zu erweitern und dem Benutzer weitere Informationen anzubieten.
+
+                Grundfunktionen:
+
+                - Wie viele Seiten im System vorhanden sind
+                - Wie viele Benutzer im System existieren
+                - Wie viele Gruppen im System existieren
+                - Wie viele Projekte im System existieren
+
+                - Die neusten News rund um QUIQQER
+                - Nützliche Links
+                - Übersicht über den Medienbereich
+
+                - Die letzten Änderunge
+                - Die letzten Logins
+                - Generelle System Informationen
+                - Generelle Filesystem Informationen
+                - bersicht der Cron Ausführungen
+            ]]></de>
+            <en><![CDATA[
+                The QUIQQER dashboard provides the user with a first overview of all important information from his QUIQQER system.
+                In addition, the dashboard provides an API for modules.
+                Each module / plugin has the possibility to extend the dashboard and provide the user with further information.
+
+                Basic features:
+
+                - How many pages are created in the system
+                - How many users exist in the system
+                - How many groups exist in the system
+                - How many projects exist in the system
+
+                - The latest news about QUIQQER
+                - Useful links
+                - Overview of the media area
+
+                - The latest changes
+                - The last logins
+                - General System Information
+                - General file system information
+                - Overview of Cron designs
+
+            ]]></en>
         </locale>
 
         <locale name="panel.title">
@@ -79,7 +127,8 @@
             <en><![CDATA[Folder Count]]></en>
         </locale>
         <locale name="dashboard.media.info.folder.unavailable">
-            <de><![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
+            <de>
+                <![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
             <en><![CDATA[This folder's size is not available. Change this by running the "Media Folder"-CRON.]]></en>
         </locale>
         <locale name="dashboard.media.info.folder.size">
@@ -154,7 +203,8 @@
         </locale>
 
         <locale name="dashboard.filesystem.info.unavailable">
-            <de><![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
+            <de>
+                <![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
             <en><![CDATA[This value is not available. Change this by running the corresponding CRON.]]></en>
         </locale>
 
