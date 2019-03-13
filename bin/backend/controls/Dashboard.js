@@ -69,6 +69,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          */
         refresh: function () {
             var self = this;
+            
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (result) {
                 result.forEach(function (entry) {
                     if (typeof entry === "string") {

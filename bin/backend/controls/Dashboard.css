@@ -45,6 +45,11 @@
     display: block;
 }
 
+.quiqqer-dashboard-card {
+    display: flex;
+    flex-grow: 1;
+}
+
 /** design
  ========================================= */
 
@@ -67,7 +72,6 @@
     line-height: 32px;
     padding: 10px 0;
 }
-
 
 
 /** default widths
