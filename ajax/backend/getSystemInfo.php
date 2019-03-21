@@ -22,9 +22,11 @@ QUI::$Ajax->registerFunction(
             $activeCacheHandlerTranslated = '---';
         }
 
+        $Packages = QUI::getPackageManager();
+
         return [
-            'quiqqerVersion'  => QUI::getPackageManager()->getVersion(),
-            'modulesCount'    => QUI::getPackageManager()->countInstalledPackages(),
+            'quiqqerVersion'  => $Packages->getVersion(),
+            'modulesCount'    => count($Packages->getInstalled()),
             'isDevModeActive' => DEVELOPMENT == 1,
             'cacheType'       => $activeCacheHandlerTranslated
         ];
