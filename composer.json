@@ -25,7 +25,8 @@
     "quiqqer\/quiqqer": "^1.3.0 | dev-master | dev-dev",
     "quiqqer/cron": "^1.7.2 | dev-master | dev-dev",
     "quiqqer/utils": "^1.14.0 | dev-master | dev-dev",
-    "npm-asset/chart.js": "^2.7.3"
+    "quiqqer/utils": "^1.14.0 | dev-master | dev-dev",
+    "quiqqer/qui": "^1.1.1 | dev-master | dev-dev"
   },
   "autoload": {
     "psr-4": {
