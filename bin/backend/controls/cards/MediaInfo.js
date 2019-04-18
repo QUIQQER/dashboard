@@ -10,6 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
     'utils/Color',
     'utils/Date',
+    'qui/utils/Math',
 
     'controls/projects/Select',
 
@@ -19,7 +20,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
     'css!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo/style.css'
 
-], function (QUIAjax, QUILocale, Mustache, ColorUtil, DateUtil, ProjectSelect, QUICard, content) {
+], function (QUIAjax, QUILocale, Mustache, ColorUtil, DateUtil, MathUtil, ProjectSelect, QUICard, content) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -88,8 +89,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 var Card = self.getElm();
 
-                var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
-
                 // We can't use a plain string here because the text contains ' and "
                 var mediaFolderSize = new Element('span', {
                     title: QUILocale.get(lg, 'dashboard.media.info.folder.unavailable'),
@@ -100,8 +99,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (result.mediaFolderSize !== null) {
+                    var convertedMediaFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaFolderSize);
                     mediaFolderSize = new Element('span', {
-                        html: (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
+                        html: convertedMediaFolderSize.value + ' ' + convertedMediaFolderSize.unit
                     });
                 }
 
@@ -115,8 +115,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (result.mediaCacheFolderSize !== null) {
+                    console.log(result.mediaCacheFolderSize);
+                    var convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
                     mediaCacheFolderSize = new Element('span', {
-                        html: (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
+                        html: convertedCacheFolderSize.value + ' ' + convertedCacheFolderSize.unit
                     });
                 }
 
