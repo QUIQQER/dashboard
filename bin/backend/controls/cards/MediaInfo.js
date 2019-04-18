@@ -151,15 +151,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                         self.$MediaInfoChart = undefined;
                     }
 
-                    var colors = ColorUtil.getRandomHexColorsFromPallet(
-                        Object.keys(result.filetypesCount).length,
-                        [
-                            ColorUtil.ColorPalette.black,
-                            ColorUtil.ColorPalette.gray,
-                            ColorUtil.ColorPalette.silver,
-                            ColorUtil.ColorPalette.white
-                        ]
-                    );
+                    var colors = [];
+                    var filetypes = Object.keys(result.filetypesCount);
+
+                    for (var i = 0; i < filetypes.length; i++) {
+                        colors.push(ColorUtil.getHexColorByHashingString(filetypes[i]));
+                    }
 
                     self.$MediaInfoChart = new Chart(Card.getElement('#chart'), {
                         type   : 'pie',
@@ -174,7 +171,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                                 borderWidth: 1.5
                             }],
                             // Keys contain the file-types
-                            labels  : Object.keys(result.filetypesCount)
+                            labels  : filetypes
                         },
                         options: {
                             legend: {
