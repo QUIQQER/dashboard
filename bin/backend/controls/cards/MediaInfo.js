@@ -134,6 +134,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 var ChartContainer = Card.getElement('#chart-container');
 
+                if (!result.filesCount) {
+                    ChartContainer.hide();
+                    return;
+                }
+
                 require([URL_OPT_DIR + 'bin/chart.js/dist/Chart.js'], function (Chart) {
                     if (self.$MediaInfoChart !== undefined) {
                         self.$MediaInfoChart.destroy();
@@ -169,9 +174,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                         }
                     });
 
-                    // Show the pie chart, in case it was hidden before
                     ChartContainer.show();
-                    self.setSize(50);
                 });
             }, {
                 'package'  : 'quiqqer/dashboard',
