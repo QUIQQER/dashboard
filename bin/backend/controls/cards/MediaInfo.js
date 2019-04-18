@@ -29,6 +29,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
 
+        $ProjectSelect: ProjectSelect,
+
         initialize: function (options) {
             var self = this;
 
@@ -55,27 +57,23 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 id: 'media-info-project-select'
             });
 
-            var ProjectSelectControl = new ProjectSelect({
-                langSelect : false,
-                emptyselect: false
+            this.$ProjectSelect = new ProjectSelect({
+                langSelect   : false,
+                emptyselect  : false,
+                localeStorage: 'dashboard-media-info-card-project-select'
             }).inject(ProjectSelectContainer);
 
             // We need to add this event later, since injecting the project-select also fires a change event
-            ProjectSelectControl.addEvent('onChange', function (selectedProject) {
+            this.$ProjectSelect.addEvent('onChange', function (selectedProject) {
                 self.displayProject(selectedProject);
             });
-
-            // TODO: Set to the default or last project
-            ProjectSelectControl.$Select.setValue(QUIQQER_PROJECT.name);
 
             ProjectSelectContainer.inject(this.getElm().getElement('.quiqqer-dashboard-card-header'));
         },
 
 
         refresh: function () {
-            // Nothing to do here, since injecting the project-select already triggers a change event.
-            // This then calls displayProject()
-            // We're not leaving this function out, for a better understanding of what's happening here.
+            this.displayProject(this.$ProjectSelect.getValue());
         },
 
         displayProject: function (projectName) {
