@@ -55,25 +55,34 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 id: 'media-info-project-select'
             });
 
-            new ProjectSelect({
+            var ProjectSelectControl = new ProjectSelect({
                 langSelect : false,
-                emptyselect: false,
-                events     : {
-                    onChange: function (selectedProject) {
-                        self.refresh(selectedProject);
-                    }
-                }
+                emptyselect: false
             }).inject(ProjectSelectContainer);
+
+            // We need to add this event later, since injecting the project-select also fires a change event
+            ProjectSelectControl.addEvent('onChange', function (selectedProject) {
+                self.displayProject(selectedProject);
+            });
+
+            // TODO: Set to the default or last project
+            ProjectSelectControl.$Select.setValue(QUIQQER_PROJECT.name);
 
             ProjectSelectContainer.inject(this.getElm().getElement('.quiqqer-dashboard-card-header'));
         },
 
 
-        refresh: function (project) {
+        refresh: function () {
+            // Nothing to do here, since injecting the project-select already triggers a change event.
+            // This then calls displayProject()
+            // We're not leaving this function out, for a better understanding of what's happening here.
+        },
+
+        displayProject: function (projectName) {
             var self = this;
 
-            if (project === undefined) {
-                project = QUIQQER_PROJECT.name;
+            if (projectName === undefined) {
+                projectName = QUIQQER_PROJECT.name;
             }
 
             // latest user logins
@@ -178,7 +187,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 });
             }, {
                 'package'  : 'quiqqer/dashboard',
-                projectName: project,
+                projectName: projectName,
                 onError    : console.error
             });
         }
