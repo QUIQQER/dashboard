@@ -94,6 +94,16 @@
             <de><![CDATA[Gruppen]]></de>
             <en><![CDATA[Groups]]></en>
         </locale>
+
+        <locale name="dashboard.stats.systemhealth">
+            <de><![CDATA[Systemgesundheit]]></de>
+            <en><![CDATA[System Health]]></en>
+        </locale>
+
+        <locale name="dashboard.stats.systemhealth.help">
+            <de><![CDATA[Um (korrekte) Werte zu erhalten müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
+            <en><![CDATA[To get (correct) values you have to add and execute the CRON 'Perform system check'.]]></en>
+        </locale>
         <!-- endregion -->
 
 
