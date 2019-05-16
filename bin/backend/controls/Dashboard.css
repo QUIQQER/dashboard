@@ -1,5 +1,5 @@
 .quiqqer-dashboard {
-    background: #F2F2F2 !important;
+    background: #F2F2F2;
 }
 
 .quiqqer-dashboard--loading {
@@ -28,7 +28,7 @@
 
 .quiqqer-dashboard .qui-panel-content,
 .quiqqer-dashboard .qui-panel-header {
-    background: #F2F2F2 !important;
+    background: #F2F2F2;
 }
 
 .quiqqer-dashboard .qui-panel-header {

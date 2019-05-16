@@ -119,6 +119,13 @@
         </locale>
         <!-- endregion -->
 
+        <!-- region Messages -->
+        <locale name="dashboard.messages">
+            <de><![CDATA[Neuste Nachrichten]]></de>
+            <en><![CDATA[Latest Messages]]></en>
+        </locale>
+        <!-- endregion -->
+
         <!-- region Media Info -->
         <locale name="dashboard.media.info">
             <de><![CDATA[Medien Info]]></de>
