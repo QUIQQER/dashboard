@@ -126,6 +126,13 @@
         </locale>
         <!-- endregion -->
 
+        <!-- region Bookmarks -->
+        <locale name="dashboard.bookmarks">
+            <de><![CDATA[Lesezeichen]]></de>
+            <en><![CDATA[Bookmarks]]></en>
+        </locale>
+        <!-- endregion -->
+
         <!-- region Media Info -->
         <locale name="dashboard.media.info">
             <de><![CDATA[Medien Info]]></de>
