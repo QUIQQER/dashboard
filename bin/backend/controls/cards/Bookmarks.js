@@ -6,7 +6,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
 
     'Locale',
 
-    'controls/desktop/panels/Bookmarks',
+//    'controls/desktop/panels/Bookmarks',
+    'qui/controls/bookmarks/Panel',
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
@@ -40,6 +41,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
             var BookmarksControl = new BookmarksPanel();
 
             BookmarksControl.inject(this.getContent());
+            BookmarksControl.refresh();
+
             BookmarksControl.getHeader().hide();
         }
     });
