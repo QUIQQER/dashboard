@@ -132,7 +132,34 @@
 }
 
 .quiqqer-dashboard-card .warning-value {
-    color: #FFDC00;
+    color: #FF9500;
+}
+/** endregion */
+
+
+/** region border-value classes */
+.quiqqer-dashboard-card .border-value {
+    position: absolute;
+    padding: 5px 10px;
 }
 
+.quiqqer-dashboard-card .top-left {
+    top: 0;
+    left: 0;
+}
+
+.quiqqer-dashboard-card .top-right {
+    top: 0;
+    right: 0;
+}
+
+.quiqqer-dashboard-card .bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.quiqqer-dashboard-card .bottom-left {
+    bottom: 0;
+    left: 0;
+}
 /** endregion */

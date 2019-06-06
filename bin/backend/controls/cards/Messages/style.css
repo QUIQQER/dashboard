@@ -1,0 +1,42 @@
+#quiqqer-dashboard-messages {
+    height: 433px;
+}
+
+#quiqqer-dashboard-messages .qui-panel {
+    border-radius: 0;
+}
+
+#quiqqer-dashboard-messages .qui-panel-buttons {
+    background: none;
+}
+
+#quiqqer-dashboard-messages .qui-panel-buttons button.qui-button {
+    width: 50px;
+}
+
+#quiqqer-dashboard-messages .qui-panel-buttons button.qui-button:last-of-type {
+    float: right;
+    border-right: none;
+    border-left: 1px solid #CCCFD5;
+}
+
+
+#quiqqer-dashboard-messages .qui-panel-buttons button.qui-button-active {
+    background: none !important;
+    color: #2F8FC6;
+}
+
+#quiqqer-dashboard-messages .messages-message {
+    border-left: none;
+    border-right: none;
+
+    margin: 0 0 7px 0;
+}
+
+#quiqqer-dashboard-messages .messages-message:last-of-type {
+    margin-bottom: 0;
+}
+
+#quiqqer-dashboard-messages .qui-panel-content.box {
+    padding: 0;
+}

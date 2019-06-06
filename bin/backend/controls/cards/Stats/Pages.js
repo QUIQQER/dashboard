@@ -10,9 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/content.html',
-
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/style.css'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/content.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, template) {
     "use strict";

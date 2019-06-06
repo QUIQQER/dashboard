@@ -26,6 +26,7 @@
     "quiqqer/cron": "^1.7.2 | dev-master | dev-dev",
     "quiqqer/utils": "^1.16.1 | dev-master | dev-dev",
     "quiqqer/qui": "^1.1.1 | dev-master | dev-dev",
+    "quiqqer/requirements": "^2.0.3 | dev-master | dev-dev",
     "npm-asset/chart.js": "2.8.*"
   },
   "autoload": {

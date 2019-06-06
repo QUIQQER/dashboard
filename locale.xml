@@ -94,6 +94,16 @@
             <de><![CDATA[Gruppen]]></de>
             <en><![CDATA[Groups]]></en>
         </locale>
+
+        <locale name="dashboard.stats.systemhealth">
+            <de><![CDATA[Systemgesundheit]]></de>
+            <en><![CDATA[System Health]]></en>
+        </locale>
+
+        <locale name="dashboard.stats.systemhealth.help">
+            <de><![CDATA[Um (korrekte) Werte zu erhalten müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
+            <en><![CDATA[To get (correct) values you have to add and execute the CRON 'Perform system check'.]]></en>
+        </locale>
         <!-- endregion -->
 
 
@@ -106,6 +116,13 @@
         <locale name="dashboard.logins">
             <de><![CDATA[Letzte Benutzeranmeldungen]]></de>
             <en><![CDATA[Last User Logins]]></en>
+        </locale>
+        <!-- endregion -->
+
+        <!-- region Messages -->
+        <locale name="dashboard.messages">
+            <de><![CDATA[Neuste Nachrichten]]></de>
+            <en><![CDATA[Latest Messages]]></en>
         </locale>
         <!-- endregion -->
 
@@ -287,6 +304,44 @@
         <locale name="dashboard.links.social.community.url">
             <de><![CDATA[https://community.quiqqer.de]]></de>
             <en><![CDATA[https://community.quiqqer.com]]></en>
+        </locale>
+        <!-- endregion -->
+
+
+        <!-- region Blog Entry -->
+        <locale name="dashboard.blogentry.title">
+            <de><![CDATA[QUIQQER Neuigkeiten]]></de>
+            <en><![CDATA[QUIQQER News]]></en>
+        </locale>
+
+        <locale name="dashboard.blogentry.error.content">
+            <de html="1"><![CDATA[
+                <p>
+                    Ein Fehler ist aufgetreten.<br>
+                    Die QUIQQER-Neuigkeiten können aktuell nicht abgerufen werden.<br>
+                    Versuchen Sie es später erneut.<br>
+                </p>
+                <br>
+                <p>
+                    Mit einem Klick auf diese Karte gelangen Sie zum QUIQQER-Blog
+                </p>
+            ]]></de>
+            <en html="1"><![CDATA[
+                <p>
+                    An error has occurred.<br>
+                    The QUIQQER news cannot currently be retrieved.<br>
+                    Please try again later.<br>
+                </p>
+                <br>
+                <p>
+                    Click on this card to go to the QUIQQER-blog.
+                </p>
+            ]]></en>
+        </locale>
+
+        <locale name="dashboard.blogentry.error.link">
+            <de>https://www.quiqqer.de/blog</de>
+            <en>https://www.quiqqer.com/blog</en>
         </locale>
         <!-- endregion -->
     </groups>
