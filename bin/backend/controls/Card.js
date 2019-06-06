@@ -148,6 +148,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {string} title
          */
         setTitle: function (title) {
+            this.$Title.setStyle('display', title ? 'inline-block' : 'none');
             this.$Title.set('html', title);
         },
 
