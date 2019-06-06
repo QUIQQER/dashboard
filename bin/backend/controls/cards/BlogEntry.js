@@ -6,6 +6,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
 
     'Ajax',
     'Mustache',
+    'Locale',
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
@@ -13,8 +14,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
 
     'css!package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry/style.css'
 
-], function (QUIAjax, Mustache, QUICard, content) {
+], function (QUIAjax, Mustache, QUILocale, QUICard, content) {
     "use strict";
+
+    var lg = 'quiqqer/dashboard';
 
     return new Class({
 
@@ -34,9 +37,25 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
         refresh: function () {
             var self = this;
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getBlogEntry', function (result) {
+                if (!result) {
+                    self.setTitle(QUILocale.get(lg, 'dashboard.blogentry.title'));
+                    self.setContent(QUILocale.get(lg, 'dashboard.blogentry.error.content'));
+                    self.setIcon('fa fa-newspaper-o');
+
+                    self.$Content.setStyles({
+                       padding: '0.75rem 1.5rem',
+                       'line-height': '2rem'
+                    });
+
+                    self.$Content.addClass('bad-value');
+                    self.getElm().addEvent('click', function () {
+                        window.open(QUILocale.get(lg, 'dashboard.blogentry.error.link'));
+                    });
+
+                    return;
+                }
 
                 var Card = self.getElm();
-
                 Card.getElement('#blog-entry-image').set('src', result.image);
                 Card.getElement('#blog-entry-title').set('html', result.title);
                 Card.getElement('#blog-entry-text').set('html', result.description);
