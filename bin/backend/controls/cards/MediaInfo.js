@@ -115,7 +115,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (result.mediaCacheFolderSize !== null) {
-                    console.log(result.mediaCacheFolderSize);
                     var convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
                     mediaCacheFolderSize = new Element('span', {
                         html: convertedCacheFolderSize.value + ' ' + convertedCacheFolderSize.unit
