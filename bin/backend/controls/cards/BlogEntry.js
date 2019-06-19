@@ -37,7 +37,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
         refresh: function () {
             var self = this;
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getBlogEntry', function (result) {
-                if (!result.length) {
+                if (!result) {
                     self.setTitle(QUILocale.get(lg, 'dashboard.blogentry.title'));
                     self.setContent(QUILocale.get(lg, 'dashboard.blogentry.error.content'));
                     self.setIcon('fa fa-newspaper-o');

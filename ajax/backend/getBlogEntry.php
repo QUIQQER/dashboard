@@ -22,7 +22,7 @@ QUI::$Ajax->registerFunction(
                 $url      = 'https://www.quiqqer.com/feed=3.xml';
         }
 
-        $data = [];
+        $data = null;
         try {
             $data = \QUI\Cache\Manager::get(CACHE_KEY_BLOG_ENTRY_PREFIX . $language);
         } catch (\QUI\Cache\Exception $Exception) {
@@ -40,7 +40,7 @@ QUI::$Ajax->registerFunction(
         } catch (\Exception $Exception) {
             QUI\System\Log::writeException($Exception);
 
-            return [];
+            return;
         }
 
         $Path  = new \DOMXPath($Dom);
@@ -48,7 +48,7 @@ QUI::$Ajax->registerFunction(
         $Item  = $Items->item(0);
 
         if (is_null($Item)) {
-            return [];
+            return;
         }
 
         $data = [
