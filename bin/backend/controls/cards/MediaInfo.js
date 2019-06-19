@@ -84,6 +84,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 projectName = QUIQQER_PROJECT.name;
             }
 
+            // The project name is empty sometimes (for some reason...)
+            if (!projectName) {
+                return;
+            }
+
             // latest user logins
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getMediaInfo', function (result) {
 
