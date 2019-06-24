@@ -24,11 +24,11 @@ class DashboardProvider implements DashboardProviderInterface
             'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
             'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
 
+            'package/quiqqer/dashboard/bin/backend/controls/cards/Messages',
+
             'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
 
             'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
-
-            'package/quiqqer/dashboard/bin/backend/controls/cards/Messages',
 
             'package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks',
 
