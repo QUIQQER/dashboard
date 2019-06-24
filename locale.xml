@@ -344,5 +344,37 @@
             <en>https://www.quiqqer.com/blog</en>
         </locale>
         <!-- endregion -->
+
+        <!-- region Site-Stats -->
+        <locale name="dashboard.sitestats.title">
+            <de>Seiten Statistiken</de>
+            <en>Site Statistics</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.rootSites">
+            <de>Seiten auf Wurzel-Ebene</de>
+            <en>Sites at root level</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.children">
+            <de>Seiten auf Kinder-Ebene</de>
+            <en>Sites at child level</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.missing">
+            <de>Dieser Wert konnte nicht ermittelt werden, überprüfe die Log-Dateien.</de>
+            <en>This value could not be determined, check the log files.</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.missing.content">
+            <de>Seiten ohne Inhalt</de>
+            <en>Sites without content</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.missing.shortdesc">
+            <de>Seiten ohne Kurzbeschreibung</de>
+            <en>Sites without short description</en>
+        </locale>
+        <!-- endregion -->
     </groups>
 </locales>

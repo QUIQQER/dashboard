@@ -32,6 +32,8 @@ class DashboardProvider implements DashboardProviderInterface
 
             'package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks',
 
+            'package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats',
+
             // A whole row of cards. No other cards will be added to this row.
             [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
