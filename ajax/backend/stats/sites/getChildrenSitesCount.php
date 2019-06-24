@@ -23,8 +23,7 @@ QUI::$Ajax->registerFunction(
 
         $result = QUI::getDataBase()->fetchSQL($query);
 
-        if (
-            isset($result[0])
+        if (isset($result[0])
             && isset($result[0]['childrenSites'])
             && is_numeric($result[0]['childrenSites'])
         ) {
