@@ -1,0 +1,12 @@
+#quiqqer-dashboard-card-sitestats #sitestats-project-select {
+    float: right;
+    padding: 7px 0;
+}
+
+#quiqqer-dashboard-card-sitestats #sitestats-project-select .qui-select .text {
+    width: initial;
+}
+
+#quiqqer-dashboard-card-sitestats .value {
+    text-align: center;
+}

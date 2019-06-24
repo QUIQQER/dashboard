@@ -84,6 +84,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 projectName = QUIQQER_PROJECT.name;
             }
 
+            // The project name is empty sometimes (for some reason...)
+            if (!projectName) {
+                return;
+            }
+
             // latest user logins
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getMediaInfo', function (result) {
 
@@ -98,7 +103,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 var mediaCacheFolderSize = mediaFolderSize.clone();
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaFolderSize !== null) {
+                if (typeof result.mediaFolderSize === 'number') {
                     var convertedMediaFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaFolderSize);
                     mediaFolderSize = new Element('span', {
                         html: convertedMediaFolderSize.value + ' ' + convertedMediaFolderSize.unit
@@ -114,8 +119,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 }
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaCacheFolderSize !== null) {
-                    console.log(result.mediaCacheFolderSize);
+                if (typeof result.mediaCacheFolderSize === 'number') {
                     var convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
                     mediaCacheFolderSize = new Element('span', {
                         html: convertedCacheFolderSize.value + ' ' + convertedCacheFolderSize.unit
@@ -130,8 +134,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                     mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
 
-                Card.getElement('#media-info-files-count .value').set('html', result.filesCount);
-                Card.getElement('#media-info-folder-count .value').set('html', result.folderCount);
+                if (typeof result.filesCount === 'number') {
+                    Card.getElement('#media-info-files-count .value').set('html', result.filesCount);
+                }
+
+                if (typeof result.folderCount === 'number') {
+                    Card.getElement('#media-info-folder-count .value').set('html', result.folderCount);
+                }
 
                 // Clear the element's content and add the folder size
                 Card.getElement('#media-info-folder-size .value').empty();
