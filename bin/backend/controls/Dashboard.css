@@ -42,12 +42,12 @@
 }
 
 .quiqqer-dashboard-cards {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .quiqqer-dashboard-card {
     display: flex;
-    flex-grow: 1;
 }
 
 /** design

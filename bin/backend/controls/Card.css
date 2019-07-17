@@ -1,9 +1,13 @@
+.quiqqer-dashboard-cards {
+    padding: 0 10px;
+}
 
 .quiqqer-dashboard-card {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
     padding: 0 1rem;
+    flex-grow: 1;
 }
 
 .quiqqer-dashboard-card-container {
@@ -32,6 +36,7 @@
     flex-grow: 1;
     overflow-x: auto;
     width: 100%;
+    display: block;
 }
 
 .quiqqer-dashboard-card-content table {

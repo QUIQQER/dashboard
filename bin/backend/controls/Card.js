@@ -20,13 +20,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
 
         options: {
-            id     : false,
-            icon   : false,
-            title  : false,
-            content: false,
-            footer : false,
-            styles : false,
-            size   : false
+            id      : false,
+            icon    : false,
+            title   : false,
+            content : false,
+            footer  : false,
+            styles  : false,
+            size    : false,
+            priority: 10
         },
 
         initialize: function (options) {
@@ -219,16 +220,31 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
 
         /**
          * Sets the card's width (in percent).
-         * Should be one of the defined CSS width-classes (see Dashboard.css for all values)
-         * Currently there are:
-         * 10, 16, 20, 25, 30, 33, 40, 50, 60, 70, 80, 90 and 100
+         * Should be a multiple of five (e.g. 5, 25, 30, ...).
          *
          * @param {number} size
          */
         setSize: function (size) {
             this.setAttribute('size', size);
-            this.$Elm.className = this.$Elm.className.replace(/qdc-w\d+/, '');
-            this.$Elm.classList.add('qdc-w' + size);
+            this.$Elm.style['flex-basis'] = size + '%';
+        },
+
+        /**
+         * Returns the card's priority
+         *
+         * @return {number}
+         */
+        getPriority: function () {
+            return this.getAttribute('priority');
+        },
+
+        /**
+         * Sets the card's priority
+         *
+         * @param {number} priority
+         */
+        setPriority: function (priority) {
+            this.setAttribute('priority', priority);
         }
     });
 });

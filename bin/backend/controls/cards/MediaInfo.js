@@ -38,20 +38,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-media-info',
-                icon   : 'fa fa-picture-o',
-                title  : QUILocale.get(lg, 'dashboard.media.info'),
-                content: Mustache.render(content, {
-                    tableTitle     : QUILocale.get(lg, 'dashboard.media.info.table.title'),
+                id      : 'quiqqer-dashboard-card-media-info',
+                icon    : 'fa fa-picture-o',
+                title   : QUILocale.get(lg, 'dashboard.media.info'),
+                content : Mustache.render(content, {
                     filesCount     : QUILocale.get(lg, 'dashboard.media.info.files.count'),
                     folderCount    : QUILocale.get(lg, 'dashboard.media.info.folder.count'),
                     folderSize     : QUILocale.get(lg, 'dashboard.media.info.folder.size'),
-                    cacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size'),
-                    chartTitle     : QUILocale.get(lg, 'dashboard.media.info.chart.title')
+                    cacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size')
                 }),
-                footer : false,
-                styles : false,
-                size   : 50
+                footer  : false,
+                styles  : false,
+                priority: 50,
+                size    : 30
             });
 
             var ProjectSelectContainer = new Element('div', {

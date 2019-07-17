@@ -24,10 +24,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
             this.parent(options);
 
             this.setAttributes({
-                id    : 'quiqqer-dashboard-stats-users',
-                footer: QUILocale.get('quiqqer/dashboard', 'dashboard.stats.users'),
-                size  : 16,
-                styles: {
+                id      : 'quiqqer-dashboard-stats-users',
+                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.users'),
+                size    : 20,
+                priority: 100,
+                styles  : {
                     'text-align': 'center'
                 }
             });

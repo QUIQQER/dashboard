@@ -35,13 +35,13 @@ class DashboardProvider implements DashboardProviderInterface
             'package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats',
 
             // A whole row of cards. No other cards will be added to this row.
-            [
+//            [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
-            ]
+//            ]
         ];
 
         if (\QUI::getUserBySession()->isSU()) {

@@ -26,17 +26,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-site-activity',
-                icon   : 'fa fa-file-text-o',
-                title  : QUILocale.get(lg, 'dashboard.page.changes'),
-                content: Mustache.render(contentTemplate, {
+                id      : 'quiqqer-dashboard-card-site-activity',
+                icon    : 'fa fa-file-text-o',
+                title   : QUILocale.get(lg, 'dashboard.page.changes'),
+                content : Mustache.render(contentTemplate, {
                     id   : QUILocale.get('quiqqer/system', 'id'),
                     title: QUILocale.get('quiqqer/system', 'title'),
                     date : QUILocale.get('quiqqer/system', 'e_date')
                 }),
-                footer : false,
-                styles : false,
-                size   : 33
+                footer  : false,
+                styles  : false,
+                priority: 65,
+                size    : 30
             });
         },
 

@@ -28,9 +28,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-newest-blog-entry',
-                content: Mustache.render(content),
-                size   : 25
+                id      : 'quiqqer-dashboard-card-newest-blog-entry',
+                content : Mustache.render(content),
+                priority: 90,
+                size    : 30
             });
         },
 
@@ -43,8 +44,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
                     self.setIcon('fa fa-newspaper-o');
 
                     self.$Content.setStyles({
-                       padding: '0.75rem 1.5rem',
-                       'line-height': '2rem'
+                        padding      : '0.75rem 1.5rem',
+                        'line-height': '2rem'
                     });
 
                     self.$Content.addClass('bad-value');

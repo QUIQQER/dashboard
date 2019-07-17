@@ -25,13 +25,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-bookmarks',
-                icon   : 'fa fa-bookmark',
-                title  : QUILocale.get(lg, 'dashboard.bookmarks'),
-                content: '<div></div>',
-                footer : false,
-                styles : false,
-                size   : 25
+                id      : 'quiqqer-dashboard-bookmarks',
+                icon    : 'fa fa-bookmark',
+                title   : QUILocale.get(lg, 'dashboard.bookmarks'),
+                content : '<div></div>',
+                footer  : false,
+                styles  : false,
+                priority: 85,
+                size    : 25
             });
         },
 

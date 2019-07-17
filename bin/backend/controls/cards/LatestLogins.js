@@ -26,17 +26,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-latest-logins',
-                icon   : 'fa fa-user',
-                title  : QUILocale.get(lg, 'dashboard.logins'),
-                content: Mustache.render(template, {
+                id      : 'quiqqer-dashboard-card-latest-logins',
+                icon    : 'fa fa-user',
+                title   : QUILocale.get(lg, 'dashboard.logins'),
+                content : Mustache.render(template, {
                     username: QUILocale.get('quiqqer/system', 'username'),
                     name    : QUILocale.get('quiqqer/system', 'name'),
                     date    : QUILocale.get('quiqqer/system', 'date')
                 }),
-                footer : false,
-                styles : false,
-                size   : 33
+                footer  : false,
+                styles  : false,
+                priority: 70,
+                size    : 30
             });
         },
 

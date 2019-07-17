@@ -31,19 +31,20 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-filesystem-info',
-                icon   : 'fa fa-hdd-o',
-                title  : QUILocale.get(lg, 'dashboard.filesystem.info'),
-                content: Mustache.render(contentTemplate, {
+                id      : 'quiqqer-dashboard-card-filesystem-info',
+                icon    : 'fa fa-hdd-o',
+                title   : QUILocale.get(lg, 'dashboard.filesystem.info'),
+                content : Mustache.render(contentTemplate, {
                     sizeInstallation: QUILocale.get(lg, 'dashboard.filesystem.info.size.installation'),
                     sizePackages    : QUILocale.get(lg, 'dashboard.filesystem.info.size.packages'),
                     sizeCache       : QUILocale.get(lg, 'dashboard.filesystem.info.size.cache'),
                     sizeVar         : QUILocale.get(lg, 'dashboard.filesystem.info.size.var'),
                     countFiles      : QUILocale.get(lg, 'dashboard.filesystem.info.count.files')
                 }),
-                footer : false,
-                styles : false,
-                size   : 25
+                footer  : false,
+                styles  : false,
+                priority: 60,
+                size    : 20
             });
         },
 
