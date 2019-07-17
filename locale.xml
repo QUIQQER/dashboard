@@ -131,10 +131,6 @@
             <de><![CDATA[Medien Info]]></de>
             <en><![CDATA[Media Info]]></en>
         </locale>
-        <locale name="dashboard.media.info.table.title">
-            <de><![CDATA[Statistiken]]></de>
-            <en><![CDATA[Statistics]]></en>
-        </locale>
         <locale name="dashboard.media.info.files.count">
             <de><![CDATA[Anzahl Dateien]]></de>
             <en><![CDATA[File Count]]></en>
@@ -155,10 +151,6 @@
         <locale name="dashboard.media.info.cache.folder.size">
             <de><![CDATA[Größe des Medien Cache Ordners]]></de>
             <en><![CDATA[Media Cache Folder Size]]></en>
-        </locale>
-        <locale name="dashboard.media.info.chart.title">
-            <de><![CDATA[Dateitypen Verteilung]]></de>
-            <en><![CDATA[Filetype Distribution]]></en>
         </locale>
         <!-- endregion -->
 

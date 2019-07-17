@@ -22,10 +22,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects', [
             this.parent(options);
 
             this.setAttributes({
-                id    : 'quiqqer-dashboard-stats-projects',
-                footer: QUILocale.get('quiqqer/dashboard', 'dashboard.stats.projects'),
-                size  : 16,
-                styles: {
+                id      : 'quiqqer-dashboard-stats-projects',
+                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.projects'),
+                size    : 20,
+                priority: 100,
+                styles  : {
                     'text-align': 'center'
                 }
             });

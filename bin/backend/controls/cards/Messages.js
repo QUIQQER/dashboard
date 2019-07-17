@@ -26,13 +26,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-messages',
-                icon   : 'fa fa-bullhorn',
-                title  : QUILocale.get(lg, 'dashboard.messages'),
-                content: '<div></div>',
-                footer : false,
-                styles : false,
-                size   : 25
+                id      : 'quiqqer-dashboard-messages',
+                icon    : 'fa fa-bullhorn',
+                title   : QUILocale.get(lg, 'dashboard.messages'),
+                content : '<div></div>',
+                footer  : false,
+                styles  : false,
+                priority: 95,
+                size    : 25
             });
         },
 
@@ -45,7 +46,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
             var Content = MessagesControl.getContent();
             Content.setStyle('background', 'none');
 
-            setTimeout(function() {
+            setTimeout(function () {
                 // card-height minus header minus button-menu
                 Content.setStyle('height', 'calc(433px - 50px - 49px)');
             }, 500);

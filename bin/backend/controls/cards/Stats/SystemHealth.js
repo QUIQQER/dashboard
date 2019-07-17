@@ -26,10 +26,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
             this.parent(options);
 
             this.setAttributes({
-                id    : 'quiqqer-dashboard-stats-system-health',
-                footer: QUILocale.get(lg, 'dashboard.stats.systemhealth'),
-                size  : 16,
-                styles: {
+                id      : 'quiqqer-dashboard-stats-system-health',
+                footer  : QUILocale.get(lg, 'dashboard.stats.systemhealth'),
+                size    : 20,
+                priority: 100,
+                styles  : {
                     'text-align': 'center'
                 }
             });

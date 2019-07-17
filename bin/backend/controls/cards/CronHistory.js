@@ -26,17 +26,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-cron-history',
-                icon   : 'fa fa-clock-o',
-                title  : QUILocale.get(lg, 'dashboard.cron.history'),
-                content: Mustache.render(contentTemplate, {
+                id      : 'quiqqer-dashboard-card-cron-history',
+                icon    : 'fa fa-clock-o',
+                title   : QUILocale.get(lg, 'dashboard.cron.history'),
+                content : Mustache.render(contentTemplate, {
                     date: QUILocale.get(lg, 'dashboard.cron.history.date'),
                     cron: QUILocale.get(lg, 'dashboard.cron.history.cron'),
                     user: QUILocale.get(lg, 'dashboard.cron.history.user')
                 }),
-                footer : false,
-                styles : false,
-                size   : 40
+                footer  : false,
+                styles  : false,
+                priority: 75,
+                size    : 40
             });
         },
 

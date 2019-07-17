@@ -26,18 +26,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-system-info',
-                icon   : 'fa fa-microchip',
-                title  : QUILocale.get(lg, 'dashboard.system.info'),
-                content: Mustache.render(contentTemplate, {
+                id      : 'quiqqer-dashboard-card-system-info',
+                icon    : 'fa fa-microchip',
+                title   : QUILocale.get(lg, 'dashboard.system.info'),
+                content : Mustache.render(contentTemplate, {
                     quiqqerVersion: QUILocale.get(lg, 'dashboard.system.info.quiqqer.version'),
                     modulesCount  : QUILocale.get(lg, 'dashboard.system.info.modules.count'),
                     devmodeActive : QUILocale.get(lg, 'dashboard.system.info.devmode.active'),
                     cacheType     : QUILocale.get(lg, 'dashboard.system.info.cache.type')
                 }),
-                footer : false,
-                styles : false,
-                size   : 25
+                footer  : false,
+                styles  : false,
+                priority: 45,
+                size    : 15
             });
         },
 

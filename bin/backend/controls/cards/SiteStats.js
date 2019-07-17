@@ -30,18 +30,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-sitestats',
-                icon   : 'fa fa-file-text-o',
-                title  : QUILocale.get(lg, 'dashboard.sitestats.title'),
-                content: Mustache.render(contentTemplate, {
+                id      : 'quiqqer-dashboard-card-sitestats',
+                icon    : 'fa fa-file-text-o',
+                title   : QUILocale.get(lg, 'dashboard.sitestats.title'),
+                content : Mustache.render(contentTemplate, {
                     rootSites            : QUILocale.get(lg, 'dashboard.sitestats.rootSites'),
                     childrenSites        : QUILocale.get(lg, 'dashboard.sitestats.children'),
                     missingContentSites  : QUILocale.get(lg, 'dashboard.sitestats.missing.content'),
                     missingShortDescSites: QUILocale.get(lg, 'dashboard.sitestats.missing.shortdesc')
                 }),
-                footer : false,
-                styles : false,
-                size   : 25
+                footer  : false,
+                styles  : false,
+                priority: 55,
+                size    : 30
             });
 
             this.initializeProjectSelect();
@@ -184,7 +185,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                 });
             } else {
                 ValueElement = new Element('span', {
-                    html : '?'
+                    html: '?'
                 }).addClass('warning-value');
 
                 ValueWrapper.set('title', QUILocale.get(lg, 'dashboard.sitestats.missing'));
