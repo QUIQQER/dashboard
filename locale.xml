@@ -377,4 +377,22 @@
         </locale>
         <!-- endregion -->
     </groups>
+
+    <groups name="quiqqer/dashboard" datatype="php">
+        <locale name="user.profile.title">
+            <de><![CDATA[Dashboard]]></de>
+            <en><![CDATA[Dashboard]]></en>
+        </locale>
+
+        <locale name="user.profile.isDisabled">
+            <de><![CDATA[Deaktiviert]]></de>
+            <en><![CDATA[Disabled]]></en>
+        </locale>
+
+        <locale name="user.profile.isDisabled.description">
+            <de><![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
+            <en><![CDATA[You need to close the dashboard and/or reload the page, for changes to take effect.]]></en>
+        </locale>
+    </groups>
+
 </locales>

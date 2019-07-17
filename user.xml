@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+    <attributes>
+        <attribute>quiqqer.dashboard.isDisabled</attribute>
+    </attributes>
+
+    <profile>
+        <tab name="quiqqer_dashboard">
+            <text>Dashboard</text>
+            <image>fa fa-tachometer</image>
+            <template>OPT_DIR/quiqqer/dashboard/templates/user_profile.html</template>
+        </tab>
+    </profile>
+</user>
