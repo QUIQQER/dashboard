@@ -101,7 +101,8 @@
         </locale>
 
         <locale name="dashboard.stats.systemhealth.help">
-            <de><![CDATA[Um (korrekte) Werte zu erhalten müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
+            <de>
+                <![CDATA[Um (korrekte) Werte zu erhalten müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
             <en><![CDATA[To get (correct) values you have to add and execute the CRON 'Perform system check'.]]></en>
         </locale>
         <!-- endregion -->
@@ -368,6 +369,26 @@
             <en>Sites without short description</en>
         </locale>
         <!-- endregion -->
+
+        <locale name="control.managecards.button.text">
+            <de>Karten Verwalten</de>
+            <en>Manage Cards</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.title">
+            <de>Karten Verwalten</de>
+            <en>Manage Cards</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.enabled.label">
+            <de>Aktiviert</de>
+            <en>Enabled</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.priority.label">
+            <de>Priorität</de>
+            <en>Priorität</en>
+        </locale>
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="php">
@@ -380,10 +401,20 @@
             <de><![CDATA[Deaktiviert]]></de>
             <en><![CDATA[Disabled]]></en>
         </locale>
-
         <locale name="user.profile.isDisabled.description">
-            <de><![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
+            <de>
+                <![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
             <en><![CDATA[You need to close the dashboard and/or reload the page, for changes to take effect.]]></en>
+        </locale>
+
+        <locale name="user.profile.cardSettings">
+            <de><![CDATA[Karten]]></de>
+            <en><![CDATA[Cards]]></en>
+        </locale>
+        <locale name="user.profile.cardSettings.description">
+            <de>
+                <![CDATA[Klicken Sie auf die Schaltfläche oben, um Dashboard-Karten zu sortieren oder zu deaktivieren.]]></de>
+            <en><![CDATA[Click the button above to sort and/or disable dashboard cards.]]></en>
         </locale>
     </groups>
 

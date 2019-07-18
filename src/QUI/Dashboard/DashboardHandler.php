@@ -11,6 +11,7 @@ use QUI\Utils\Singleton;
 
 /**
  * Class DashboardHandler
+ *
  * @package \QUI\Dashboard
  */
 class DashboardHandler extends Singleton
@@ -22,7 +23,19 @@ class DashboardHandler extends Singleton
     /**
      * @var array
      */
-    protected $cardList = array();
+    protected $cardList = [];
+
+
+    public function getCardNamesForUsersDashboard()
+    {
+        $cards = $this->getCardsWithSettings();
+
+        $cards = array_filter($cards, function ($card) {
+            return $card['enabled'];
+        });
+
+        return array_keys($cards);
+    }
 
 
     /**
@@ -31,7 +44,7 @@ class DashboardHandler extends Singleton
      *
      * @return array
      */
-    public function getCards()
+    public function getAllRegisteredCards()
     {
         if (!empty($this->cardList)) {
             return $this->cardList;
@@ -96,5 +109,47 @@ class DashboardHandler extends Singleton
         }
 
         return $cards;
+    }
+
+
+    public function getCardsWithSettings()
+    {
+        $cards = $this->getAllRegisteredCards();
+
+        $cardSettingsAttribute = QUI::getUserBySession()->getAttribute('quiqqer.dashboard.cardSettings');
+
+        $settings = [];
+
+        if ($cardSettingsAttribute) {
+            $settings = json_decode($cardSettingsAttribute, true);
+        }
+
+        $result = [];
+
+        // Combine all available cards and their settings
+        foreach ($cards as $card) {
+            // Default values
+            $values = [
+                'enabled'  => true,
+                'priority' => 10
+            ];
+
+            // There may be no settings for a card yet, but if so, use them
+            if (isset($settings[$card])) {
+                $cardSettings = $settings[$card];
+
+                if (isset($cardSettings['enabled'])) {
+                    $values['enabled'] = $cardSettings['enabled'];
+                }
+
+                if (isset($cardSettings['priority']) && is_numeric($cardSettings['priority'])) {
+                    $values['priority'] = $cardSettings['priority'];
+                }
+            }
+
+            $result[$card] = $values;
+        }
+
+        return $result;
     }
 }

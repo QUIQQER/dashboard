@@ -19,4 +19,22 @@
             </div>
         </td>
     </tr>
+    <tr>
+        <td>
+            <label class="field-container hasCheckbox">
+                <span class="field-container-item">
+                    {locale group="quiqqer/dashboard" var="user.profile.cardSettings"}
+                </span>
+                <span class="field-container-field">
+                    <input type="hidden"
+                           name="quiqqer.dashboard.cardSettings"
+                           data-qui="package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton"
+                    />
+                </span>
+            </label>
+            <div class="field-container-item-desc">
+                {locale group="quiqqer/dashboard" var="user.profile.cardSettings.description"}
+            </div>
+        </td>
+    </tr>
 </table>
