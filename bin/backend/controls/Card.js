@@ -244,7 +244,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {number} priority
          */
         setPriority: function (priority) {
-            this.setAttribute('priority', priority);
+            if (typeof priority === 'number') {
+                this.setAttribute('priority', priority);
+            }
         }
     });
 });

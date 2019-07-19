@@ -74,11 +74,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             var self = this;
 
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (cards) {
-                require(cards, function () {
+                // card-names/-types to require the controls
+                var cardNames = Object.getOwnPropertyNames(cards);
+
+                require(cardNames, function () {
                     self.Cards = [];
 
                     for (var i = 0; i < arguments.length; i++) {
                         var Card = new arguments[i]();
+
+                        // The card's settings are stored in the cards array (result from the Ajax-call).
+                        // If a priority was set via the user's profile, we have to set it here.
+                        Card.setPriority(cards[cardNames[i]].priority);
+
                         self.Cards.push(Card);
                     }
 

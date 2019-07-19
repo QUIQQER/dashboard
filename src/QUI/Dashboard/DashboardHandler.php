@@ -26,7 +26,17 @@ class DashboardHandler extends Singleton
     protected $cardList = [];
 
 
-    public function getCardNamesForUsersDashboard()
+    /**
+     * Returns the cards for the current user's dashboard.
+     * Only returns his enabled cards.
+     *
+     * The result is an array:
+     * The card's name is the key.
+     * The value is an array containing the card's priority and it's enabled-state (always true).
+     *
+     * @return array
+     */
+    public function getCardsForUsersDashboard()
     {
         $cards = $this->getCardsWithSettings();
 
@@ -34,7 +44,7 @@ class DashboardHandler extends Singleton
             return $card['enabled'];
         });
 
-        return array_keys($cards);
+        return $cards;
     }
 
 
@@ -143,7 +153,7 @@ class DashboardHandler extends Singleton
                 }
 
                 if (isset($cardSettings['priority']) && is_numeric($cardSettings['priority'])) {
-                    $values['priority'] = $cardSettings['priority'];
+                    $values['priority'] = (int)$cardSettings['priority'];
                 }
             }
 
