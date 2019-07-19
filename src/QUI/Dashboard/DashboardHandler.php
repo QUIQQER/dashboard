@@ -131,7 +131,7 @@ class DashboardHandler extends Singleton
             // Default values
             $values = [
                 'enabled'  => true,
-                'priority' => 10
+                'priority' => null
             ];
 
             // There may be no settings for a card yet, but if so, use them

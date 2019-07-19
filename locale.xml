@@ -389,6 +389,11 @@
             <de>Priorität</de>
             <en>Priorität</en>
         </locale>
+
+        <locale name="control.managecards.dialog.priority.placeholder">
+            <de>Standardwert der Karte</de>
+            <en>Card's Default</en>
+        </locale>
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="php">

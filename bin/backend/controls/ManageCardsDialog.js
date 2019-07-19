@@ -90,8 +90,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         _buildContentFromLocalSettings: function (settings) {
             var self = this;
 
-            var isEnabledLabel = QUILocale.get(lg, 'control.managecards.dialog.enabled.label'),
-                priorityLabel  = QUILocale.get(lg, 'control.managecards.dialog.priority.label');
+            var isEnabledLabel      = QUILocale.get(lg, 'control.managecards.dialog.enabled.label'),
+                priorityLabel       = QUILocale.get(lg, 'control.managecards.dialog.priority.label'),
+                priorityPlaceholder = QUILocale.get(lg, 'control.managecards.dialog.priority.placeholder');
 
             Object.getOwnPropertyNames(settings).forEach(function (cardType) {
                 var cardSettings = settings[cardType];
@@ -103,8 +104,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
                         value: cardSettings.enabled
                     },
                     priority : {
-                        label: priorityLabel,
-                        value: cardSettings.priority
+                        label      : priorityLabel,
+                        value      : cardSettings.priority,
+                        placeholder: priorityPlaceholder
                     }
                 });
 
