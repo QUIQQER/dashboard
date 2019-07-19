@@ -2,6 +2,7 @@
 <user>
     <attributes>
         <attribute>quiqqer.dashboard.isDisabled</attribute>
+        <attribute>quiqqer.dashboard.cardSettings</attribute>
     </attributes>
 
     <profile>
