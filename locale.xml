@@ -75,6 +75,11 @@
             <de><![CDATA[Lesezeichen]]></de>
             <en><![CDATA[Bookmarks]]></en>
         </locale>
+
+        <locale name="dashboard.bookmarks.none">
+            <de><![CDATA[Keine Lesezeichen gesetzt.]]></de>
+            <en><![CDATA[No bookmarks set.]]></en>
+        </locale>
         <!-- endregion -->
 
         <!-- region Stats -->
