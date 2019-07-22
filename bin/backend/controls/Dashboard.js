@@ -4,17 +4,21 @@
  */
 define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
+    'qui/controls/buttons/Button',
     'qui/controls/desktop/Panel',
 
     'Ajax',
+    'Locale',
     'Mustache',
 
     'text!package/quiqqer/dashboard/bin/backend/controls/Dashboard.html',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css'
 
-], function (QUIPanel, QUIAjax, Mustache, template) {
+], function (QUIButton, QUIPanel, QUIAjax, QUILocale, Mustache, template) {
     "use strict";
+
+    var lg = 'quiqqer/dashboard';
 
     return new Class({
 
@@ -49,6 +53,15 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getContent().addClass('quiqqer-dashboard--loading');
 
             this.getContent().set('html', Mustache.render(template));
+
+            new QUIButton({
+                name     : 'refresh',
+                textimage: 'fa fa-refresh',
+                title: QUILocale.get(lg, 'button.refresh.title'),
+                events   : {
+                    onClick: this.refresh
+                }
+            }).inject(this.getHeader());
 
             this.refresh();
 

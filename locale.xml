@@ -65,6 +65,10 @@
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="js">
+        <locale name="button.refresh.title">
+            <de><![CDATA[Inhalte des Dashboards aktualisieren.]]></de>
+            <en><![CDATA[Refresh dashboard's content.]]></en>
+        </locale>
 
         <!-- region Stats -->
         <locale name="dashboard.stats.projects">

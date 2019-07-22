@@ -35,6 +35,12 @@
     border-bottom: none;
 }
 
+.quiqqer-dashboard .qui-panel-header button {
+    float: right;
+    color: rgb(73, 80, 87);
+}
+
+
 .quiqqer-dashboard-row {
     display: flex;
     flex-wrap: wrap;
