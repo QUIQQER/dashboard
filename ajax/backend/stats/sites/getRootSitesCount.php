@@ -27,7 +27,9 @@ QUI::$Ajax->registerFunction(
             && isset($result[0]['rootSites'])
             && is_numeric($result[0]['rootSites'])
         ) {
-            return (int)$result[0]['rootSites'];
+            $rootSites = (int)$result[0]['rootSites'];
+
+            return QUI::getLocale()->formatNumber($rootSites);
         }
 
         return;

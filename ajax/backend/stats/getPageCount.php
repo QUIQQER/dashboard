@@ -41,9 +41,9 @@ QUI::$Ajax->registerFunction(
             $inactive = $inactive + $count[0]['count'];
         }
 
-        $result['total']    = $active + $inactive;
-        $result['active']   = $active;
-        $result['inactive'] = $inactive;
+        $result['total']    = QUI::getLocale()->formatNumber($active + $inactive);
+        $result['active']   = QUI::getLocale()->formatNumber($active);
+        $result['inactive'] = QUI::getLocale()->formatNumber($inactive);
 
         return $result;
     },

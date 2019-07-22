@@ -25,7 +25,9 @@ QUI::$Ajax->registerFunction(
             && isset($result[0]['sitesWithoutShortDesc'])
             && is_numeric($result[0]['sitesWithoutShortDesc'])
         ) {
-            return (int)$result[0]['sitesWithoutShortDesc'];
+            $sitesWithoutShortDesc = (int)$result[0]['sitesWithoutShortDesc'];
+
+            return QUI::getLocale()->formatNumber($sitesWithoutShortDesc);
         }
 
         return;
