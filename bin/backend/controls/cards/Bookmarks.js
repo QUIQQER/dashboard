@@ -43,7 +43,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
 
             Content.setStyles({
                 'display'        : 'flex',
-                'justify-content': 'center',
+                'justify-content': 'initial',
                 'align-items'    : 'center',
                 'flex-direction' : 'column'
             });
@@ -62,6 +62,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
 
             // Show set no bookmarks are set
             if (bookmarks.length === 0) {
+                Content.setStyle('justify-content', 'center');
+
                 new Element('span', {
                     text   : QUILocale.get(lg, 'dashboard.bookmarks.none'),
                     'class': 'inactive-value'

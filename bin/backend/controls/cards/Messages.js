@@ -38,17 +38,21 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
         },
 
         refresh: function () {
+            var self = this;
+
             var MessagesControl = new MessagePanel();
 
             MessagesControl.inject(this.getContent());
             MessagesControl.getHeader().hide();
 
-            var Content = MessagesControl.getContent();
-            Content.setStyle('background', 'none');
+            var MessageControlContent = MessagesControl.getContent();
+            MessageControlContent.setStyle('background', 'none');
 
             setTimeout(function () {
+                var cardHeight = self.getElm().getSize().y;
+
                 // card-height minus header minus button-menu
-                Content.setStyle('height', 'calc(433px - 50px - 49px)');
+                MessageControlContent.setStyle('height', 'calc(' + cardHeight + 'px - 50px - 49px)');
             }, 500);
         }
     });
