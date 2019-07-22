@@ -8,9 +8,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
     'Locale',
     'Mustache',
 
+    'qui/controls/windows/Popup',
+    'controls/packages/SystemCheck',
+
     'package/quiqqer/dashboard/bin/backend/controls/Card'
 
-], function (QUIAjax, QUILocale, Mustache, QUICard) {
+], function (QUIAjax, QUILocale, Mustache, QUIPopup, QUISystemCheck, QUICard) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -37,20 +40,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
 
             this.getElm().classList.add('quiqqer-dashboard--clickable');
 
-            require([
-                'utils/Panels',
-                'controls/packages/Panel'
-            ], function (PanelUtils, SystemAdministrationControl) {
-                self.getElm().addEvent('click', function () {
-                    var SystemAdministration = new SystemAdministrationControl();
-                    PanelUtils.openPanelInTasks(SystemAdministration).then(function (LoadedPanel) {
-                        // This needs to be delayed since opening the SystemAdmin-panel overwrites the systemCheck-selection
-                        setTimeout(function () {
-                            LoadedPanel.loadSystemCheck();
-                        }, 1000);
-                    });
-                });
-            });
+
+            self.getElm().addEvent('click', this.openSystemCheckPopup);
+        },
+
+        openSystemCheckPopup: function () {
+            var Popup       = new QUIPopup(),
+                SystemCheck = new QUISystemCheck();
+
+            Popup.open();
+            SystemCheck.inject(Popup.getContent());
         },
 
         refresh: function () {
