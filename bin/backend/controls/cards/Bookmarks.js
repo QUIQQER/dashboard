@@ -28,7 +28,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
                 id      : 'quiqqer-dashboard-bookmarks',
                 icon    : 'fa fa-bookmark',
                 title   : QUILocale.get(lg, 'dashboard.bookmarks'),
-                content : '<div></div>',
+                content : '<span></span>',
                 footer  : false,
                 styles  : false,
                 priority: 85,
@@ -37,6 +37,17 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
         },
 
         refresh: function () {
+            var Content = this.getContent();
+
+            Content.empty();
+
+            Content.setStyles({
+                'display'        : 'flex',
+                'justify-content': 'center',
+                'align-items'    : 'center',
+                'flex-direction' : 'column'
+            });
+
             // There is no "nice" way to directly access the user's bookmarks.
             // Therefore we have to use the existing bookmarks-control/-panel.
             var bookmarkControls = QUI.Controls.getByType('controls/desktop/panels/Bookmarks');
@@ -49,6 +60,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
             // The first match should be the control
             var bookmarks = bookmarkControls[0].$bookmarks;
 
+            // Show set no bookmarks are set
+            if (bookmarks.length === 0) {
+                new Element('span', {
+                    text   : QUILocale.get(lg, 'dashboard.bookmarks.none'),
+                    'class': 'inactive-value'
+                }).inject(Content);
+
+                return;
+            }
+
             // Now add all the bookmarks to our card
             // Since we're lazy we can just clone the elements from the panel into our card.
             // Furthermore there was no proper way to access the used icon without parsing a bunch of HTML.
@@ -60,7 +81,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
                 clonedBookmark.querySelector('.qui-bookmark-text').style.width = 'initial';
 
                 // Put it onto our card.
-                clonedBookmark.inject(this.getContent());
+                clonedBookmark.inject(Content);
             }
         }
     });
