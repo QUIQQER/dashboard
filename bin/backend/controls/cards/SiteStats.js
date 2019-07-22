@@ -179,7 +179,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
 
             var ValueElement;
 
-            if (typeof value == 'number') {
+            if (value) {
                 ValueElement = new Element('span', {
                     html: value
                 });

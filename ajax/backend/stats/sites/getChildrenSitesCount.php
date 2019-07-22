@@ -27,10 +27,12 @@ QUI::$Ajax->registerFunction(
             && isset($result[0]['childrenSites'])
             && is_numeric($result[0]['childrenSites'])
         ) {
-            return (int)$result[0]['childrenSites'];
+            $childrenSites = (int)$result[0]['childrenSites'];
+
+            return QUI::getLocale()->formatNumber($childrenSites);
         }
 
-        return;
+        return null;
     },
     ['projectName'],
     'Permission::checkAdminUser'

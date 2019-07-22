@@ -14,10 +14,15 @@ QUI::$Ajax->registerFunction(
     function ($projectName) {
         try {
             $Project = \QUI\Projects\Manager::getProject($projectName);
+            $Locale  = QUI::getLocale();
+
+            $folderCount = MediaUtils::countFoldersForProject($Project);
+
+            $filesCount = MediaUtils::countFilesForProject($Project);
 
             return [
-                'folderCount'                   => MediaUtils::countFoldersForProject($Project),
-                'filesCount'                    => MediaUtils::countFilesForProject($Project),
+                'folderCount'                   => $Locale->formatNumber($folderCount),
+                'filesCount'                    => $Locale->formatNumber($filesCount),
                 'filetypesCount'                => MediaUtils::countFiletypesForProject($Project),
                 'mediaFolderSize'               => MediaUtils::getMediaFolderSizeForProject($Project),
                 'mediaFolderSizeTimestamp'      => MediaUtils::getMediaFolderSizeTimestampForProject($Project),
@@ -27,6 +32,7 @@ QUI::$Ajax->registerFunction(
             ];
         } catch (\QUI\Exception $Exception) {
             \QUI\System\Log::writeException($Exception);
+
             return [];
         }
     },

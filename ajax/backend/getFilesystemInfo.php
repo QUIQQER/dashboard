@@ -23,7 +23,7 @@ QUI::$Ajax->registerFunction(
             'sizeVar'          => \QUI\Utils\Installation::getVarFolderSize(),
             'sizeVarTimestamp' => \QUI\Utils\Installation::getVarFolderSizeTimestamp(),
 
-            'countFiles'          => \QUI\Utils\Installation::getAllFileCount(),
+            'countFiles'          => \QUI::getLocale()->formatNumber(\QUI\Utils\Installation::getAllFileCount()),
             'countFilesTimestamp' => \QUI\Utils\Installation::getAllFileCountTimestamp()
         ];
     },

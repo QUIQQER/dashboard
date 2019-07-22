@@ -133,11 +133,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                     mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
 
-                if (typeof result.filesCount === 'number') {
+                if (result.filesCount) {
                     Card.getElement('#media-info-files-count .value').set('html', result.filesCount);
                 }
 
-                if (typeof result.folderCount === 'number') {
+                if (result.folderCount) {
                     Card.getElement('#media-info-folder-count .value').set('html', result.folderCount);
                 }
 

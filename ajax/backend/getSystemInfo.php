@@ -13,10 +13,10 @@ QUI::$Ajax->registerFunction(
         $availableCacheHandlers = QUI\Cache\Manager::getConfig()->getSection('handlers');
 
         if ($availableCacheHandlers) {
-            $activeCacheHandler           = array_search('1', $availableCacheHandlers);
+            $activeCacheHandler           = \array_search('1', $availableCacheHandlers);
             $activeCacheHandlerTranslated = QUI::getLocale()->get(
                 'quiqqer/system',
-                'quiqqer.settings.cache.handler.'.$activeCacheHandler
+                'quiqqer.settings.cache.handler.' . $activeCacheHandler
             );
         } else {
             $activeCacheHandlerTranslated = '---';
@@ -26,7 +26,7 @@ QUI::$Ajax->registerFunction(
 
         return [
             'quiqqerVersion'  => $Packages->getVersion(),
-            'modulesCount'    => count($Packages->getInstalled()),
+            'modulesCount'    => QUI::getLocale()->formatNumber(\count($Packages->getInstalled())),
             'isDevModeActive' => DEVELOPMENT == 1,
             'cacheType'       => $activeCacheHandlerTranslated
         ];
