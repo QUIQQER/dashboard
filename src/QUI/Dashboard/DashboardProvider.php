@@ -46,7 +46,6 @@ class DashboardProvider implements DashboardProviderInterface
 
         if (\QUI::getUserBySession()->isSU()) {
             $cards = array_merge($cards, [
-                'package/quiqqer/dashboard/bin/backend/controls/cards/LatestLogins',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
