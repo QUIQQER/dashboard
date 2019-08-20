@@ -56,7 +56,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             new QUIButton({
                 name     : 'refresh',
-                textimage: 'fa fa-refresh',
+                icon: 'fa fa-refresh',
                 title: QUILocale.get(lg, 'button.refresh.title'),
                 events   : {
                     onClick: this.refresh

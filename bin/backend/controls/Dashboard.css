@@ -40,6 +40,10 @@
     color: rgb(73, 80, 87);
 }
 
+.quiqqer-dashboard .qui-panel-header button:hover {
+    color: white
+}
+
 
 .quiqqer-dashboard-row {
     display: flex;
