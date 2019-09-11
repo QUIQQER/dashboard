@@ -76,6 +76,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
         refresh: function () {
             var projectName = this.$ProjectSelect.getValue();
 
+            if (!projectName) {
+                return;
+            }
+
             this.refreshNoShortDescriptionValue(projectName);
             this.refreshNoContentValue(projectName);
             this.refreshChildrenSiteCountValue(projectName);
@@ -87,6 +91,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
          * Updates the root site count value
          */
         refreshRootSiteCountValue: function (projectName) {
+            if (!projectName) {
+                return;
+            }
+
             QUIAjax.get(
                 'package_quiqqer_dashboard_ajax_backend_stats_sites_getRootSitesCount',
                 function (result) {
@@ -107,6 +115,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
          * Updates the children site count value
          */
         refreshChildrenSiteCountValue: function (projectName) {
+            if (!projectName) {
+                return;
+            }
+
             QUIAjax.get(
                 'package_quiqqer_dashboard_ajax_backend_stats_sites_getChildrenSitesCount',
                 function (result) {
@@ -127,6 +139,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
          * Updates the no content count value
          */
         refreshNoContentValue: function (projectName) {
+            if (!projectName) {
+                return;
+            }
+
             QUIAjax.get(
                 'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoContentSitesCount',
                 function (result) {
@@ -148,6 +164,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
          * Updates the no short description count value
          */
         refreshNoShortDescriptionValue: function (projectName) {
+            if (!projectName) {
+                return;
+            }
+
             QUIAjax.get(
                 'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoShortDescriptionSitesCount',
                 function (result) {
