@@ -5,6 +5,10 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoContentSitesCount',
     function ($projectName) {
+        if (empty($projectName)) {
+            return;
+        }
+
         try {
             $Project = QUI::getProject($projectName);
         } catch (\QUI\Exception $Exception) {
