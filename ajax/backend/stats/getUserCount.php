@@ -10,7 +10,7 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_getUserCount',
     function () {
-        return QUI::getUsers()->count();
+        return QUI::getLocale()->formatNumber(QUI::getUsers()->count());
     },
     false,
     'Permission::checkAdminUser'

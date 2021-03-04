@@ -11,6 +11,7 @@ use QUI\Utils\Singleton;
 
 /**
  * Class DashboardHandler
+ *
  * @package \QUI\Dashboard
  */
 class DashboardHandler extends Singleton
@@ -22,7 +23,29 @@ class DashboardHandler extends Singleton
     /**
      * @var array
      */
-    protected $cardList = array();
+    protected $cardList = [];
+
+
+    /**
+     * Returns the cards for the current user's dashboard.
+     * Only returns his enabled cards.
+     *
+     * The result is an array:
+     * The card's name is the key.
+     * The value is an array containing the card's priority and it's enabled-state (always true).
+     *
+     * @return array
+     */
+    public function getCardsForUsersDashboard()
+    {
+        $cards = $this->getCardsWithSettings();
+
+        $cards = array_filter($cards, function ($card) {
+            return $card['enabled'];
+        });
+
+        return $cards;
+    }
 
 
     /**
@@ -31,7 +54,7 @@ class DashboardHandler extends Singleton
      *
      * @return array
      */
-    public function getCards()
+    public function getAllRegisteredCards()
     {
         if (!empty($this->cardList)) {
             return $this->cardList;
@@ -96,5 +119,47 @@ class DashboardHandler extends Singleton
         }
 
         return $cards;
+    }
+
+
+    public function getCardsWithSettings()
+    {
+        $cards = $this->getAllRegisteredCards();
+
+        $cardSettingsAttribute = QUI::getUserBySession()->getAttribute('quiqqer.dashboard.cardSettings');
+
+        $settings = [];
+
+        if ($cardSettingsAttribute) {
+            $settings = json_decode($cardSettingsAttribute, true);
+        }
+
+        $result = [];
+
+        // Combine all available cards and their settings
+        foreach ($cards as $card) {
+            // Default values
+            $values = [
+                'enabled'  => true,
+                'priority' => null
+            ];
+
+            // There may be no settings for a card yet, but if so, use them
+            if (isset($settings[$card])) {
+                $cardSettings = $settings[$card];
+
+                if (isset($cardSettings['enabled'])) {
+                    $values['enabled'] = $cardSettings['enabled'];
+                }
+
+                if (isset($cardSettings['priority']) && is_numeric($cardSettings['priority'])) {
+                    $values['priority'] = (int)$cardSettings['priority'];
+                }
+            }
+
+            $result[$card] = $values;
+        }
+
+        return $result;
     }
 }

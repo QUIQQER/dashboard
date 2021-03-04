@@ -10,6 +10,12 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getFilesystemInfo',
     function () {
+        $fileCount = \QUI\Utils\Installation::getAllFileCount();
+
+        if (!\is_null($fileCount)) {
+            $fileCount = \QUI::getLocale()->formatNumber($fileCount);
+        }
+
         return [
             'sizeInstallation'          => \QUI\Utils\Installation::getWholeFolderSize(),
             'sizeInstallationTimestamp' => \QUI\Utils\Installation::getWholeFolderSizeTimestamp(),
@@ -23,7 +29,7 @@ QUI::$Ajax->registerFunction(
             'sizeVar'          => \QUI\Utils\Installation::getVarFolderSize(),
             'sizeVarTimestamp' => \QUI\Utils\Installation::getVarFolderSizeTimestamp(),
 
-            'countFiles'          => \QUI\Utils\Installation::getAllFileCount(),
+            'countFiles'          => $fileCount,
             'countFilesTimestamp' => \QUI\Utils\Installation::getAllFileCountTimestamp()
         ];
     },

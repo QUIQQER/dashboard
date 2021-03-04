@@ -10,9 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/content.html',
-
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/style.css'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/content.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, template) {
     "use strict";
@@ -28,14 +26,15 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-stats-pages',
-                content: Mustache.render(template, {
+                id      : 'quiqqer-dashboard-stats-pages',
+                content : Mustache.render(template, {
                     sitesActive  : QUILocale.get(lg, 'dashboard.stats.pages.active'),
                     sitesInactive: QUILocale.get(lg, 'dashboard.stats.pages.inactive')
                 }),
-                footer : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.pages'),
-                size   : 16,
-                styles : {
+                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.pages'),
+                size    : 20,
+                priority: 100,
+                styles  : {
                     'text-align': 'center'
                 }
             });

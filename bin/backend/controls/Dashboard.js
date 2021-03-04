@@ -39,7 +39,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.setAttribute('dragable', false);
             this.setAttribute('displayNoTaskText', true);
             this.setAttribute('taskNotClosable', true);
-
+            
             this.addEvents({
                 onCreate: this.$onCreate
             });

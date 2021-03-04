@@ -12,18 +12,29 @@ use \QUI\Projects\Media\Utils as MediaUtils;
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getMediaInfo',
     function ($projectName) {
-        $Project = \QUI\Projects\Manager::getProject($projectName);
+        try {
+            $Project = \QUI\Projects\Manager::getProject($projectName);
+            $Locale  = QUI::getLocale();
 
-        return [
-            'folderCount'                   => MediaUtils::countFoldersForProject($Project),
-            'filesCount'                    => MediaUtils::countFilesForProject($Project),
-            'filetypesCount'                => MediaUtils::countFiletypesForProject($Project),
-            'mediaFolderSize'               => MediaUtils::getMediaFolderSizeForProject($Project),
-            'mediaFolderSizeTimestamp'      => MediaUtils::getMediaFolderSizeTimestampForProject($Project),
-            'mediaCacheFolderSize'          => MediaUtils::getMediaCacheFolderSizeForProject($Project),
-            'mediaCacheFolderSizeTimestamp' => MediaUtils::getMediaCacheFolderSizeTimestampForProject($Project),
-            'projectName'                   => $projectName
-        ];
+            $folderCount = MediaUtils::countFoldersForProject($Project);
+
+            $filesCount = MediaUtils::countFilesForProject($Project);
+
+            return [
+                'folderCount'                   => $Locale->formatNumber($folderCount),
+                'filesCount'                    => $Locale->formatNumber($filesCount),
+                'filetypesCount'                => MediaUtils::countFiletypesForProject($Project),
+                'mediaFolderSize'               => MediaUtils::getMediaFolderSizeForProject($Project),
+                'mediaFolderSizeTimestamp'      => MediaUtils::getMediaFolderSizeTimestampForProject($Project),
+                'mediaCacheFolderSize'          => MediaUtils::getMediaCacheFolderSizeForProject($Project),
+                'mediaCacheFolderSizeTimestamp' => MediaUtils::getMediaCacheFolderSizeTimestampForProject($Project),
+                'projectName'                   => $projectName
+            ];
+        } catch (\QUI\Exception $Exception) {
+            \QUI\System\Log::writeException($Exception);
+
+            return [];
+        }
     },
     ['projectName'],
     'Permission::checkAdminUser'

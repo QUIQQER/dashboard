@@ -1,35 +1,36 @@
 {
-  "name": "quiqqer/dashboard",
-  "type": "quiqqer-module",
-  "description": "Dashboard for the QUIQQER Management System",
-  "version": "dev-dev",
-  "license": "GPL-3.0+",
-  "authors": [
-    {
-      "name": "Henning Leutz",
-      "email": "support@pcsg.de",
-      "homepage": "http:\/\/www.pcsg.de",
-      "role": "Developer"
+    "name": "quiqqer\/dashboard",
+    "type": "quiqqer-module",
+    "description": "Dashboard for the QUIQQER Management System",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Henning Leutz",
+            "email": "support@pcsg.de",
+            "homepage": "http:\/\/www.pcsg.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Jan Wennrich",
+            "email": "support@pcsg.de",
+            "homepage": "http:\/\/www.pcsg.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@pcsg.de"
     },
-    {
-      "name": "Jan Wennrich",
-      "email": "support@pcsg.de",
-      "homepage": "http:\/\/www.pcsg.de",
-      "role": "Developer"
+    "require": {
+        "quiqqer\/quiqqer": "^1.2.12 | dev-master | dev-dev",
+        "quiqqer\/cron": "^1.7.2 | dev-master | dev-dev",
+        "quiqqer\/utils": "^1.16.1 | dev-master | dev-dev",
+        "quiqqer\/qui": "^1.1.1 | *@dev",
+        "quiqqer\/requirements": "^2.0.3 | dev-master | dev-dev",
+        "npm-asset\/chart.js": "2.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "QUI\\Dashboard\\": "src\/QUI\/Dashboard"
+        }
     }
-  ],
-  "support": {
-    "email": "support@pcsg.de"
-  },
-  "require": {
-    "quiqqer\/quiqqer": "^1.3.0 | dev-master | dev-dev",
-    "quiqqer/cron": "^1.7.2 | dev-master | dev-dev",
-    "quiqqer/utils": "^1.14.0 | dev-master | dev-dev",
-    "npm-asset/chart.js": "^2.7.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "QUI\\Dashboard\\": "src\/QUI\/Dashboard"
-    }
-  }
 }

@@ -65,6 +65,22 @@
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="js">
+        <locale name="button.refresh.title">
+            <de><![CDATA[Inhalte des Dashboards aktualisieren.]]></de>
+            <en><![CDATA[Refresh dashboard's content.]]></en>
+        </locale>
+
+        <!-- region Bookmarks -->
+        <locale name="dashboard.bookmarks">
+            <de><![CDATA[Lesezeichen]]></de>
+            <en><![CDATA[Bookmarks]]></en>
+        </locale>
+
+        <locale name="dashboard.bookmarks.none">
+            <de><![CDATA[Keine Lesezeichen gesetzt.]]></de>
+            <en><![CDATA[No bookmarks set.]]></en>
+        </locale>
+        <!-- endregion -->
 
         <!-- region Stats -->
         <locale name="dashboard.stats.projects">
@@ -94,6 +110,17 @@
             <de><![CDATA[Gruppen]]></de>
             <en><![CDATA[Groups]]></en>
         </locale>
+
+        <locale name="dashboard.stats.systemhealth">
+            <de><![CDATA[Systemgesundheit]]></de>
+            <en><![CDATA[System Health]]></en>
+        </locale>
+
+        <locale name="dashboard.stats.systemhealth.help">
+            <de>
+                <![CDATA[Um (korrekte) Werte zu erhalten müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
+            <en><![CDATA[To get (correct) values you have to add and execute the CRON 'Perform system check'.]]></en>
+        </locale>
         <!-- endregion -->
 
 
@@ -109,14 +136,17 @@
         </locale>
         <!-- endregion -->
 
+        <!-- region Messages -->
+        <locale name="dashboard.messages">
+            <de><![CDATA[Neuste Nachrichten]]></de>
+            <en><![CDATA[Latest Messages]]></en>
+        </locale>
+        <!-- endregion -->
+
         <!-- region Media Info -->
         <locale name="dashboard.media.info">
             <de><![CDATA[Medien Info]]></de>
             <en><![CDATA[Media Info]]></en>
-        </locale>
-        <locale name="dashboard.media.info.table.title">
-            <de><![CDATA[Statistiken]]></de>
-            <en><![CDATA[Statistics]]></en>
         </locale>
         <locale name="dashboard.media.info.files.count">
             <de><![CDATA[Anzahl Dateien]]></de>
@@ -138,10 +168,6 @@
         <locale name="dashboard.media.info.cache.folder.size">
             <de><![CDATA[Größe des Medien Cache Ordners]]></de>
             <en><![CDATA[Media Cache Folder Size]]></en>
-        </locale>
-        <locale name="dashboard.media.info.chart.title">
-            <de><![CDATA[Dateitypen Verteilung]]></de>
-            <en><![CDATA[Filetype Distribution]]></en>
         </locale>
         <!-- endregion -->
 
@@ -289,5 +315,128 @@
             <en><![CDATA[https://community.quiqqer.com]]></en>
         </locale>
         <!-- endregion -->
+
+
+        <!-- region Blog Entry -->
+        <locale name="dashboard.blogentry.title">
+            <de><![CDATA[QUIQQER Neuigkeiten]]></de>
+            <en><![CDATA[QUIQQER News]]></en>
+        </locale>
+
+        <locale name="dashboard.blogentry.error.content">
+            <de html="1"><![CDATA[
+                <p>
+                    Ein Fehler ist aufgetreten.<br>
+                    Die QUIQQER-Neuigkeiten können aktuell nicht abgerufen werden.<br>
+                    Versuchen Sie es später erneut.<br>
+                </p>
+                <br>
+                <p>
+                    Mit einem Klick auf diese Karte gelangen Sie zum QUIQQER-Blog
+                </p>
+            ]]></de>
+            <en html="1"><![CDATA[
+                <p>
+                    An error has occurred.<br>
+                    The QUIQQER news cannot currently be retrieved.<br>
+                    Please try again later.<br>
+                </p>
+                <br>
+                <p>
+                    Click on this card to go to the QUIQQER-blog.
+                </p>
+            ]]></en>
+        </locale>
+
+        <locale name="dashboard.blogentry.error.link">
+            <de>https://www.quiqqer.de/blog</de>
+            <en>https://www.quiqqer.com/blog</en>
+        </locale>
+        <!-- endregion -->
+
+        <!-- region Site-Stats -->
+        <locale name="dashboard.sitestats.title">
+            <de>Seiten Statistiken</de>
+            <en>Site Statistics</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.rootSites">
+            <de>Seiten auf Wurzel-Ebene</de>
+            <en>Sites at root level</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.children">
+            <de>Seiten auf Kinder-Ebene</de>
+            <en>Sites at child level</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.missing">
+            <de>Dieser Wert konnte nicht ermittelt werden, überprüfe die Log-Dateien.</de>
+            <en>This value could not be determined, check the log files.</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.missing.content">
+            <de>Seiten ohne Inhalt</de>
+            <en>Sites without content</en>
+        </locale>
+
+        <locale name="dashboard.sitestats.missing.shortdesc">
+            <de>Seiten ohne Kurzbeschreibung</de>
+            <en>Sites without short description</en>
+        </locale>
+        <!-- endregion -->
+
+        <locale name="control.managecards.button.text">
+            <de>Karten Verwalten</de>
+            <en>Manage Cards</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.title">
+            <de>Karten Verwalten</de>
+            <en>Manage Cards</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.enabled.label">
+            <de>Aktiviert</de>
+            <en>Enabled</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.priority.label">
+            <de>Priorität</de>
+            <en>Priorität</en>
+        </locale>
+
+        <locale name="control.managecards.dialog.priority.placeholder">
+            <de>Standardwert der Karte</de>
+            <en>Card's Default</en>
+        </locale>
     </groups>
+
+    <groups name="quiqqer/dashboard" datatype="php">
+        <locale name="user.profile.title">
+            <de><![CDATA[Dashboard]]></de>
+            <en><![CDATA[Dashboard]]></en>
+        </locale>
+
+        <locale name="user.profile.isDisabled">
+            <de><![CDATA[Deaktiviert]]></de>
+            <en><![CDATA[Disabled]]></en>
+        </locale>
+        <locale name="user.profile.isDisabled.description">
+            <de>
+                <![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
+            <en><![CDATA[You need to close the dashboard and/or reload the page, for changes to take effect.]]></en>
+        </locale>
+
+        <locale name="user.profile.cardSettings">
+            <de><![CDATA[Karten]]></de>
+            <en><![CDATA[Cards]]></en>
+        </locale>
+        <locale name="user.profile.cardSettings.description">
+            <de>
+                <![CDATA[Klicken Sie auf die Schaltfläche oben, um Dashboard-Karten zu sortieren oder zu deaktivieren.]]></de>
+            <en><![CDATA[Click the button above to sort and/or disable dashboard cards.]]></en>
+        </locale>
+    </groups>
+
 </locales>

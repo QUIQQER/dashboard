@@ -9,6 +9,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
     'Mustache',
 
     'utils/Date',
+    'qui/utils/Math',
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
@@ -16,7 +17,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
 
     'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/style.css'
 
-], function (QUIAjax, QUILocale, Mustache, DateUtil, QUICard, contentTemplate) {
+], function (QUIAjax, QUILocale, Mustache, DateUtil, MathUtil, QUICard, contentTemplate) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -30,19 +31,20 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-filesystem-info',
-                icon   : 'fa fa-hdd-o',
-                title  : QUILocale.get(lg, 'dashboard.filesystem.info'),
-                content: Mustache.render(contentTemplate, {
+                id      : 'quiqqer-dashboard-card-filesystem-info',
+                icon    : 'fa fa-hdd-o',
+                title   : QUILocale.get(lg, 'dashboard.filesystem.info'),
+                content : Mustache.render(contentTemplate, {
                     sizeInstallation: QUILocale.get(lg, 'dashboard.filesystem.info.size.installation'),
                     sizePackages    : QUILocale.get(lg, 'dashboard.filesystem.info.size.packages'),
                     sizeCache       : QUILocale.get(lg, 'dashboard.filesystem.info.size.cache'),
                     sizeVar         : QUILocale.get(lg, 'dashboard.filesystem.info.size.var'),
                     countFiles      : QUILocale.get(lg, 'dashboard.filesystem.info.count.files')
                 }),
-                footer : false,
-                styles : false,
-                size   : 25
+                footer  : false,
+                styles  : false,
+                priority: 60,
+                size    : 20
             });
         },
 
@@ -98,16 +100,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
          *
          * @param {number} value
          * @param {number} [timestamp]
-         * @param {boolean} [convertToMegabytes]
+         * @param {boolean} [convertSize]
          *
          * @return {Element}
          */
-        buildValue: function (value, timestamp, convertToMegabytes) {
-            if (convertToMegabytes === undefined) {
-                convertToMegabytes = true;
+        buildValue: function (value, timestamp, convertSize) {
+            if (convertSize === undefined) {
+                convertSize = true;
             }
-
-            var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
 
             var ValueElement = new Element('span', {
                 title: QUILocale.get(lg, 'dashboard.filesystem.info.unavailable'),
@@ -118,8 +118,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 var html = value;
 
                 // Convert to Megabytes and round to two fractional digits
-                if (convertToMegabytes) {
-                    html = (value / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB";
+                if (convertSize) {
+                    var convertedSize = MathUtil.convertBytesToHumanFileSize(value);
+                    html = convertedSize.value + ' ' + convertedSize.unit;
                 }
 
                 ValueElement = new Element('span', {

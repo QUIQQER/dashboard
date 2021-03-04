@@ -1,5 +1,5 @@
 .quiqqer-dashboard {
-    background: #F2F2F2 !important;
+    background: #F2F2F2;
 }
 
 .quiqqer-dashboard--loading {
@@ -28,12 +28,22 @@
 
 .quiqqer-dashboard .qui-panel-content,
 .quiqqer-dashboard .qui-panel-header {
-    background: #F2F2F2 !important;
+    background: #F2F2F2;
 }
 
 .quiqqer-dashboard .qui-panel-header {
     border-bottom: none;
 }
+
+.quiqqer-dashboard .qui-panel-header button {
+    float: right;
+    color: rgb(73, 80, 87);
+}
+
+.quiqqer-dashboard .qui-panel-header button:hover {
+    color: white
+}
+
 
 .quiqqer-dashboard-row {
     display: flex;
@@ -42,12 +52,12 @@
 }
 
 .quiqqer-dashboard-cards {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .quiqqer-dashboard-card {
     display: flex;
-    flex-grow: 1;
 }
 
 /** design
@@ -71,6 +81,10 @@
     font-weight: bold;
     line-height: 32px;
     padding: 10px 0;
+}
+
+.quiqqer-dashboard-one-stat-icon-only {
+    font-weight: normal;
 }
 
 

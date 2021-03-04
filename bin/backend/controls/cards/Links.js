@@ -26,10 +26,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-help',
-                icon   : 'fa fa-link',
-                title  : QUILocale.get(lg, 'dashboard.links'),
-                content: Mustache.render(content, {
+                id      : 'quiqqer-dashboard-card-help',
+                icon    : 'fa fa-link',
+                title   : QUILocale.get(lg, 'dashboard.links'),
+                content : Mustache.render(content, {
                     quiqqer: QUILocale.get(lg, 'dashboard.links.quiqqer'),
 
                     help   : QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
@@ -47,9 +47,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
                     community   : QUILocale.get(lg, 'dashboard.links.social.community'),
                     communityUrl: QUILocale.get(lg, 'dashboard.links.social.community.url')
                 }),
-                footer : false,
-                styles : false,
-                size   : 25
+                footer  : false,
+                styles  : false,
+                priority: 80,
+                size    : 20
             });
         }
     });

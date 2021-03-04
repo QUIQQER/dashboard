@@ -1,0 +1,44 @@
+<fieldset class="dashboard-cardsettings-fieldset" data-type="{{type}}">
+    <table class="data-table data-table-flexbox">
+        <thead>
+        <tr>
+            <th style="cursor: pointer;">
+                <div class="data-table-toggle">
+                    <span class="fa fa-address-card-o"></span>
+                </div>
+                <div class="data-table-text">
+                    <div class="topic">
+                        <span>{{type}}</span>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <label class="field-container hasCheckbox">
+                    <span class="field-container-item">
+                        {{isEnabled.label}}
+                    </span>
+                    <span class="field-container-field">
+                        <input type="checkbox" name="enabled" {{#isEnabled.value}}checked{{/isEnabled.value}}/>
+                    </span>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="field-container">
+                    <span class="field-container-item">
+                        {{priority.label}}
+                    </span>
+                    <span class="field-container-field">
+                        <input type="number" name="priority" value="{{priority.value}}" placeholder="{{priority.placeholder}}"/>
+                    </span>
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</fieldset>

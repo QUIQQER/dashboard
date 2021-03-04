@@ -10,6 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
     'utils/Color',
     'utils/Date',
+    'qui/utils/Math',
 
     'controls/projects/Select',
 
@@ -19,7 +20,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
     'css!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo/style.css'
 
-], function (QUIAjax, QUILocale, Mustache, ColorUtil, DateUtil, ProjectSelect, QUICard, content) {
+], function (QUIAjax, QUILocale, Mustache, ColorUtil, DateUtil, MathUtil, ProjectSelect, QUICard, content) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -29,59 +30,68 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
 
+        $ProjectSelect: ProjectSelect,
+
         initialize: function (options) {
             var self = this;
 
             this.parent(options);
 
             this.setAttributes({
-                id     : 'quiqqer-dashboard-card-media-info',
-                icon   : 'fa fa-picture-o',
-                title  : QUILocale.get(lg, 'dashboard.media.info'),
-                content: Mustache.render(content, {
-                    tableTitle     : QUILocale.get(lg, 'dashboard.media.info.table.title'),
+                id      : 'quiqqer-dashboard-card-media-info',
+                icon    : 'fa fa-picture-o',
+                title   : QUILocale.get(lg, 'dashboard.media.info'),
+                content : Mustache.render(content, {
                     filesCount     : QUILocale.get(lg, 'dashboard.media.info.files.count'),
                     folderCount    : QUILocale.get(lg, 'dashboard.media.info.folder.count'),
                     folderSize     : QUILocale.get(lg, 'dashboard.media.info.folder.size'),
-                    cacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size'),
-                    chartTitle     : QUILocale.get(lg, 'dashboard.media.info.chart.title')
+                    cacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size')
                 }),
-                footer : false,
-                styles : false,
-                size   : 50
+                footer  : false,
+                styles  : false,
+                priority: 50,
+                size    : 30
             });
 
             var ProjectSelectContainer = new Element('div', {
                 id: 'media-info-project-select'
             });
 
-            new ProjectSelect({
-                langSelect : false,
-                emptyselect: false,
-                events     : {
-                    onChange: function (selectedProject) {
-                        self.refresh(selectedProject);
-                    }
-                }
+            this.$ProjectSelect = new ProjectSelect({
+                langSelect   : false,
+                emptyselect  : false,
+                localeStorage: 'dashboard-media-info-card-project-select'
             }).inject(ProjectSelectContainer);
+
+            // We need to add this event later, since injecting the project-select also fires a change event
+            this.$ProjectSelect.addEvent('onChange', function (selectedProject) {
+                self.displayProject(selectedProject);
+            });
 
             ProjectSelectContainer.inject(this.getElm().getElement('.quiqqer-dashboard-card-header'));
         },
 
 
-        refresh: function (project) {
+        refresh: function () {
+            this.displayProject(this.$ProjectSelect.getValue());
+        },
+
+        displayProject: function (projectName) {
             var self = this;
 
-            if (project === undefined) {
-                project = QUIQQER_PROJECT.name;
+            if (projectName === undefined) {
+                projectName = QUIQQER_PROJECT.name;
+            }
+
+            // The project name is empty sometimes (for some reason...)
+            if (!projectName) {
+                return;
             }
 
             // latest user logins
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getMediaInfo', function (result) {
 
                 var Card = self.getElm();
-
-                var FACTOR_BYTE_TO_MEGABYTE = 1e+6;
 
                 // We can't use a plain string here because the text contains ' and "
                 var mediaFolderSize = new Element('span', {
@@ -92,9 +102,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 var mediaCacheFolderSize = mediaFolderSize.clone();
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaFolderSize !== null) {
+                if (typeof result.mediaFolderSize === 'number') {
+                    var convertedMediaFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaFolderSize);
                     mediaFolderSize = new Element('span', {
-                        html: (result.mediaFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
+                        html: convertedMediaFolderSize.value + ' ' + convertedMediaFolderSize.unit
                     });
                 }
 
@@ -107,9 +118,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 }
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
-                if (result.mediaCacheFolderSize !== null) {
+                if (typeof result.mediaCacheFolderSize === 'number') {
+                    var convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
                     mediaCacheFolderSize = new Element('span', {
-                        html: (result.mediaCacheFolderSize / FACTOR_BYTE_TO_MEGABYTE).toFixed(2) + " MB"
+                        html: convertedCacheFolderSize.value + ' ' + convertedCacheFolderSize.unit
                     });
                 }
 
@@ -121,8 +133,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                     mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
 
-                Card.getElement('#media-info-files-count .value').set('html', result.filesCount);
-                Card.getElement('#media-info-folder-count .value').set('html', result.folderCount);
+                if (result.filesCount) {
+                    Card.getElement('#media-info-files-count .value').set('html', result.filesCount);
+                }
+
+                if (result.folderCount) {
+                    Card.getElement('#media-info-folder-count .value').set('html', result.folderCount);
+                }
 
                 // Clear the element's content and add the folder size
                 Card.getElement('#media-info-folder-size .value').empty();
@@ -134,16 +151,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 var ChartContainer = Card.getElement('#chart-container');
 
-                // If there are no files, hide the pie chart
-                if (result.filesCount === 0) {
+                if (!result.filesCount) {
                     ChartContainer.hide();
-                    self.setSize('25');
                     return;
                 }
-
-                // Show the pie chart, in case it was hidden before
-                ChartContainer.show();
-                self.setSize(50);
 
                 require([URL_OPT_DIR + 'bin/chart.js/dist/Chart.js'], function (Chart) {
                     if (self.$MediaInfoChart !== undefined) {
@@ -151,15 +162,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                         self.$MediaInfoChart = undefined;
                     }
 
-                    var colors = ColorUtil.getRandomHexColorsFromPallet(
-                        Object.keys(result.filetypesCount).length,
-                        [
-                            ColorUtil.ColorPalette.black,
-                            ColorUtil.ColorPalette.gray,
-                            ColorUtil.ColorPalette.silver,
-                            ColorUtil.ColorPalette.white
-                        ]
-                    );
+                    var colors = [];
+                    var filetypes = Object.keys(result.filetypesCount);
+
+                    for (var i = 0; i < filetypes.length; i++) {
+                        colors.push(ColorUtil.getHexColorByHashingString(filetypes[i]));
+                    }
 
                     self.$MediaInfoChart = new Chart(Card.getElement('#chart'), {
                         type   : 'pie',
@@ -174,7 +182,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                                 borderWidth: 1.5
                             }],
                             // Keys contain the file-types
-                            labels  : Object.keys(result.filetypesCount)
+                            labels  : filetypes
                         },
                         options: {
                             legend: {
@@ -182,10 +190,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                             }
                         }
                     });
+
+                    ChartContainer.show();
                 });
             }, {
                 'package'  : 'quiqqer/dashboard',
-                projectName: project,
+                projectName: projectName,
                 onError    : console.error
             });
         }

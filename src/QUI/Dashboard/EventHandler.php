@@ -18,6 +18,10 @@ class EventHandler
      */
     public static function onAdminLoadFooter()
     {
+        if (\QUI::getUserBySession()->getAttribute('quiqqer.dashboard.isDisabled')) {
+            return;
+        }
+
         echo "<script>require(['package/quiqqer/dashboard/bin/backend/utils/load'])</script>";
     }
 }

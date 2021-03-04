@@ -24,10 +24,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
             this.parent(options);
 
             this.setAttributes({
-                id    : 'quiqqer-dashboard-stats-groups',
-                footer: QUILocale.get('quiqqer/dashboard', 'dashboard.stats.groups'),
-                size  : 16,
-                styles: {
+                id      : 'quiqqer-dashboard-stats-groups',
+                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.groups'),
+                size    : 20,
+                priority: 100,
+                styles  : {
                     'text-align': 'center'
                 }
             });

@@ -13,7 +13,7 @@ QUI::$Ajax->registerFunction(
         $Config = QUI::getProjectManager()->getConfig();
         $config = $Config->toArray();
 
-        return count($config);
+        return QUI::getLocale()->formatNumber(count($config));
     },
     false,
     'Permission::checkAdminUser'
