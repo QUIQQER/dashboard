@@ -38,7 +38,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.setAttribute('icon', URL_BIN_DIR + '16x16/quiqqer.png');
             this.setAttribute('dragable', false);
             this.setAttribute('displayNoTaskText', true);
-
+            this.setAttribute('taskNotClosable', true);
+            
             this.addEvents({
                 onCreate: this.$onCreate
             });
@@ -55,10 +56,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getContent().set('html', Mustache.render(template));
 
             new QUIButton({
-                name     : 'refresh',
-                icon: 'fa fa-refresh',
-                title: QUILocale.get(lg, 'button.refresh.title'),
-                events   : {
+                name  : 'refresh',
+                icon  : 'fa fa-refresh',
+                title : QUILocale.get(lg, 'button.refresh.title'),
+                events: {
                     onClick: this.refresh
                 }
             }).inject(this.getHeader());
