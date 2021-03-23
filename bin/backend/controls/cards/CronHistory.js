@@ -1,6 +1,8 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
 
@@ -22,6 +24,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         initialize: function (options) {
             this.parent(options);
 
@@ -36,21 +42,40 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 75,
-                size    : 40
+                priority: 75
+            });
+
+            this.addEvents({
+                onCreate: this.$onCreate
             });
         },
 
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.$Content.addClass('card-table');
+            this.$Content.removeClass('card-body');
+
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-6');
+        },
+
+        /**
+         * refresh
+         */
         refresh: function () {
             var self = this;
+
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCronHistory', function (result) {
                 var rows = "";
+
                 result.forEach(function (cronData) {
                     rows += "<tr>" +
-                            "    <td>" + cronData.lastexec + "</td>" +
-                            "    <td>" + cronData.cronTitle + "</td>" +
-                            "    <td>" + cronData.username + "</td>" +
-                            "</tr>";
+                        "    <td>" + cronData.lastexec + "</td>" +
+                        "    <td>" + cronData.cronTitle + "</td>" +
+                        "    <td>" + cronData.username + "</td>" +
+                        "</tr>";
                 });
 
                 self.getElm().getElement('tbody').set('html', rows);

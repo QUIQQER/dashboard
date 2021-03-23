@@ -1,20 +1,19 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
 
     'Ajax',
     'Locale',
     'Mustache',
-
     'controls/projects/Select',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats/content.html',
-
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats/style.css'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats.html',
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats.css'
 
 ], function (QUIAjax, QUILocale, Mustache, ProjectSelect, QUICard, contentTemplate) {
     "use strict";
@@ -26,11 +25,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         initialize: function (options) {
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-sitestats',
                 icon    : 'fa fa-file-text-o',
                 title   : QUILocale.get(lg, 'dashboard.sitestats.title'),
                 content : Mustache.render(contentTemplate, {
@@ -45,6 +47,22 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                 size    : 30
             });
 
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.$Content.addClass('card-table');
+            this.$Content.removeClass('card-body');
+
+            this.getElm().addClass('quiqqer-dashboard-card-sitestats');
+            this.getElm().addClass('col-sm-6');
+            this.getElm().addClass('col-lg-6');
+
             this.initializeProjectSelect();
         },
 
@@ -53,13 +71,17 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
          */
         initializeProjectSelect: function () {
             var ProjectSelectContainer = new Element('div', {
-                id: 'sitestats-project-select'
+                'class': 'project-select-container'
             });
 
             this.$ProjectSelect = new ProjectSelect({
                 langSelect   : false,
                 emptyselect  : false,
-                localeStorage: 'dashboard-media-info-card-project-select'
+                localeStorage: 'dashboard-media-info-card-project-select',
+                styles       : {
+                    display: 'inline-block',
+                    width  : '100%'
+                }
             }).inject(ProjectSelectContainer);
 
             // We need to add this event later, since injecting the project-select also fires a change event
@@ -67,7 +89,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                 this.refresh();
             }.bind(this));
 
-            ProjectSelectContainer.inject(this.getElm().getElement('.quiqqer-dashboard-card-header'));
+            console.error(this.$ProjectSelect);
+
+            ProjectSelectContainer.inject(this.$Header);
         },
 
         /**
@@ -85,7 +109,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
             this.refreshChildrenSiteCountValue(projectName);
             this.refreshRootSiteCountValue(projectName);
         },
-
 
         /**
          * Updates the root site count value

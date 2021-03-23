@@ -11,11 +11,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
     'utils/Color',
     'utils/Date',
     'qui/utils/Math',
-
     'controls/projects/Select',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card',
-
     'text!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo/content.html',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo/style.css'
@@ -30,11 +27,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         $ProjectSelect: ProjectSelect,
 
         initialize: function (options) {
-            var self = this;
-
             this.parent(options);
 
             this.setAttributes({
@@ -49,28 +48,42 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 50,
-                size    : 30
+                priority: 50
             });
 
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        $onCreate: function () {
+            this.$Content.addClass('card-table');
+            this.$Content.removeClass('card-body');
+
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-6');
+
             var ProjectSelectContainer = new Element('div', {
-                id: 'media-info-project-select'
+                'class': 'media-info-project-select'
             });
 
             this.$ProjectSelect = new ProjectSelect({
                 langSelect   : false,
                 emptyselect  : false,
-                localeStorage: 'dashboard-media-info-card-project-select'
+                localeStorage: 'dashboard-media-info-card-project-select',
+                styles       : {
+                    display: 'inline-block',
+                    width  : '100%'
+                }
             }).inject(ProjectSelectContainer);
 
             // We need to add this event later, since injecting the project-select also fires a change event
             this.$ProjectSelect.addEvent('onChange', function (selectedProject) {
-                self.displayProject(selectedProject);
-            });
+                this.displayProject(selectedProject);
+            }.bind(this));
 
-            ProjectSelectContainer.inject(this.getElm().getElement('.quiqqer-dashboard-card-header'));
+            ProjectSelectContainer.inject(this.$Header);
         },
-
 
         refresh: function () {
             this.displayProject(this.$ProjectSelect.getValue());
@@ -104,7 +117,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (typeof result.mediaFolderSize === 'number') {
                     var convertedMediaFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaFolderSize);
-                    mediaFolderSize = new Element('span', {
+                    mediaFolderSize              = new Element('span', {
                         html: convertedMediaFolderSize.value + ' ' + convertedMediaFolderSize.unit
                     });
                 }
@@ -120,7 +133,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (typeof result.mediaCacheFolderSize === 'number') {
                     var convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
-                    mediaCacheFolderSize = new Element('span', {
+                    mediaCacheFolderSize         = new Element('span', {
                         html: convertedCacheFolderSize.value + ' ' + convertedCacheFolderSize.unit
                     });
                 }
@@ -162,7 +175,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                         self.$MediaInfoChart = undefined;
                     }
 
-                    var colors = [];
+                    var colors    = [];
                     var filetypes = Object.keys(result.filetypesCount);
 
                     for (var i = 0; i < filetypes.length; i++) {
@@ -182,7 +195,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                                 borderWidth: 1.5
                             }],
                             // Keys contain the file-types
-                            labels  : filetypes
+                            labels: filetypes
                         },
                         options: {
                             legend: {

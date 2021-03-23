@@ -22,6 +22,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Messages',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         initialize: function (options) {
             this.parent(options);
 
@@ -32,28 +36,38 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
                 content : '<div></div>',
                 footer  : false,
                 styles  : false,
-                priority: 95,
-                size    : 25
+                priority: 95
+            });
+
+            this.addEvents({
+                onCreate: this.$onCreate
             });
         },
 
-        refresh: function () {
-            var self = this;
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-4');
 
-            var MessagesControl = new MessagePanel();
+            this.$Content.addClass('card-table');
+            this.$Content.removeClass('card-body');
+        },
+
+        /**
+         * refresh the card
+         */
+        refresh: function () {
+            var MessagesControl = new MessagePanel({
+                styles: {
+                    height: 300
+                }
+            });
 
             MessagesControl.inject(this.getContent());
             MessagesControl.getHeader().hide();
-
-            var MessageControlContent = MessagesControl.getContent();
-            MessageControlContent.setStyle('background', 'none');
-
-            setTimeout(function () {
-                var cardHeight = self.getElm().getSize().y;
-
-                // card-height minus header minus button-menu
-                MessageControlContent.setStyle('height', 'calc(' + cardHeight + 'px - 50px - 49px)');
-            }, 500);
+            MessagesControl.getContent().setStyle('background', 'none');
         }
     });
 });

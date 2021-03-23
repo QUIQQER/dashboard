@@ -1,18 +1,16 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
 
     'Ajax',
     'Locale',
-    'Mustache',
+    'package/quiqqer/dashboard/bin/backend/controls/Card'
 
-    'package/quiqqer/dashboard/bin/backend/controls/Card',
-
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages/content.html'
-
-], function (QUIAjax, QUILocale, Mustache, QUICard, template) {
+], function (QUIAjax, QUILocale, QUICard) {
     "use strict";
 
     var lg = "quiqqer/dashboard";
@@ -22,33 +20,60 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         initialize: function (options) {
             this.parent(options);
 
             this.setAttributes({
                 id      : 'quiqqer-dashboard-stats-pages',
-                content : Mustache.render(template, {
-                    sitesActive  : QUILocale.get(lg, 'dashboard.stats.pages.active'),
-                    sitesInactive: QUILocale.get(lg, 'dashboard.stats.pages.inactive')
-                }),
-                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.pages'),
-                size    : 20,
-                priority: 100,
-                styles  : {
-                    'text-align': 'center'
-                }
+                content : '',
+                priority: 97
+            });
+
+            this.addEvents({
+                onCreate: this.$onCreate
             });
         },
 
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.getElm().classList.add('col-sg-2');
+            this.getElm().classList.add('col-sm-3');
+        },
+
+        /**
+         * refresh the card
+         */
         refresh: function () {
             var self = this;
 
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getPageCount', function (result) {
-                var Card = self.getElm();
+                // Card.getElement('#quiqqer-dashboard-pages-total').set('html', result.total);
+                // Card.getElement('#quiqqer-dashboard-pages-active').set('html', result.active);
+                // Card.getElement('#quiqqer-dashboard-pages-inactive').set('html', result.inactive);
 
-                Card.getElement('#quiqqer-dashboard-pages-total').set('html', result.total);
-                Card.getElement('#quiqqer-dashboard-pages-active').set('html', result.active);
-                Card.getElement('#quiqqer-dashboard-pages-inactive').set('html', result.inactive);
+                self.setContent(
+                    '<div class="row align-items-center">' +
+                    '   <div class="col-auto">' +
+                    '       <span class="bg-indigo text-white avatar">' +
+                    '           <span class="fa fa-file-o"></span>' +
+                    '       </span>' +
+                    '   </div>' +
+                    '   <div class="col">' +
+                    '       <div class="font-weight-medium">' +
+                    '           ' + QUILocale.get(lg, 'dashboard.stats.pages') +
+                    '       </div>' +
+                    '       <div class="text-muted">' +
+                    '           ' + result.total +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>'
+                );
             }, {
                 'package': 'quiqqer/dashboard',
                 onError  : console.error

@@ -1,16 +1,16 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
 
     'Ajax',
     'Locale',
-    'Mustache',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card'
 
-], function (QUIAjax, QUILocale, Mustache, QUICard) {
+], function (QUIAjax, QUILocale, QUICard) {
     "use strict";
 
     return new Class({
@@ -18,22 +18,32 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
 
-        initialize: function (options) {
-            var self = this;
+        Binds: [
+            '$onCreate'
+        ],
 
+        initialize: function (options) {
             this.parent(options);
 
             this.setAttributes({
                 id      : 'quiqqer-dashboard-stats-users',
-                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.users'),
-                size    : 20,
-                priority: 100,
-                styles  : {
-                    'text-align': 'center'
-                }
+                priority: 99
             });
 
-            this.getElm().classList.add('quiqqer-dashboard--clickable');
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            var self = this;
+
+            this.getElm().classList.add('card--clickable');
+            this.getElm().classList.add('col-sg-2');
+            this.getElm().classList.add('col-sm-2');
 
             require([
                 'utils/Panels',
@@ -47,14 +57,25 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
             });
         },
 
+        /**
+         * refresh the card
+         */
         refresh: function () {
             var self = this;
 
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getUserCount', function (result) {
-                self.setContent((new Element('span', {
-                    'class': 'quiqqer-dashboard-one-stat-value',
-                    html   : result
-                })).outerHTML);
+                self.$Content.classList.add('text-center');
+
+                self.setContent(
+                    '<div class="row align-items-center">' +
+                    '   <div class="h1 m-0">' +
+                    '        ' + result +
+                    '   </div>' +
+                    '   <div class="text-muted">' +
+                    '       ' + QUILocale.get('quiqqer/dashboard', 'dashboard.stats.users') +
+                    '   </div>' +
+                    '</div>'
+                );
             }, {
                 'package': 'quiqqer/dashboard',
                 onError  : console.error

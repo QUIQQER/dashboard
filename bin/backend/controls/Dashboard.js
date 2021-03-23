@@ -39,7 +39,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.setAttribute('dragable', false);
             this.setAttribute('displayNoTaskText', true);
             this.setAttribute('taskNotClosable', true);
-            
+
             this.addEvents({
                 onCreate: this.$onCreate
             });
@@ -51,7 +51,25 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         $onCreate: function () {
             this.getElm().addClass('quiqqer-dashboard');
             this.getContent().addClass('quiqqer-dashboard-cards');
-            this.getContent().addClass('quiqqer-dashboard--loading');
+            //this.getContent().addClass('quiqqer-dashboard--loading');
+
+            // get boards
+
+            this.$Frame = new Element('iframe', {
+                src      : URL_OPT_DIR + 'quiqqer/dashboard/bin/backend/board.php?instance=' + this.getId(),
+                styles   : {
+                    border  : 0,
+                    height  : '100%',
+                    width   : '100%',
+                    overflow: 'auto'
+                },
+                scrolling: "auto"
+            }).inject(this.getContent());
+
+            this.getElm().getElement('.qui-panel-header').setStyle('background-color', '#f4f6fa');
+
+            return;
+
 
             this.getContent().set('html', Mustache.render(template));
 
@@ -87,30 +105,33 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         refresh: function () {
             var self = this;
 
-            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (cards) {
-                // card-names/-types to require the controls
-                var cardNames = Object.getOwnPropertyNames(cards);
+            return new Promise(function (resolve) {
+                QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (cards) {
+                    // card-names/-types to require the controls
+                    var cardNames = Object.getOwnPropertyNames(cards);
 
-                require(cardNames, function () {
-                    self.Cards = [];
+                    require(cardNames, function () {
+                        self.Cards = [];
 
-                    for (var i = 0; i < arguments.length; i++) {
-                        var Card = new arguments[i]();
+                        for (var i = 0; i < arguments.length; i++) {
+                            var Card = new arguments[i]();
 
-                        // The card's settings are stored in the cards array (result from the Ajax-call).
-                        // If a priority was set via the user's profile, we have to set it here.
-                        Card.setPriority(cards[cardNames[i]].priority);
+                            // The card's settings are stored in the cards array (result from the Ajax-call).
+                            // If a priority was set via the user's profile, we have to set it here.
+                            Card.setPriority(cards[cardNames[i]].priority);
 
-                        self.Cards.push(Card);
-                    }
+                            self.Cards.push(Card);
+                        }
 
-                    self.sortCards();
+                        self.sortCards();
 
-                    self.displayCards();
+                        //self.displayCards();
+                        resolve(self.getCards());
+                    });
+                }, {
+                    'package': 'quiqqer/dashboard',
+                    onError  : console.error
                 });
-            }, {
-                'package': 'quiqqer/dashboard',
-                onError  : console.error
             });
         },
 
@@ -167,9 +188,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          */
         addCard: function (Card) {
             this.getCards().push(Card);
-
             this.sortCards();
-
             this.displayCards();
         }
     });

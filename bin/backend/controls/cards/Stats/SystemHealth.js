@@ -24,26 +24,32 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth',
 
         initialize: function (options) {
-            var self = this;
-
             this.parent(options);
 
             this.setAttributes({
                 id      : 'quiqqer-dashboard-stats-system-health',
-                footer  : QUILocale.get(lg, 'dashboard.stats.systemhealth'),
-                size    : 20,
-                priority: 100,
-                styles  : {
-                    'text-align': 'center'
-                }
+                priority: 96
             });
 
-            this.getElm().classList.add('quiqqer-dashboard--clickable');
-
-
-            self.getElm().addEvent('click', this.openSystemCheckPopup);
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
         },
 
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.getElm().classList.add('col-sg-2');
+            this.getElm().classList.add('col-sm-3');
+
+            this.getElm().classList.add('card--clickable');
+            this.getElm().addEvent('click', this.openSystemCheckPopup);
+        },
+
+        /**
+         * opens the system info popup
+         */
         openSystemCheckPopup: function () {
             var Popup       = new QUIPopup(),
                 SystemCheck = new QUISystemCheck();
@@ -52,39 +58,100 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
             SystemCheck.inject(Popup.getContent());
         },
 
+        /**
+         * refresh the card
+         */
         refresh: function () {
             var self = this;
 
-            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getSystemHealth', function (result) {
+            QUILocale.get(lg, 'dashboard.stats.systemhealth');
 
+            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getSystemHealth', function (result) {
+                // See status-codes in \QUI\Requirements\TestResult.php
+                switch (result) {
+                    // failed
+                    case 0:
+                        iconType  = 'fa fa-times bad-value';
+                        valueType = 'bad-value';
+                        break;
+
+                    // okay
+                    case 1:
+                        iconType  = 'fa fa-check good-value';
+                        valueType = 'good-value';
+                        break;
+
+                    // warning
+                    case 3:
+                        iconType  = 'fa fa-exclamation-triangle warning-value';
+                        valueType = 'warning-value';
+                        break;
+
+                    // unknown
+                    default:
+                        iconType  = 'fa fa-question inactive-value';
+                        valueType = 'inactive-value';
+
+                        // add a info to tell the user how to get correct values
+                        self.getElm().title = QUILocale.get(lg, 'dashboard.stats.systemhealth.help');
+
+                        new Element('i', {
+                            class : 'fa fa-info-circle',
+                            styles: {
+                                position: 'absolute',
+                                top     : 0,
+                                right   : 0
+                            }
+                        }).inject(self.$Content);
+                        break;
+                }
+
+                self.setContent(
+                    '<div class="row align-items-center">' +
+                    '   <div class="col-auto">' +
+                    '       <span class="bg-blue text-white avatar">' +
+                    '           <span class="' + iconType + '"></span>' +
+                    '       </span>' +
+                    '   </div>' +
+                    '   <div class="col">' +
+                    '       <div class="font-weight-medium">' +
+                    '           ' + QUILocale.get(lg, 'dashboard.stats.systemhealth') +
+                    '       </div>' +
+                    '       <div class="text-muted">' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>'
+                );
+
+                return;
                 var Content = new Element('div');
 
-                var iconType = 'fa fa-question';
+                var iconType  = 'fa fa-question';
                 var valueType = 'inactive-value';
 
                 // See status-codes in \QUI\Requirements\TestResult.php
                 switch (result) {
                     // failed
                     case 0:
-                        iconType = ' fa fa-times bad-value';
+                        iconType  = ' fa fa-times bad-value';
                         valueType = 'bad-value';
                         break;
 
                     // okay
                     case 1:
-                        iconType = ' fa fa-check good-value';
+                        iconType  = ' fa fa-check good-value';
                         valueType = 'good-value';
                         break;
 
                     // warning
                     case 3:
-                        iconType = ' fa fa-exclamation-triangle warning-value';
+                        iconType  = ' fa fa-exclamation-triangle warning-value';
                         valueType = 'warning-value';
                         break;
 
                     // unknown
                     default:
-                        iconType = ' fa fa-question inactive-value';
+                        iconType  = ' fa fa-question inactive-value';
                         valueType = 'inactive-value';
 
                         // add a info to tell the user how to get correct values

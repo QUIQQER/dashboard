@@ -22,6 +22,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         initialize: function (options) {
             this.parent(options);
 
@@ -49,9 +53,20 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 80,
-                size    : 20
+                priority: 90
             });
+
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-4');
         }
     });
 });

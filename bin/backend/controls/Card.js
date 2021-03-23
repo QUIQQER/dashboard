@@ -33,41 +33,48 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         initialize: function (options) {
             this.parent(options);
 
-            this.$Title = null;
-            this.$Icon = null;
+            this.$Title   = null;
+            this.$Icon    = null;
             this.$Content = null;
-            this.$Footer = null;
+            this.$Footer  = null;
         },
 
         /**
          * Create the DOMNode element
          */
         create: function () {
-            this.$Elm = new Element('section');
+            this.$Elm = new Element('div');
 
-            this.$Elm.addClass('quiqqer-dashboard-card');
+            //this.$Elm.addClass('quiqqer-dashboard-card');
+            //this.$Elm.addClass('card');
+            //this.$Elm.addClass('col-sm-6');
+            //this.$Elm.addClass('col-lg-3');
+
             this.$Elm.set({
-                html: '<div class="quiqqer-dashboard-card-container">' +
-                      '   <header class="quiqqer-dashboard-card-header">' +
-                      '       <span class="quiqqer-dashboard-card-icon"></span>' +
-                      '       <span class="quiqqer-dashboard-card-title"></span>' +
-                      '   </header>' +
-                      '   <div class="quiqqer-dashboard-card-content"></div>' +
-                      '   <div class="quiqqer-dashboard-card-footer"></div>' +
-                      '</div>'
+                html: '' +
+                    '<div class="card">' +
+                    '   <header class="card-header">' +
+                    '       <span class="card-icon"></span>' +
+                    '       <span class="card-title"></span>' +
+                    '   </header>' +
+                    '   <div class="card-body"></div>' +
+                    '   <div class="card-footer"></div>' +
+                    '</div>'
             });
 
-            this.$Icon = this.$Elm.getElement('.quiqqer-dashboard-card-icon');
-            this.$Title = this.$Elm.getElement('.quiqqer-dashboard-card-title');
-            this.$Content = this.$Elm.getElement('.quiqqer-dashboard-card-content');
-            this.$Footer = this.$Elm.getElement('.quiqqer-dashboard-card-footer');
+            this.$Icon    = this.$Elm.getElement('.card-icon');
+            this.$Title   = this.$Elm.getElement('.card-title');
+            this.$Content = this.$Elm.getElement('.card-body');
+            this.$Header  = this.$Elm.getElement('.card-header');
+            this.$Footer  = this.$Elm.getElement('.card-footer');
+
 
             if (this.getAttribute('id') !== false) {
                 this.setId(this.getAttribute('id'));
             }
 
             if (this.getAttribute('title') === false) {
-                this.$Title.setStyle('display', 'none');
+                this.$Header.setStyle('display', 'none');
             } else {
                 if (typeof this.getAttribute('title') === 'string') {
                     this.setTitle(this.getAttribute('title'));
@@ -103,7 +110,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
             }
 
             this.fireEvent('create', [this]);
-
             this.refresh();
 
             return this.$Elm;
@@ -149,7 +155,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {string} title
          */
         setTitle: function (title) {
-            this.$Title.setStyle('display', title ? 'inline-block' : 'none');
+            this.$Header.setStyle('display', title ? 'inline-block' : 'none');
             this.$Title.set('html', title);
         },
 
@@ -159,7 +165,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @return {string}
          */
         getIcon: function () {
-            return this.$Icon.classList.toString().replace('quiqqer-dashboard-card-icon', '');
+            return this.getAttribute('icon');
         },
 
         /**
@@ -225,8 +231,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          * @param {number} size
          */
         setSize: function (size) {
-            this.setAttribute('size', size);
-            this.$Elm.style['flex-basis'] = size + '%';
+            //this.setAttribute('size', size);
+            //this.$Elm.style['flex-basis'] = size + '%';
         },
 
         /**

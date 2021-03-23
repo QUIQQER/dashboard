@@ -21,6 +21,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks',
 
+        Binds: [
+            '$onCreate'
+        ],
+
         initialize: function (options) {
             this.parent(options);
 
@@ -31,9 +35,20 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Bookmarks', [
                 content : '<span></span>',
                 footer  : false,
                 styles  : false,
-                priority: 85,
-                size    : 25
+                priority: 90
             });
+
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-4');
         },
 
         refresh: function () {

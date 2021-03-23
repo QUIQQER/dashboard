@@ -1,0 +1,228 @@
+<?php
+
+define('QUIQQER_SYSTEM', true);
+
+$packagesDir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+
+if (!file_exists($packagesDir.'/header.php')) {
+    exit;
+}
+
+require $packagesDir.'/header.php';
+
+$User = QUI::getUserBySession();
+
+if (!QUI::getUsers()->isAuth($User)) {
+    exit;
+}
+
+if (!QUI\Permissions\Permission::isAdmin($User)) {
+    exit;
+}
+
+?>
+<html lang="en">
+<head>
+    <title>QUIQQER Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,maximum-scale=1">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            display: inline-block;
+            padding-top: 20px;
+            width: 100%;
+        }
+
+        body {
+            background: #f4f6fa;
+        }
+
+        .card {
+            position: relative;
+        }
+
+        .card--clickable:hover .card {
+            background: #dbe7f6;
+            border-color: #548ed2;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: rgb(35 46 60 / 16%) 0 2px 16px 0;
+        }
+
+        .card-table td {
+            font-size: 12px;
+        }
+
+        .wrapper {
+            margin-bottom: 20px;
+        }
+
+        .quiqqer-dashboard-card-icon {
+            float: left;
+            margin: .125rem 0;
+            line-height: 1.5rem !important;
+            padding-right: 0.5rem;
+        }
+    </style>
+
+
+    <?php echo QUI\FontAwesome\EventHandler::fontawesome(false, false); ?>
+    <script src="<?php echo URL_OPT_DIR; ?>bin/requirejs/require.js"></script>
+    <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-core.js"></script>
+    <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-more.js"></script>
+    <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/moofx.js"></script>
+
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var USER = JSON.parse(JSON.stringify(window.parent.USER));
+
+        var URL_DIR     = '<?php echo URL_DIR; ?>',
+            URL_BIN_DIR = '<?php echo URL_BIN_DIR; ?>',
+            URL_OPT_DIR = '<?php echo URL_OPT_DIR; ?>',
+            URL_SYS_DIR = '<?php echo URL_SYS_DIR; ?>',
+            LANGUAGE    = null;
+
+        // require config
+        require.config({
+            baseUrl    : '<?php echo URL_BIN_DIR; ?>QUI/',
+            paths      : {
+                "package"    : "<?php echo URL_OPT_DIR; ?>",
+                "qui"        : '<?php echo URL_OPT_DIR; ?>bin/qui/qui',
+                "locale"     : '<?php echo URL_VAR_DIR; ?>locale/bin',
+                "Ajax"       : '<?php echo URL_BIN_DIR; ?>QUI/Ajax',
+                "URL_OPT_DIR": "<?php echo URL_OPT_DIR; ?>",
+                "URL_BIN_DIR": "<?php echo URL_BIN_DIR; ?>",
+
+                "Mustache"          : URL_OPT_DIR + 'bin/mustache/mustache.min',
+                "URI"               : URL_OPT_DIR + 'bin/urijs/src/URI',
+                'IPv6'              : URL_OPT_DIR + 'bin/urijs/src/IPv6',
+                'punycode'          : URL_OPT_DIR + 'bin/urijs/src/punycode',
+                'SecondLevelDomains': URL_OPT_DIR + 'bin/urijs/src/SecondLevelDomains'
+            },
+            waitSeconds: 0,
+            catchError : true,
+            map        : {
+                '*': {
+                    'css'  : '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/css.js',
+                    'image': '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/image.min.js',
+                    'text' : '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/text.min.js'
+                }
+            }
+        });
+    </script>
+
+    <!-- require js -->
+    <!-- mootools -->
+
+</head>
+<body class="antialiased">
+
+<div class="wrapper">
+    <div class="page-wrapper">
+        <div class="container-xl">
+            <!-- Page title -->
+            <div class="page-header d-print-none">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <!-- Page pre-title -->
+                        <div class="page-pretitle">
+                            Overview
+                        </div>
+                        <h2 class="page-title">
+                            QUIQQER Dashboard
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-body">
+            <div class="container-xl">
+                <div class="row row-deck row-cards"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        var get = [];
+
+        location.search.substr(1).split("&").forEach(function (item) {
+            var p     = item.split("=");
+            get[p[0]] = decodeURIComponent(p[1]);
+        });
+
+        if (typeof get.instance === 'undefined') {
+            return;
+        }
+
+        if (typeof window.parent.URL_OPT_DIR === 'undefined') {
+            return;
+        }
+
+        // @todo show loader
+
+        var URL_OPT_DIR = window.parent.URL_OPT_DIR;
+        var path        = URL_OPT_DIR + 'quiqqer/dashboard/';
+
+        // var QUIParent = window.parent.QUI;
+        // var Controls  = QUIParent.Controls;
+        // var Dashboard = Controls.getById(get.instance);
+
+        var Link  = document.createElement('link');
+        Link.href = path + 'bin/backend/tabler/tabler.min.css';
+        Link.rel  = "stylesheet";
+        document.head.appendChild(Link);
+
+
+        // @todo load Dashboard id
+        var requireList = [
+            'qui/QUI',
+            'Locale',
+            'Ajax',
+            'Projects',
+            'controls/workspace/Manager',
+            'qui/controls/buttons/Button',
+            'qui/controls/contextmenu/Item',
+            'qui/controls/contextmenu/Separator'
+        ].append(window.parent.QUIQQER_LOCALE || []);
+
+        if (typeof window.Intl === "undefined") {
+            console.error("Intl is not supported");
+        }
+
+        require(requireList, function () {
+            arguments[1].setCurrent(USER.lang);
+
+            // workaround, because the QUI framework has sometimes its own Locale :-/
+            require(['qui/Locale'], function (QUIsOwnLocale) {
+                QUIsOwnLocale.setCurrent(USER.lang);
+            });
+
+            require(['package/quiqqer/dashboard/bin/backend/controls/Dashboard'], function (Dashboard) {
+                var Deck     = document.body.querySelector('.row-deck');
+                var Instance = new Dashboard();
+
+                Instance.refresh().then(function (cards) {
+                    Deck.innerHTML = '';
+
+                    for (var i = 0, len = cards.length; i < len; i++) {
+                        cards[i].inject(Deck);
+                    }
+                });
+
+                // @todo hide loader
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>

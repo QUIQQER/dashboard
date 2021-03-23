@@ -1,6 +1,7 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
 
@@ -18,22 +19,33 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups',
 
-        initialize: function (options) {
-            var self = this;
+        Binds: [
+            '$onCreate'
+        ],
 
+        initialize: function (options) {
             this.parent(options);
 
             this.setAttributes({
                 id      : 'quiqqer-dashboard-stats-groups',
-                footer  : QUILocale.get('quiqqer/dashboard', 'dashboard.stats.groups'),
-                size    : 20,
-                priority: 100,
-                styles  : {
-                    'text-align': 'center'
-                }
+                title   : false,
+                priority: 100
             });
 
-            this.getElm().classList.add('quiqqer-dashboard--clickable');
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            var self = this;
+
+            this.getElm().classList.add('card--clickable');
+            this.getElm().classList.add('col-sg-2');
+            this.getElm().classList.add('col-sm-2');
 
             require([
                 'utils/Panels',
@@ -47,14 +59,25 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
             });
         },
 
+        /**
+         * refresh the display
+         */
         refresh: function () {
             var self = this;
 
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getGroupCount', function (result) {
-                self.setContent((new Element('span', {
-                    'class': 'quiqqer-dashboard-one-stat-value',
-                    html   : result
-                })).outerHTML);
+                self.$Content.classList.add('text-center');
+
+                self.setContent(
+                    '<div class="row align-items-center">' +
+                    '   <div class="h1 m-0">' +
+                    '        ' + result +
+                    '   </div>' +
+                    '   <div class="text-muted">' +
+                    '       ' + QUILocale.get('quiqqer/dashboard', 'dashboard.stats.groups') +
+                    '   </div>' +
+                    '</div>'
+                );
             }, {
                 'package': 'quiqqer/dashboard',
                 onError  : console.error
