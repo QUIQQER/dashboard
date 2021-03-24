@@ -58,18 +58,21 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
                 // Card.getElement('#quiqqer-dashboard-pages-inactive').set('html', result.inactive);
 
                 self.setContent(
-                    '<div class="row align-items-center">' +
+                    '<div class="row align-top">' +
                     '   <div class="col-auto">' +
                     '       <span class="bg-indigo text-white avatar">' +
                     '           <span class="fa fa-file-o"></span>' +
                     '       </span>' +
                     '   </div>' +
                     '   <div class="col">' +
-                    '       <div class="font-weight-medium">' +
-                    '           ' + QUILocale.get(lg, 'dashboard.stats.pages') +
+                    '       <div class="text-muted">' +
+                    '           ' + result.total + ' ' + QUILocale.get(lg, 'dashboard.stats.pages') +
                     '       </div>' +
                     '       <div class="text-muted">' +
-                    '           ' + result.total +
+                    '           ' + result.active + ' ' + QUILocale.get(lg, 'dashboard.stats.pages.active') +
+                    '       </div>' +
+                    '       <div class="text-muted">' +
+                    '           ' + result.inactive + ' ' + QUILocale.get(lg, 'dashboard.stats.pages.inactive') +
                     '       </div>' +
                     '   </div>' +
                     '</div>'

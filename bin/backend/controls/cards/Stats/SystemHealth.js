@@ -63,6 +63,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
          */
         refresh: function () {
             var self = this;
+            var iconType, valueType;
 
             QUILocale.get(lg, 'dashboard.stats.systemhealth');
 
@@ -72,25 +73,25 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
                     // failed
                     case 0:
                         iconType  = 'fa fa-times bad-value';
-                        valueType = 'bad-value';
+                        valueType = 'bg-red';
                         break;
 
                     // okay
                     case 1:
                         iconType  = 'fa fa-check good-value';
-                        valueType = 'good-value';
+                        valueType = 'bg-green';
                         break;
 
                     // warning
                     case 3:
                         iconType  = 'fa fa-exclamation-triangle warning-value';
-                        valueType = 'warning-value';
+                        valueType = 'bg-yellow';
                         break;
 
                     // unknown
                     default:
                         iconType  = 'fa fa-question inactive-value';
-                        valueType = 'inactive-value';
+                        valueType = 'bg-blue-lt';
 
                         // add a info to tell the user how to get correct values
                         self.getElm().title = QUILocale.get(lg, 'dashboard.stats.systemhealth.help');
@@ -109,7 +110,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
                 self.setContent(
                     '<div class="row align-items-center">' +
                     '   <div class="col-auto">' +
-                    '       <span class="bg-blue text-white avatar">' +
+                    '       <span class="text-white avatar ' + valueType + '">' +
                     '           <span class="' + iconType + '"></span>' +
                     '       </span>' +
                     '   </div>' +
@@ -122,55 +123,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
                     '   </div>' +
                     '</div>'
                 );
-
-                return;
-                var Content = new Element('div');
-
-                var iconType  = 'fa fa-question';
-                var valueType = 'inactive-value';
-
-                // See status-codes in \QUI\Requirements\TestResult.php
-                switch (result) {
-                    // failed
-                    case 0:
-                        iconType  = ' fa fa-times bad-value';
-                        valueType = 'bad-value';
-                        break;
-
-                    // okay
-                    case 1:
-                        iconType  = ' fa fa-check good-value';
-                        valueType = 'good-value';
-                        break;
-
-                    // warning
-                    case 3:
-                        iconType  = ' fa fa-exclamation-triangle warning-value';
-                        valueType = 'warning-value';
-                        break;
-
-                    // unknown
-                    default:
-                        iconType  = ' fa fa-question inactive-value';
-                        valueType = 'inactive-value';
-
-                        // add a info to tell the user how to get correct values
-                        self.getElm().title = QUILocale.get(lg, 'dashboard.stats.systemhealth.help');
-                        new Element('i', {
-                            class: 'fa fa-info-circle inactive-value border-value top-right'
-                        }).inject(Content);
-                        break;
-                }
-
-                var Icon = new Element('i', {
-                    'class': iconType + ' ' + valueType + ' quiqqer-dashboard-one-stat-value quiqqer-dashboard-one-stat-icon-only'
-                });
-
-                self.getFooter().classList.add(valueType);
-
-                Icon.inject(Content);
-
-                self.setContent(Content.outerHTML);
             }, {
                 'package': 'quiqqer/dashboard',
                 onError  : console.error

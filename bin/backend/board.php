@@ -69,6 +69,17 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
             line-height: 1.5rem !important;
             padding-right: 0.5rem;
         }
+
+        .loader-container {
+            align-items: center;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1;
+        }
     </style>
 
 
@@ -123,7 +134,11 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
 </head>
 <body class="antialiased">
 
-<div class="wrapper">
+<div class="loader-container">
+    <div class="loader"></div>
+</div>
+
+<div class="wrapper" style="opacity: 0">
     <div class="page-wrapper">
         <div class="container-xl">
             <!-- Page title -->
@@ -167,8 +182,6 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
             return;
         }
 
-        // @todo show loader
-
         var URL_OPT_DIR = window.parent.URL_OPT_DIR;
         var path        = URL_OPT_DIR + 'quiqqer/dashboard/';
 
@@ -183,6 +196,8 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
 
 
         // @todo load Dashboard id
+
+
         var requireList = [
             'qui/QUI',
             'Locale',
@@ -216,9 +231,19 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
                     for (var i = 0, len = cards.length; i < len; i++) {
                         cards[i].inject(Deck);
                     }
-                });
 
-                // @todo hide loader
+                    moofx(document.getElement('.wrapper')).animate({
+                        opacity: 1
+                    });
+
+                    moofx(document.getElement('.loader-container')).animate({
+                        opacity: 0
+                    }, {
+                        callback: function () {
+                            document.getElement('.loader-container').destroy();
+                        }
+                    });
+                });
             });
         });
     })();
