@@ -72,8 +72,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 emptyselect  : false,
                 localeStorage: 'dashboard-media-info-card-project-select',
                 styles       : {
-                    display: 'inline-block',
-                    width  : '100%'
+                    display  : 'inline-block',
+                    marginTop: 10,
+                    width    : '100%'
                 }
             }).inject(ProjectSelectContainer);
 
