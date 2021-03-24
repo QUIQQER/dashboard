@@ -10,7 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/Messages/style.css'
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/Messages.css'
 
 ], function (QUILocale, MessagePanel, QUICard) {
     "use strict";

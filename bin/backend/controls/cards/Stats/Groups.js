@@ -47,11 +47,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
             this.getElm().classList.add('col-sg-2');
             this.getElm().classList.add('col-sm-2');
 
-            require([
-                'utils/Panels',
-                'controls/groups/Panel'
-            ], function (PanelUtils, GroupsPanel) {
-                self.getElm().addEvent('click', function () {
+            self.getElm().addEvent('click', function () {
+                window.parent.require([
+                    'utils/Panels',
+                    'controls/groups/Panel'
+                ], function (PanelUtils, GroupsPanel) {
                     PanelUtils.openPanelInTasks(
                         new GroupsPanel()
                     );

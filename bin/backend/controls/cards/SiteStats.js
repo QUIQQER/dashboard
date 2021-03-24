@@ -89,8 +89,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                 this.refresh();
             }.bind(this));
 
-            console.error(this.$ProjectSelect);
-
             ProjectSelectContainer.inject(this.$Header);
         },
 

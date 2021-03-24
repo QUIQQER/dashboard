@@ -1,20 +1,19 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
 
     'Ajax',
     'Mustache',
     'Locale',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry/content.html',
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry.css'
 
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry/style.css'
-
-], function (QUIAjax, Mustache, QUILocale, QUICard, content) {
+], function (QUIAjax, Mustache, QUILocale, QUICard) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -33,7 +32,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
 
             this.setAttributes({
                 id      : 'quiqqer-dashboard-card-newest-blog-entry',
-                content : Mustache.render(content),
+                content : '',
                 priority: 85
             });
 
@@ -48,6 +47,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
         $onCreate: function () {
             this.getElm().classList.add('col-sm-6');
             this.getElm().classList.add('col-lg-6');
+
+            this.setContent(
+                '<img id="blog-entry-image" src=""/>' +
+                '<h2 id="blog-entry-title"></h2>' +
+                '<div id="blog-entry-text"></div>'
+            );
         },
 
         refresh: function () {

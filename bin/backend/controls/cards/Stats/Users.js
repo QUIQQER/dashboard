@@ -45,11 +45,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
             this.getElm().classList.add('col-sg-2');
             this.getElm().classList.add('col-sm-2');
 
-            require([
-                'utils/Panels',
-                'controls/users/Panel'
-            ], function (PanelUtils, UsersPanel) {
-                self.getElm().addEvent('click', function () {
+            self.getElm().addEvent('click', function () {
+                window.parent.require([
+                    'utils/Panels',
+                    'controls/users/Panel'
+                ], function (PanelUtils, UsersPanel) {
                     PanelUtils.openPanelInTasks(
                         new UsersPanel()
                     );

@@ -59,6 +59,10 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
             font-size: 12px;
         }
 
+        .table-hover tr {
+            cursor: pointer;
+        }
+
         .wrapper {
             margin-bottom: 20px;
         }

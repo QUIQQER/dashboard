@@ -1,6 +1,8 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
 
@@ -10,7 +12,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity/content.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, contentTemplate) {
     "use strict";
@@ -78,7 +80,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
                     var lang    = Target.get('data-lang');
                     var id      = Target.get('data-id');
 
-                    require(['utils/Panels'], function (PanelUtils) {
+                    window.parent.require(['utils/Panels'], function (PanelUtils) {
                         PanelUtils.openSitePanel(project, lang, id);
                     });
                 };
@@ -91,7 +93,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
                         'data-project': entry.project,
                         'data-lang'   : entry.lang,
                         'data-id'     : entry.id,
-                        html          : '<td>' + entry.id + '</td>' +
+                        html          : '' +
+                            '<td>' + entry.id + '</td>' +
                             '<td>' + entry.title + '</td>' +
                             '<td>' + entry.e_date + '</td>',
                         events        : {
