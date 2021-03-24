@@ -1,21 +1,20 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
 
     'Ajax',
     'Locale',
     'Mustache',
-
     'utils/Date',
     'qui/utils/Math',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/content.html',
-
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/style.css'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.html',
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.css'
 
 ], function (QUIAjax, QUILocale, Mustache, DateUtil, MathUtil, QUICard, contentTemplate) {
     "use strict";

@@ -5,14 +5,11 @@
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
 
     'Locale',
-
-    'qui/controls/messages/Panel',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/cards/Messages.css'
 
-], function (QUILocale, MessagePanel, QUICard) {
+], function (QUILocale, QUICard) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -59,15 +56,24 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Messages', [
          * refresh the card
          */
         refresh: function () {
-            var MessagesControl = new MessagePanel({
-                styles: {
-                    height: 300
-                }
-            });
+            var self = this;
 
-            MessagesControl.inject(this.getContent());
-            MessagesControl.getHeader().hide();
-            MessagesControl.getContent().setStyle('background', 'none');
+            // we need the message panel here, because of the css template stuff
+            require(['qui/controls/messages/Panel'], function () {
+
+                // we need the window parent panel, because of the parent references
+                window.parent.require(['qui/controls/messages/Panel'], function (MessagePanel) {
+                    var MessagesControl = new MessagePanel({
+                        styles: {
+                            height: 300
+                        }
+                    });
+
+                    MessagesControl.inject(self.getContent());
+                    MessagesControl.getHeader().hide();
+                    MessagesControl.getContent().setStyle('background', 'none');
+                });
+            });
         }
     });
 });

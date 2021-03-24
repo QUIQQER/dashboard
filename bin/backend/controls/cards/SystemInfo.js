@@ -1,6 +1,8 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
@@ -10,7 +12,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo/content.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, contentTemplate) {
     "use strict";

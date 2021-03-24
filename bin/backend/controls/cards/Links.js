@@ -10,7 +10,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Links/content.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Links.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, content) {
     "use strict";

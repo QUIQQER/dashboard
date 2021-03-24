@@ -13,9 +13,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
     'qui/utils/Math',
     'controls/projects/Select',
     'package/quiqqer/dashboard/bin/backend/controls/Card',
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo/content.html',
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo.html',
 
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo/style.css'
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo.css'
 
 ], function (QUIAjax, QUILocale, Mustache, ColorUtil, DateUtil, MathUtil, ProjectSelect, QUICard, content) {
     "use strict";
