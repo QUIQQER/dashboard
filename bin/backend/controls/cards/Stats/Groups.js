@@ -9,9 +9,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
     'Locale',
     'Mustache',
 
-    'package/quiqqer/dashboard/bin/backend/controls/Card'
+    'package/quiqqer/dashboard/bin/backend/controls/Card',
+    'package/quiqqer/dashboard/bin/backend/Stats'
 
-], function (QUIAjax, QUILocale, Mustache, QUICard) {
+], function (QUIAjax, QUILocale, Mustache, QUICard, Stats) {
     "use strict";
 
     return new Class({
@@ -65,7 +66,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
         refresh: function () {
             var self = this;
 
-            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getGroupCount', function (result) {
+            Stats.getStats().then(function (result) {
+                result = result.getGroupCount;
+
                 self.$Content.classList.add('text-center');
 
                 self.setContent(

@@ -33,6 +33,31 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
             padding: 0;
         }
 
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, .26);
+        }
+
+        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #BBBBBB;
+        }
+
+        ::-moz-placeholder { /* Firefox 19+ */
+            color: #BBBBBB;
+        }
+
+        :-ms-input-placeholder { /* IE 10+ */
+            color: #BBBBBB;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            color: #BBBBBB;
+        }
+
         .wrapper {
             display: inline-block;
             padding-top: 20px;

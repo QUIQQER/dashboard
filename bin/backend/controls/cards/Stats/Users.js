@@ -8,9 +8,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
 
     'Ajax',
     'Locale',
-    'package/quiqqer/dashboard/bin/backend/controls/Card'
+    'package/quiqqer/dashboard/bin/backend/controls/Card',
+    'package/quiqqer/dashboard/bin/backend/Stats'
 
-], function (QUIAjax, QUILocale, QUICard) {
+], function (QUIAjax, QUILocale, QUICard, Stats) {
     "use strict";
 
     return new Class({
@@ -63,7 +64,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
         refresh: function () {
             var self = this;
 
-            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getUserCount', function (result) {
+            Stats.getStats().then(function (result) {
+                result = result.getUserCount;
+
                 self.$Content.classList.add('text-center');
 
                 self.setContent(

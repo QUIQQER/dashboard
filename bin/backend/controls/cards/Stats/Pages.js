@@ -8,9 +8,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
 
     'Ajax',
     'Locale',
-    'package/quiqqer/dashboard/bin/backend/controls/Card'
+    'package/quiqqer/dashboard/bin/backend/controls/Card',
+    'package/quiqqer/dashboard/bin/backend/Stats'
 
-], function (QUIAjax, QUILocale, QUICard) {
+], function (QUIAjax, QUILocale, QUICard, Stats) {
     "use strict";
 
     var lg = "quiqqer/dashboard";
@@ -52,7 +53,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
         refresh: function () {
             var self = this;
 
-            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getPageCount', function (result) {
+            Stats.getStats().then(function (result) {
+                result = result.getPageCount;
+
                 // Card.getElement('#quiqqer-dashboard-pages-total').set('html', result.total);
                 // Card.getElement('#quiqqer-dashboard-pages-active').set('html', result.active);
                 // Card.getElement('#quiqqer-dashboard-pages-inactive').set('html', result.inactive);

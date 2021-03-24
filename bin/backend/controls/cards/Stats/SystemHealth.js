@@ -11,9 +11,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
     'qui/controls/windows/Popup',
     'controls/packages/SystemCheck',
 
-    'package/quiqqer/dashboard/bin/backend/controls/Card'
+    'package/quiqqer/dashboard/bin/backend/controls/Card',
+    'package/quiqqer/dashboard/bin/backend/Stats'
 
-], function (QUIAjax, QUILocale, Mustache, QUIPopup, QUISystemCheck, QUICard) {
+], function (QUIAjax, QUILocale, Mustache, QUIPopup, QUISystemCheck, QUICard, Stats) {
     "use strict";
 
     var lg = 'quiqqer/dashboard';
@@ -67,7 +68,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
 
             QUILocale.get(lg, 'dashboard.stats.systemhealth');
 
-            QUIAjax.get('package_quiqqer_dashboard_ajax_backend_stats_getSystemHealth', function (result) {
+            Stats.getStats().then(function (result) {
+                result = result.getSystemHealth;
                 // See status-codes in \QUI\Requirements\TestResult.php
                 switch (result) {
                     // failed
