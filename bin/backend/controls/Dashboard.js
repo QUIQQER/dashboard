@@ -32,6 +32,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             'refresh'
         ],
 
+        options: {
+            dashboardId: false
+        },
+
         initialize: function (options) {
             this.parent(options);
 
@@ -51,9 +55,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         $onCreate: function () {
             this.getElm().addClass('quiqqer-dashboard');
             this.getContent().addClass('quiqqer-dashboard-cards');
-            //this.getContent().addClass('quiqqer-dashboard--loading');
-
-            // get boards
 
             this.$Frame = new Element('iframe', {
                 src      : URL_OPT_DIR + 'quiqqer/dashboard/bin/backend/board.php?instance=' + this.getId(),
@@ -67,36 +68,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             }).inject(this.getContent());
 
             this.getElm().getElement('.qui-panel-header').setStyle('background-color', '#f4f6fa');
-
-            return;
-
-
-            this.getContent().set('html', Mustache.render(template));
-
-            new QUIButton({
-                name  : 'refresh',
-                icon  : 'fa fa-refresh',
-                title : QUILocale.get(lg, 'button.refresh.title'),
-                events: {
-                    onClick: this.refresh
-                }
-            }).inject(this.getHeader());
-
-            this.refresh();
-
-            Promise.all([]).then(function () {
-                var Loader = this.getElm().getElement('.quiqqer-dashboard-loader');
-
-                this.getContent().removeClass('quiqqer-dashboard--loading');
-
-                moofx(Loader).animate({
-                    opacity: 0
-                }, {
-                    callback: function () {
-                        Loader.destroy();
-                    }
-                });
-            }.bind(this));
         },
 
         /**
@@ -107,6 +78,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             return new Promise(function (resolve) {
                 QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (cards) {
+                    self.Cards = [];
+
+                    // its empty
+                    if (typeOf(cards) !== 'object') {
+                        resolve(self.getCards());
+                        return;
+                    }
+
                     // card-names/-types to require the controls
                     var cardNames = Object.getOwnPropertyNames(cards);
 
@@ -129,8 +108,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         resolve(self.getCards());
                     });
                 }, {
-                    'package': 'quiqqer/dashboard',
-                    onError  : console.error
+                    'package'  : 'quiqqer/dashboard',
+                    dashboardId: self.getAttribute('dashboardId'),
+                    onError    : console.error
                 });
             });
         },

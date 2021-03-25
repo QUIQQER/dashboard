@@ -17,8 +17,7 @@ QUI::$Ajax->registerFunction(
             $Locale  = QUI::getLocale();
 
             $folderCount = MediaUtils::countFoldersForProject($Project);
-
-            $filesCount = MediaUtils::countFilesForProject($Project);
+            $filesCount  = MediaUtils::countFilesForProject($Project);
 
             return [
                 'folderCount'                   => $Locale->formatNumber($folderCount),

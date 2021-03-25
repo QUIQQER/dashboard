@@ -24,9 +24,17 @@ interface DashboardProviderInterface
      * To do this the returned array has to contain another array.
      * This sub-array then contains all the JavaScript-Card-Control names.
      *
+     * @return array
      * @example see QUI\Dashboard\DashboardProvider
+     *
+     */
+    public static function getCards(): array;
+
+    /**
+     * Return the dashboards boards
+     * optional
      *
      * @return array
      */
-    public static function getCards();
+    public static function getBoards(): array;
 }

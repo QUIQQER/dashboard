@@ -20,6 +20,20 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
     exit;
 }
 
+// get boards
+$boards      = QUI\Dashboard\DashboardHandler::getInstance()->getBoards();
+$Board       = null;
+$dashboardId = '';
+
+if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
+    $dashboardId = (int)$_GET['dashboardId'];
+
+    if (isset($boards[$dashboardId])) {
+        $Board = $boards[$dashboardId];
+    }
+}
+
+
 ?>
 <html lang="en">
 <head>
@@ -155,6 +169,16 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
                 }
             }
         });
+
+        <?php
+
+        if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
+            echo 'window.DASHBOARD_ID = '.(int)$_GET['dashboardId'].';';
+        } else {
+            echo 'window.DASHBOARD_ID = "";';
+        }
+
+        ?>
     </script>
 
     <!-- require js -->
@@ -174,12 +198,49 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
             <div class="page-header d-print-none">
                 <div class="row align-items-center">
                     <div class="col">
+                        <?php if (!empty($boards)) { ?>
+                            <div class="dashboard-select dropdown position-relative"
+                                 style="float: left; height: 40px; margin-right: 10px; display: flex;"
+                            >
+                                <div class="btn btn-ghost-dark btn-sm dropdown-toggle"></div>
+                                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-card position-absolute"
+                                     style="margin-top: 10px !important;"
+                                >
+                                    <label class="dropdown-item">
+                                        <input type="radio"
+                                               class="form-check-input m-0 me-2"
+                                               name="dashboard"
+                                               value=""
+                                            <?php echo $Board === null ? 'checked' : ''; ?>
+                                        />
+                                        QUIQQER Dashboard
+                                    </label>
+                                    <?php foreach ($boards as $key => $B) { ?>
+                                        <label class="dropdown-item">
+                                            <input type="radio"
+                                                   class="form-check-input m-0 me-2"
+                                                   name="dashboard"
+                                                   value="<?php echo $key; ?>"
+                                                <?php echo $Board === $B ? 'checked' : ''; ?>
+                                            />
+                                            <?php echo $B->getTitle(); ?>
+                                        </label>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <!-- Page pre-title -->
                         <div class="page-pretitle">
                             Overview
                         </div>
                         <h2 class="page-title">
-                            QUIQQER Dashboard
+                            <?php if ($Board) {
+                                echo $Board->getTitle();
+                            } else {
+                                echo 'QUIQQER Dashboard';
+                            }
+                            ?>
                         </h2>
                     </div>
                 </div>
@@ -213,10 +274,6 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
 
         var URL_OPT_DIR = window.parent.URL_OPT_DIR;
         var path        = URL_OPT_DIR + 'quiqqer/dashboard/';
-
-        // var QUIParent = window.parent.QUI;
-        // var Controls  = QUIParent.Controls;
-        // var Dashboard = Controls.getById(get.instance);
 
         var Link  = document.createElement('link');
         Link.href = path + 'bin/backend/tabler/tabler.min.css';
@@ -254,6 +311,8 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
                 var Deck     = document.body.querySelector('.row-deck');
                 var Instance = new Dashboard();
 
+                Instance.setAttribute('dashboardId', window.DASHBOARD_ID);
+
                 Instance.refresh().then(function (cards) {
                     Deck.innerHTML = '';
 
@@ -261,19 +320,52 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
                         cards[i].inject(Deck);
                     }
 
-                    moofx(document.getElement('.wrapper')).animate({
+                    var Loader  = document.querySelector('.loader-container'),
+                        Wrapper = document.querySelector('.wrapper');
+
+                    moofx(Wrapper).animate({
                         opacity: 1
                     });
 
-                    moofx(document.getElement('.loader-container')).animate({
+                    moofx(Loader).animate({
                         opacity: 0
                     }, {
                         callback: function () {
-                            document.getElement('.loader-container').destroy();
+                            Loader.parentNode.removeChild(Loader);
                         }
                     });
                 });
             });
+        });
+
+        // dashboard select
+        var Select   = document.querySelector('.dashboard-select');
+        var DropDown = document.querySelector('.dropdown-menu');
+        var Values   = document.querySelectorAll('[name="dashboard"]');
+
+        var onChange = function (e) {
+            require(['URI'], function (URI) {
+                var Url    = URI(window.location),
+                    search = Url.search(true);
+
+                search.dashboardId = Select.querySelector('input:checked').value;
+                window.location    = window.location.pathname + '?' + Object.toQueryString(search);
+            });
+
+        };
+
+        Select.tabIndex = '-1';
+
+        Select.addEventListener('focus', function () {
+            DropDown.classList.add('show');
+        });
+
+        Select.addEventListener('blur', function () {
+            DropDown.classList.remove('show');
+        });
+
+        Values.forEach(function (Value) {
+            Value.addEventListener('change', onChange);
         });
     })();
 </script>
