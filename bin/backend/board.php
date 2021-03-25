@@ -235,7 +235,8 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                             Overview
                         </div>
                         <h2 class="page-title">
-                            <?php if ($Board) {
+                            <?php
+                            if ($Board) {
                                 echo $Board->getTitle();
                             } else {
                                 echo 'QUIQQER Dashboard';
