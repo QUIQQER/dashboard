@@ -282,9 +282,6 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         document.head.appendChild(Link);
 
 
-        // @todo load Dashboard id
-
-
         var requireList = [
             'qui/QUI',
             'Locale',
@@ -308,9 +305,37 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                 QUIsOwnLocale.setCurrent(USER.lang);
             });
 
-            require(['package/quiqqer/dashboard/bin/backend/controls/Dashboard'], function (Dashboard) {
+            require([
+                'qui/QUI',
+                'package/quiqqer/dashboard/bin/backend/controls/Dashboard'
+            ], function (QUI, Dashboard) {
                 var Deck     = document.body.querySelector('.row-deck');
                 var Instance = new Dashboard();
+
+                if (window.DASHBOARD_ID === '') {
+                    window.DASHBOARD_ID = QUI.Storage.get('quiqqer-dashboard-id');
+
+                    if (window.DASHBOARD_ID === false || window.DASHBOARD_ID === '') {
+                        window.DASHBOARD_ID = '';
+                    } else {
+                        // load dashboard
+                        require(['qui/QUI', 'URI'], function (QUI, URI) {
+                            var Url    = URI(window.location),
+                                search = Url.search(true);
+
+                            search.dashboardId = window.DASHBOARD_ID;
+
+                            var current = window.location.pathname + window.location.search;
+                            var wanted  = window.location.pathname + '?' + Object.toQueryString(search)
+
+                            if (current !== wanted) {
+                                window.location = wanted;
+                            }
+                        });
+
+                        return;
+                    }
+                }
 
                 Instance.setAttribute('dashboardId', window.DASHBOARD_ID);
 
@@ -344,15 +369,16 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         var DropDown = document.querySelector('.dropdown-menu');
         var Values   = document.querySelectorAll('[name="dashboard"]');
 
-        var onChange = function (e) {
-            require(['URI'], function (URI) {
+        var onChange = function () {
+            require(['qui/QUI', 'URI'], function (QUI, URI) {
                 var Url    = URI(window.location),
                     search = Url.search(true);
 
                 search.dashboardId = Select.querySelector('input:checked').value;
-                window.location    = window.location.pathname + '?' + Object.toQueryString(search);
-            });
+                QUI.Storage.set('quiqqer-dashboard-id', search.dashboardId);
 
+                window.location = window.location.pathname + '?' + Object.toQueryString(search);
+            });
         };
 
         Select.tabIndex = '-1';
