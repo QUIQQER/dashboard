@@ -315,7 +315,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                 if (window.DASHBOARD_ID === '') {
                     window.DASHBOARD_ID = QUI.Storage.get('quiqqer-dashboard-id');
 
-                    if (window.DASHBOARD_ID === false || window.DASHBOARD_ID === '') {
+                    if (window.DASHBOARD_ID === false || window.DASHBOARD_ID === '' || window.DASHBOARD_ID === null) {
                         window.DASHBOARD_ID = '';
                     } else {
                         // load dashboard
@@ -381,15 +381,17 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
             });
         };
 
-        Select.tabIndex = '-1';
+        if (Select) {
+            Select.tabIndex = '-1';
 
-        Select.addEventListener('focus', function () {
-            DropDown.classList.add('show');
-        });
+            Select.addEventListener('focus', function () {
+                DropDown.classList.add('show');
+            });
 
-        Select.addEventListener('blur', function () {
-            DropDown.classList.remove('show');
-        });
+            Select.addEventListener('blur', function () {
+                DropDown.classList.remove('show');
+            });
+        }
 
         Values.forEach(function (Value) {
             Value.addEventListener('change', onChange);
