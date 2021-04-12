@@ -17,4 +17,12 @@ interface DashboardInterface
      * @return array
      */
     public function getCards(): array;
+
+    /**
+     * Return the JavaScript Control for the Dashboard
+     *
+     * optional
+     * @return string
+     */
+    public function getJavaScriptControl(): string;
 }

@@ -149,7 +149,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             });
         },
 
-
         /**
          * Returns all cards displayed on the dashboard
          *
@@ -158,7 +157,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         getCards: function () {
             return this.Cards;
         },
-
 
         /**
          * Adds a card to the Dashboard.

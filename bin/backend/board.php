@@ -28,6 +28,7 @@ $dashboardId = '';
 if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     $dashboardId = (int)$_GET['dashboardId'];
 
+    /* @var $Board \QUI\Dashboard\DashboardInterface */
     if (isset($boards[$dashboardId])) {
         $Board = $boards[$dashboardId];
     }
@@ -185,7 +186,15 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     <!-- mootools -->
 
 </head>
-<body class="antialiased">
+<body class="antialiased"
+    <?php
+
+    if ($Board && $Board->getJavaScriptControl() && $Board->getJavaScriptControl() !== '') {
+        echo ' data-qui="'.$Board->getJavaScriptControl().'"';
+    }
+
+    ?>
+>
 
 <div class="loader-container">
     <div class="loader"></div>
@@ -337,9 +346,27 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                     }
                 }
 
-                Instance.setAttribute('dashboardId', window.DASHBOARD_ID);
+                var loadCustomBoard         = Promise.resolve();
+                var CustomDashboardInstance = null;
 
-                Instance.refresh().then(function (cards) {
+                if (document.body.get('data-qui')) {
+                    loadCustomBoard = new Promise(function (resolve) {
+                        require([document.body.get('data-qui')], function (cls) {
+                            new cls().imports(document.body);
+
+                            resolve();
+                        }, function (err) {
+                            console.error(err);
+                            resolve();
+                        });
+                    });
+                }
+
+                loadCustomBoard.then(function () {
+                    Instance.setAttribute('dashboardId', window.DASHBOARD_ID);
+
+                    return Instance.refresh();
+                }).then(function (cards) {
                     Deck.innerHTML = '';
 
                     for (var i = 0, len = cards.length; i < len; i++) {
