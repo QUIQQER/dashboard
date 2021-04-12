@@ -1,6 +1,8 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
@@ -10,7 +12,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo/content.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo.html'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, contentTemplate) {
     "use strict";
@@ -21,6 +23,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
+
+        Binds: [
+            '$onCreate'
+        ],
 
         initialize: function (options) {
             this.parent(options);
@@ -37,9 +43,20 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 45,
-                size    : 15
+                priority: 45
             });
+
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        $onCreate: function () {
+            this.$Content.addClass('card-table');
+            this.$Content.removeClass('card-body');
+
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-6');
         },
 
         refresh: function () {
@@ -52,7 +69,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
                     // Determine value status depending on Dev-Mode being active or not
                     'class': result.isDevModeActive ? 'good-value' : 'inactive-value',
                     // Get text from locale variable depending on Dev-Mode being active or not
-                    'html' : QUILocale.get(
+                    'html': QUILocale.get(
                         lg,
                         'dashboard.system.info.devmode.active.' + (result.isDevModeActive ? 'true' : 'false')
                     )

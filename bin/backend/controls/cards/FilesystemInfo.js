@@ -1,21 +1,20 @@
 /**
  * @module package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo
+ *
  * @author www.pcsg.de (Jan Wennrich)
+ * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
 
     'Ajax',
     'Locale',
     'Mustache',
-
     'utils/Date',
     'qui/utils/Math',
-
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/content.html',
-
-    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo/style.css'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.html',
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo.css'
 
 ], function (QUIAjax, QUILocale, Mustache, DateUtil, MathUtil, QUICard, contentTemplate) {
     "use strict";
@@ -26,6 +25,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
 
         Extends: QUICard,
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/FileSystemInfo',
+
+        Binds: [
+            '$onCreate'
+        ],
 
         initialize: function (options) {
             this.parent(options);
@@ -43,9 +46,23 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 60,
-                size    : 20
+                priority: 60
             });
+
+            this.addEvents({
+                onCreate: this.$onCreate
+            });
+        },
+
+        /**
+         * event: on create
+         */
+        $onCreate: function () {
+            this.$Content.addClass('card-table');
+            this.$Content.removeClass('card-body');
+
+            this.getElm().classList.add('col-sm-6');
+            this.getElm().classList.add('col-lg-6');
         },
 
         refresh: function () {
@@ -120,7 +137,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 // Convert to Megabytes and round to two fractional digits
                 if (convertSize) {
                     var convertedSize = MathUtil.convertBytesToHumanFileSize(value);
-                    html = convertedSize.value + ' ' + convertedSize.unit;
+                    html              = convertedSize.value + ' ' + convertedSize.unit;
                 }
 
                 ValueElement = new Element('span', {

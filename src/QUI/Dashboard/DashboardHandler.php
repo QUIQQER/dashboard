@@ -25,7 +25,6 @@ class DashboardHandler extends Singleton
      */
     protected $cardList = [];
 
-
     /**
      * Returns the cards for the current user's dashboard.
      * Only returns his enabled cards.
@@ -36,36 +35,44 @@ class DashboardHandler extends Singleton
      *
      * @return array
      */
-    public function getCardsForUsersDashboard()
+    public function getCardsForUsersDashboard(): array
     {
         $cards = $this->getCardsWithSettings();
-
-        $cards = array_filter($cards, function ($card) {
+        $cards = \array_filter($cards, function ($card) {
             return $card['enabled'];
         });
 
         return $cards;
     }
 
-
     /**
-     * Returns all cards in the system.
-     * The array might contain further arrays. These arrays indicate rows.
-     *
+     * @param $dashboardId
      * @return array
      */
-    public function getAllRegisteredCards()
+    public function getCardsFromBoard($dashboardId): array
     {
-        if (!empty($this->cardList)) {
-            return $this->cardList;
+        $boards = QUI\Dashboard\DashboardHandler::getInstance()->getBoards();
+
+        if (!isset($boards[$dashboardId])) {
+            return [];
         }
 
-        $packages = QUI::getPackageManager()->getInstalled();
-        $cards    = [];
+        $Board = $boards[$dashboardId];
 
+        return $Board->getCards();
+    }
+
+    /**
+     * Return all dashboard provider
+     *
+     * @return DashboardProviderInterface[]
+     */
+    protected function getProvider(): array
+    {
         try {
             $dashboardProviders = QUI\Cache\Manager::get(self::CACHE_KEY_DASHBOARD_PROVIDERS);
         } catch (QUI\Cache\Exception $Exception) {
+            $packages           = QUI::getPackageManager()->getInstalled();
             $dashboardProviders = [];
 
             /* @var QUI\Package\Package $Package */
@@ -82,17 +89,16 @@ class DashboardHandler extends Singleton
 
                 // Check if the specified classes really exist
                 foreach ($packagesDashboardProviders as $dashboardProvider) {
-                    if (!class_exists($dashboardProvider)) {
+                    if (!\class_exists($dashboardProvider)) {
                         continue;
                     }
                 }
 
                 // Add the packages dashboard providers to all providers
-                $dashboardProviders = array_merge($dashboardProviders, $packagesDashboardProviders);
+                $dashboardProviders = \array_merge($dashboardProviders, $packagesDashboardProviders);
             }
 
             try {
-                // Cache the providers
                 QUI\Cache\Manager::set(self::CACHE_KEY_DASHBOARD_PROVIDERS, $dashboardProviders);
             } catch (\Exception $Exception) {
                 QUI\System\Log::writeDebugException($Exception);
@@ -100,38 +106,78 @@ class DashboardHandler extends Singleton
         }
 
         // initialize the instances
+        $provider = [];
+
         foreach ($dashboardProviders as $dashboardProvider) {
             try {
                 /** @var DashboardProviderInterface $Provider */
                 $Provider = new $dashboardProvider();
 
-                // Check if the given provider is really a DashboardProvider
-                if (!($Provider instanceof DashboardProviderInterface)) {
-                    unset($Provider);
-                    continue;
+                if ($Provider instanceof DashboardProviderInterface) {
+                    $provider[] = $Provider;
                 }
-
-                // Add the providers' cards to the methods' result
-                $cards = array_merge($Provider->getCards(), $cards);
             } catch (\Exception $Exception) {
                 QUI\System\Log::writeException($Exception);
             }
         }
 
+        return $provider;
+    }
+
+    /**
+     * Returns all cards in the system.
+     * The array might contain further arrays. These arrays indicate rows.
+     *
+     * @return array
+     */
+    public function getAllRegisteredCards(): array
+    {
+        if (!empty($this->cardList)) {
+            return $this->cardList;
+        }
+
+        $cards    = [];
+        $provider = $this->getProvider();
+
+        // initialize the instances
+        foreach ($provider as $Provider) {
+            $cards = \array_merge($Provider->getCards(), $cards);
+        }
+
+        $this->cardList = $cards;
+
         return $cards;
     }
 
-
-    public function getCardsWithSettings()
+    /**
+     * Return all available boards
+     *
+     * @return array
+     */
+    public function getBoards(): array
     {
-        $cards = $this->getAllRegisteredCards();
+        $boards   = [];
+        $provider = $this->getProvider();
+
+        foreach ($provider as $Provider) {
+            $boards = \array_merge($Provider->getBoards(), $boards);
+        }
+
+        return $boards;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCardsWithSettings(): array
+    {
+        $cards    = $this->getAllRegisteredCards();
+        $settings = [];
 
         $cardSettingsAttribute = QUI::getUserBySession()->getAttribute('quiqqer.dashboard.cardSettings');
 
-        $settings = [];
-
         if ($cardSettingsAttribute) {
-            $settings = json_decode($cardSettingsAttribute, true);
+            $settings = \json_decode($cardSettingsAttribute, true);
         }
 
         $result = [];
@@ -152,7 +198,7 @@ class DashboardHandler extends Singleton
                     $values['enabled'] = $cardSettings['enabled'];
                 }
 
-                if (isset($cardSettings['priority']) && is_numeric($cardSettings['priority'])) {
+                if (isset($cardSettings['priority']) && \is_numeric($cardSettings['priority'])) {
                     $values['priority'] = (int)$cardSettings['priority'];
                 }
             }

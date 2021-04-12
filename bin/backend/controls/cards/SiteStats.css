@@ -1,0 +1,10 @@
+.quiqqer-dashboard-card-sitestats .project-select-container {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.quiqqer-dashboard-card-sitestats .qui-controls-project-select {
+    display: inline-block;
+    width: 100%;
+}

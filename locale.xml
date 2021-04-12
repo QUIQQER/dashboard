@@ -93,12 +93,12 @@
             <en><![CDATA[Pages]]></en>
         </locale>
         <locale name="dashboard.stats.pages.active">
-            <de><![CDATA[Aktive Seiten]]></de>
-            <en><![CDATA[Active Pages]]></en>
+            <de><![CDATA[aktive Seiten]]></de>
+            <en><![CDATA[active pages]]></en>
         </locale>
         <locale name="dashboard.stats.pages.inactive">
-            <de><![CDATA[Deaktivierte Seiten]]></de>
-            <en><![CDATA[Deactivated Pages]]></en>
+            <de><![CDATA[deaktivierte Seiten]]></de>
+            <en><![CDATA[deactivated pages]]></en>
         </locale>
 
         <locale name="dashboard.stats.users">

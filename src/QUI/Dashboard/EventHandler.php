@@ -6,6 +6,8 @@
 
 namespace QUI\Dashboard;
 
+use QUI;
+
 /**
  * Class EventHandler
  *
@@ -18,7 +20,7 @@ class EventHandler
      */
     public static function onAdminLoadFooter()
     {
-        if (\QUI::getUserBySession()->getAttribute('quiqqer.dashboard.isDisabled')) {
+        if (QUI::getUserBySession()->getAttribute('quiqqer.dashboard.isDisabled')) {
             return;
         }
 
