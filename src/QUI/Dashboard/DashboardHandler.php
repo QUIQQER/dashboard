@@ -179,6 +179,7 @@ class DashboardHandler extends Singleton
         foreach ($cards as $card) {
             // Default values
             $values = [
+                'card'     => $card,
                 'enabled'  => true,
                 'priority' => null
             ];
@@ -196,7 +197,7 @@ class DashboardHandler extends Singleton
                 }
             }
 
-            $result[$card] = $values;
+            $result[] = $values;
         }
 
         return $result;
