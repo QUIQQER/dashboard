@@ -81,13 +81,15 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     self.Cards = [];
 
                     // its empty
-                    if (typeOf(cards) !== 'object') {
+                    if (typeOf(cards) !== 'array') {
                         resolve(self.getCards());
                         return;
                     }
 
                     // card-names/-types to require the controls
-                    var cardNames = Object.getOwnPropertyNames(cards);
+                    var cardNames = cards.map(function (card) {
+                        return card.card;
+                    });
 
                     require(cardNames, function () {
                         self.Cards = [];
@@ -97,7 +99,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
                             // The card's settings are stored in the cards array (result from the Ajax-call).
                             // If a priority was set via the user's profile, we have to set it here.
-                            Card.setPriority(cards[cardNames[i]].priority);
+                            Card.setPriority(cards[i].priority);
 
                             self.Cards.push(Card);
                         }

@@ -21,7 +21,8 @@ QUI::$Ajax->registerFunction(
                     continue;
                 }
 
-                $result[$card] = [
+                $result[] = [
+                    'card'     => $card,
                     'enabled'  => true,
                     'priority' => null
                 ];

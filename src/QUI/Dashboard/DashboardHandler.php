@@ -125,28 +125,21 @@ class DashboardHandler extends Singleton
     }
 
     /**
-     * Returns all cards in the system.
+     * Returns all general cards in the system.
      * The array might contain further arrays. These arrays indicate rows.
      *
      * @return array
      */
-    public function getAllRegisteredCards(): array
+    public function getAllGeneralCards(): array
     {
         if (!empty($this->cardList)) {
             return $this->cardList;
         }
 
-        $cards    = [];
-        $provider = $this->getProvider();
+        $Provider       = new DashboardProvider();
+        $this->cardList = $Provider->getCards();
 
-        // initialize the instances
-        foreach ($provider as $Provider) {
-            $cards = \array_merge($Provider->getCards(), $cards);
-        }
-
-        $this->cardList = $cards;
-
-        return $cards;
+        return $this->cardList;
     }
 
     /**
@@ -171,7 +164,7 @@ class DashboardHandler extends Singleton
      */
     public function getCardsWithSettings(): array
     {
-        $cards    = $this->getAllRegisteredCards();
+        $cards    = $this->getAllGeneralCards();
         $settings = [];
 
         $cardSettingsAttribute = QUI::getUserBySession()->getAttribute('quiqqer.dashboard.cardSettings');
@@ -186,6 +179,7 @@ class DashboardHandler extends Singleton
         foreach ($cards as $card) {
             // Default values
             $values = [
+                'card'     => $card,
                 'enabled'  => true,
                 'priority' => null
             ];
@@ -203,7 +197,7 @@ class DashboardHandler extends Singleton
                 }
             }
 
-            $result[$card] = $values;
+            $result[] = $values;
         }
 
         return $result;
