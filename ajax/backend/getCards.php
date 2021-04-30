@@ -15,6 +15,7 @@ QUI::$Ajax->registerFunction(
         if (!empty($dashboardId) || $dashboardId === 0) {
             $cards  = $Handler->getCardsFromBoard($dashboardId);
             $result = [];
+            $i = 0;
 
             foreach ($cards as $card) {
                 if (empty($card)) {
@@ -24,8 +25,10 @@ QUI::$Ajax->registerFunction(
                 $result[] = [
                     'card'     => $card,
                     'enabled'  => true,
-                    'priority' => null
+                    'priority' => $i
                 ];
+
+                $i++;
             }
 
             return $result;
