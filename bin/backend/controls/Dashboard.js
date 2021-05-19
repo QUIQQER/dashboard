@@ -50,6 +50,24 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         },
 
         /**
+         * @return {*}
+         */
+        getToolTipText: function () {
+            var self = this;
+
+            return new Promise(function (resolve) {
+                var Title = self.$Frame.contentWindow.document.getElement('.page-title');
+
+                if (Title) {
+                    resolve(Title.get('text').trim());
+                    return;
+                }
+
+                resolve('Dashboard');
+            });
+        },
+
+        /**
          * event: on create
          */
         $onCreate: function () {
