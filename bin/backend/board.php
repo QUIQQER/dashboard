@@ -128,7 +128,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
 
 
     <?php echo QUI\FontAwesome\EventHandler::fontawesome(false, false); ?>
-    <script src="<?php echo URL_OPT_DIR; ?>bin/requirejs/require.js"></script>
+    <script src="<?php echo URL_OPT_DIR; ?>bin/quiqqer-asset/requirejs/requirejs/require.js"></script>
     <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-core.js"></script>
     <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-more.js"></script>
     <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/moofx.js"></script>
@@ -154,11 +154,11 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                 "URL_OPT_DIR": "<?php echo URL_OPT_DIR; ?>",
                 "URL_BIN_DIR": "<?php echo URL_BIN_DIR; ?>",
 
-                "Mustache"          : URL_OPT_DIR + 'bin/mustache/mustache.min',
-                "URI"               : URL_OPT_DIR + 'bin/urijs/src/URI',
-                'IPv6'              : URL_OPT_DIR + 'bin/urijs/src/IPv6',
-                'punycode'          : URL_OPT_DIR + 'bin/urijs/src/punycode',
-                'SecondLevelDomains': URL_OPT_DIR + 'bin/urijs/src/SecondLevelDomains'
+                "Mustache"          : URL_OPT_DIR + 'bin/quiqqer-asset/mustache/mustache/mustache.min',
+                "URI"               : URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/URI',
+                'IPv6'              : URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/IPv6',
+                'punycode'          : URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/punycode',
+                'SecondLevelDomains': URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/SecondLevelDomains',
             },
             waitSeconds: 0,
             catchError : true,
