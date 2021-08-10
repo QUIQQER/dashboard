@@ -24,7 +24,8 @@
     "quiqqer\/quiqqer": "^1.6|dev-master|dev-dev",
     "quiqqer\/cron": "^1.7.2| dev-master|dev-dev",
     "quiqqer\/utils": "^1.16.1|dev-master|dev-dev",
-    "quiqqer\/qui": "^1.1.1|*@dev",
+    "quiqqer\/qui": "^1.1.1|dev-master|dev-dev",
+    "quiqqer\/login-logger": "^1.1|dev-master|dev-dev",
     "quiqqer\/requirements": "^2.0.3|dev-master|dev-dev",
     "quiqqer-asset\/chart.js": "2.8.*"
   },
