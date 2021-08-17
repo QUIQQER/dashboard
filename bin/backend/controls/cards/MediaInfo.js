@@ -170,7 +170,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                     return;
                 }
 
-                require([URL_OPT_DIR + 'bin/chart.js/dist/Chart.js'], function (Chart) {
+                require([URL_OPT_DIR + 'bin/quiqqer-asset/chart.js/chart.js/dist/Chart.js'], function (Chart) {
                     if (self.$MediaInfoChart !== undefined) {
                         self.$MediaInfoChart.destroy();
                         self.$MediaInfoChart = undefined;
