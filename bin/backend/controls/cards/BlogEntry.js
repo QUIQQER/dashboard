@@ -33,7 +33,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
             this.setAttributes({
                 id      : 'quiqqer-dashboard-card-newest-blog-entry',
                 content : '',
-                priority: 85
+                priority: 90
             });
 
             this.addEvents({
