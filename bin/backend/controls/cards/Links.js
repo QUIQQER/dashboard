@@ -53,7 +53,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 90
+                priority: 85
             });
 
             this.addEvents({

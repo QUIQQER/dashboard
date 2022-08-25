@@ -33,7 +33,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
             this.setAttributes({
                 id      : 'quiqqer-dashboard-card-newest-blog-entry',
                 content : '',
-                priority: 85
+                priority: 90
             });
 
             this.addEvents({
@@ -45,8 +45,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
          * event: on create
          */
         $onCreate: function () {
-            this.getElm().classList.add('col-sm-6');
-            this.getElm().classList.add('col-lg-6');
+            this.getElm().classList.add('col-sm-4');
+            this.getElm().classList.add('col-lg-4');
 
             this.setContent(
                 '<img id="blog-entry-image" src=""/>' +
