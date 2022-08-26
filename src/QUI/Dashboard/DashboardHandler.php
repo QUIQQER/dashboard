@@ -23,7 +23,7 @@ class DashboardHandler extends Singleton
     /**
      * @var array
      */
-    protected $cardList = [];
+    protected array $cardList = [];
 
     /**
      * @var array
