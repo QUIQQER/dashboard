@@ -98,7 +98,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
                 var cardSettings = settings[cardType];
 
                 var settingHtml = Mustache.render(templateSetting, {
-                    type     : cardType,
+                    type     : cardSettings.card,
                     isEnabled: {
                         label: isEnabledLabel,
                         value: cardSettings.enabled
