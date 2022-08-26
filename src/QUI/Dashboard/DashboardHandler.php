@@ -26,6 +26,11 @@ class DashboardHandler extends Singleton
     protected $cardList = [];
 
     /**
+     * @var array
+     */
+    protected array $providers = [];
+
+    /**
      * Returns the cards for the current user's dashboard.
      * Only returns his enabled cards.
      *
@@ -69,6 +74,10 @@ class DashboardHandler extends Singleton
      */
     protected function getProviders(): array
     {
+        if (!empty($this->providers)) {
+            return $this->providers;
+        }
+
         try {
             $dashboardProviders = QUI\Cache\Manager::get(self::CACHE_KEY_DASHBOARD_PROVIDERS);
         } catch (QUI\Cache\Exception $Exception) {
@@ -121,7 +130,9 @@ class DashboardHandler extends Singleton
             }
         }
 
-        return $provider;
+        $this->providers = $provider;
+
+        return $this->providers;
     }
 
     /**
