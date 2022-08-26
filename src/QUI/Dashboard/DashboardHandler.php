@@ -147,8 +147,15 @@ class DashboardHandler extends Singleton
             return $this->cardList;
         }
 
-        $Provider       = new DashboardProvider();
-        $this->cardList = $Provider->getCards();
+        $cards = [];
+
+        $providers = $this->getProviders();
+
+        foreach ($providers as $Provider) {
+            $cards = array_merge($Provider->getCards(), $cards);
+        }
+
+        $this->cardList = $cards;
 
         return $this->cardList;
     }
