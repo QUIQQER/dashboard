@@ -6,53 +6,53 @@
             <en><![CDATA[QUIQQER - Dashboard]]></en>
         </locale>
         <locale name="package.description">
-            <de>
-                <![CDATA[Erweitert QUIQQER um eine Dashboard Übersicht. Alle wichtigen Informationen auf einen Blick.]]></de>
-            <en><![CDATA[Extends QUIQQER with a dashboard view. All important information at a glance]]></en>
+            <de><![CDATA[Erweitert die QUIQQER Administration um ein Dashboard. Alle wichtigen Informationen auf einen Blick.]]></de>
+            <en><![CDATA[Extends the QUIQQER administration with a dashboard. All important information at a glance.]]></en>
         </locale>
         <locale name="package.description.big">
             <de><![CDATA[
                 Das Dashboard von QUIQQER bietet dem Benutzer einen ersten Überblick über alle wichtigen Informationen von seinem QUIQQER System.
-                Darüberhinaus bietet das Dashboard eine API für Module an.
-                Jedes Modul / Plugin hat so die Möglichkeit das Dashboard zu erweitern und dem Benutzer weitere Informationen anzubieten.
+                Darüber hinaus bietet das Dashboard eine API für Module an.
+                Jedes Modul/Plugin hat die Möglichkeit das Dashboard zu erweitern und dem Benutzer weitere Informationen anzuzeigen.
 
                 Grundfunktionen:
 
-                - Wie viele Seiten im System vorhanden sind
-                - Wie viele Benutzer im System existieren
-                - Wie viele Gruppen im System existieren
-                - Wie viele Projekte im System existieren
+                - Anzahl Seiten im System
+                - Anzahl Benutzer im System
+                - Anzahl Gruppen im System
+                - Anzahl Projekte im System
+                - Status der Systemgesundheit
 
-                - Die neusten News rund um QUIQQER
+                - Neuste QUIQQER Blogbeiträge
                 - Nützliche Links
                 - Übersicht über den Medienbereich
 
-                - Die letzten Änderunge
+                - Die letzten Änderungen an Seiten
                 - Generelle System Informationen
-                - Generelle Filesystem Informationen
-                - bersicht der Cron Ausführungen
+                - Generelle Dateisystem Informationen
+                - Übersicht der Cron Ausführungen
             ]]></de>
             <en><![CDATA[
-                The QUIQQER dashboard provides the user with a first overview of all important information from his QUIQQER system.
-                In addition, the dashboard provides an API for modules.
-                Each module / plugin has the possibility to extend the dashboard and provide the user with further information.
+                The QUIQQER dashboard offers the user a first overview of all important information of his QUIQQER system.
+                Furthermore, the dashboard offers an API for modules.
+                Each module/plugin has the possibility to extend the dashboard and display more information to the user.
 
-                Basic features:
+                Basic functions:
 
-                - How many pages are created in the system
-                - How many users exist in the system
-                - How many groups exist in the system
-                - How many projects exist in the system
+                - Number of pages in the system
+                - Number of users in the system
+                - Number of groups in the system
+                - Number of projects in the system
+                - Status of system health
 
-                - The latest news about QUIQQER
+                - Latest QUIQQER blog posts
                 - Useful links
-                - Overview of the media area
+                - Overview of the media section
 
-                - The latest changes
-                - General System Information
+                - Last changes on pages
+                - General system information
                 - General file system information
-                - Overview of Cron designs
-
+                - Overview of Cron executions
             ]]></en>
         </locale>
 
@@ -63,11 +63,6 @@
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="js">
-        <locale name="button.refresh.title">
-            <de><![CDATA[Inhalte des Dashboards aktualisieren.]]></de>
-            <en><![CDATA[Refresh dashboard's content.]]></en>
-        </locale>
-
         <!-- region Bookmarks -->
         <locale name="dashboard.bookmarks">
             <de><![CDATA[Lesezeichen]]></de>
@@ -115,9 +110,8 @@
         </locale>
 
         <locale name="dashboard.stats.systemhealth.help">
-            <de>
-                <![CDATA[Um (korrekte) Werte zu erhalten müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
-            <en><![CDATA[To get (correct) values you have to add and execute the CRON 'Perform system check'.]]></en>
+            <de><![CDATA[Um (korrekte) Werte zu erhalten, müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
+            <en><![CDATA[To get (correct) values, you have to add and execute the CRON 'Perform system check'.]]></en>
         </locale>
         <!-- endregion -->
 
@@ -148,8 +142,7 @@
             <en><![CDATA[Folder Count]]></en>
         </locale>
         <locale name="dashboard.media.info.folder.unavailable">
-            <de>
-                <![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
+            <de><![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
             <en><![CDATA[This folder's size is not available. Change this by running the "Media Folder"-CRON.]]></en>
         </locale>
         <locale name="dashboard.media.info.folder.size">
@@ -157,8 +150,8 @@
             <en><![CDATA[Media Folder Size]]></en>
         </locale>
         <locale name="dashboard.media.info.cache.folder.size">
-            <de><![CDATA[Größe des Medien Cache Ordners]]></de>
-            <en><![CDATA[Media Cache Folder Size]]></en>
+            <de><![CDATA[Größe des Medien-Cache Ordners]]></de>
+            <en><![CDATA[Media-Cache Folder Size]]></en>
         </locale>
         <!-- endregion -->
 
@@ -173,7 +166,7 @@
         </locale>
         <locale name="dashboard.system.info.modules.count">
             <de><![CDATA[Anzahl Module]]></de>
-            <en><![CDATA[Amount of modules]]></en>
+            <en><![CDATA[Number of modules]]></en>
         </locale>
         <locale name="dashboard.system.info.devmode.active">
             <de><![CDATA[Entwicklermodus]]></de>
@@ -220,9 +213,8 @@
         </locale>
 
         <locale name="dashboard.filesystem.info.unavailable">
-            <de>
-                <![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
-            <en><![CDATA[This value is not available. Change this by running the corresponding CRON.]]></en>
+            <de><![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
+            <en><![CDATA[This value is not available. Change this, by running the corresponding CRON.]]></en>
         </locale>
 
         <locale name="dashboard.filesystem.info.size.installation">
@@ -247,7 +239,7 @@
 
         <locale name="dashboard.filesystem.info.count.files">
             <de><![CDATA[Gesamtzahl Dateien]]></de>
-            <en><![CDATA[Total file count]]></en>
+            <en><![CDATA[Total number of files]]></en>
         </locale>
         <!-- endregion -->
 
@@ -399,7 +391,7 @@
 
         <locale name="control.managecards.dialog.priority.placeholder">
             <de>Standardwert der Karte</de>
-            <en>Card's Default</en>
+            <en>Card's Default Value</en>
         </locale>
     </groups>
 
@@ -414,8 +406,7 @@
             <en><![CDATA[Disabled]]></en>
         </locale>
         <locale name="user.profile.isDisabled.description">
-            <de>
-                <![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
+            <de><![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
             <en><![CDATA[You need to close the dashboard and/or reload the page, for changes to take effect.]]></en>
         </locale>
 
@@ -424,10 +415,8 @@
             <en><![CDATA[Cards]]></en>
         </locale>
         <locale name="user.profile.cardSettings.description">
-            <de>
-                <![CDATA[Klicken Sie auf die Schaltfläche oben, um Dashboard-Karten zu sortieren oder zu deaktivieren.]]></de>
+            <de><![CDATA[Klicken Sie auf die Schaltfläche oben, um Dashboard-Karten zu sortieren oder zu deaktivieren.]]></de>
             <en><![CDATA[Click the button above to sort and/or disable dashboard cards.]]></en>
         </locale>
     </groups>
-
 </locales>
