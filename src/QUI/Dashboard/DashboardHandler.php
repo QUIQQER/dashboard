@@ -115,7 +115,7 @@ class DashboardHandler extends Singleton
         }
 
         // initialize the instances
-        $provider = [];
+        $providers = [];
 
         foreach ($dashboardProviders as $dashboardProvider) {
             try {
@@ -123,14 +123,14 @@ class DashboardHandler extends Singleton
                 $Provider = new $dashboardProvider();
 
                 if ($Provider instanceof DashboardProviderInterface) {
-                    $provider[] = $Provider;
+                    $providers[] = $Provider;
                 }
             } catch (\Exception $Exception) {
                 QUI\System\Log::writeException($Exception);
             }
         }
 
-        $this->providers = $provider;
+        $this->providers = $providers;
 
         return $this->providers;
     }
@@ -161,9 +161,9 @@ class DashboardHandler extends Singleton
     public function getBoards(): array
     {
         $boards   = [];
-        $provider = $this->getProviders();
+        $providers = $this->getProviders();
 
-        foreach ($provider as $Provider) {
+        foreach ($providers as $Provider) {
             $boards = \array_merge($Provider->getBoards(), $boards);
         }
 
