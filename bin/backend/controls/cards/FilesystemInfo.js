@@ -46,7 +46,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 }),
                 footer  : false,
                 styles  : false,
-                priority: 60
+                priority: 45
             });
 
             this.addEvents({
