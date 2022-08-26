@@ -8,6 +8,8 @@ namespace QUI\Dashboard;
 
 use QUI;
 use QUI\Utils\Singleton;
+use function array_filter;
+use function array_values;
 
 /**
  * Class DashboardHandler
@@ -43,9 +45,12 @@ class DashboardHandler extends Singleton
     public function getCardsForUsersDashboard(): array
     {
         $cards = $this->getCardsWithSettings();
-        $cards = \array_filter($cards, function ($card) {
+
+        // array_values is required to get an array with index starting at zero and increasing sequentially.
+        // Calling just array_filter removed indexes which turned the array to an object when transported through JSON.
+        $cards = array_values(array_filter($cards, function ($card) {
             return $card['enabled'];
-        });
+        }));
 
         return $cards;
     }

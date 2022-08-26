@@ -94,11 +94,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
                 priorityLabel       = QUILocale.get(lg, 'control.managecards.dialog.priority.label'),
                 priorityPlaceholder = QUILocale.get(lg, 'control.managecards.dialog.priority.placeholder');
 
-            Object.getOwnPropertyNames(settings).forEach(function (cardType) {
-                var cardSettings = settings[cardType];
-
+            settings.forEach(function (cardSettings) {
                 var settingHtml = Mustache.render(templateSetting, {
-                    type     : cardType,
+                    type     : cardSettings.card,
                     isEnabled: {
                         label: isEnabledLabel,
                         value: cardSettings.enabled
