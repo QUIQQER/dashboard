@@ -28,7 +28,6 @@
                 - Übersicht über den Medienbereich
 
                 - Die letzten Änderunge
-                - Die letzten Logins
                 - Generelle System Informationen
                 - Generelle Filesystem Informationen
                 - bersicht der Cron Ausführungen
@@ -50,7 +49,6 @@
                 - Overview of the media area
 
                 - The latest changes
-                - The last logins
                 - General System Information
                 - General file system information
                 - Overview of Cron designs
@@ -128,13 +126,6 @@
             <de><![CDATA[Zuletzt geänderte Seiten]]></de>
             <en><![CDATA[Latest page changes]]></en>
         </locale>
-
-        <!-- region Latest Logins -->
-        <locale name="dashboard.logins">
-            <de><![CDATA[Letzte Benutzeranmeldungen]]></de>
-            <en><![CDATA[Last User Logins]]></en>
-        </locale>
-        <!-- endregion -->
 
         <!-- region Messages -->
         <locale name="dashboard.messages">
