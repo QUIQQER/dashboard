@@ -16,13 +16,14 @@ interface DashboardProviderInterface
     /**
      * Returns the cards that should be added to the dashboard.
      *
-     * The returned values has to be an array of strings.
+     * The returned value has to be an array of strings.
      * Those strings contain the names of JavaScript-Card-Controls.
      * For example: 'package/quiqqer/dashboard/bin/backend/controls/cards/Links'
      *
-     * It is also possible to add add a whole row instead of a single card:
+     * It is also possible to add a whole row instead of a single card:
      * To do this the returned array has to contain another array.
      * This sub-array then contains all the JavaScript-Card-Control names.
+     * The sub-array is interpreted as a contiguous row.
      *
      * @return array
      * @example see QUI\Dashboard\DashboardProvider
