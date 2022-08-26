@@ -33,7 +33,6 @@ Contribute
 - Project: https://dev.quiqqer.com/quiqqer/dashboard
 - Issue Tracker: https://dev.quiqqer.com/quiqqer/dashboard/issues
 - Source Code: https://dev.quiqqer.com/quiqqer/dashboard/tree/master
-- Community: https://community.quiqqer.com
 - Wiki: https://dev.quiqqer.com/quiqqer/dashboard/wikis/home
 
 

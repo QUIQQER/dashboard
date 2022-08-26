@@ -46,10 +46,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
                     packagesUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.packages.url'),
 
 
-                    social: QUILocale.get(lg, 'dashboard.links.social'),
-
-                    community   : QUILocale.get(lg, 'dashboard.links.social.community'),
-                    communityUrl: QUILocale.get(lg, 'dashboard.links.social.community.url')
+                    social: QUILocale.get(lg, 'dashboard.links.social')
                 }),
                 footer  : false,
                 styles  : false,

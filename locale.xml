@@ -288,15 +288,6 @@
             <de><![CDATA[QUIQQER Social]]></de>
             <en><![CDATA[QUIQQER Social]]></en>
         </locale>
-
-        <locale name="dashboard.links.social.community">
-            <de><![CDATA[Community]]></de>
-            <en><![CDATA[Community]]></en>
-        </locale>
-        <locale name="dashboard.links.social.community.url">
-            <de><![CDATA[https://community.quiqqer.de]]></de>
-            <en><![CDATA[https://community.quiqqer.com]]></en>
-        </locale>
         <!-- endregion -->
 
 
