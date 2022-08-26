@@ -67,7 +67,7 @@ class DashboardHandler extends Singleton
      *
      * @return DashboardProviderInterface[]
      */
-    protected function getProvider(): array
+    protected function getProviders(): array
     {
         try {
             $dashboardProviders = QUI\Cache\Manager::get(self::CACHE_KEY_DASHBOARD_PROVIDERS);
@@ -150,7 +150,7 @@ class DashboardHandler extends Singleton
     public function getBoards(): array
     {
         $boards   = [];
-        $provider = $this->getProvider();
+        $provider = $this->getProviders();
 
         foreach ($provider as $Provider) {
             $boards = \array_merge($Provider->getBoards(), $boards);
