@@ -45,18 +45,22 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         create: function () {
             this.$Elm = new Element('div');
 
+            if (this.$uid === null || !this.$uid) {
+                this.$uid = String.uniqueID();
+            }
+
             this.$Elm.set({
-                'data-qui'  : this.getType(),
-                'data-quiid': this.getId(),
-                html        : '' +
-                              '<div class="card">' +
-                              '   <header class="card-header">' +
-                              '       <span class="card-icon"></span>' +
-                              '       <span class="card-title"></span>' +
-                              '   </header>' +
-                              '   <div class="card-body"></div>' +
-                              '   <div class="card-footer"></div>' +
-                              '</div>'
+                'data-qui'   : this.getType(),
+                'data-qui-id': this.$uid,
+                html         : '' +
+                               '<div class="card">' +
+                               '   <header class="card-header">' +
+                               '       <span class="card-icon"></span>' +
+                               '       <span class="card-title"></span>' +
+                               '   </header>' +
+                               '   <div class="card-body"></div>' +
+                               '   <div class="card-footer"></div>' +
+                               '</div>'
             });
 
             this.$Icon = this.$Elm.getElement('.card-icon');
