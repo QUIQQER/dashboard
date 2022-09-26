@@ -20,7 +20,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         Type   : 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
 
         options: {
-            id      : false,
             icon    : false,
             title   : false,
             content : false,
@@ -45,22 +44,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         create: function () {
             this.$Elm = new Element('div');
 
-            if (this.$uid === null || !this.$uid) {
-                this.$uid = String.uniqueID();
-            }
-
             this.$Elm.set({
-                'data-qui'   : this.getType(),
-                'data-qui-id': this.$uid,
-                html         : '' +
-                               '<div class="card">' +
-                               '   <header class="card-header">' +
-                               '       <span class="card-icon"></span>' +
-                               '       <span class="card-title"></span>' +
-                               '   </header>' +
-                               '   <div class="card-body"></div>' +
-                               '   <div class="card-footer"></div>' +
-                               '</div>'
+                'class'     : 'dashboard-card',
+                'data-qui'  : this.getType(),
+                'data-quiid': this.getId(),
+                html        : '' +
+                              '<div class="card">' +
+                              '   <header class="card-header">' +
+                              '       <span class="card-icon"></span>' +
+                              '       <span class="card-title"></span>' +
+                              '   </header>' +
+                              '   <div class="card-body"></div>' +
+                              '   <div class="card-footer"></div>' +
+                              '</div>'
             });
 
             this.$Icon = this.$Elm.getElement('.card-icon');
@@ -68,11 +64,6 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
             this.$Content = this.$Elm.getElement('.card-body');
             this.$Header = this.$Elm.getElement('.card-header');
             this.$Footer = this.$Elm.getElement('.card-footer');
-
-
-            if (this.getAttribute('id') !== false) {
-                this.setId(this.getAttribute('id'));
-            }
 
             if (this.getAttribute('title') === false) {
                 this.$Header.setStyle('display', 'none');
@@ -121,24 +112,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
          */
         refresh: function () {
             // Should be overwritten by inheriting class
-        },
-
-        /**
-         * Returns the element's id
-         *
-         * @return {string}
-         */
-        getId: function () {
-            return this.getAttribute('id');
-        },
-
-        /**
-         * Set's the element's id
-         *
-         * @param {string} id
-         */
-        setId: function (id) {
-            this.$Elm.set('id', id);
+            return Promise.resolve();
         },
 
         /**
