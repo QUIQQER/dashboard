@@ -33,10 +33,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         initialize: function (options) {
             this.parent(options);
 
-            this.$Title   = null;
-            this.$Icon    = null;
+            this.$Title = null;
+            this.$Icon = null;
             this.$Content = null;
-            this.$Footer  = null;
+            this.$Footer = null;
         },
 
         /**
@@ -45,28 +45,25 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
         create: function () {
             this.$Elm = new Element('div');
 
-            //this.$Elm.addClass('quiqqer-dashboard-card');
-            //this.$Elm.addClass('card');
-            //this.$Elm.addClass('col-sm-6');
-            //this.$Elm.addClass('col-lg-3');
-
             this.$Elm.set({
-                html: '' +
-                    '<div class="card">' +
-                    '   <header class="card-header">' +
-                    '       <span class="card-icon"></span>' +
-                    '       <span class="card-title"></span>' +
-                    '   </header>' +
-                    '   <div class="card-body"></div>' +
-                    '   <div class="card-footer"></div>' +
-                    '</div>'
+                'data-qui'  : this.getType(),
+                'data-quiid': this.getId(),
+                html        : '' +
+                              '<div class="card">' +
+                              '   <header class="card-header">' +
+                              '       <span class="card-icon"></span>' +
+                              '       <span class="card-title"></span>' +
+                              '   </header>' +
+                              '   <div class="card-body"></div>' +
+                              '   <div class="card-footer"></div>' +
+                              '</div>'
             });
 
-            this.$Icon    = this.$Elm.getElement('.card-icon');
-            this.$Title   = this.$Elm.getElement('.card-title');
+            this.$Icon = this.$Elm.getElement('.card-icon');
+            this.$Title = this.$Elm.getElement('.card-title');
             this.$Content = this.$Elm.getElement('.card-body');
-            this.$Header  = this.$Elm.getElement('.card-header');
-            this.$Footer  = this.$Elm.getElement('.card-footer');
+            this.$Header = this.$Elm.getElement('.card-header');
+            this.$Footer = this.$Elm.getElement('.card-footer');
 
 
             if (this.getAttribute('id') !== false) {
