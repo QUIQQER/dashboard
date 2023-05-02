@@ -4,21 +4,16 @@
  */
 define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
+    'qui/QUI',
     'qui/controls/buttons/Button',
     'qui/controls/desktop/Panel',
 
     'Ajax',
-    'Locale',
-    'Mustache',
-
-    'text!package/quiqqer/dashboard/bin/backend/controls/Dashboard.html',
 
     'css!package/quiqqer/dashboard/bin/backend/controls/Dashboard.css'
 
-], function (QUIButton, QUIPanel, QUIAjax, QUILocale, Mustache, template) {
+], function (QUI, QUIButton, QUIPanel, QUIAjax) {
     "use strict";
-
-    var lg = 'quiqqer/dashboard';
 
     return new Class({
 
@@ -29,6 +24,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
         Binds: [
             '$onCreate',
+            '$onInject',
             'refresh'
         ],
 
@@ -45,7 +41,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.setAttribute('taskNotClosable', true);
 
             this.addEvents({
-                onCreate: this.$onCreate
+                onCreate: this.$onCreate,
+                onInject: this.$onInject
             });
         },
 
@@ -53,10 +50,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          * @return {*}
          */
         getToolTipText: function () {
-            var self = this;
+            const self = this;
 
             return new Promise(function (resolve) {
-                var Title = self.$Frame.contentWindow.document.getElement('.page-title');
+                const Title = self.$Frame.contentWindow.document.getElement('.page-title');
 
                 if (Title) {
                     resolve(Title.get('text').trim());
@@ -88,11 +85,34 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getElm().getElement('.qui-panel-header').setStyle('background-color', '#f4f6fa');
         },
 
+        $onInject: function () {
+            const TaskNode = this.getElm().getParent('.qui-taskpanel');
+
+            if (!TaskNode) {
+                return;
+            }
+
+            const Tasks = QUI.Controls.getById(TaskNode.get('data-quiid'));
+            const Taskbar = Tasks.getTaskbar();
+            
+            setTimeout(() => {
+                Taskbar.getChildren().forEach((Task) => {
+                    if (Task.getInstance().getId() === this.getId()) {
+                        return;
+                    }
+
+                    if (Task.getInstance().getType() === 'package/quiqqer/dashboard/bin/backend/controls/Dashboard') {
+                        Task.getInstance().destroy();
+                    }
+                });
+            }, 100);
+        },
+
         /**
          * Refreshes the dashboard's content
          */
         refresh: function () {
-            var self = this;
+            const self = this;
 
             return new Promise(function (resolve) {
                 QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCards', function (cards) {
@@ -105,15 +125,15 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     }
 
                     // card-names/-types to require the controls
-                    var cardNames = cards.map(function (card) {
+                    const cardNames = cards.map(function (card) {
                         return card.card;
                     });
 
                     require(cardNames, function () {
                         self.Cards = [];
 
-                        for (var i = 0; i < arguments.length; i++) {
-                            var Card = new arguments[i]();
+                        for (let i = 0; i < arguments.length; i++) {
+                            const Card = new arguments[i]();
 
                             // The card's settings are stored in the cards array (result from the Ajax-call).
                             // If a priority was set via the user's profile, we have to set it here.
@@ -139,7 +159,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
          * Resets and displays all cards
          */
         displayCards: function () {
-            var self = this;
+            const self = this;
 
             self.getContent().empty();
 
@@ -155,7 +175,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         sortCards: function () {
             this.getCards().sort(function (CardA, CardB) {
                 // Sort by priority
-                var comparisonResult = CardB.getPriority() - CardA.getPriority();
+                let comparisonResult = CardB.getPriority() - CardA.getPriority();
 
                 // If priority is equal sort by type/name
                 if (comparisonResult === 0) {
