@@ -11,8 +11,8 @@ define('package/quiqqer/dashboard/bin/backend/utils/load', [
 ], function (QUI, Dashboard) {
     "use strict";
 
-    var run = function () {
-        var panels = QUI.Controls.getByType(
+    const run = function () {
+        const panels = QUI.Controls.getByType(
             'package/quiqqer/dashboard/bin/backend/controls/Dashboard'
         );
 
@@ -21,14 +21,14 @@ define('package/quiqqer/dashboard/bin/backend/utils/load', [
             return;
         }
 
-        var tasks = QUI.Controls.getByType('qui/controls/desktop/Tasks');
+        const tasks = QUI.Controls.getByType('qui/controls/desktop/Tasks');
 
         if (!tasks.length) {
             return;
         }
 
-        var i, len;
-        var Tasks = null;
+        let i, len;
+        let Tasks = null;
 
         for (i = 0, len = tasks.length; i < len; i++) {
             if (tasks[i].getElm().getParent('body')) {
@@ -41,7 +41,7 @@ define('package/quiqqer/dashboard/bin/backend/utils/load', [
             return;
         }
 
-        var Board = new Dashboard();
+        const Board = new Dashboard();
 
         Tasks.appendChild(Board, 'top');
 

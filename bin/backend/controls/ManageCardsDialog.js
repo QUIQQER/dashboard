@@ -17,7 +17,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
 ], function (Grid, QUIConfirmWindow, QUIAjax, QUILocale, Mustache, templateSetting) {
     "use strict";
 
-    var lg = 'quiqqer/dashboard';
+    const lg = 'quiqqer/dashboard';
 
     return new Class({
         Extends: QUIConfirmWindow,
@@ -56,7 +56,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         $onOpen: function () {
             this.Loader.show();
 
-            var Content = this.getContent();
+            const Content = this.getContent();
             Content.empty();
 
             this.$Form = new Element('form');
@@ -66,7 +66,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         },
 
         buildContent: function () {
-            var cardSettings = this.cardSettings;
+            const cardSettings = this.cardSettings;
 
             if (typeof cardSettings === 'object') {
                 this._buildContentFromLocalSettings(cardSettings);
@@ -77,7 +77,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         },
 
         _buildContentFromServerSettings: function () {
-            var self = this;
+            const self = this;
 
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getCardSettings', function (settings) {
                 self._buildContentFromLocalSettings(settings);
@@ -88,14 +88,14 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         },
 
         _buildContentFromLocalSettings: function (settings) {
-            var self = this;
+            const self = this;
 
-            var isEnabledLabel      = QUILocale.get(lg, 'control.managecards.dialog.enabled.label'),
-                priorityLabel       = QUILocale.get(lg, 'control.managecards.dialog.priority.label'),
-                priorityPlaceholder = QUILocale.get(lg, 'control.managecards.dialog.priority.placeholder');
+            const isEnabledLabel      = QUILocale.get(lg, 'control.managecards.dialog.enabled.label'),
+                  priorityLabel       = QUILocale.get(lg, 'control.managecards.dialog.priority.label'),
+                  priorityPlaceholder = QUILocale.get(lg, 'control.managecards.dialog.priority.placeholder');
 
             settings.forEach(function (cardSettings) {
-                var settingHtml = Mustache.render(templateSetting, {
+                const settingHtml = Mustache.render(templateSetting, {
                     type     : cardSettings.card,
                     isEnabled: {
                         label: isEnabledLabel,
@@ -108,7 +108,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
                     }
                 });
 
-                var Setting = new Element('div', {
+                const Setting = new Element('div', {
                     html: settingHtml
                 });
 
@@ -119,11 +119,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         },
 
         getValuesFromForm: function () {
-            var types = this.$Form.getElements('fieldset');
+            const types = this.$Form.getElements('fieldset');
 
-            var result = {};
+            const result = {};
             types.forEach(function (fieldset) {
-                var type = fieldset.get('data-type');
+                const type = fieldset.get('data-type');
                 result[type] = {};
                 result[type].enabled = fieldset.getElement('input[name="enabled"]').checked;
                 result[type].priority = fieldset.getElement('input[name="priority"]').value;

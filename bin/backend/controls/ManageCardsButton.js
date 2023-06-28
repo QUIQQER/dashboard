@@ -13,7 +13,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton', [
 ], function (QUIButton, ManageCardsDialog, QUILocale) {
     "use strict";
 
-    var lg = 'quiqqer/dashboard';
+    const lg = 'quiqqer/dashboard';
 
     return new Class({
 
@@ -54,16 +54,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton', [
          * event: on create
          */
         $onClick: function () {
-            var self = this;
+            const self = this;
 
-            var CardDialog = new ManageCardsDialog({
+            const CardDialog = new ManageCardsDialog({
                 // tempData is empty when the dialog is opened for the first time -> queries settings from the server
                 // More information about why tempData is used can be found where tempData is defined
                 cardSettings: self.tempData
             });
 
             CardDialog.addEvent('onSubmit', function () {
-                var valuesFromForm = CardDialog.getValuesFromForm();
+                const valuesFromForm = CardDialog.getValuesFromForm();
 
                 self.$Input.value = JSON.encode(valuesFromForm);
 

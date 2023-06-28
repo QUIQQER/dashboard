@@ -20,7 +20,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 ], function (QUIAjax, QUILocale, Mustache, ColorUtil, DateUtil, MathUtil, ProjectSelect, QUICard, content) {
     "use strict";
 
-    var lg = 'quiqqer/dashboard';
+    const lg = 'quiqqer/dashboard';
 
     return new Class({
 
@@ -63,7 +63,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
             this.getElm().classList.add('col-sm-6');
             this.getElm().classList.add('col-lg-6');
 
-            var ProjectSelectContainer = new Element('div', {
+            const ProjectSelectContainer = new Element('div', {
                 'class': 'media-info-project-select'
             });
 
@@ -91,7 +91,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
         },
 
         displayProject: function (projectName) {
-            var self = this;
+            const self = this;
 
             if (projectName === undefined) {
                 projectName = QUIQQER_PROJECT.name;
@@ -104,45 +104,44 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
             // latest user logins
             QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getMediaInfo', function (result) {
-
-                var Card = self.getElm();
+                const Card = self.getElm();
 
                 // We can't use a plain string here because the text contains ' and "
-                var mediaFolderSize = new Element('span', {
+                let mediaFolderSize = new Element('span', {
                     title: QUILocale.get(lg, 'dashboard.media.info.folder.unavailable'),
                     html : '–'
                 });
 
-                var mediaCacheFolderSize = mediaFolderSize.clone();
+                let mediaCacheFolderSize = mediaFolderSize.clone();
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (typeof result.mediaFolderSize === 'number') {
-                    var convertedMediaFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaFolderSize);
-                    mediaFolderSize              = new Element('span', {
+                    const convertedMediaFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaFolderSize);
+                    mediaFolderSize = new Element('span', {
                         html: convertedMediaFolderSize.value + ' ' + convertedMediaFolderSize.unit
                     });
                 }
 
                 // If there is a timestamp calculate how much time passed since then
                 if (result.mediaFolderSizeTimestamp) {
-                    var MediaFolderSizeDate                   = new Date(result.mediaFolderSizeTimestamp * 1000),
-                        timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
+                    const MediaFolderSizeDate                   = new Date(result.mediaFolderSizeTimestamp * 1000),
+                          timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
 
                     mediaFolderSize.innerHTML += "<br><small>(" + timeSinceMediaFolderSizeTimestampText + ")</small>";
                 }
 
                 // If the folder size is present, convert it to Megabytes and round to two fractional digits
                 if (typeof result.mediaCacheFolderSize === 'number') {
-                    var convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
-                    mediaCacheFolderSize         = new Element('span', {
+                    const convertedCacheFolderSize = MathUtil.convertBytesToHumanFileSize(result.mediaCacheFolderSize);
+                    mediaCacheFolderSize = new Element('span', {
                         html: convertedCacheFolderSize.value + ' ' + convertedCacheFolderSize.unit
                     });
                 }
 
                 // If there is a timestamp calculate how much time passed since then
                 if (result.mediaCacheFolderSizeTimestamp) {
-                    var MediaCacheFolderSizeDate          = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
-                        timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
+                    const MediaCacheFolderSizeDate          = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
+                          timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
 
                     mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
@@ -163,38 +162,40 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 Card.getElement('#media-info-cache-folder-size .value').empty();
                 Card.getElement('#media-info-cache-folder-size .value').adopt(mediaCacheFolderSize);
 
-                var ChartContainer = Card.getElement('#chart-container');
+                const ChartContainer = Card.getElement('#chart-container');
 
                 if (!result.filesCount) {
                     ChartContainer.hide();
                     return;
                 }
 
-                require([URL_OPT_DIR + 'bin/quiqqer-asset/chart.js/chart.js/dist/Chart.js'], function (Chart) {
+                require([URL_OPT_DIR + 'bin/quiqqer-asset/chart.js/chart.js/dist/chart.umd.js'], function (Chart) {
                     if (self.$MediaInfoChart !== undefined) {
                         self.$MediaInfoChart.destroy();
                         self.$MediaInfoChart = undefined;
                     }
 
-                    var colors    = [];
-                    var filetypes = Object.keys(result.filetypesCount);
+                    const colors = [];
+                    const filetypes = Object.keys(result.filetypesCount);
 
-                    for (var i = 0; i < filetypes.length; i++) {
+                    for (let i = 0; i < filetypes.length; i++) {
                         colors.push(ColorUtil.getHexColorByHashingString(filetypes[i]));
                     }
 
                     self.$MediaInfoChart = new Chart(Card.getElement('#chart'), {
                         type   : 'pie',
                         data   : {
-                            datasets: [{
-                                // values contain the amounts of different file-types
-                                data: Object.values(result.filetypesCount),
+                            datasets: [
+                                {
+                                    // values contain the amounts of different file-types
+                                    data: Object.values(result.filetypesCount),
 
-                                // Generate a random color for each file-type
-                                backgroundColor: colors,
+                                    // Generate a random color for each file-type
+                                    backgroundColor: colors,
 
-                                borderWidth: 1.5
-                            }],
+                                    borderWidth: 1.5
+                                }
+                            ],
                             // Keys contain the file-types
                             labels: filetypes
                         },
