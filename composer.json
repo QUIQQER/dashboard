@@ -2,7 +2,7 @@
   "name": "quiqqer\/dashboard",
   "type": "quiqqer-module",
   "description": "Dashboard for the QUIQQER Management System",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "Henning Leutz",
