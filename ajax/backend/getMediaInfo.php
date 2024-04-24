@@ -1,12 +1,12 @@
 <?php
 
-use QUI\Projects\Manager;
-use \QUI\Projects\Media\Utils as MediaUtils;
-use QUI\System\Log;
-
 /**
  * This file contains package_quiqqer_dashboard_ajax_backend_getMediaInfo
  */
+
+use QUI\Projects\Manager;
+use QUI\Projects\Media\Utils as MediaUtils;
+use QUI\System\Log;
 
 /**
  * @return array
