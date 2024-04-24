@@ -17,11 +17,11 @@ QUI::$Ajax->registerFunction(
         require_once 'stats/getUserCount.php';
 
         $result = [
-            'getGroupCount'   => '',
-            'getPageCount'    => '',
+            'getGroupCount' => '',
+            'getPageCount' => '',
             'getProjectCount' => '',
             'getSystemHealth' => '',
-            'getUserCount'    => '',
+            'getUserCount' => '',
         ];
 
         // group count

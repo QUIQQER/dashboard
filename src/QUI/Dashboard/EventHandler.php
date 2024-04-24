@@ -18,7 +18,7 @@ class EventHandler
     /**
      * Insert the dashboard
      */
-    public static function onAdminLoadFooter()
+    public static function onAdminLoadFooter(): void
     {
         if (QUI::getUserBySession()->getAttribute('quiqqer.dashboard.isDisabled')) {
             return;

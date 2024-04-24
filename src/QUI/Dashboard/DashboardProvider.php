@@ -6,6 +6,10 @@
 
 namespace QUI\Dashboard;
 
+use QUI;
+
+use function array_merge;
+
 /**
  * Class DashboardProvider
  *
@@ -33,8 +37,8 @@ class DashboardProvider implements DashboardProviderInterface
             'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
         ];
 
-        if (\QUI::getUserBySession()->isSU()) {
-            $cards = \array_merge($cards, [
+        if (QUI::getUserBySession()->isSU()) {
+            $cards = array_merge($cards, [
                 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo',
                 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
