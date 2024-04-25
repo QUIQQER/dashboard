@@ -4,13 +4,13 @@ use QUI\Dashboard\DashboardInterface;
 
 define('QUIQQER_SYSTEM', true);
 
-$packagesDir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+$packagesDir = dirname(__FILE__, 5);
 
-if (!file_exists($packagesDir.'/header.php')) {
+if (!file_exists($packagesDir . '/header.php')) {
     exit;
 }
 
-require $packagesDir.'/header.php';
+require $packagesDir . '/header.php';
 
 $User = QUI::getUserBySession();
 
@@ -23,8 +23,8 @@ if (!QUI\Permissions\Permission::isAdmin($User)) {
 }
 
 // get boards
-$boards      = QUI\Dashboard\DashboardHandler::getInstance()->getBoards();
-$Board       = null;
+$boards = QUI\Dashboard\DashboardHandler::getInstance()->getBoards();
+$Board = null;
 $dashboardId = '';
 
 if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
@@ -129,46 +129,51 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     </style>
 
 
-    <?php echo QUI\FontAwesome\EventHandler::fontawesome(false, false); ?>
-    <script src="<?php echo URL_OPT_DIR; ?>bin/quiqqer-asset/requirejs/requirejs/require.js"></script>
-    <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-core.js"></script>
-    <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-more.js"></script>
-    <script src="<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/moofx.js"></script>
+    <?php
+    echo QUI\FontAwesome\EventHandler::fontawesome(false, false); ?>
+    <script src="<?php
+    echo URL_OPT_DIR; ?>bin/quiqqer-asset/requirejs/requirejs/require.js"></script>
+    <script src="<?php
+    echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-core.js"></script>
+    <script src="<?php
+    echo URL_OPT_DIR; ?>bin/qui/qui/lib/mootools-more.js"></script>
+    <script src="<?php
+    echo URL_OPT_DIR; ?>bin/qui/qui/lib/moofx.js"></script>
 
     <script type="text/javascript">
         /* <![CDATA[ */
         var USER = JSON.parse(JSON.stringify(window.parent.USER));
 
-        var URL_DIR     = '<?php echo URL_DIR; ?>',
+        var URL_DIR = '<?php echo URL_DIR; ?>',
             URL_BIN_DIR = '<?php echo URL_BIN_DIR; ?>',
             URL_OPT_DIR = '<?php echo URL_OPT_DIR; ?>',
             URL_SYS_DIR = '<?php echo URL_SYS_DIR; ?>',
-            LANGUAGE    = null;
+            LANGUAGE = null;
 
         // require config
         require.config({
-            baseUrl    : '<?php echo URL_BIN_DIR; ?>QUI/',
-            paths      : {
-                "package"    : "<?php echo URL_OPT_DIR; ?>",
-                "qui"        : '<?php echo URL_OPT_DIR; ?>bin/qui/qui',
-                "locale"     : '<?php echo URL_VAR_DIR; ?>locale/bin',
-                "Ajax"       : '<?php echo URL_BIN_DIR; ?>QUI/Ajax',
-                "URL_OPT_DIR": "<?php echo URL_OPT_DIR; ?>",
-                "URL_BIN_DIR": "<?php echo URL_BIN_DIR; ?>",
+            baseUrl: '<?php echo URL_BIN_DIR; ?>QUI/',
+            paths: {
+                'package': "<?php echo URL_OPT_DIR; ?>",
+                'qui': '<?php echo URL_OPT_DIR; ?>bin/qui/qui',
+                'locale': '<?php echo URL_VAR_DIR; ?>locale/bin',
+                'Ajax': '<?php echo URL_BIN_DIR; ?>QUI/Ajax',
+                'URL_OPT_DIR': "<?php echo URL_OPT_DIR; ?>",
+                'URL_BIN_DIR': "<?php echo URL_BIN_DIR; ?>",
 
-                "Mustache"          : URL_OPT_DIR + 'bin/quiqqer-asset/mustache/mustache/mustache.min',
-                "URI"               : URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/URI',
-                'IPv6'              : URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/IPv6',
-                'punycode'          : URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/punycode',
-                'SecondLevelDomains': URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/SecondLevelDomains',
+                'Mustache': URL_OPT_DIR + 'bin/quiqqer-asset/mustache/mustache/mustache.min',
+                'URI': URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/URI',
+                'IPv6': URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/IPv6',
+                'punycode': URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/punycode',
+                'SecondLevelDomains': URL_OPT_DIR + 'bin/quiqqer-asset/urijs/urijs/src/SecondLevelDomains'
             },
             waitSeconds: 0,
-            catchError : true,
-            map        : {
+            catchError: true,
+            map: {
                 '*': {
-                    'css'  : '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/css.js',
+                    'css': '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/css.js',
                     'image': '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/image.min.js',
-                    'text' : '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/text.min.js'
+                    'text': '<?php echo URL_OPT_DIR; ?>bin/qui/qui/lib/text.min.js'
                 }
             }
         });
@@ -176,7 +181,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         <?php
 
         if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
-            echo 'window.DASHBOARD_ID = '.(int)$_GET['dashboardId'].';';
+            echo 'window.DASHBOARD_ID = ' . (int)$_GET['dashboardId'] . ';';
         } else {
             echo 'window.DASHBOARD_ID = "";';
         }
@@ -192,7 +197,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     <?php
 
     if ($Board && $Board->getJavaScriptControl() && $Board->getJavaScriptControl() !== '') {
-        echo ' data-qui="'.$Board->getJavaScriptControl().'"';
+        echo ' data-qui="' . $Board->getJavaScriptControl() . '"';
     }
 
     ?>
@@ -209,7 +214,8 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
             <div class="page-header d-print-none">
                 <div class="row align-items-center">
                     <div class="col">
-                        <?php if (!empty($boards)) { ?>
+                        <?php
+                        if (!empty($boards)) { ?>
                             <div class="dashboard-select dropdown position-relative"
                                  style="float: left; height: 40px; margin-right: 10px; display: flex;"
                             >
@@ -222,24 +228,31 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                                                class="form-check-input m-0 me-2"
                                                name="dashboard"
                                                value=""
-                                            <?php echo $Board === null ? 'checked' : ''; ?>
+                                            <?php
+                                            echo $Board === null ? 'checked' : ''; ?>
                                         />
                                         QUIQQER Dashboard
                                     </label>
-                                    <?php foreach ($boards as $key => $B) { ?>
+                                    <?php
+                                    foreach ($boards as $key => $B) { ?>
                                         <label class="dropdown-item">
                                             <input type="radio"
                                                    class="form-check-input m-0 me-2"
                                                    name="dashboard"
-                                                   value="<?php echo $key; ?>"
-                                                <?php echo $Board === $B ? 'checked' : ''; ?>
+                                                   value="<?php
+                                                   echo $key; ?>"
+                                                <?php
+                                                echo $Board === $B ? 'checked' : ''; ?>
                                             />
-                                            <?php echo $B->getTitle(); ?>
+                                            <?php
+                                            echo $B->getTitle(); ?>
                                         </label>
-                                    <?php } ?>
+                                    <?php
+                                    } ?>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php
+                        } ?>
 
                         <!-- Page pre-title -->
                         <div class="page-pretitle">
@@ -268,11 +281,11 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
 </div>
 
 <script>
-    (function () {
+    (function() {
         var get = [];
 
-        location.search.substr(1).split("&").forEach(function (item) {
-            var p     = item.split("=");
+        location.search.substr(1).split('&').forEach(function(item) {
+            var p = item.split('=');
             get[p[0]] = decodeURIComponent(p[1]);
         });
 
@@ -285,11 +298,11 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         }
 
         var URL_OPT_DIR = window.parent.URL_OPT_DIR;
-        var path        = URL_OPT_DIR + 'quiqqer/dashboard/';
+        var path = URL_OPT_DIR + 'quiqqer/dashboard/';
 
-        var Link  = document.createElement('link');
+        var Link = document.createElement('link');
         Link.href = path + 'bin/backend/tabler/tabler.min.css';
-        Link.rel  = "stylesheet";
+        Link.rel = 'stylesheet';
         document.head.appendChild(Link);
 
 
@@ -304,23 +317,23 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
             'qui/controls/contextmenu/Separator'
         ].append(window.parent.QUIQQER_LOCALE || []);
 
-        if (typeof window.Intl === "undefined") {
-            console.error("Intl is not supported");
+        if (typeof window.Intl === 'undefined') {
+            console.error('Intl is not supported');
         }
 
-        require(requireList, function () {
+        require(requireList, function() {
             arguments[1].setCurrent(USER.lang);
 
             // workaround, because the QUI framework has sometimes its own Locale :-/
-            require(['qui/Locale'], function (QUIsOwnLocale) {
+            require(['qui/Locale'], function(QUIsOwnLocale) {
                 QUIsOwnLocale.setCurrent(USER.lang);
             });
 
             require([
                 'qui/QUI',
                 'package/quiqqer/dashboard/bin/backend/controls/Dashboard'
-            ], function (QUI, Dashboard) {
-                var Deck     = document.body.querySelector('.row-deck');
+            ], function(QUI, Dashboard) {
+                var Deck = document.body.querySelector('.row-deck');
                 var Instance = new Dashboard();
 
                 if (window.DASHBOARD_ID === '') {
@@ -330,14 +343,14 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                         window.DASHBOARD_ID = '';
                     } else {
                         // load dashboard
-                        require(['qui/QUI', 'URI'], function (QUI, URI) {
-                            var Url    = URI(window.location),
+                        require(['qui/QUI', 'URI'], function(QUI, URI) {
+                            var Url = URI(window.location),
                                 search = Url.search(true);
 
                             search.dashboardId = window.DASHBOARD_ID;
 
                             var current = window.location.pathname + window.location.search;
-                            var wanted  = window.location.pathname + '?' + Object.toQueryString(search)
+                            var wanted = window.location.pathname + '?' + Object.toQueryString(search);
 
                             if (current !== wanted) {
                                 window.location = wanted;
@@ -348,34 +361,34 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                     }
                 }
 
-                var loadCustomBoard         = Promise.resolve();
+                var loadCustomBoard = Promise.resolve();
                 var CustomDashboardInstance = null;
 
                 if (document.body.get('data-qui')) {
-                    loadCustomBoard = new Promise(function (resolve) {
-                        require([document.body.get('data-qui')], function (cls) {
+                    loadCustomBoard = new Promise(function(resolve) {
+                        require([document.body.get('data-qui')], function(cls) {
                             new cls().imports(document.body);
 
                             resolve();
-                        }, function (err) {
+                        }, function(err) {
                             console.error(err);
                             resolve();
                         });
                     });
                 }
 
-                loadCustomBoard.then(function () {
+                loadCustomBoard.then(function() {
                     Instance.setAttribute('dashboardId', window.DASHBOARD_ID);
 
                     return Instance.refresh();
-                }).then(function (cards) {
+                }).then(function(cards) {
                     Deck.innerHTML = '';
 
                     for (var i = 0, len = cards.length; i < len; i++) {
                         cards[i].inject(Deck);
                     }
 
-                    var Loader  = document.querySelector('.loader-container'),
+                    var Loader = document.querySelector('.loader-container'),
                         Wrapper = document.querySelector('.wrapper');
 
                     moofx(Wrapper).animate({
@@ -385,7 +398,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                     moofx(Loader).animate({
                         opacity: 0
                     }, {
-                        callback: function () {
+                        callback: function() {
                             Loader.parentNode.removeChild(Loader);
                         }
                     });
@@ -394,13 +407,13 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         });
 
         // dashboard select
-        var Select   = document.querySelector('.dashboard-select');
+        var Select = document.querySelector('.dashboard-select');
         var DropDown = document.querySelector('.dropdown-menu');
-        var Values   = document.querySelectorAll('[name="dashboard"]');
+        var Values = document.querySelectorAll('[name="dashboard"]');
 
-        var onChange = function () {
-            require(['qui/QUI', 'URI'], function (QUI, URI) {
-                var Url    = URI(window.location),
+        var onChange = function() {
+            require(['qui/QUI', 'URI'], function(QUI, URI) {
+                var Url = URI(window.location),
                     search = Url.search(true);
 
                 search.dashboardId = Select.querySelector('input:checked').value;
@@ -413,16 +426,16 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         if (Select) {
             Select.tabIndex = '-1';
 
-            Select.addEventListener('focus', function () {
+            Select.addEventListener('focus', function() {
                 DropDown.classList.add('show');
             });
 
-            Select.addEventListener('blur', function () {
+            Select.addEventListener('blur', function() {
                 DropDown.classList.remove('show');
             });
         }
 
-        Values.forEach(function (Value) {
+        Values.forEach(function(Value) {
             Value.addEventListener('change', onChange);
         });
     })();
