@@ -21,10 +21,10 @@
     "email": "support@pcsg.de"
   },
   "require": {
-    "quiqqer\/quiqqer": "^1.6|^2",
-    "quiqqer\/cron": "^1.7.2",
-    "quiqqer\/utils": "^1.16.1",
-    "quiqqer\/qui": "^1.1.1",
+    "quiqqer\/core": "^2",
+    "quiqqer\/cron": "^2",
+    "quiqqer\/utils": "^2",
+    "quiqqer\/qui": "^1.6",
     "quiqqer-asset\/chart.js": "^4"
   },
   "suggest": {
