@@ -2,16 +2,18 @@
 
 namespace QUI\Dashboard;
 
+use QUI\Locale;
+
 /**
  * Interface DashboardInterface
  */
 interface DashboardInterface
 {
     /**
-     * @param null|\QUI\Locale $Locale
+     * @param null|Locale $Locale
      * @return string
      */
-    public function getTitle($Locale = null): string;
+    public function getTitle(?Locale $Locale = null): string;
 
     /**
      * @return array

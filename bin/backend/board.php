@@ -1,5 +1,7 @@
 <?php
 
+use QUI\Dashboard\DashboardInterface;
+
 define('QUIQQER_SYSTEM', true);
 
 $packagesDir = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
@@ -28,7 +30,7 @@ $dashboardId = '';
 if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     $dashboardId = (int)$_GET['dashboardId'];
 
-    /* @var $Board \QUI\Dashboard\DashboardInterface */
+    /* @var $Board DashboardInterface */
     if (isset($boards[$dashboardId])) {
         $Board = $boards[$dashboardId];
     }
