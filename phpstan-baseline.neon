@@ -1,0 +1,316 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method DOMNode\\:\\:getElementsByTagName\\(\\)\\.$#"
+			count: 5
+			path: ajax/backend/getBlogEntry.php
+
+		-
+			message: "#^Cannot call method item\\(\\) on DOMNodeList\\<DOMNode\\>\\|false\\.$#"
+			count: 1
+			path: ajax/backend/getBlogEntry.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getBlogEntry.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getCardSettings.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getCards.php
+
+		-
+			message: "#^Call to method getHistoryList\\(\\) on an unknown class QUI\\\\Cron\\\\Manager\\.$#"
+			count: 1
+			path: ajax/backend/getCronHistory.php
+
+		-
+			message: "#^Cannot call method formatDate\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getCronHistory.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getCronHistory.php
+
+		-
+			message: "#^Instantiated class QUI\\\\Cron\\\\Manager not found\\.$#"
+			count: 1
+			path: ajax/backend/getCronHistory.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getFilesystemInfo.php
+
+		-
+			message: "#^Cannot call method getPackageFolderSize\\(\\) on QUI\\\\Package\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getFilesystemInfo.php
+
+		-
+			message: "#^Cannot call method getPackageFolderSizeTimestamp\\(\\) on QUI\\\\Package\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getFilesystemInfo.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getFilesystemInfo.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 2
+			path: ajax/backend/getMediaInfo.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getMediaInfo.php
+
+		-
+			message: "#^Cannot call method getDateFormatter\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getNewestEditedSites.php
+
+		-
+			message: "#^Cannot call method getProjectList\\(\\) on QUI\\\\Projects\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getNewestEditedSites.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getNewestEditedSites.php
+
+		-
+			message: "#^Cannot call method callRequestFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 5
+			path: ajax/backend/getStats.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getStats.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getSystemInfo.php
+
+		-
+			message: "#^Cannot call method get\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getSystemInfo.php
+
+		-
+			message: "#^Cannot call method getInstalled\\(\\) on QUI\\\\Package\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getSystemInfo.php
+
+		-
+			message: "#^Cannot call method getVersion\\(\\) on QUI\\\\Package\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getSystemInfo.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/getSystemInfo.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of function array_search expects array, array\\|string given\\.$#"
+			count: 1
+			path: ajax/backend/getSystemInfo.php
+
+		-
+			message: "#^Cannot call method count\\(\\) on QUI\\\\Groups\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getGroupCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getGroupCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getGroupCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 3
+			path: ajax/backend/stats/getPageCount.php
+
+		-
+			message: "#^Cannot call method getProjectList\\(\\) on QUI\\\\Projects\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getPageCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getPageCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getProjectCount.php
+
+		-
+			message: "#^Cannot call method getConfig\\(\\) on QUI\\\\Projects\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getProjectCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getProjectCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getSystemHealth.php
+
+		-
+			message: "#^Cannot call method count\\(\\) on QUI\\\\Users\\\\Manager\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getUserCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getUserCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/getUserCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getChildrenSitesCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getChildrenSitesCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getNoContentSitesCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getNoContentSitesCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getNoShortDescriptionSitesCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getNoShortDescriptionSitesCount.php
+
+		-
+			message: "#^Cannot call method formatNumber\\(\\) on QUI\\\\Locale\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getRootSitesCount.php
+
+		-
+			message: "#^Cannot call method registerFunction\\(\\) on QUI\\\\Ajax\\|null\\.$#"
+			count: 1
+			path: ajax/backend/stats/sites/getRootSitesCount.php
+
+		-
+			message: "#^Argument of an invalid type array\\|bool\\|object\\|string supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Cannot call method getInstalled\\(\\) on QUI\\\\Package\\\\Manager\\|null\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardHandler\\:\\:getAllGeneralCards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardHandler\\:\\:getBoards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardHandler\\:\\:getCardsForUsersDashboard\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardHandler\\:\\:getCardsFromBoard\\(\\) has parameter \\$dashboardId with no type specified\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardHandler\\:\\:getCardsFromBoard\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardHandler\\:\\:getCardsWithSettings\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, array\\|int\\<min, \\-1\\>\\|int\\<1, max\\>\\|string given\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Property QUI\\\\Dashboard\\\\DashboardHandler\\:\\:\\$cardList type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Property QUI\\\\Dashboard\\\\DashboardHandler\\:\\:\\$providers type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardHandler.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardInterface\\:\\:getCards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardInterface.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardProvider\\:\\:getBoards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardProvider.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardProvider\\:\\:getCards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardProvider.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardProviderInterface\\:\\:getBoards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardProviderInterface.php
+
+		-
+			message: "#^Method QUI\\\\Dashboard\\\\DashboardProviderInterface\\:\\:getCards\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/QUI/Dashboard/DashboardProviderInterface.php
