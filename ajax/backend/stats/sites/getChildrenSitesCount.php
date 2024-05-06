@@ -1,14 +1,18 @@
 <?php
+
 /**
  * @return array
  */
+
+use QUI\System\Log;
+
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_sites_getChildrenSitesCount',
     function ($projectName) {
         try {
             $Project = QUI::getProject($projectName);
         } catch (\QUI\Exception $Exception) {
-            \QUI\System\Log::writeException($Exception);
+            Log::writeException($Exception);
 
             return null;
         }
@@ -23,10 +27,7 @@ QUI::$Ajax->registerFunction(
 
         $result = QUI::getDataBase()->fetchSQL($query);
 
-        if (isset($result[0])
-            && isset($result[0]['childrenSites'])
-            && is_numeric($result[0]['childrenSites'])
-        ) {
+        if (isset($result[0]['childrenSites']) && is_numeric($result[0]['childrenSites'])) {
             $childrenSites = (int)$result[0]['childrenSites'];
 
             return QUI::getLocale()->formatNumber($childrenSites);

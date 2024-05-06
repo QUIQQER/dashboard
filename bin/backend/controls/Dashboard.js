@@ -18,7 +18,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
     return new Class({
 
         Extends: QUIPanel,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
 
         Cards: [],
 
@@ -72,11 +72,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
             this.getContent().addClass('quiqqer-dashboard-cards');
 
             this.$Frame = new Element('iframe', {
-                src      : URL_OPT_DIR + 'quiqqer/dashboard/bin/backend/board.php?instance=' + this.getId(),
-                styles   : {
-                    border  : 0,
-                    height  : '100%',
-                    width   : '100%',
+                src: URL_OPT_DIR + 'quiqqer/dashboard/bin/backend/board.php?instance=' + this.getId(),
+                styles: {
+                    border: 0,
+                    height: '100%',
+                    width: '100%',
                     overflow: 'auto'
                 },
                 scrolling: "auto"
@@ -94,7 +94,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             const Tasks = QUI.Controls.getById(TaskNode.get('data-quiid'));
             const Taskbar = Tasks.getTaskbar();
-            
+
             setTimeout(() => {
                 Taskbar.getChildren().forEach((Task) => {
                     if (Task.getInstance().getId() === this.getId()) {
@@ -132,8 +132,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                     require(cardNames, function () {
                         self.Cards = [];
 
-                        for (let i = 0; i < arguments.length; i++) {
-                            const Card = new arguments[i]();
+                        let i, Card;
+
+                        for (i = 0; i < arguments.length; i++) {
+                            Card = new arguments[i]();
 
                             // The card's settings are stored in the cards array (result from the Ajax-call).
                             // If a priority was set via the user's profile, we have to set it here.
@@ -148,9 +150,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                         resolve(self.getCards());
                     });
                 }, {
-                    'package'  : 'quiqqer/dashboard',
+                    'package': 'quiqqer/dashboard',
                     dashboardId: self.getAttribute('dashboardId'),
-                    onError    : console.error
+                    onError: console.error
                 });
             });
         },
