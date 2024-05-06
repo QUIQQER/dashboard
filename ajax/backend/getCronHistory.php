@@ -12,7 +12,7 @@ QUI::$Ajax->registerFunction(
     function () {
         $history = (new QUI\Cron\Manager())->getHistoryList(['perPage' => 10, 'page' => 1]);
 
-        $history = array_map(function ($cronData) {
+        return array_map(function ($cronData) {
             // Format date (TODO: check if this is the correct data conversion method)
             $cronData['lastexec'] = QUI::getLocale()->formatDate($cronData['lastexec']);
 
@@ -22,8 +22,6 @@ QUI::$Ajax->registerFunction(
 
             return $cronData;
         }, $history);
-
-        return $history;
     },
     false,
     'Permission::checkAdminUser'

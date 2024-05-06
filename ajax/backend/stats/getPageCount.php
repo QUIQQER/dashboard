@@ -7,6 +7,9 @@
 /**
  * @return array
  */
+
+use QUI\Projects\Project;
+
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_getPageCount',
     function () {
@@ -15,8 +18,8 @@ QUI::$Ajax->registerFunction(
         // sites
         $projects = QUI::getProjectManager()->getProjectList();
 
-        /* @var $Project \QUI\Projects\Project */
-        $active   = 0;
+        /* @var $Project Project */
+        $active = 0;
         $inactive = 0;
 
         foreach ($projects as $Project) {
@@ -41,8 +44,8 @@ QUI::$Ajax->registerFunction(
             $inactive = $inactive + $count[0]['count'];
         }
 
-        $result['total']    = QUI::getLocale()->formatNumber($active + $inactive);
-        $result['active']   = QUI::getLocale()->formatNumber($active);
+        $result['total'] = QUI::getLocale()->formatNumber($active + $inactive);
+        $result['active'] = QUI::getLocale()->formatNumber($active);
         $result['inactive'] = QUI::getLocale()->formatNumber($inactive);
 
         return $result;

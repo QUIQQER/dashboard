@@ -7,30 +7,34 @@
 /**
  * @return array
  */
+
+use QUI\Cache\Manager;
+use QUI\Utils\Installation;
+
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getFilesystemInfo',
     function () {
-        $fileCount = \QUI\Utils\Installation::getAllFileCount();
+        $fileCount = Installation::getAllFileCount();
 
-        if (!\is_null($fileCount)) {
-            $fileCount = \QUI::getLocale()->formatNumber($fileCount);
+        if (!is_null($fileCount)) {
+            $fileCount = QUI::getLocale()->formatNumber($fileCount);
         }
 
         return [
-            'sizeInstallation'          => \QUI\Utils\Installation::getWholeFolderSize(),
-            'sizeInstallationTimestamp' => \QUI\Utils\Installation::getWholeFolderSizeTimestamp(),
+            'sizeInstallation' => Installation::getWholeFolderSize(),
+            'sizeInstallationTimestamp' => Installation::getWholeFolderSizeTimestamp(),
 
-            'sizePackages'          => QUI::getPackageManager()->getPackageFolderSize(),
+            'sizePackages' => QUI::getPackageManager()->getPackageFolderSize(),
             'sizePackagesTimestamp' => QUI::getPackageManager()->getPackageFolderSizeTimestamp(),
 
-            'sizeCache'          => \QUI\Cache\Manager::getCacheFolderSize(),
-            'sizeCacheTimestamp' => \QUI\Cache\Manager::getCacheFolderSizeTimestamp(),
+            'sizeCache' => Manager::getCacheFolderSize(),
+            'sizeCacheTimestamp' => Manager::getCacheFolderSizeTimestamp(),
 
-            'sizeVar'          => \QUI\Utils\Installation::getVarFolderSize(),
-            'sizeVarTimestamp' => \QUI\Utils\Installation::getVarFolderSizeTimestamp(),
+            'sizeVar' => Installation::getVarFolderSize(),
+            'sizeVarTimestamp' => Installation::getVarFolderSizeTimestamp(),
 
-            'countFiles'          => $fileCount,
-            'countFilesTimestamp' => \QUI\Utils\Installation::getAllFileCountTimestamp()
+            'countFiles' => $fileCount,
+            'countFilesTimestamp' => Installation::getAllFileCountTimestamp()
         ];
     },
     false,

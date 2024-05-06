@@ -6,10 +6,16 @@
 
 namespace QUI\Dashboard;
 
+use Exception;
 use QUI;
 use QUI\Utils\Singleton;
+
 use function array_filter;
+use function array_merge;
 use function array_values;
+use function class_exists;
+use function is_numeric;
+use function json_decode;
 
 /**
  * Class DashboardHandler
@@ -38,7 +44,7 @@ class DashboardHandler extends Singleton
      *
      * The result is an array:
      * The card's name is the key.
-     * The value is an array containing the card's priority and it's enabled-state (always true).
+     * The value is an array containing the card's priority, and it's enabled-state (always true).
      *
      * @return array
      */
@@ -48,11 +54,9 @@ class DashboardHandler extends Singleton
 
         // array_values is required to get an array with index starting at zero and increasing sequentially.
         // Calling just array_filter removed indexes which turned the array to an object when transported through JSON.
-        $cards = array_values(array_filter($cards, function ($card) {
+        return array_values(array_filter($cards, function ($card) {
             return $card['enabled'];
         }));
-
-        return $cards;
     }
 
     /**
@@ -85,8 +89,8 @@ class DashboardHandler extends Singleton
 
         try {
             $dashboardProviders = QUI\Cache\Manager::get(self::CACHE_KEY_DASHBOARD_PROVIDERS);
-        } catch (QUI\Cache\Exception $Exception) {
-            $packages           = QUI::getPackageManager()->getInstalled();
+        } catch (QUI\Cache\Exception) {
+            $packages = QUI::getPackageManager()->getInstalled();
             $dashboardProviders = [];
 
             /* @var QUI\Package\Package $Package */
@@ -103,18 +107,18 @@ class DashboardHandler extends Singleton
 
                 // Check if the specified classes really exist
                 foreach ($packagesDashboardProviders as $dashboardProvider) {
-                    if (!\class_exists($dashboardProvider)) {
-                        continue;
+                    if (!class_exists($dashboardProvider)) {
+                        continue 2;
                     }
                 }
 
                 // Add the packages dashboard providers to all providers
-                $dashboardProviders = \array_merge($dashboardProviders, $packagesDashboardProviders);
+                $dashboardProviders = array_merge($dashboardProviders, $packagesDashboardProviders);
             }
 
             try {
                 QUI\Cache\Manager::set(self::CACHE_KEY_DASHBOARD_PROVIDERS, $dashboardProviders);
-            } catch (\Exception $Exception) {
+            } catch (Exception $Exception) {
                 QUI\System\Log::writeDebugException($Exception);
             }
         }
@@ -130,7 +134,7 @@ class DashboardHandler extends Singleton
                 if ($Provider instanceof DashboardProviderInterface) {
                     $providers[] = $Provider;
                 }
-            } catch (\Exception $Exception) {
+            } catch (Exception $Exception) {
                 QUI\System\Log::writeException($Exception);
             }
         }
@@ -172,11 +176,11 @@ class DashboardHandler extends Singleton
      */
     public function getBoards(): array
     {
-        $boards   = [];
+        $boards = [];
         $providers = $this->getProviders();
 
         foreach ($providers as $Provider) {
-            $boards = \array_merge($Provider->getBoards(), $boards);
+            $boards = array_merge($Provider->getBoards(), $boards);
         }
 
         return $boards;
@@ -187,13 +191,13 @@ class DashboardHandler extends Singleton
      */
     public function getCardsWithSettings(): array
     {
-        $cards    = $this->getAllGeneralCards();
+        $cards = $this->getAllGeneralCards();
         $settings = [];
 
         $cardSettingsAttribute = QUI::getUserBySession()->getAttribute('quiqqer.dashboard.cardSettings');
 
         if ($cardSettingsAttribute) {
-            $settings = \json_decode($cardSettingsAttribute, true);
+            $settings = json_decode($cardSettingsAttribute, true);
         }
 
         $result = [];
@@ -202,8 +206,8 @@ class DashboardHandler extends Singleton
         foreach ($cards as $card) {
             // Default values
             $values = [
-                'card'     => $card,
-                'enabled'  => true,
+                'card' => $card,
+                'enabled' => true,
                 'priority' => null
             ];
 
@@ -215,7 +219,7 @@ class DashboardHandler extends Singleton
                     $values['enabled'] = $cardSettings['enabled'];
                 }
 
-                if (isset($cardSettings['priority']) && \is_numeric($cardSettings['priority'])) {
+                if (isset($cardSettings['priority']) && is_numeric($cardSettings['priority'])) {
                     $values['priority'] = (int)$cardSettings['priority'];
                 }
             }
