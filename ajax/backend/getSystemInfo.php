@@ -16,7 +16,7 @@ QUI::$Ajax->registerFunction(
         $availableCacheHandlers = QUI\Cache\Manager::getConfig()->getSection('handlers');
 
         if ($availableCacheHandlers) {
-            $activeCacheHandler = \array_search('1', $availableCacheHandlers);
+            $activeCacheHandler = array_search('1', $availableCacheHandlers);
         }
 
         if ($activeCacheHandler) {
@@ -29,10 +29,10 @@ QUI::$Ajax->registerFunction(
         $Packages = QUI::getPackageManager();
 
         return [
-            'quiqqerVersion'  => $Packages->getVersion(),
-            'modulesCount'    => QUI::getLocale()->formatNumber(\count($Packages->getInstalled())),
+            'quiqqerVersion' => $Packages->getVersion(),
+            'modulesCount' => QUI::getLocale()->formatNumber(count($Packages->getInstalled())),
             'isDevModeActive' => DEVELOPMENT == 1,
-            'cacheType'       => $activeCacheHandlerTranslated
+            'cacheType' => $activeCacheHandlerTranslated
         ];
     },
     false,

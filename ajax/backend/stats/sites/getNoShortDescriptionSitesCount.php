@@ -1,16 +1,19 @@
 <?php
+
 /**
  * @return array
  */
+
+use QUI\System\Log;
+
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoShortDescriptionSitesCount',
     function ($projectName) {
         try {
             $Project = QUI::getProject($projectName);
         } catch (\QUI\Exception $Exception) {
-            \QUI\System\Log::writeException($Exception);
-
-            return;
+            Log::writeException($Exception);
+            return '';
         }
 
         $query = "
@@ -21,16 +24,13 @@ QUI::$Ajax->registerFunction(
 
         $result = QUI::getDataBase()->fetchSQL($query);
 
-        if (isset($result[0])
-            && isset($result[0]['sitesWithoutShortDesc'])
-            && is_numeric($result[0]['sitesWithoutShortDesc'])
-        ) {
+        if (isset($result[0]['sitesWithoutShortDesc']) && is_numeric($result[0]['sitesWithoutShortDesc'])) {
             $sitesWithoutShortDesc = (int)$result[0]['sitesWithoutShortDesc'];
 
             return QUI::getLocale()->formatNumber($sitesWithoutShortDesc);
         }
 
-        return;
+        return '';
     },
     ['projectName'],
     'Permission::checkAdminUser'

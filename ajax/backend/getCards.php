@@ -13,7 +13,7 @@ QUI::$Ajax->registerFunction(
         $Handler = QUI\Dashboard\DashboardHandler::getInstance();
 
         if (!empty($dashboardId) || $dashboardId === 0) {
-            $cards  = $Handler->getCardsFromBoard($dashboardId);
+            $cards = $Handler->getCardsFromBoard($dashboardId);
             $result = [];
             $i = 0;
 
@@ -23,8 +23,8 @@ QUI::$Ajax->registerFunction(
                 }
 
                 $result[] = [
-                    'card'     => $card,
-                    'enabled'  => true,
+                    'card' => $card,
+                    'enabled' => true,
                     'priority' => $i
                 ];
 

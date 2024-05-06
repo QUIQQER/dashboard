@@ -4,6 +4,8 @@
  * This file contains package_quiqqer_dashboard_ajax_backend_getBlogEntry
  */
 
+use QUI\Cache\Manager;
+
 const CACHE_KEY_BLOG_ENTRY_PREFIX = "dashboard.card.blogentry.data.";
 
 /**
@@ -19,13 +21,14 @@ QUI::$Ajax->registerFunction(
 
             default:
                 $language = 'en';
-                $url      = 'https://www.quiqqer.com/feed=3.xml';
+                $url = 'https://www.quiqqer.com/feed=3.xml';
         }
 
         $data = null;
+
         try {
-            $data = \QUI\Cache\Manager::get(CACHE_KEY_BLOG_ENTRY_PREFIX . $language);
-        } catch (\QUI\Cache\Exception $Exception) {
+            $data = Manager::get(CACHE_KEY_BLOG_ENTRY_PREFIX . $language);
+        } catch (\QUI\Cache\Exception) {
         }
 
         if (!empty($data)) {
@@ -35,32 +38,32 @@ QUI::$Ajax->registerFunction(
         try {
             $rss = QUI\Utils\Request\Url::get($url);
 
-            $Dom = new \DOMDocument();
+            $Dom = new DOMDocument();
             $Dom->loadXML($rss);
-        } catch (\Exception $Exception) {
+        } catch (Exception $Exception) {
             QUI\System\Log::writeException($Exception);
 
-            return;
+            return [];
         }
 
-        $Path  = new \DOMXPath($Dom);
+        $Path = new DOMXPath($Dom);
         $Items = $Path->query('//rss/channel/item');
-        $Item  = $Items->item(0);
+        $Item = $Items->item(0);
 
         if (is_null($Item)) {
-            return;
+            return [];
         }
 
         $data = [
-            'link'        => $Item->getElementsByTagName('link')->item(0)->nodeValue,
-            'date'        => $Item->getElementsByTagName('pubDate')->item(0)->nodeValue,
-            'title'       => $Item->getElementsByTagName('title')->item(0)->nodeValue,
+            'link' => $Item->getElementsByTagName('link')->item(0)->nodeValue,
+            'date' => $Item->getElementsByTagName('pubDate')->item(0)->nodeValue,
+            'title' => $Item->getElementsByTagName('title')->item(0)->nodeValue,
             'description' => $Item->getElementsByTagName('description')->item(0)->nodeValue,
-            'image'       => $Item->getElementsByTagName('enclosure')->item(0)->getAttribute('url')
+            'image' => $Item->getElementsByTagName('enclosure')->item(0)->getAttribute('url')
         ];
 
         // Cache the data for 30 minutes
-        \QUI\Cache\Manager::set(
+        Manager::set(
             CACHE_KEY_BLOG_ENTRY_PREFIX . $language,
             $data,
             new DateInterval('PT30M')
