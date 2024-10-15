@@ -44,6 +44,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
 
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,maximum-scale=1">
 
+    <?php
+
+        QUI::getEvents()->fireEvent('dashboardHeaderBegin');
+
+    ?>
+
     <style>
         * {
             margin: 0;
@@ -192,6 +198,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     <!-- require js -->
     <!-- mootools -->
 
+    <?php
+
+    QUI::getEvents()->fireEvent('dashboardHeaderEnd');
+
+    ?>
+
 </head>
 <body class="antialiased"
     <?php
@@ -202,6 +214,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
 
     ?>
 >
+
+<?php
+
+QUI::getEvents()->fireEvent('dashboardBodyBegin');
+
+?>
 
 <div class="loader-container">
     <div class="loader"></div>
@@ -239,17 +257,20 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                                             <input type="radio"
                                                    class="form-check-input m-0 me-2"
                                                    name="dashboard"
-                                                   value="<?php echo $key; ?>"
+                                                   value="<?php
+                                                   echo $key; ?>"
                                                 <?php
                                                 echo $Board === $B ? 'checked' : ''; ?>
                                             />
                                             <?php
                                             echo $B->getTitle(); ?>
                                         </label>
-                                    <?php } ?>
+                                    <?php
+                                    } ?>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php
+                        } ?>
 
                         <!-- Page pre-title -->
                         <div class="page-pretitle">
@@ -437,6 +458,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         });
     })();
 </script>
+
+<?php
+
+QUI::getEvents()->fireEvent('dashboardBodyEnd');
+
+?>
 
 </body>
 </html>
