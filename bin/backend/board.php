@@ -3,6 +3,7 @@
 use QUI\Dashboard\DashboardInterface;
 
 define('QUIQQER_SYSTEM', true);
+define('QUIQQER_BACKEND', true);
 
 $packagesDir = dirname(__FILE__, 5);
 
@@ -46,7 +47,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
 
     <?php
 
-    QUI::getEvents()->fireEvent('dashboardHeaderBegin');
+        QUI::getEvents()->fireEvent('dashboardHeaderBegin');
 
     ?>
 
@@ -257,18 +258,19 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
                                             <input type="radio"
                                                    class="form-check-input m-0 me-2"
                                                    name="dashboard"
-                                                   value="<?php echo $key; ?>"
+                                                   value="<?php
+                                                   echo $key; ?>"
                                                 <?php
                                                 echo $Board === $B ? 'checked' : ''; ?>
                                             />
                                             <?php
                                             echo $B->getTitle(); ?>
                                         </label>
-                                        <?php
+                                    <?php
                                     } ?>
                                 </div>
                             </div>
-                            <?php
+                        <?php
                         } ?>
 
                         <!-- Page pre-title -->
@@ -298,10 +300,10 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
 </div>
 
 <script>
-    (function () {
+    (function() {
         var get = [];
 
-        location.search.substr(1).split('&').forEach(function (item) {
+        location.search.substr(1).split('&').forEach(function(item) {
             var p = item.split('=');
             get[p[0]] = decodeURIComponent(p[1]);
         });
@@ -338,18 +340,18 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
             console.error('Intl is not supported');
         }
 
-        require(requireList, function () {
+        require(requireList, function() {
             arguments[1].setCurrent(USER.lang);
 
             // workaround, because the QUI framework has sometimes its own Locale :-/
-            require(['qui/Locale'], function (QUIsOwnLocale) {
+            require(['qui/Locale'], function(QUIsOwnLocale) {
                 QUIsOwnLocale.setCurrent(USER.lang);
             });
 
             require([
                 'qui/QUI',
                 'package/quiqqer/dashboard/bin/backend/controls/Dashboard'
-            ], function (QUI, Dashboard) {
+            ], function(QUI, Dashboard) {
                 var Deck = document.body.querySelector('.row-deck');
                 var Instance = new Dashboard();
 
@@ -360,7 +362,7 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
                         window.DASHBOARD_ID = '';
                     } else {
                         // load dashboard
-                        require(['qui/QUI', 'URI'], function (QUI, URI) {
+                        require(['qui/QUI', 'URI'], function(QUI, URI) {
                             var Url = URI(window.location),
                                 search = Url.search(true);
 
@@ -382,23 +384,23 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
                 var CustomDashboardInstance = null;
 
                 if (document.body.get('data-qui')) {
-                    loadCustomBoard = new Promise(function (resolve) {
-                        require([document.body.get('data-qui')], function (cls) {
+                    loadCustomBoard = new Promise(function(resolve) {
+                        require([document.body.get('data-qui')], function(cls) {
                             new cls().imports(document.body);
 
                             resolve();
-                        }, function (err) {
+                        }, function(err) {
                             console.error(err);
                             resolve();
                         });
                     });
                 }
 
-                loadCustomBoard.then(function () {
+                loadCustomBoard.then(function() {
                     Instance.setAttribute('dashboardId', window.DASHBOARD_ID);
 
                     return Instance.refresh();
-                }).then(function (cards) {
+                }).then(function(cards) {
                     Deck.innerHTML = '';
 
                     for (var i = 0, len = cards.length; i < len; i++) {
@@ -415,7 +417,7 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
                     moofx(Loader).animate({
                         opacity: 0
                     }, {
-                        callback: function () {
+                        callback: function() {
                             Loader.parentNode.removeChild(Loader);
                         }
                     });
@@ -428,8 +430,8 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
         var DropDown = document.querySelector('.dropdown-menu');
         var Values = document.querySelectorAll('[name="dashboard"]');
 
-        var onChange = function () {
-            require(['qui/QUI', 'URI'], function (QUI, URI) {
+        var onChange = function() {
+            require(['qui/QUI', 'URI'], function(QUI, URI) {
                 var Url = URI(window.location),
                     search = Url.search(true);
 
@@ -443,16 +445,16 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
         if (Select) {
             Select.tabIndex = '-1';
 
-            Select.addEventListener('focus', function () {
+            Select.addEventListener('focus', function() {
                 DropDown.classList.add('show');
             });
 
-            Select.addEventListener('blur', function () {
+            Select.addEventListener('blur', function() {
                 DropDown.classList.remove('show');
             });
         }
 
-        Values.forEach(function (Value) {
+        Values.forEach(function(Value) {
             Value.addEventListener('change', onChange);
         });
     })();
