@@ -258,20 +258,16 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
                                             <input type="radio"
                                                    class="form-check-input m-0 me-2"
                                                    name="dashboard"
-                                                   value="<?php
-                                                   echo $key; ?>"
+                                                   value="<?php echo $key; ?>"
                                                 <?php
                                                 echo $Board === $B ? 'checked' : ''; ?>
                                             />
-                                            <?php
-                                            echo $B->getTitle(); ?>
+                                            <?php echo $B->getTitle(); ?>
                                         </label>
-                                    <?php
-                                    } ?>
+                                    <?php } ?>
                                 </div>
                             </div>
-                        <?php
-                        } ?>
+                        <?php } ?>
 
                         <!-- Page pre-title -->
                         <div class="page-pretitle">
