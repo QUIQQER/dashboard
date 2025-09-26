@@ -3,6 +3,7 @@
 use QUI\Dashboard\DashboardInterface;
 
 define('QUIQQER_SYSTEM', true);
+define('QUIQQER_BACKEND', true);
 
 $packagesDir = dirname(__FILE__, 5);
 
@@ -43,6 +44,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     <title>QUIQQER Dashboard</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,maximum-scale=1">
+
+    <?php
+
+        QUI::getEvents()->fireEvent('dashboardHeaderBegin');
+
+    ?>
 
     <style>
         * {
@@ -192,6 +199,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
     <!-- require js -->
     <!-- mootools -->
 
+    <?php
+
+    QUI::getEvents()->fireEvent('dashboardHeaderEnd');
+
+    ?>
+
 </head>
 <body class="antialiased"
     <?php
@@ -202,6 +215,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
 
     ?>
 >
+
+<?php
+
+QUI::getEvents()->fireEvent('dashboardBodyBegin');
+
+?>
 
 <div class="loader-container">
     <div class="loader"></div>
@@ -243,8 +262,7 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
                                                 <?php
                                                 echo $Board === $B ? 'checked' : ''; ?>
                                             />
-                                            <?php
-                                            echo $B->getTitle(); ?>
+                                            <?php echo $B->getTitle(); ?>
                                         </label>
                                     <?php } ?>
                                 </div>
@@ -437,6 +455,12 @@ if (isset($_GET['dashboardId']) && $_GET['dashboardId'] !== '') {
         });
     })();
 </script>
+
+<?php
+
+QUI::getEvents()->fireEvent('dashboardBodyEnd');
+
+?>
 
 </body>
 </html>
