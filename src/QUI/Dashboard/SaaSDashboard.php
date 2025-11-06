@@ -28,6 +28,8 @@ class SaaSDashboard implements QUI\Dashboard\DashboardInterface
         return [
             'package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistration',
             'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
+            'package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersCount',
+            'package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersCount',
             'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users'
         ];
     }

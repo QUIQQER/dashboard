@@ -30,6 +30,17 @@ define('package/quiqqer/dashboard/bin/backend/controls/SaaSDashboard', [
         $onImport: function () {
             const header = this.getElm().querySelector('.page-header');
 
+            setTimeout(() => {
+                const users = this.getElm().querySelector(
+                    '[data-qui="package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users"]'
+                );
+
+                if (users) {
+                    users.classList.remove('col-sm-2');
+                    users.classList.add('col-sm-3');
+                }
+            }, 1000);
+
             require([
                 'package/quiqqer/erp/bin/backend/controls/elements/TimeFilter'
             ], (TimeFilter) => {

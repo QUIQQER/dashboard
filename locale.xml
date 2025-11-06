@@ -78,6 +78,10 @@
             <de><![CDATA[Registrierungen]]></de>
             <en><![CDATA[Registrations]]></en>
         </locale>
+        <locale name="dashboard.stats.orders">
+            <de><![CDATA[Bestellungen]]></de>
+            <en><![CDATA[Orders]]></en>
+        </locale>
     </groups>
 
     <groups name="quiqqer/dashboard" datatype="js">

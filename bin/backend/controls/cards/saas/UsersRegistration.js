@@ -30,7 +30,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistrat
             this.setAttributes({
                 id: 'quiqqer-dashboard-stats-usersRegistration',
                 title: false,
-                priority: 100
+                footer: false,
+                styles: false,
+                priority: 80,
+                size: 30
             });
 
             this.addEvents({
