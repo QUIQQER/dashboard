@@ -1,0 +1,9 @@
+.quiqqer-saas-dashboard-time-filter {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.quiqqer-saas-dashboard-time-filter > div {
+    display: flex;
+}
