@@ -10,8 +10,15 @@
 QUI::$Ajax->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_saas_getOrdersStats',
     function ($interval, $from, $to) {
-        if (!class_exists('QUI\ERP\Order\Handler')) {
-            return '-';
+        if (
+            !class_exists('QUI\ERP\Order\Handler')
+            || !class_exists('QUI\ERP\Accounting\Payments\Payments')
+        ) {
+            return [
+                'count' => 0,
+                'counting' => [],
+                'payments' => []
+            ];
         }
 
         if (empty($interval)) {
