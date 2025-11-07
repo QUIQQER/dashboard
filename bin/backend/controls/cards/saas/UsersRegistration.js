@@ -65,13 +65,27 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistrat
                 QUIAjax.get('package_quiqqer_dashboard_ajax_backend_saas_getUsersRegistrations', (result) => {
                     if (!this.$canvas) {
                         this.$canvas = document.createElement('canvas');
+                        this.$canvas.style.height = '320px';
+                        this.$canvas.style.width = '100%';
 
-                        this.getElm().querySelector('.card').style.padding = '2rem';
-                        this.getElm().querySelector('.card').appendChild(this.$canvas);
+                        const card = this.getElm().querySelector('.card');
+                        const cardBody = card.querySelector('.card-body');
+
+                        card.style.width = '100%';
+                        card.style.height = '450px';
+                        cardBody.appendChild(this.$canvas);
+                        cardBody.style.display = '';
+                        cardBody.style.padding = '2rem';
                     }
 
                     const labels = result.map(item => item.period);
                     const data = result.map(item => item.registrations);
+                    const header = this.getElm().querySelector('header');
+
+                    header.style.display = '';
+                    header.querySelector('.card-title').innerHTML = QUILocale.get(lg, 'dashboard.saas.usersRegistrations.title', {
+                        interval: filterInstance.getElm().querySelector('.text').textContent
+                    });
 
                     require([
                         URL_OPT_DIR + 'bin/quiqqer-asset/chart.js/chart.js/dist/chart.umd.js'
@@ -94,15 +108,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistrat
                             },
                             options: {
                                 responsive: true,
+                                maintainAspectRatio: false,
                                 plugins: {
                                     legend: {
                                         display: false
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: QUILocale.get(lg, 'dashboard.saas.usersRegistrations.title', {
-                                            interval: filterInstance.getElm().querySelector('.text').textContent
-                                        })
                                     }
                                 },
                                 scales: {
