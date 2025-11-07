@@ -53,6 +53,8 @@ class DashboardProvider implements DashboardProviderInterface
      */
     public static function getBoards(): array
     {
-        return [];
+        return [
+            new SaaSDashboard()
+        ];
     }
 }
