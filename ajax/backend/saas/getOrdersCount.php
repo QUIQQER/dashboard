@@ -41,9 +41,7 @@ QUI::$Ajax->registerFunction(
             ->setParameter('from', $from)
             ->setParameter('to', $to);
 
-        $result = $qb->fetchOne();
-
-        return $result;
+        return $qb->fetchOne();
     },
     ['interval', 'from', 'to'],
     'Permission::checkAdminUser'

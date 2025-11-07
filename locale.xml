@@ -63,8 +63,8 @@
             <en><![CDATA[Dashboard]]></en>
         </locale>
         <locale name="dashboard.saas.title">
-            <de><![CDATA[SaaS Dashboard]]></de>
-            <en><![CDATA[SaaS Dashboard]]></en>
+            <de><![CDATA[Portal-Statistiken]]></de>
+            <en><![CDATA[Portal Analytics]]></en>
         </locale>
         <locale name="dashboard.saas.usersRegistrations.title">
             <de><![CDATA[Benutzer Registrierungen - [interval]]]></de>
@@ -81,6 +81,18 @@
         <locale name="dashboard.stats.orders">
             <de><![CDATA[Bestellungen]]></de>
             <en><![CDATA[Orders]]></en>
+        </locale>
+        <locale name="dashboard.saas.ordersStats.label">
+            <de><![CDATA[Bestellungen]]></de>
+            <en><![CDATA[Orders]]></en>
+        </locale>
+        <locale name="dashboard.saas.payments.label">
+            <de><![CDATA[Genutzte Zahlungsweisen]]></de>
+            <en><![CDATA[Used payments]]></en>
+        </locale>
+        <locale name="dashboard.saas.payment.count">
+            <de><![CDATA[In Bestellungen:]]></de>
+            <en><![CDATA[In orders]]></en>
         </locale>
     </groups>
 

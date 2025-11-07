@@ -26,6 +26,7 @@ class SaaSDashboard implements QUI\Dashboard\DashboardInterface
     public function getCards(): array
     {
         return [
+            'package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersStats',
             'package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistration',
             'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
             'package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersCount',
