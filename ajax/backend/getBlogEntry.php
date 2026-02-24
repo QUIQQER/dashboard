@@ -89,7 +89,11 @@ QUI::$Ajax->registerFunction(
             array $entry,
             string $fallbackName = '',
             string $fallbackVersion = ''
-        ) use ($toTimestamp, $firstNonEmpty, $extractUrl): ?array {
+        ) use (
+            $toTimestamp,
+            $firstNonEmpty,
+            $extractUrl
+        ): ?array {
             $name = $entry['name'] ?? $fallbackName;
 
             if (empty($name)) {
