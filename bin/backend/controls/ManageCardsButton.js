@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton
- * @author www.pcsg.de (Jan Wennrich)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton', [
 
     'qui/controls/buttons/Button',

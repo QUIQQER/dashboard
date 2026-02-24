@@ -1,7 +1,5 @@
 /**
  * Helper function to open the dashboard panel
- *
- * @author www.pcsg.de (Henning Leutz)
  */
 define('package/quiqqer/dashboard/bin/backend/utils/open', [
 

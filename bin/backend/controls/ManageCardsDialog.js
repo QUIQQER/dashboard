@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog
- * @author www.pcsg.de (Jan Wennrich)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
 
     'controls/grid/Grid',

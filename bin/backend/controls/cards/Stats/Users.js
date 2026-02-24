@@ -1,9 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users
- *
- * @author www.pcsg.de (Jan Wennrich)
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
 
     'Ajax',

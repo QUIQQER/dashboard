@@ -1,6 +1,4 @@
 /**
- * @module package/quiqqer/dashboard/bin/backend/controls/Card
- * @author www.pcsg.de (Henning Leutz)
  *
  * @event onCreate [self]
  */

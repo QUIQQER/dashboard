@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/classes/Stats
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/classes/Stats', [
 
     'qui/QUI',
