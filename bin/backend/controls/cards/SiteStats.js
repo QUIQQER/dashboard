@@ -54,8 +54,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
             this.$Content.removeClass('card-body');
 
             this.getElm().addClass('quiqqer-dashboard-card-sitestats');
-            this.getElm().addClass('col-sm-4');
-            this.getElm().addClass('col-lg-4');
+            this.getElm().addClass('col-sm-6');
+            this.getElm().addClass('col-lg-6');
 
             this.initializeProjectSelect();
         },
