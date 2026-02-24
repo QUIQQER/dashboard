@@ -18,7 +18,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/FileSystemInfo',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/FileSystemInfo',
 
         Binds: [
             '$onCreate'
@@ -28,18 +28,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-filesystem-info',
-                icon    : 'fa fa-hdd-o',
-                title   : QUILocale.get(lg, 'dashboard.filesystem.info'),
-                content : Mustache.render(contentTemplate, {
+                id: 'quiqqer-dashboard-card-filesystem-info',
+                icon: 'fa fa-hdd-o',
+                title: QUILocale.get(lg, 'dashboard.filesystem.info'),
+                content: Mustache.render(contentTemplate, {
                     sizeInstallation: QUILocale.get(lg, 'dashboard.filesystem.info.size.installation'),
-                    sizePackages    : QUILocale.get(lg, 'dashboard.filesystem.info.size.packages'),
-                    sizeCache       : QUILocale.get(lg, 'dashboard.filesystem.info.size.cache'),
-                    sizeVar         : QUILocale.get(lg, 'dashboard.filesystem.info.size.var'),
-                    countFiles      : QUILocale.get(lg, 'dashboard.filesystem.info.count.files')
+                    sizePackages: QUILocale.get(lg, 'dashboard.filesystem.info.size.packages'),
+                    sizeCache: QUILocale.get(lg, 'dashboard.filesystem.info.size.cache'),
+                    sizeVar: QUILocale.get(lg, 'dashboard.filesystem.info.size.var'),
+                    countFiles: QUILocale.get(lg, 'dashboard.filesystem.info.count.files')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 45
             });
 
@@ -100,7 +100,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 );
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         },
 
@@ -122,7 +122,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
 
             var ValueElement = new Element('span', {
                 title: QUILocale.get(lg, 'dashboard.filesystem.info.unavailable'),
-                html : '–'
+                html: '–'
             });
 
             if (value !== null) {
@@ -131,7 +131,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/FilesystemInfo', [
                 // Convert to Megabytes and round to two fractional digits
                 if (convertSize) {
                     var convertedSize = MathUtil.convertBytesToHumanFileSize(value);
-                    html              = convertedSize.value + ' ' + convertedSize.unit;
+                    html = convertedSize.value + ' ' + convertedSize.unit;
                 }
 
                 ValueElement = new Element('span', {

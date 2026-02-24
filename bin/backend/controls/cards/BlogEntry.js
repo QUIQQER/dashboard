@@ -15,7 +15,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry',
 
         Binds: [
             '$onCreate'
@@ -25,8 +25,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-newest-blog-entry',
-                content : '',
+                id: 'quiqqer-dashboard-card-newest-blog-entry',
+                content: '',
                 priority: 90
             });
 
@@ -59,7 +59,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
                     self.setIcon('fa fa-newspaper-o');
 
                     self.$Content.setStyles({
-                        padding      : '0.75rem 1.5rem',
+                        padding: '0.75rem 1.5rem',
                         'line-height': '2rem'
                     });
 
@@ -86,8 +86,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/BlogEntry', [
                 });
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error,
-                language : window.USER.lang
+                onError: console.error,
+                language: window.USER.lang
             });
         }
     });

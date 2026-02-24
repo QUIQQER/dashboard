@@ -16,7 +16,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
 
         Binds: [
             '$onCreate'
@@ -26,26 +26,26 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-help',
-                icon    : 'fa fa-link',
-                title   : QUILocale.get(lg, 'dashboard.links'),
-                content : Mustache.render(content, {
+                id: 'quiqqer-dashboard-card-help',
+                icon: 'fa fa-link',
+                title: QUILocale.get(lg, 'dashboard.links'),
+                content: Mustache.render(content, {
                     quiqqer: QUILocale.get(lg, 'dashboard.links.quiqqer'),
 
-                    help   : QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
+                    help: QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
                     helpUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.help.url'),
 
-                    blog   : QUILocale.get(lg, 'dashboard.links.quiqqer.blog'),
+                    blog: QUILocale.get(lg, 'dashboard.links.quiqqer.blog'),
                     blogUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.blog.url'),
 
-                    packages   : QUILocale.get(lg, 'dashboard.links.quiqqer.packages'),
+                    packages: QUILocale.get(lg, 'dashboard.links.quiqqer.packages'),
                     packagesUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.packages.url'),
 
 
                     social: QUILocale.get(lg, 'dashboard.links.social')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 85
             });
 

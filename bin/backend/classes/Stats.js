@@ -10,12 +10,12 @@ define('package/quiqqer/dashboard/bin/backend/classes/Stats', [
     return new Class({
 
         Extends: QUIDOM,
-        Type   : 'package/quiqqer/dashboard/bin/backend/classes/Stats',
+        Type: 'package/quiqqer/dashboard/bin/backend/classes/Stats',
 
         initialize: function (options) {
             this.parent(options);
 
-            this.$stats     = null;
+            this.$stats = null;
             this.$isRunning = false;
         },
 
@@ -38,13 +38,13 @@ define('package/quiqqer/dashboard/bin/backend/classes/Stats', [
 
             return new Promise(function (resolve, reject) {
                 QUIAjax.get('package_quiqqer_dashboard_ajax_backend_getStats', function (res) {
-                    self.$stats     = res;
+                    self.$stats = res;
                     self.$isRunning = false;
 
                     resolve(res);
                 }, {
                     'package': 'quiqqer/dashboard',
-                    onError  : function (err) {
+                    onError: function (err) {
                         console.error(err);
                         reject(err);
                     }

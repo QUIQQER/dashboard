@@ -13,7 +13,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages',
 
         Binds: [
             '$onCreate'
@@ -23,8 +23,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-stats-pages',
-                content : '',
+                id: 'quiqqer-dashboard-stats-pages',
+                content: '',
                 priority: 97
             });
 
@@ -76,7 +76,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Pages', [
                 );
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

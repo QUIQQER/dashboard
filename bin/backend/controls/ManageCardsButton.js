@@ -14,7 +14,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton', [
     return new Class({
 
         Extends: QUIButton,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton',
 
         $Input: null,
 
@@ -35,7 +35,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsButton', [
             this.parent(options);
 
             this.addEvents({
-                onClick : this.$onClick,
+                onClick: this.$onClick,
                 onImport: this.$onImport
             });
         },

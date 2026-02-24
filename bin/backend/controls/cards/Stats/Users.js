@@ -11,7 +11,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users',
 
         Binds: [
             '$onCreate'
@@ -21,7 +21,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-stats-users',
+                id: 'quiqqer-dashboard-stats-users',
                 priority: 99
             });
 
@@ -75,7 +75,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Users', [
                 );
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

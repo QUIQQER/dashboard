@@ -17,7 +17,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats',
 
         Binds: [
             '$onCreate'
@@ -27,18 +27,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
             this.parent(options);
 
             this.setAttributes({
-                icon    : 'fa fa-file-text-o',
-                title   : QUILocale.get(lg, 'dashboard.sitestats.title'),
-                content : Mustache.render(contentTemplate, {
-                    rootSites            : QUILocale.get(lg, 'dashboard.sitestats.rootSites'),
-                    childrenSites        : QUILocale.get(lg, 'dashboard.sitestats.children'),
-                    missingContentSites  : QUILocale.get(lg, 'dashboard.sitestats.missing.content'),
+                icon: 'fa fa-file-text-o',
+                title: QUILocale.get(lg, 'dashboard.sitestats.title'),
+                content: Mustache.render(contentTemplate, {
+                    rootSites: QUILocale.get(lg, 'dashboard.sitestats.rootSites'),
+                    childrenSites: QUILocale.get(lg, 'dashboard.sitestats.children'),
+                    missingContentSites: QUILocale.get(lg, 'dashboard.sitestats.missing.content'),
                     missingShortDescSites: QUILocale.get(lg, 'dashboard.sitestats.missing.shortdesc')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 80,
-                size    : 30
+                size: 30
             });
 
             this.addEvents({
@@ -69,12 +69,12 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
             });
 
             this.$ProjectSelect = new ProjectSelect({
-                langSelect   : false,
-                emptyselect  : false,
+                langSelect: false,
+                emptyselect: false,
                 localeStorage: 'dashboard-media-info-card-project-select',
-                styles       : {
+                styles: {
                     display: 'inline-block',
-                    width  : '100%'
+                    width: '100%'
                 }
             }).inject(ProjectSelectContainer);
 
@@ -118,9 +118,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                         result
                     );
                 }.bind(this), {
-                    'package'    : 'quiqqer/dashboard',
+                    'package': 'quiqqer/dashboard',
                     'projectName': projectName,
-                    onError      : console.error
+                    onError: console.error
                 }
             );
         },
@@ -142,9 +142,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                         result
                     );
                 }.bind(this), {
-                    'package'    : 'quiqqer/dashboard',
+                    'package': 'quiqqer/dashboard',
                     'projectName': projectName,
-                    onError      : console.error
+                    onError: console.error
                 }
             );
         },
@@ -167,9 +167,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                         result !== 0 ? 'bad-value' : 'good-value'
                     );
                 }.bind(this), {
-                    'package'    : 'quiqqer/dashboard',
+                    'package': 'quiqqer/dashboard',
                     'projectName': projectName,
-                    onError      : console.error
+                    onError: console.error
                 }
             );
         },
@@ -192,9 +192,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteStats', [
                         result !== 0 ? 'bad-value' : 'good-value'
                     );
                 }.bind(this), {
-                    'package'    : 'quiqqer/dashboard',
+                    'package': 'quiqqer/dashboard',
                     'projectName': projectName,
-                    onError      : console.error
+                    onError: console.error
                 }
             );
         },

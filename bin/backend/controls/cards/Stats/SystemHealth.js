@@ -18,13 +18,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth',
 
         initialize: function (options) {
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-stats-system-health',
+                id: 'quiqqer-dashboard-stats-system-health',
                 priority: 96
             });
 
@@ -48,7 +48,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
          * opens the system info popup
          */
         openSystemCheckPopup: function () {
-            var Popup       = new QUIPopup(),
+            var Popup = new QUIPopup(),
                 SystemCheck = new QUISystemCheck();
 
             Popup.open();
@@ -70,36 +70,36 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
                 switch (result) {
                     // failed
                     case 0:
-                        iconType  = 'fa fa-times bad-value';
+                        iconType = 'fa fa-times bad-value';
                         valueType = 'bg-red';
                         break;
 
                     // okay
                     case 1:
-                        iconType  = 'fa fa-check good-value';
+                        iconType = 'fa fa-check good-value';
                         valueType = 'bg-green';
                         break;
 
                     // warning
                     case 3:
-                        iconType  = 'fa fa-exclamation-triangle warning-value';
+                        iconType = 'fa fa-exclamation-triangle warning-value';
                         valueType = 'bg-yellow';
                         break;
 
                     // unknown
                     default:
-                        iconType  = 'fa fa-question inactive-value';
+                        iconType = 'fa fa-question inactive-value';
                         valueType = 'bg-blue-lt';
 
                         // add a info to tell the user how to get correct values
                         self.getElm().title = QUILocale.get(lg, 'dashboard.stats.systemhealth.help');
 
                         new Element('i', {
-                            class : 'fa fa-info-circle',
+                            class: 'fa fa-info-circle',
                             styles: {
                                 position: 'absolute',
-                                top     : 0,
-                                right   : 0
+                                top: 0,
+                                right: 0
                             }
                         }).inject(self.$Content);
                         break;
@@ -123,7 +123,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/SystemHealth'
                 );
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

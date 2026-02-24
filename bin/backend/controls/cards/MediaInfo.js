@@ -21,7 +21,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo',
 
         Binds: [
             '$onCreate'
@@ -33,17 +33,17 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-media-info',
-                icon    : 'fa fa-picture-o',
-                title   : QUILocale.get(lg, 'dashboard.media.info'),
-                content : Mustache.render(content, {
-                    filesCount     : QUILocale.get(lg, 'dashboard.media.info.files.count'),
-                    folderCount    : QUILocale.get(lg, 'dashboard.media.info.folder.count'),
-                    folderSize     : QUILocale.get(lg, 'dashboard.media.info.folder.size'),
+                id: 'quiqqer-dashboard-card-media-info',
+                icon: 'fa fa-picture-o',
+                title: QUILocale.get(lg, 'dashboard.media.info'),
+                content: Mustache.render(content, {
+                    filesCount: QUILocale.get(lg, 'dashboard.media.info.files.count'),
+                    folderCount: QUILocale.get(lg, 'dashboard.media.info.folder.count'),
+                    folderSize: QUILocale.get(lg, 'dashboard.media.info.folder.size'),
                     cacheFolderSize: QUILocale.get(lg, 'dashboard.media.info.cache.folder.size')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 50
             });
 
@@ -64,13 +64,13 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
             });
 
             this.$ProjectSelect = new ProjectSelect({
-                langSelect   : false,
-                emptyselect  : false,
+                langSelect: false,
+                emptyselect: false,
                 localeStorage: 'dashboard-media-info-card-project-select',
-                styles       : {
-                    display  : 'inline-block',
+                styles: {
+                    display: 'inline-block',
                     marginTop: 10,
-                    width    : '100%'
+                    width: '100%'
                 }
             }).inject(ProjectSelectContainer);
 
@@ -105,7 +105,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                 // We can't use a plain string here because the text contains ' and "
                 let mediaFolderSize = new Element('span', {
                     title: QUILocale.get(lg, 'dashboard.media.info.folder.unavailable'),
-                    html : '–'
+                    html: '–'
                 });
 
                 let mediaCacheFolderSize = mediaFolderSize.clone();
@@ -120,8 +120,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 // If there is a timestamp calculate how much time passed since then
                 if (result.mediaFolderSizeTimestamp) {
-                    const MediaFolderSizeDate                   = new Date(result.mediaFolderSizeTimestamp * 1000),
-                          timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
+                    const MediaFolderSizeDate = new Date(result.mediaFolderSizeTimestamp * 1000),
+                        timeSinceMediaFolderSizeTimestampText = DateUtil.getTimeSinceAsString(MediaFolderSizeDate);
 
                     mediaFolderSize.innerHTML += "<br><small>(" + timeSinceMediaFolderSizeTimestampText + ")</small>";
                 }
@@ -136,8 +136,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
 
                 // If there is a timestamp calculate how much time passed since then
                 if (result.mediaCacheFolderSizeTimestamp) {
-                    const MediaCacheFolderSizeDate          = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
-                          timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
+                    const MediaCacheFolderSizeDate = new Date(result.mediaCacheFolderSizeTimestamp * 1000),
+                        timeSinceMediaCacheFolderSizeText = DateUtil.getTimeSinceAsString(MediaCacheFolderSizeDate);
 
                     mediaCacheFolderSize.innerHTML += "<br><small>(" + timeSinceMediaCacheFolderSizeText + ")</small>";
                 }
@@ -179,8 +179,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                     }
 
                     self.$MediaInfoChart = new Chart(Card.getElement('#chart'), {
-                        type   : 'pie',
-                        data   : {
+                        type: 'pie',
+                        data: {
                             datasets: [
                                 {
                                     // values contain the amounts of different file-types
@@ -205,9 +205,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/MediaInfo', [
                     ChartContainer.show();
                 });
             }, {
-                'package'  : 'quiqqer/dashboard',
+                'package': 'quiqqer/dashboard',
                 projectName: projectName,
-                onError    : console.error
+                onError: console.error
             });
         }
     });
