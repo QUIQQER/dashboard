@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects
- * @author www.pcsg.de (Jan Wennrich)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects', [
 
     'Ajax',
@@ -17,7 +13,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects',
 
         Binds: [
             '$onCreate'
@@ -27,8 +23,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-stats-projects',
-                content : '',
+                id: 'quiqqer-dashboard-stats-projects',
+                content: '',
                 priority: 98
             });
 
@@ -65,7 +61,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Projects', [
                 );
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

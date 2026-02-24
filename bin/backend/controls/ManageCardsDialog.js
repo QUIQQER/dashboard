@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog
- * @author www.pcsg.de (Jan Wennrich)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
 
     'controls/grid/Grid',
@@ -21,7 +17,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
 
     return new Class({
         Extends: QUIConfirmWindow,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog',
 
         $Form: null,
 
@@ -34,11 +30,11 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
         cardSettings: undefined,
 
         options: {
-            maxWidth : 700,
+            maxWidth: 700,
             maxHeight: 600,
-            title    : QUILocale.get(lg, 'control.managecards.dialog.title'),
-            icon     : 'fa fa-pencil',
-            style    : {
+            title: QUILocale.get(lg, 'control.managecards.dialog.title'),
+            icon: 'fa fa-pencil',
+            style: {
                 padding: 0
             }
         },
@@ -83,27 +79,27 @@ define('package/quiqqer/dashboard/bin/backend/controls/ManageCardsDialog', [
                 self._buildContentFromLocalSettings(settings);
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         },
 
         _buildContentFromLocalSettings: function (settings) {
             const self = this;
 
-            const isEnabledLabel      = QUILocale.get(lg, 'control.managecards.dialog.enabled.label'),
-                  priorityLabel       = QUILocale.get(lg, 'control.managecards.dialog.priority.label'),
-                  priorityPlaceholder = QUILocale.get(lg, 'control.managecards.dialog.priority.placeholder');
+            const isEnabledLabel = QUILocale.get(lg, 'control.managecards.dialog.enabled.label'),
+                priorityLabel = QUILocale.get(lg, 'control.managecards.dialog.priority.label'),
+                priorityPlaceholder = QUILocale.get(lg, 'control.managecards.dialog.priority.placeholder');
 
             settings.forEach(function (cardSettings) {
                 const settingHtml = Mustache.render(templateSetting, {
-                    type     : cardSettings.card,
+                    type: cardSettings.card,
                     isEnabled: {
                         label: isEnabledLabel,
                         value: cardSettings.enabled
                     },
-                    priority : {
-                        label      : priorityLabel,
-                        value      : cardSettings.priority,
+                    priority: {
+                        label: priorityLabel,
+                        value: cardSettings.priority,
                         placeholder: priorityPlaceholder
                     }
                 });

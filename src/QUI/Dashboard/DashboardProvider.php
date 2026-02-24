@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author PCSG (Jan Wennrich)
- */
-
 namespace QUI\Dashboard;
 
 use QUI;
@@ -12,8 +8,6 @@ use function array_merge;
 
 /**
  * Class DashboardProvider
- *
- * @package dashboard\src\QUI\Dashboard
  */
 class DashboardProvider implements DashboardProviderInterface
 {

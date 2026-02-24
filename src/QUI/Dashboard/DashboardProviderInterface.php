@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @author PCSG (Jan Wennrich)
- */
-
 namespace QUI\Dashboard;
 
 /**
  * Interface AbstractDashboardProvider
- *
- * @package dashboard\src\QUI\Dashboard
  */
 interface DashboardProviderInterface
 {
@@ -27,7 +21,6 @@ interface DashboardProviderInterface
      *
      * @return array
      * @example see QUI\Dashboard\DashboardProvider
-     *
      */
     public static function getCards(): array;
 

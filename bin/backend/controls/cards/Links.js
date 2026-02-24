@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/Links
- * @author www.pcsg.de (Jan Wennrich)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
 
     'Ajax',
@@ -10,17 +6,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
 
     'package/quiqqer/dashboard/bin/backend/controls/Card',
 
-    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Links.html'
+    'text!package/quiqqer/dashboard/bin/backend/controls/cards/Links.html',
+    'css!package/quiqqer/dashboard/bin/backend/controls/cards/Links.css'
 
 ], function (QUIAjax, QUILocale, Mustache, QUICard, content) {
     "use strict";
 
-    var lg = 'quiqqer/dashboard';
+    const lg = 'quiqqer/dashboard';
 
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Links',
 
         Binds: [
             '$onCreate'
@@ -30,26 +27,40 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-help',
-                icon    : 'fa fa-link',
-                title   : QUILocale.get(lg, 'dashboard.links'),
-                content : Mustache.render(content, {
+                id: 'quiqqer-dashboard-card-help',
+                icon: 'fa fa-link',
+                title: QUILocale.get(lg, 'dashboard.links'),
+                content: Mustache.render(content, {
                     quiqqer: QUILocale.get(lg, 'dashboard.links.quiqqer'),
 
-                    help   : QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
+                    help: QUILocale.get(lg, 'dashboard.links.quiqqer.help'),
                     helpUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.help.url'),
+                    helpMeta: QUILocale.get(lg, 'dashboard.links.quiqqer.help.meta'),
 
-                    blog   : QUILocale.get(lg, 'dashboard.links.quiqqer.blog'),
+                    blog: QUILocale.get(lg, 'dashboard.links.quiqqer.blog'),
                     blogUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.blog.url'),
+                    blogMeta: QUILocale.get(lg, 'dashboard.links.quiqqer.blog.meta'),
 
-                    packages   : QUILocale.get(lg, 'dashboard.links.quiqqer.packages'),
+                    packages: QUILocale.get(lg, 'dashboard.links.quiqqer.packages'),
                     packagesUrl: QUILocale.get(lg, 'dashboard.links.quiqqer.packages.url'),
+                    packagesMeta: QUILocale.get(lg, 'dashboard.links.quiqqer.packages.meta'),
 
 
-                    social: QUILocale.get(lg, 'dashboard.links.social')
+                    social: QUILocale.get(lg, 'dashboard.links.social'),
+
+                    gitlab: QUILocale.get(lg, 'dashboard.links.social.gitlab'),
+                    gitlabMeta: QUILocale.get(lg, 'dashboard.links.social.gitlab.meta'),
+                    github: QUILocale.get(lg, 'dashboard.links.social.github'),
+                    githubMeta: QUILocale.get(lg, 'dashboard.links.social.github.meta'),
+                    facebook: QUILocale.get(lg, 'dashboard.links.social.facebook'),
+                    facebookMeta: QUILocale.get(lg, 'dashboard.links.social.facebook.meta'),
+                    twitter: QUILocale.get(lg, 'dashboard.links.social.twitter'),
+                    twitterMeta: QUILocale.get(lg, 'dashboard.links.social.twitter.meta'),
+                    discord: QUILocale.get(lg, 'dashboard.links.social.discord'),
+                    discordMeta: QUILocale.get(lg, 'dashboard.links.social.discord.meta')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 85
             });
 
@@ -63,7 +74,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Links', [
          */
         $onCreate: function () {
             this.getElm().classList.add('col-sm-6');
-            this.getElm().classList.add('col-lg-4');
+            this.getElm().classList.add('col-lg-6');
         }
     });
 });

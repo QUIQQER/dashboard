@@ -1,9 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo
- *
- * @author www.pcsg.de (Jan Wennrich)
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
 
     'Ajax',
@@ -22,7 +16,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo',
 
         Binds: [
             '$onCreate'
@@ -32,17 +26,17 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-system-info',
-                icon    : 'fa fa-microchip',
-                title   : QUILocale.get(lg, 'dashboard.system.info'),
-                content : Mustache.render(contentTemplate, {
+                id: 'quiqqer-dashboard-card-system-info',
+                icon: 'fa fa-microchip',
+                title: QUILocale.get(lg, 'dashboard.system.info'),
+                content: Mustache.render(contentTemplate, {
                     quiqqerVersion: QUILocale.get(lg, 'dashboard.system.info.quiqqer.version'),
-                    modulesCount  : QUILocale.get(lg, 'dashboard.system.info.modules.count'),
-                    devmodeActive : QUILocale.get(lg, 'dashboard.system.info.devmode.active'),
-                    cacheType     : QUILocale.get(lg, 'dashboard.system.info.cache.type')
+                    modulesCount: QUILocale.get(lg, 'dashboard.system.info.modules.count'),
+                    devmodeActive: QUILocale.get(lg, 'dashboard.system.info.devmode.active'),
+                    cacheType: QUILocale.get(lg, 'dashboard.system.info.cache.type')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 45
             });
 
@@ -83,7 +77,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SystemInfo', [
                 self.getElm().getElement('#system-info-cache-type .value').set('html', result.cacheType);
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

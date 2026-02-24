@@ -1,6 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersStats
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersStats', [
 
     'Ajax',
@@ -67,8 +64,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersStats', 
 
                 // payment stats
                 this.$cardPaymentChart = document.createElement('div');
-                this.$cardPaymentChart .classList.add('dashboard-card', 'col-sg-6', 'col-sm-6');
-                this.$cardPaymentChart .innerHTML = `
+                this.$cardPaymentChart.classList.add('dashboard-card', 'col-sg-6', 'col-sm-6');
+                this.$cardPaymentChart.innerHTML = `
                     <div class="card">
                         <header class="card-header"></header>
                         <div class="card-body"></div>
@@ -76,7 +73,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersStats', 
                     </div>
                 `;
 
-                this.getElm().parentNode.insertBefore(this.$cardPaymentChart , this.getElm().nextSibling);
+                this.getElm().parentNode.insertBefore(this.$cardPaymentChart, this.getElm().nextSibling);
 
                 board.getFilterInstance().addEvent('change', () => {
                     this.refresh();

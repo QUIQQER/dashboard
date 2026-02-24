@@ -1,7 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/Dashboard
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
     'qui/QUI',
