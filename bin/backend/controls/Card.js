@@ -1,6 +1,4 @@
 /**
- * @module package/quiqqer/dashboard/bin/backend/controls/Card
- * @author www.pcsg.de (Henning Leutz)
  *
  * @event onCreate [self]
  */
@@ -17,15 +15,15 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
     return new Class({
 
         Extends: QUIControl,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/Dashboard',
 
         options: {
-            icon    : false,
-            title   : false,
-            content : false,
-            footer  : false,
-            styles  : false,
-            size    : false,
+            icon: false,
+            title: false,
+            content: false,
+            footer: false,
+            styles: false,
+            size: false,
             priority: 10
         },
 
@@ -45,18 +43,18 @@ define('package/quiqqer/dashboard/bin/backend/controls/Card', [
             this.$Elm = new Element('div');
 
             this.$Elm.set({
-                'class'     : 'dashboard-card',
-                'data-qui'  : this.getType(),
+                'class': 'dashboard-card',
+                'data-qui': this.getType(),
                 'data-quiid': this.getId(),
-                html        : '' +
-                              '<div class="card">' +
-                              '   <header class="card-header">' +
-                              '       <span class="card-icon"></span>' +
-                              '       <span class="card-title"></span>' +
-                              '   </header>' +
-                              '   <div class="card-body"></div>' +
-                              '   <div class="card-footer"></div>' +
-                              '</div>'
+                html: '' +
+                    '<div class="card">' +
+                    '   <header class="card-header">' +
+                    '       <span class="card-icon"></span>' +
+                    '       <span class="card-title"></span>' +
+                    '   </header>' +
+                    '   <div class="card-body"></div>' +
+                    '   <div class="card-footer"></div>' +
+                    '</div>'
             });
 
             this.$Icon = this.$Elm.getElement('.card-icon');

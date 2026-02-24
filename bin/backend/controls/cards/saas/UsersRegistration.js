@@ -1,6 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistration
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/UsersRegistration', [
 
     'Ajax',

@@ -1,9 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity
- *
- * @author www.pcsg.de (Jan Wennrich)
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
 
     'Ajax',
@@ -22,7 +16,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity',
 
         Binds: [
             '$onCreate'
@@ -32,16 +26,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-site-activity',
-                icon    : 'fa fa-file-text-o',
-                title   : QUILocale.get(lg, 'dashboard.page.changes'),
-                content : Mustache.render(contentTemplate, {
-                    id   : QUILocale.get('quiqqer/system', 'id'),
+                id: 'quiqqer-dashboard-card-site-activity',
+                icon: 'fa fa-file-text-o',
+                title: QUILocale.get(lg, 'dashboard.page.changes'),
+                content: Mustache.render(contentTemplate, {
+                    id: QUILocale.get('quiqqer/system', 'id'),
                     title: QUILocale.get('quiqqer/system', 'title'),
-                    date : QUILocale.get('quiqqer/system', 'e_date')
+                    date: QUILocale.get('quiqqer/system', 'e_date')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 65
             });
 
@@ -77,8 +71,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
                     }
 
                     var project = Target.get('data-project');
-                    var lang    = Target.get('data-lang');
-                    var id      = Target.get('data-id');
+                    var lang = Target.get('data-lang');
+                    var id = Target.get('data-id');
 
                     window.parent.require(['utils/Panels'], function (PanelUtils) {
                         PanelUtils.openSitePanel(project, lang, id);
@@ -89,22 +83,22 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
                     entry = result[i];
 
                     new Element('tr', {
-                        'class'       : 'can-be-hovered',
+                        'class': 'can-be-hovered',
                         'data-project': entry.project,
-                        'data-lang'   : entry.lang,
-                        'data-id'     : entry.id,
-                        html          : '' +
+                        'data-lang': entry.lang,
+                        'data-id': entry.id,
+                        html: '' +
                             '<td>' + entry.id + '</td>' +
                             '<td>' + entry.title + '</td>' +
                             '<td>' + entry.e_date + '</td>',
-                        events        : {
+                        events: {
                             click: click
                         }
                     }).inject(Tbody);
                 }
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

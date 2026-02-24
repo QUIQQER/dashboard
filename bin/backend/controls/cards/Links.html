@@ -1,53 +1,73 @@
-<h2>
-    {{quiqqer}}
-</h2>
-<ul class="fa-ul">
-    <li>
-        <i class="fa-li fa fa-question"></i>
-        <a href="{{helpUrl}}" target="_blank">{{help}}</a>
-    </li>
-    <li>
-        <i class="fa-li fa fa-rss"></i>
-        <a href="{{blogUrl}}" target="_blank">{{blog}}</a>
-    </li>
-    <li>
-        <i class="fa-li fa fa-gift"></i>
-        <a href="{{packagesUrl}}" target="_blank">{{packages}}</a>
-    </li>
-</ul>
+<div class="dashboard-links">
+    <section class="dashboard-links__group">
+        <h2 class="dashboard-links__headline">{{quiqqer}}</h2>
 
-<h2>
-    {{social}}
-</h2>
-<ul class="fa-ul">
-    <li>
-        <i class="fa-li fa fa-github"></i>
-        <a href="https://github.com/quiqqer" target="_blank">
-            GitHub
+        <a class="dashboard-links__item" href="{{helpUrl}}" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-question"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{help}}</span>
+                <span class="dashboard-links__meta">{{helpMeta}}</span>
+            </span>
         </a>
-    </li>
-    <li>
-        <i class="fa-li fa fa-facebook-official"></i>
-        <a href="https://www.facebook.com/Quiqqer" target="_blank">
-            Facebook
+
+        <a class="dashboard-links__item" href="{{blogUrl}}" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-rss"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{blog}}</span>
+                <span class="dashboard-links__meta">{{blogMeta}}</span>
+            </span>
         </a>
-    </li>
-    <li>
-        <i class="fa-li fa fa-twitter"></i>
-        <a href="https://twitter.com/PCSG_DEV" target="_blank">
-            Twitter
+
+        <a class="dashboard-links__item" href="{{packagesUrl}}" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-gift"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{packages}}</span>
+                <span class="dashboard-links__meta">{{packagesMeta}}</span>
+            </span>
         </a>
-    </li>
-    <li>
-        <i class="fa-li fa fa-gitlab"></i>
-        <a href="https://dev.quiqqer.com/" target="_blank">
-            GitLab
+    </section>
+
+    <section class="dashboard-links__group">
+        <h2 class="dashboard-links__headline">{{social}}</h2>
+
+        <a class="dashboard-links__item" href="https://dev.quiqqer.com/" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-gitlab"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{gitlab}}</span>
+                <span class="dashboard-links__meta">{{gitlabMeta}}</span>
+            </span>
         </a>
-    </li>
-    <li>
-        <i class="fa-li fa fa-gamepad"></i>
-        <a href="https://discord.gg/tjaMEgv" target="_blank">
-            Discord
+
+        <a class="dashboard-links__item" href="https://github.com/quiqqer" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-github"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{github}}</span>
+                <span class="dashboard-links__meta">{{githubMeta}}</span>
+            </span>
         </a>
-    </li>
-</ul>
+
+        <a class="dashboard-links__item" href="https://twitter.com/PCSG_DEV" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-twitter"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{twitter}}</span>
+                <span class="dashboard-links__meta">{{twitterMeta}}</span>
+            </span>
+        </a>
+
+        <a class="dashboard-links__item" href="https://www.facebook.com/Quiqqer" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-facebook-official"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{facebook}}</span>
+                <span class="dashboard-links__meta">{{facebookMeta}}</span>
+            </span>
+        </a>
+
+        <a class="dashboard-links__item" href="https://discord.gg/tjaMEgv" target="_blank" rel="noopener noreferrer">
+            <span class="dashboard-links__icon fa fa-gamepad"></span>
+            <span class="dashboard-links__content">
+                <span class="dashboard-links__title">{{discord}}</span>
+                <span class="dashboard-links__meta">{{discordMeta}}</span>
+            </span>
+        </a>
+    </section>
+</div>

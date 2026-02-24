@@ -1,8 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups
- * @author www.pcsg.de (Jan Wennrich)
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
 
     'Ajax',
@@ -18,7 +13,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups',
 
         Binds: [
             '$onCreate'
@@ -28,8 +23,8 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-stats-groups',
-                title   : false,
+                id: 'quiqqer-dashboard-stats-groups',
+                title: false,
                 priority: 100
             });
 
@@ -83,7 +78,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/Stats/Groups', [
                 );
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });

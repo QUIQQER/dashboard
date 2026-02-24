@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author PCSG (Jan Wennrich)
- */
-
 namespace QUI\Dashboard;
 
 use Exception;
@@ -19,8 +15,6 @@ use function json_decode;
 
 /**
  * Class DashboardHandler
- *
- * @package \QUI\Dashboard
  */
 class DashboardHandler extends Singleton
 {

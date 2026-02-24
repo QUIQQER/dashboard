@@ -1,6 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersCount
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/saas/OrdersCount', [
 
     'Ajax',

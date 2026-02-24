@@ -1,9 +1,3 @@
-/**
- * @module package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory
- *
- * @author www.pcsg.de (Jan Wennrich)
- * @author www.pcsg.de (Henning Leutz)
- */
 define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
 
     'Ajax',
@@ -22,7 +16,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
     return new Class({
 
         Extends: QUICard,
-        Type   : 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
+        Type: 'package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory',
 
         Binds: [
             '$onCreate'
@@ -32,16 +26,16 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
             this.parent(options);
 
             this.setAttributes({
-                id      : 'quiqqer-dashboard-card-cron-history',
-                icon    : 'fa fa-clock-o',
-                title   : QUILocale.get(lg, 'dashboard.cron.history'),
-                content : Mustache.render(contentTemplate, {
+                id: 'quiqqer-dashboard-card-cron-history',
+                icon: 'fa fa-clock-o',
+                title: QUILocale.get(lg, 'dashboard.cron.history'),
+                content: Mustache.render(contentTemplate, {
                     date: QUILocale.get(lg, 'dashboard.cron.history.date'),
                     cron: QUILocale.get(lg, 'dashboard.cron.history.cron'),
                     user: QUILocale.get(lg, 'dashboard.cron.history.user')
                 }),
-                footer  : false,
-                styles  : false,
+                footer: false,
+                styles: false,
                 priority: 75
             });
 
@@ -81,7 +75,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/CronHistory', [
                 self.getElm().getElement('tbody').set('html', rows);
             }, {
                 'package': 'quiqqer/dashboard',
-                onError  : console.error
+                onError: console.error
             });
         }
     });
