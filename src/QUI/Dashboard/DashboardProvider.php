@@ -1,6 +1,5 @@
 <?php
 
-
 namespace QUI\Dashboard;
 
 use QUI;
