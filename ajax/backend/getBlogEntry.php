@@ -122,6 +122,10 @@ QUI::$Ajax->registerFunction(
             return stripos($version, 'dev') !== false;
         };
 
+        $isIgnoredPackage = static function (string $packageName): bool {
+            return strtolower(trim($packageName)) === 'quiqqer/quiqqer';
+        };
+
         $normalizeVersionForCompare = static function (string $version): string {
             $version = trim($version);
 
@@ -198,6 +202,10 @@ QUI::$Ajax->registerFunction(
 
                     $packageName = $normalized['name'];
 
+                    if ($isIgnoredPackage($packageName)) {
+                        continue;
+                    }
+
                     if (
                         !isset($latestPackages[$packageName]) ||
                         $isNewer($normalized, $latestPackages[$packageName])
@@ -230,6 +238,10 @@ QUI::$Ajax->registerFunction(
 
                 $packageName = $normalized['name'];
 
+                if ($isIgnoredPackage($packageName)) {
+                    continue;
+                }
+
                 if (
                     !isset($latestPackages[$packageName]) ||
                     $isNewer($normalized, $latestPackages[$packageName])
@@ -251,6 +263,10 @@ QUI::$Ajax->registerFunction(
                 }
 
                 $packageName = $normalized['name'];
+
+                if ($isIgnoredPackage($packageName)) {
+                    continue;
+                }
 
                 if (
                     !isset($latestPackages[$packageName]) ||
