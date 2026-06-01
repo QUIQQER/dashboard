@@ -7,7 +7,7 @@
 /**
  * @return int
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_saas_getUsersCount',
     function ($interval, $from, $to) {
         if (empty($from)) {

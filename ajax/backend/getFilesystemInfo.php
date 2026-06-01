@@ -11,7 +11,7 @@
 use QUI\Cache\Manager;
 use QUI\Utils\Installation;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getFilesystemInfo',
     function () {
         $fileCount = Installation::getAllFileCount();

@@ -16,7 +16,7 @@ interface DashboardInterface
     public function getTitle(?Locale $Locale = null): string;
 
     /**
-     * @return array
+     * @return array<int, string>
      */
     public function getCards(): array;
 

@@ -14,7 +14,7 @@ class DashboardProvider implements DashboardProviderInterface
     /**
      * @inheritdoc
      *
-     * @return array
+     * @return array<int, string>
      */
     public static function getCards(): array
     {
@@ -43,7 +43,7 @@ class DashboardProvider implements DashboardProviderInterface
     }
 
     /**
-     * @return array
+     * @return array<int, DashboardInterface>
      */
     public static function getBoards(): array
     {

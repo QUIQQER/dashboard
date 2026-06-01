@@ -13,7 +13,7 @@ const PACKAGE_LIST_LIMIT = 10;
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getBlogEntry',
     function ($language = 'en') {
         $toTimestamp = static function ($value): int {
@@ -168,6 +168,11 @@ QUI::$Ajax->registerFunction(
 
         try {
             $json = QUI\Utils\Request\Url::get(PACKAGE_LIST_URL);
+
+            if (!is_string($json)) {
+                return [];
+            }
+
             $payload = json_decode($json, true);
         } catch (Exception $Exception) {
             QUI\System\Log::writeException($Exception);
