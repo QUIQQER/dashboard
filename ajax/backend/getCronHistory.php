@@ -7,7 +7,7 @@
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getCronHistory',
     function () {
         $history = (new QUI\Cron\Manager())->getHistoryList(['perPage' => 10, 'page' => 1]);

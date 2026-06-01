@@ -21,7 +21,7 @@ class SaaSDashboard implements QUI\Dashboard\DashboardInterface
     }
 
     /**
-     * @return array
+     * @return array<int, string>
      */
     public function getCards(): array
     {

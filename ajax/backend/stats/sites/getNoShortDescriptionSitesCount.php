@@ -6,7 +6,7 @@
 
 use QUI\System\Log;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoShortDescriptionSitesCount',
     function ($projectName) {
         try {

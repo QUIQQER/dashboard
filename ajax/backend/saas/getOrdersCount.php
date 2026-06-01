@@ -7,7 +7,7 @@
 /**
  * @return int|string
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_saas_getOrdersCount',
     function ($interval, $from, $to) {
         if (!class_exists('QUI\ERP\Order\Handler')) {
@@ -22,16 +22,19 @@ QUI::$Ajax->registerFunction(
             $to = date('Y-m-01 23:59:59');
         }
 
-        if (!is_numeric($from)) {
-            $from = strtotime($from);
+        $fromTimestamp = is_numeric($from) ? (int)$from : strtotime((string)$from);
+        $toTimestamp = is_numeric($to) ? (int)$to : strtotime((string)$to);
+
+        if ($fromTimestamp === false) {
+            $fromTimestamp = time();
         }
 
-        if (!is_numeric($to)) {
-            $to = strtotime($to);
+        if ($toTimestamp === false) {
+            $toTimestamp = time();
         }
 
-        $from = date('Y-m-d H:i:s', $from);
-        $to = date('Y-m-d H:i:s', $to);
+        $from = date('Y-m-d H:i:s', $fromTimestamp);
+        $to = date('Y-m-d H:i:s', $toTimestamp);
 
         $qb = QUI::getQueryBuilder();
         $qb->select('COUNT(*) AS orders')

@@ -23,12 +23,12 @@ class DashboardHandler extends Singleton
     const PROVIDER_KEY = 'dashboard';
 
     /**
-     * @var array
+     * @var array<int, string|array<int, string>>
      */
     protected array $cardList = [];
 
     /**
-     * @var array
+     * @var array<int, DashboardProviderInterface>
      */
     protected array $providers = [];
 
@@ -40,7 +40,7 @@ class DashboardHandler extends Singleton
      * The card's name is the key.
      * The value is an array containing the card's priority, and it's enabled-state (always true).
      *
-     * @return array
+     * @return array<int, array{card: string|array<int, string>, enabled: mixed, priority: int|null}>
      */
     public function getCardsForUsersDashboard(): array
     {
@@ -54,8 +54,8 @@ class DashboardHandler extends Singleton
     }
 
     /**
-     * @param $dashboardId
-     * @return array
+     * @param int|string $dashboardId
+     * @return array<int, string>
      */
     public function getCardsFromBoard($dashboardId): array
     {
@@ -73,7 +73,7 @@ class DashboardHandler extends Singleton
     /**
      * Return all dashboard provider
      *
-     * @return DashboardProviderInterface[]
+     * @return array<int, DashboardProviderInterface>
      */
     protected function getProviders(): array
     {
@@ -122,7 +122,7 @@ class DashboardHandler extends Singleton
 
         foreach ($dashboardProviders as $dashboardProvider) {
             try {
-                /** @var DashboardProviderInterface $Provider */
+                /** @var object $Provider */
                 $Provider = new $dashboardProvider();
 
                 if ($Provider instanceof DashboardProviderInterface) {
@@ -142,7 +142,7 @@ class DashboardHandler extends Singleton
      * Returns all general cards in the system.
      * The array might contain further arrays. These arrays indicate rows.
      *
-     * @return array
+     * @return array<int, string|array<int, string>>
      */
     public function getAllGeneralCards(): array
     {
@@ -166,7 +166,7 @@ class DashboardHandler extends Singleton
     /**
      * Return all available boards
      *
-     * @return array
+     * @return array<int, DashboardInterface>
      */
     public function getBoards(): array
     {
@@ -181,7 +181,7 @@ class DashboardHandler extends Singleton
     }
 
     /**
-     * @return array
+     * @return array<int, array{card: string|array<int, string>, enabled: mixed, priority: int|null}>
      */
     public function getCardsWithSettings(): array
     {
@@ -206,7 +206,7 @@ class DashboardHandler extends Singleton
             ];
 
             // There may be no settings for a card yet, but if so, use them
-            if (isset($settings[$card])) {
+            if (is_string($card) && isset($settings[$card])) {
                 $cardSettings = $settings[$card];
 
                 if (isset($cardSettings['enabled'])) {

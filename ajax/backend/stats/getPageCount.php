@@ -10,7 +10,7 @@
 
 use QUI\Projects\Project;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_getPageCount',
     function () {
         $result = [];
