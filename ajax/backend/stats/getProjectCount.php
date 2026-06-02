@@ -7,7 +7,7 @@
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_getProjectCount',
     function () {
         $Config = QUI::getProjectManager()->getConfig();

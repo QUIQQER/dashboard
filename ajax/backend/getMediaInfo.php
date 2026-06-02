@@ -11,7 +11,7 @@ use QUI\System\Log;
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getMediaInfo',
     function ($projectName) {
         try {

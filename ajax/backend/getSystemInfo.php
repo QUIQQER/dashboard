@@ -7,7 +7,7 @@
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getSystemInfo',
     function () {
         $activeCacheHandler = false;
@@ -31,7 +31,7 @@ QUI::$Ajax->registerFunction(
         return [
             'quiqqerVersion' => $Packages->getVersion(),
             'modulesCount' => QUI::getLocale()->formatNumber(count($Packages->getInstalled())),
-            'isDevModeActive' => DEVELOPMENT == 1,
+            'isDevModeActive' => (bool)DEVELOPMENT,
             'cacheType' => $activeCacheHandlerTranslated
         ];
     },

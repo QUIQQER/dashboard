@@ -7,7 +7,7 @@
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getStats',
     function () {
         require_once 'stats/getGroupCount.php';
@@ -25,7 +25,7 @@ QUI::$Ajax->registerFunction(
         ];
 
         // group count
-        $groupCount = QUI::$Ajax->callRequestFunction('package_quiqqer_dashboard_ajax_backend_stats_getGroupCount', [
+        $groupCount = QUI::getAjax()->callRequestFunction('package_quiqqer_dashboard_ajax_backend_stats_getGroupCount', [
             'package' => 'quiqqer/dashboard'
         ]);
 
@@ -34,7 +34,7 @@ QUI::$Ajax->registerFunction(
         }
 
         // page count
-        $pageCount = QUI::$Ajax->callRequestFunction('package_quiqqer_dashboard_ajax_backend_stats_getPageCount', [
+        $pageCount = QUI::getAjax()->callRequestFunction('package_quiqqer_dashboard_ajax_backend_stats_getPageCount', [
             'package' => 'quiqqer/dashboard'
         ]);
 
@@ -43,7 +43,7 @@ QUI::$Ajax->registerFunction(
         }
 
         // project count
-        $projectCount = QUI::$Ajax->callRequestFunction(
+        $projectCount = QUI::getAjax()->callRequestFunction(
             'package_quiqqer_dashboard_ajax_backend_stats_getProjectCount',
             ['package' => 'quiqqer/dashboard']
         );
@@ -53,7 +53,7 @@ QUI::$Ajax->registerFunction(
         }
 
         // system health
-        $systemHealth = QUI::$Ajax->callRequestFunction(
+        $systemHealth = QUI::getAjax()->callRequestFunction(
             'package_quiqqer_dashboard_ajax_backend_stats_getSystemHealth',
             ['package' => 'quiqqer/dashboard']
         );
@@ -63,7 +63,7 @@ QUI::$Ajax->registerFunction(
         }
 
         // user count
-        $userCount = QUI::$Ajax->callRequestFunction(
+        $userCount = QUI::getAjax()->callRequestFunction(
             'package_quiqqer_dashboard_ajax_backend_stats_getUserCount',
             ['package' => 'quiqqer/dashboard']
         );

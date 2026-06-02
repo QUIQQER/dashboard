@@ -7,7 +7,7 @@
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_saas_getUsersRegistrations',
     function ($interval, $from, $to) {
         if (empty($interval)) {
@@ -39,12 +39,15 @@ QUI::$Ajax->registerFunction(
                 "DATE(FROM_UNIXTIME(regdate)) AS period"
             );
 
-        if (!is_numeric($from)) {
-            $from = strtotime($from);
+        $fromTimestamp = is_numeric($from) ? (int)$from : strtotime((string)$from);
+        $toTimestamp = is_numeric($to) ? (int)$to : strtotime((string)$to);
+
+        if ($fromTimestamp === false) {
+            $fromTimestamp = time();
         }
 
-        if (!is_numeric($to)) {
-            $to = strtotime($to);
+        if ($toTimestamp === false) {
+            $toTimestamp = time();
         }
 
         $qb = QUI::getQueryBuilder();
@@ -52,8 +55,8 @@ QUI::$Ajax->registerFunction(
             ->from(QUI\Users\Manager::table())
             ->where('regdate >= :from')
             ->andWhere('regdate <= :to')
-            ->setParameter('from', $from)
-            ->setParameter('to', $to)
+            ->setParameter('from', $fromTimestamp)
+            ->setParameter('to', $toTimestamp)
             ->groupBy('period')
             ->orderBy('period', 'ASC');
 
@@ -63,22 +66,34 @@ QUI::$Ajax->registerFunction(
         $allPeriods = [];
 
         if ($interval === 'days') {
-            $current = date('Y-m-d', $from);
-            $end = date('Y-m-d', $to);
+            $current = date('Y-m-d', $fromTimestamp);
+            $end = date('Y-m-d', $toTimestamp);
             while ($current <= $end) {
                 $allPeriods[$current] = 0;
-                $current = date('Y-m-d', strtotime($current . ' +1 day'));
+                $nextTimestamp = strtotime($current . ' +1 day');
+
+                if ($nextTimestamp === false) {
+                    break;
+                }
+
+                $current = date('Y-m-d', $nextTimestamp);
             }
         } elseif ($interval === 'months') {
-            $current = date('Y-m', $from);
-            $end = date('Y-m', $to);
+            $current = date('Y-m', $fromTimestamp);
+            $end = date('Y-m', $toTimestamp);
             while ($current <= $end) {
                 $allPeriods[$current] = 0;
-                $current = date('Y-m', strtotime($current . ' +1 month'));
+                $nextTimestamp = strtotime($current . ' +1 month');
+
+                if ($nextTimestamp === false) {
+                    break;
+                }
+
+                $current = date('Y-m', $nextTimestamp);
             }
         } elseif ($interval === 'years') {
-            $current = date('Y', $from);
-            $end = date('Y', $to);
+            $current = date('Y', $fromTimestamp);
+            $end = date('Y', $toTimestamp);
             while ($current <= $end) {
                 $allPeriods[$current] = 0;
                 $current = (string)((int)$current + 1);

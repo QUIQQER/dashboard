@@ -11,7 +11,7 @@
 use QUI\Requirements\TestResult;
 use QUI\Requirements\Utils;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_stats_getSystemHealth',
     function () {
         $results = Utils::getSystemCheckResults();

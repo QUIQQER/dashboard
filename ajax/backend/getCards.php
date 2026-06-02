@@ -7,7 +7,7 @@
 /**
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_getCards',
     function ($dashboardId) {
         $Handler = QUI\Dashboard\DashboardHandler::getInstance();

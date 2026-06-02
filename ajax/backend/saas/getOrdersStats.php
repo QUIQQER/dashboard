@@ -7,7 +7,7 @@
 /**
  * @return int|string
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_dashboard_ajax_backend_saas_getOrdersStats',
     function ($interval, $from, $to) {
         if (
@@ -43,16 +43,19 @@ QUI::$Ajax->registerFunction(
             $to = date('Y-m-01 23:59:59');
         }
 
-        if (!is_numeric($from)) {
-            $from = strtotime($from);
+        $fromTimestamp = is_numeric($from) ? (int)$from : strtotime((string)$from);
+        $toTimestamp = is_numeric($to) ? (int)$to : strtotime((string)$to);
+
+        if ($fromTimestamp === false) {
+            $fromTimestamp = time();
         }
 
-        if (!is_numeric($to)) {
-            $to = strtotime($to);
+        if ($toTimestamp === false) {
+            $toTimestamp = time();
         }
 
-        $from = date('Y-m-d H:i:s', $from);
-        $to = date('Y-m-d H:i:s', $to);
+        $from = date('Y-m-d H:i:s', $fromTimestamp);
+        $to = date('Y-m-d H:i:s', $toTimestamp);
 
         switch ($interval) {
             case 'years':
@@ -144,8 +147,8 @@ QUI::$Ajax->registerFunction(
         $result['payments'] = $paymentResult;
 
         // Fehlende Perioden auffüllen
-        $periodStart = new DateTime(date($phpFormat, is_numeric($from) ? $from : strtotime($from)));
-        $periodEnd = new DateTime(date($phpFormat, is_numeric($to) ? $to : strtotime($to)));
+        $periodStart = new DateTime(date($phpFormat, $fromTimestamp));
+        $periodEnd = new DateTime(date($phpFormat, $toTimestamp));
         $periodEnd->modify("+1 $modify"); // Enddatum inklusiv
 
         for ($dt = clone $periodStart; $dt < $periodEnd; $dt->modify($modify)) {

@@ -19,7 +19,7 @@ interface DashboardProviderInterface
      * This sub-array then contains all the JavaScript-Card-Control names.
      * The sub-array is interpreted as a contiguous row.
      *
-     * @return array
+     * @return array<int, string|array<int, string>>
      * @example see QUI\Dashboard\DashboardProvider
      */
     public static function getCards(): array;
@@ -28,7 +28,7 @@ interface DashboardProviderInterface
      * Return the dashboards boards
      * optional
      *
-     * @return array
+     * @return array<int, DashboardInterface>
      */
     public static function getBoards(): array;
 }
