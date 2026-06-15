@@ -19,16 +19,23 @@ QUI::getAjax()->registerFunction(
 
         $sitesRelationsTable = $Project->table() . '_relations';
 
-        $query = "
-            SELECT COUNT(`child`) AS rootSites
-            FROM {$sitesRelationsTable}
-            WHERE `parent` = 1;       
-        ";
+        try {
+            $QueryBuilder = QUI::getQueryBuilder();
+            $rootSites = $QueryBuilder
+                ->select('COUNT(child)')
+                ->from(QUI\Utils\Doctrine::quoteIdentifier($sitesRelationsTable))
+                ->where($QueryBuilder->expr()->eq('parent', ':parent'))
+                ->setParameter('parent', 1)
+                ->executeQuery()
+                ->fetchOne();
+        } catch (QUI\Exception | \Doctrine\DBAL\Exception $Exception) {
+            Log::addError($Exception, [
+                'ajax' => 'package_quiqqer_dashboard_ajax_backend_stats_sites_getRootSitesCount'
+            ]);
+        }
 
-        $result = QUI::getDataBase()->fetchSQL($query);
-
-        if (isset($result[0]['rootSites']) && is_numeric($result[0]['rootSites'])) {
-            $rootSites = (int)$result[0]['rootSites'];
+        if (isset($rootSites) && is_numeric($rootSites)) {
+            $rootSites = (int)$rootSites;
 
             return QUI::getLocale()->formatNumber($rootSites);
         }
