@@ -16,16 +16,24 @@ QUI::getAjax()->registerFunction(
             return '';
         }
 
-        $query = "
-            SELECT COUNT(`id`) AS sitesWithoutShortDesc
-            FROM {$Project->table()}
-            WHERE `short` IS NULL OR `short` = '';   
-        ";
+        try {
+            $QueryBuilder = QUI::getQueryBuilder();
+            $sitesWithoutShortDesc = $QueryBuilder
+                ->select('COUNT(id)')
+                ->from(QUI\Utils\Doctrine::quoteIdentifier($Project->table()))
+                ->where($QueryBuilder->expr()->isNull('short'))
+                ->orWhere($QueryBuilder->expr()->eq('short', ':short'))
+                ->setParameter('short', '')
+                ->executeQuery()
+                ->fetchOne();
+        } catch (QUI\Exception | \Doctrine\DBAL\Exception $Exception) {
+            Log::addError($Exception, [
+                'ajax' => 'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoShortDescriptionSitesCount'
+            ]);
+        }
 
-        $result = QUI::getDataBase()->fetchSQL($query);
-
-        if (isset($result[0]['sitesWithoutShortDesc']) && is_numeric($result[0]['sitesWithoutShortDesc'])) {
-            $sitesWithoutShortDesc = (int)$result[0]['sitesWithoutShortDesc'];
+        if (isset($sitesWithoutShortDesc) && is_numeric($sitesWithoutShortDesc)) {
+            $sitesWithoutShortDesc = (int)$sitesWithoutShortDesc;
 
             return QUI::getLocale()->formatNumber($sitesWithoutShortDesc);
         }
