@@ -22,24 +22,23 @@ QUI::getAjax()->registerFunction(
         }
 
         try {
-            $query = "
-                SELECT COUNT(`id`) AS sitesWithoutContent
-                FROM {$Project->table()}
-                WHERE `content` IS NULL OR `content` = '';
-            ";
-
-            $result = QUI::getDataBase()->fetchSQL($query);
-        } catch (QUI\Database\Exception $Exception) {
+            $QueryBuilder = QUI::getQueryBuilder();
+            $sitesWithoutContent = $QueryBuilder
+                ->select('COUNT(id)')
+                ->from(QUI\Utils\Doctrine::quoteIdentifier($Project->table()))
+                ->where($QueryBuilder->expr()->isNull('content'))
+                ->orWhere($QueryBuilder->expr()->eq('content', ':content'))
+                ->setParameter('content', '')
+                ->executeQuery()
+                ->fetchOne();
+        } catch (QUI\Exception | \Doctrine\DBAL\Exception $Exception) {
             Log::addError($Exception, [
                 'ajax' => 'package_quiqqer_dashboard_ajax_backend_stats_sites_getNoContentSitesCount'
             ]);
         }
 
-        if (
-            isset($result[0]['sitesWithoutContent'])
-            && is_numeric($result[0]['sitesWithoutContent'])
-        ) {
-            $sitesWithoutContent = (int)$result[0]['sitesWithoutContent'];
+        if (isset($sitesWithoutContent) && is_numeric($sitesWithoutContent)) {
+            $sitesWithoutContent = (int)$sitesWithoutContent;
 
             return QUI::getLocale()->formatNumber($sitesWithoutContent);
         }
