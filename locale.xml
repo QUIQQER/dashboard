@@ -87,8 +87,8 @@
             <en><![CDATA[Orders]]></en>
         </locale>
         <locale name="dashboard.saas.payments.label">
-            <de><![CDATA[Genutzte Zahlungsweisen]]></de>
-            <en><![CDATA[Used payments]]></en>
+            <de><![CDATA[Genutzte Zahlungsarten]]></de>
+            <en><![CDATA[Used payment types]]></en>
         </locale>
         <locale name="dashboard.saas.payment.count">
             <de><![CDATA[In Bestellungen:]]></de>
