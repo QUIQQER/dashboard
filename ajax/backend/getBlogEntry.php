@@ -7,7 +7,7 @@
 use QUI\Cache\Manager;
 
 const CACHE_KEY_PACKAGE_LIST_PREFIX = "dashboard.card.packages.data.";
-const PACKAGE_LIST_URL = "https://update.quiqqer.com/packages.json";
+const PACKAGE_LIST_URL = "https://www.quiqqer.com/latest-packages.json";
 const PACKAGE_LIST_LIMIT = 10;
 
 /**
