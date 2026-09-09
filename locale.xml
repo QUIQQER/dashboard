@@ -4,18 +4,26 @@
         <locale name="package.title">
             <de><![CDATA[QUIQQER - Dashboard]]></de>
             <en><![CDATA[QUIQQER - Dashboard]]></en>
+            <es><![CDATA[QUIQQER - Panel de control]]></es>
+            <pt><![CDATA[QUIQQER - Painel de controlo]]></pt>
+            <fr><![CDATA[QUIQQER - Tableau de bord]]></fr>
+            <it><![CDATA[QUIQQER - Pannello di controllo]]></it>
+            <pl><![CDATA[QUIQQER - Panel główny]]></pl>
         </locale>
         <locale name="package.description">
-            <de>
-                <![CDATA[Erweitert die QUIQQER Administration um ein Dashboard. Alle wichtigen Informationen auf einen Blick.]]></de>
-            <en>
-                <![CDATA[Extends the QUIQQER administration with a dashboard. All important information at a glance.]]></en>
+            <de><![CDATA[Erweitert die QUIQQER Administration um ein Dashboard. Alle wichtigen Informationen auf einen Blick.]]></de>
+            <en><![CDATA[Extends the QUIQQER administration with a dashboard. All important information at a glance.]]></en>
+            <es><![CDATA[Añade un panel de control a la administración de QUIQQER para consultar toda la información importante de un vistazo.]]></es>
+            <pt><![CDATA[Acrescenta um painel de controlo à administração do QUIQQER, com todas as informações importantes num só lugar.]]></pt>
+            <fr><![CDATA[Ajoute un tableau de bord à l’administration de QUIQQER pour consulter toutes les informations essentielles en un coup d’œil.]]></fr>
+            <it><![CDATA[Aggiunge un pannello di controllo all’amministrazione di QUIQQER, con tutte le informazioni importanti a colpo d’occhio.]]></it>
+            <pl><![CDATA[Dodaje panel główny do administracji QUIQQER, zapewniając szybki dostęp do wszystkich najważniejszych informacji.]]></pl>
         </locale>
         <locale name="package.description.big">
             <de><![CDATA[
-                Das Dashboard von QUIQQER bietet dem Benutzer einen ersten Überblick über alle wichtigen Informationen von seinem QUIQQER System.
+                Das Dashboard von QUIQQER bietet dem Benutzer einen ersten Überblick über alle wichtigen Informationen seines QUIQQER-Systems.
                 Darüber hinaus bietet das Dashboard eine API für Module an.
-                Jedes Modul/Plugin hat die Möglichkeit das Dashboard zu erweitern und dem Benutzer weitere Informationen anzuzeigen.
+                Jedes Modul/Plugin hat die Möglichkeit, das Dashboard zu erweitern und dem Benutzer weitere Informationen anzuzeigen.
 
                 Grundfunktionen:
 
@@ -30,12 +38,12 @@
                 - Übersicht über den Medienbereich
 
                 - Die letzten Änderungen an Seiten
-                - Generelle System Informationen
-                - Generelle Dateisystem Informationen
-                - Übersicht der Cron Ausführungen
+                - Allgemeine Systeminformationen
+                - Allgemeine Dateisysteminformationen
+                - Übersicht der Cron-Ausführungen
             ]]></de>
             <en><![CDATA[
-                The QUIQQER dashboard offers the user a first overview of all important information of his QUIQQER system.
+                The QUIQQER dashboard offers the user an initial overview of the key information about their QUIQQER system.
                 Furthermore, the dashboard offers an API for modules.
                 Each module/plugin has the possibility to extend the dashboard and display more information to the user.
 
@@ -51,48 +59,203 @@
                 - Useful links
                 - Overview of the media section
 
-                - Last changes on pages
+                - Latest changes to pages
                 - General system information
                 - General file system information
                 - Overview of Cron executions
             ]]></en>
+            <es><![CDATA[
+                El panel de control de QUIQQER ofrece una visión general de la información más importante de su sistema QUIQQER.
+                Además, dispone de una API para módulos.
+                Cada módulo o complemento puede ampliar el panel y mostrar información adicional.
+
+                Funciones principales:
+
+                - Número de páginas del sistema
+                - Número de usuarios del sistema
+                - Número de grupos del sistema
+                - Número de proyectos del sistema
+                - Estado del sistema
+
+                - Últimas publicaciones del blog de QUIQQER
+                - Enlaces útiles
+                - Resumen de la sección multimedia
+
+                - Últimos cambios en las páginas
+                - Información general del sistema
+                - Información general del sistema de archivos
+                - Resumen de las ejecuciones de tareas cron
+            ]]></es>
+            <pt><![CDATA[
+                O painel de controlo do QUIQQER apresenta uma visão geral das informações mais importantes do seu sistema QUIQQER.
+                Disponibiliza também uma API para módulos.
+                Cada módulo ou plugin pode expandir o painel e apresentar informações adicionais.
+
+                Funcionalidades principais:
+
+                - Número de páginas no sistema
+                - Número de utilizadores no sistema
+                - Número de grupos no sistema
+                - Número de projetos no sistema
+                - Estado do sistema
+
+                - Publicações mais recentes do blogue QUIQQER
+                - Ligações úteis
+                - Visão geral da área de ficheiros multimédia
+
+                - Últimas alterações às páginas
+                - Informações gerais do sistema
+                - Informações gerais do sistema de ficheiros
+                - Resumo das execuções de tarefas cron
+            ]]></pt>
+            <fr><![CDATA[
+                Le tableau de bord de QUIQQER présente une vue d’ensemble des informations essentielles de votre système QUIQQER.
+                Il propose également une API pour les modules.
+                Chaque module ou plugin peut enrichir le tableau de bord et afficher des informations supplémentaires.
+
+                Fonctionnalités principales :
+
+                - Nombre de pages dans le système
+                - Nombre d’utilisateurs dans le système
+                - Nombre de groupes dans le système
+                - Nombre de projets dans le système
+                - État du système
+
+                - Derniers articles du blog QUIQQER
+                - Liens utiles
+                - Vue d’ensemble de l’espace médias
+
+                - Dernières modifications des pages
+                - Informations générales sur le système
+                - Informations générales sur le système de fichiers
+                - Historique des exécutions des tâches cron
+            ]]></fr>
+            <it><![CDATA[
+                Il pannello di controllo di QUIQQER offre una panoramica delle informazioni più importanti del sistema QUIQQER.
+                Mette inoltre a disposizione un’API per i moduli.
+                Ogni modulo o plugin può estendere il pannello e mostrare informazioni aggiuntive.
+
+                Funzionalità principali:
+
+                - Numero di pagine nel sistema
+                - Numero di utenti nel sistema
+                - Numero di gruppi nel sistema
+                - Numero di progetti nel sistema
+                - Stato del sistema
+
+                - Ultimi articoli del blog QUIQQER
+                - Link utili
+                - Panoramica dell’area media
+
+                - Ultime modifiche alle pagine
+                - Informazioni generali sul sistema
+                - Informazioni generali sul file system
+                - Riepilogo delle esecuzioni dei processi cron
+            ]]></it>
+            <pl><![CDATA[
+                Panel główny QUIQQER zapewnia przegląd najważniejszych informacji o systemie QUIQQER.
+                Udostępnia również API dla modułów.
+                Każdy moduł lub wtyczka może rozszerzyć panel o dodatkowe informacje.
+
+                Podstawowe funkcje:
+
+                - Liczba stron w systemie
+                - Liczba użytkowników w systemie
+                - Liczba grup w systemie
+                - Liczba projektów w systemie
+                - Stan systemu
+
+                - Najnowsze wpisy na blogu QUIQQER
+                - Przydatne linki
+                - Przegląd sekcji multimediów
+
+                - Ostatnie zmiany na stronach
+                - Ogólne informacje o systemie
+                - Ogólne informacje o systemie plików
+                - Przegląd wykonań zadań cron
+            ]]></pl>
         </locale>
 
         <locale name="panel.title">
             <de><![CDATA[Dashboard]]></de>
             <en><![CDATA[Dashboard]]></en>
+            <es><![CDATA[Panel de control]]></es>
+            <pt><![CDATA[Painel de controlo]]></pt>
+            <fr><![CDATA[Tableau de bord]]></fr>
+            <it><![CDATA[Pannello di controllo]]></it>
+            <pl><![CDATA[Panel główny]]></pl>
         </locale>
         <locale name="dashboard.saas.title">
             <de><![CDATA[Portal-Statistiken]]></de>
             <en><![CDATA[Portal Analytics]]></en>
+            <es><![CDATA[Estadísticas del portal]]></es>
+            <pt><![CDATA[Estatísticas do portal]]></pt>
+            <fr><![CDATA[Statistiques du portail]]></fr>
+            <it><![CDATA[Statistiche del portale]]></it>
+            <pl><![CDATA[Statystyki portalu]]></pl>
         </locale>
         <locale name="dashboard.saas.usersRegistrations.title">
-            <de><![CDATA[Benutzer Registrierungen - [interval]]]></de>
+            <de><![CDATA[Benutzerregistrierungen - [interval]]]></de>
             <en><![CDATA[User registrations - [interval]]]></en>
+            <es><![CDATA[Registros de usuarios - [interval]]]></es>
+            <pt><![CDATA[Registos de utilizadores - [interval]]]></pt>
+            <fr><![CDATA[Inscriptions des utilisateurs - [interval]]]></fr>
+            <it><![CDATA[Registrazioni degli utenti - [interval]]]></it>
+            <pl><![CDATA[Rejestracje użytkowników - [interval]]]></pl>
         </locale>
         <locale name="dashboard.saas.usersRegistrations.date">
             <de><![CDATA[Datum]]></de>
             <en><![CDATA[Date]]></en>
+            <es><![CDATA[Fecha]]></es>
+            <pt><![CDATA[Data]]></pt>
+            <fr><![CDATA[Date]]></fr>
+            <it><![CDATA[Data]]></it>
+            <pl><![CDATA[Data]]></pl>
         </locale>
         <locale name="dashboard.saas.usersRegistrations.registrations">
             <de><![CDATA[Registrierungen]]></de>
             <en><![CDATA[Registrations]]></en>
+            <es><![CDATA[Registros]]></es>
+            <pt><![CDATA[Registos]]></pt>
+            <fr><![CDATA[Inscriptions]]></fr>
+            <it><![CDATA[Registrazioni]]></it>
+            <pl><![CDATA[Rejestracje]]></pl>
         </locale>
         <locale name="dashboard.stats.orders">
             <de><![CDATA[Bestellungen]]></de>
             <en><![CDATA[Orders]]></en>
+            <es><![CDATA[Pedidos]]></es>
+            <pt><![CDATA[Encomendas]]></pt>
+            <fr><![CDATA[Commandes]]></fr>
+            <it><![CDATA[Ordini]]></it>
+            <pl><![CDATA[Zamówienia]]></pl>
         </locale>
         <locale name="dashboard.saas.ordersStats.label">
             <de><![CDATA[Bestellungen]]></de>
             <en><![CDATA[Orders]]></en>
+            <es><![CDATA[Pedidos]]></es>
+            <pt><![CDATA[Encomendas]]></pt>
+            <fr><![CDATA[Commandes]]></fr>
+            <it><![CDATA[Ordini]]></it>
+            <pl><![CDATA[Zamówienia]]></pl>
         </locale>
         <locale name="dashboard.saas.payments.label">
             <de><![CDATA[Genutzte Zahlungsarten]]></de>
-            <en><![CDATA[Used payment types]]></en>
+            <en><![CDATA[Payment methods used]]></en>
+            <es><![CDATA[Métodos de pago utilizados]]></es>
+            <pt><![CDATA[Métodos de pagamento utilizados]]></pt>
+            <fr><![CDATA[Moyens de paiement utilisés]]></fr>
+            <it><![CDATA[Metodi di pagamento utilizzati]]></it>
+            <pl><![CDATA[Użyte metody płatności]]></pl>
         </locale>
         <locale name="dashboard.saas.payment.count">
             <de><![CDATA[In Bestellungen:]]></de>
             <en><![CDATA[In orders]]></en>
+            <es><![CDATA[En pedidos]]></es>
+            <pt><![CDATA[Em encomendas]]></pt>
+            <fr><![CDATA[Dans les commandes]]></fr>
+            <it><![CDATA[Negli ordini]]></it>
+            <pl><![CDATA[W zamówieniach]]></pl>
         </locale>
     </groups>
 
@@ -101,11 +264,21 @@
         <locale name="dashboard.bookmarks">
             <de><![CDATA[Lesezeichen]]></de>
             <en><![CDATA[Bookmarks]]></en>
+            <es><![CDATA[Marcadores]]></es>
+            <pt><![CDATA[Favoritos]]></pt>
+            <fr><![CDATA[Favoris]]></fr>
+            <it><![CDATA[Preferiti]]></it>
+            <pl><![CDATA[Zakładki]]></pl>
         </locale>
 
         <locale name="dashboard.bookmarks.none">
             <de><![CDATA[Keine Lesezeichen gesetzt.]]></de>
             <en><![CDATA[No bookmarks set.]]></en>
+            <es><![CDATA[No hay marcadores guardados.]]></es>
+            <pt><![CDATA[Não existem favoritos guardados.]]></pt>
+            <fr><![CDATA[Aucun favori enregistré.]]></fr>
+            <it><![CDATA[Nessun preferito salvato.]]></it>
+            <pl><![CDATA[Nie zapisano żadnych zakładek.]]></pl>
         </locale>
         <!-- endregion -->
 
@@ -113,40 +286,79 @@
         <locale name="dashboard.stats.projects">
             <de><![CDATA[Projekte]]></de>
             <en><![CDATA[Projects]]></en>
+            <es><![CDATA[Proyectos]]></es>
+            <pt><![CDATA[Projetos]]></pt>
+            <fr><![CDATA[Projets]]></fr>
+            <it><![CDATA[Progetti]]></it>
+            <pl><![CDATA[Projekty]]></pl>
         </locale>
 
         <locale name="dashboard.stats.pages">
             <de><![CDATA[Seiten]]></de>
             <en><![CDATA[Pages]]></en>
+            <es><![CDATA[Páginas]]></es>
+            <pt><![CDATA[Páginas]]></pt>
+            <fr><![CDATA[Pages]]></fr>
+            <it><![CDATA[Pagine]]></it>
+            <pl><![CDATA[Strony]]></pl>
         </locale>
         <locale name="dashboard.stats.pages.active">
             <de><![CDATA[aktive Seiten]]></de>
             <en><![CDATA[active pages]]></en>
+            <es><![CDATA[páginas activas]]></es>
+            <pt><![CDATA[páginas ativas]]></pt>
+            <fr><![CDATA[pages actives]]></fr>
+            <it><![CDATA[pagine attive]]></it>
+            <pl><![CDATA[aktywne strony]]></pl>
         </locale>
         <locale name="dashboard.stats.pages.inactive">
             <de><![CDATA[deaktivierte Seiten]]></de>
             <en><![CDATA[deactivated pages]]></en>
+            <es><![CDATA[páginas desactivadas]]></es>
+            <pt><![CDATA[páginas desativadas]]></pt>
+            <fr><![CDATA[pages désactivées]]></fr>
+            <it><![CDATA[pagine disattivate]]></it>
+            <pl><![CDATA[nieaktywne strony]]></pl>
         </locale>
 
         <locale name="dashboard.stats.users">
             <de><![CDATA[Benutzer]]></de>
             <en><![CDATA[Users]]></en>
+            <es><![CDATA[Usuarios]]></es>
+            <pt><![CDATA[Utilizadores]]></pt>
+            <fr><![CDATA[Utilisateurs]]></fr>
+            <it><![CDATA[Utenti]]></it>
+            <pl><![CDATA[Użytkownicy]]></pl>
         </locale>
 
         <locale name="dashboard.stats.groups">
             <de><![CDATA[Gruppen]]></de>
             <en><![CDATA[Groups]]></en>
+            <es><![CDATA[Grupos]]></es>
+            <pt><![CDATA[Grupos]]></pt>
+            <fr><![CDATA[Groupes]]></fr>
+            <it><![CDATA[Gruppi]]></it>
+            <pl><![CDATA[Grupy]]></pl>
         </locale>
 
         <locale name="dashboard.stats.systemhealth">
             <de><![CDATA[Systemgesundheit]]></de>
             <en><![CDATA[System Health]]></en>
+            <es><![CDATA[Estado del sistema]]></es>
+            <pt><![CDATA[Estado do sistema]]></pt>
+            <fr><![CDATA[État du système]]></fr>
+            <it><![CDATA[Stato del sistema]]></it>
+            <pl><![CDATA[Stan systemu]]></pl>
         </locale>
 
         <locale name="dashboard.stats.systemhealth.help">
-            <de>
-                <![CDATA[Um (korrekte) Werte zu erhalten, müssen Sie den CRON 'Systemcheck ausführen' hinzufügen und ausführen.]]></de>
-            <en><![CDATA[To get (correct) values, you have to add and execute the CRON 'Perform system check'.]]></en>
+            <de><![CDATA[Um korrekte Werte zu erhalten, fügen Sie den Cronjob „System-Gesundheit: Systemcheck ausführen“ hinzu und führen Sie ihn aus.]]></de>
+            <en><![CDATA[To get accurate values, add and run the cron job "System Health: Perform System Check".]]></en>
+            <es><![CDATA[Para obtener valores correctos, añada y ejecute la tarea cron de comprobación del sistema «System Health: Perform System Check».]]></es>
+            <pt><![CDATA[Para obter valores corretos, adicione e execute a tarefa cron de verificação do sistema «System Health: Perform System Check».]]></pt>
+            <fr><![CDATA[Pour obtenir des valeurs correctes, ajoutez et exécutez la tâche cron de vérification du système « System Health: Perform System Check ».]]></fr>
+            <it><![CDATA[Per ottenere valori corretti, aggiungi ed esegui il processo cron di verifica del sistema «System Health: Perform System Check».]]></it>
+            <pl><![CDATA[Aby uzyskać prawidłowe wartości, dodaj i uruchom zadanie cron sprawdzające stan systemu „System Health: Perform System Check”.]]></pl>
         </locale>
         <!-- endregion -->
 
@@ -154,90 +366,184 @@
         <locale name="dashboard.page.changes">
             <de><![CDATA[Zuletzt geänderte Seiten]]></de>
             <en><![CDATA[Latest page changes]]></en>
+            <es><![CDATA[Últimas páginas modificadas]]></es>
+            <pt><![CDATA[Últimas páginas alteradas]]></pt>
+            <fr><![CDATA[Dernières pages modifiées]]></fr>
+            <it><![CDATA[Ultime pagine modificate]]></it>
+            <pl><![CDATA[Ostatnio zmienione strony]]></pl>
         </locale>
 
         <!-- region Messages -->
         <locale name="dashboard.messages">
             <de><![CDATA[Neuste Nachrichten]]></de>
             <en><![CDATA[Latest Messages]]></en>
+            <es><![CDATA[Últimos mensajes]]></es>
+            <pt><![CDATA[Mensagens mais recentes]]></pt>
+            <fr><![CDATA[Derniers messages]]></fr>
+            <it><![CDATA[Ultimi messaggi]]></it>
+            <pl><![CDATA[Najnowsze wiadomości]]></pl>
         </locale>
         <!-- endregion -->
 
         <!-- region Media Info -->
         <locale name="dashboard.media.info">
-            <de><![CDATA[Medien Info]]></de>
+            <de><![CDATA[Medien-Info]]></de>
             <en><![CDATA[Media Info]]></en>
+            <es><![CDATA[Información multimedia]]></es>
+            <pt><![CDATA[Informações sobre os ficheiros multimédia]]></pt>
+            <fr><![CDATA[Informations sur les médias]]></fr>
+            <it><![CDATA[Informazioni sui media]]></it>
+            <pl><![CDATA[Informacje o multimediach]]></pl>
         </locale>
         <locale name="dashboard.media.info.files.count">
             <de><![CDATA[Anzahl Dateien]]></de>
             <en><![CDATA[File Count]]></en>
+            <es><![CDATA[Número de archivos]]></es>
+            <pt><![CDATA[Número de ficheiros]]></pt>
+            <fr><![CDATA[Nombre de fichiers]]></fr>
+            <it><![CDATA[Numero di file]]></it>
+            <pl><![CDATA[Liczba plików]]></pl>
         </locale>
         <locale name="dashboard.media.info.folder.count">
             <de><![CDATA[Anzahl Ordner]]></de>
             <en><![CDATA[Folder Count]]></en>
+            <es><![CDATA[Número de carpetas]]></es>
+            <pt><![CDATA[Número de pastas]]></pt>
+            <fr><![CDATA[Nombre de dossiers]]></fr>
+            <it><![CDATA[Numero di cartelle]]></it>
+            <pl><![CDATA[Liczba folderów]]></pl>
         </locale>
         <locale name="dashboard.media.info.folder.unavailable">
-            <de>
-                <![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um dies zu ändern, führen Sie den "Media Folder"-CRON aus.]]></de>
-            <en><![CDATA[This folder's size is not available. Change this by running the "Media Folder"-CRON.]]></en>
+            <de><![CDATA[Die Größe dieses Ordners ist nicht verfügbar. Um sie zu berechnen, führen Sie den Cronjob „System-Info: Media Ordner Größen berechnen“ aus.]]></de>
+            <en><![CDATA[This folder’s size is not available. To calculate it, run the cron job "System Info: Calculate Media Folder Sizes".]]></en>
+            <es><![CDATA[El tamaño de esta carpeta no está disponible. Para calcularlo, ejecute la tarea cron «System Info: Calculate Media Folder Sizes».]]></es>
+            <pt><![CDATA[O tamanho desta pasta não está disponível. Para o calcular, execute a tarefa cron «System Info: Calculate Media Folder Sizes».]]></pt>
+            <fr><![CDATA[La taille de ce dossier n’est pas disponible. Pour la calculer, exécutez la tâche cron « System Info: Calculate Media Folder Sizes ».]]></fr>
+            <it><![CDATA[La dimensione di questa cartella non è disponibile. Per calcolarla, esegui il processo cron «System Info: Calculate Media Folder Sizes».]]></it>
+            <pl><![CDATA[Rozmiar tego folderu jest niedostępny. Aby go obliczyć, uruchom zadanie cron „System Info: Calculate Media Folder Sizes”.]]></pl>
         </locale>
         <locale name="dashboard.media.info.folder.size">
-            <de><![CDATA[Größe des Medien Ordners]]></de>
+            <de><![CDATA[Größe des Medienordners]]></de>
             <en><![CDATA[Media Folder Size]]></en>
+            <es><![CDATA[Tamaño de la carpeta multimedia]]></es>
+            <pt><![CDATA[Tamanho da pasta de ficheiros multimédia]]></pt>
+            <fr><![CDATA[Taille du dossier des médias]]></fr>
+            <it><![CDATA[Dimensione della cartella dei media]]></it>
+            <pl><![CDATA[Rozmiar folderu multimediów]]></pl>
         </locale>
         <locale name="dashboard.media.info.cache.folder.size">
-            <de><![CDATA[Größe des Medien-Cache Ordners]]></de>
-            <en><![CDATA[Media-Cache Folder Size]]></en>
+            <de><![CDATA[Größe des Medien-Cache-Ordners]]></de>
+            <en><![CDATA[Media Cache Folder Size]]></en>
+            <es><![CDATA[Tamaño de la carpeta de caché multimedia]]></es>
+            <pt><![CDATA[Tamanho da pasta de cache de ficheiros multimédia]]></pt>
+            <fr><![CDATA[Taille du dossier de cache des médias]]></fr>
+            <it><![CDATA[Dimensione della cartella cache dei media]]></it>
+            <pl><![CDATA[Rozmiar folderu pamięci podręcznej multimediów]]></pl>
         </locale>
         <!-- endregion -->
 
         <!-- region System Info -->
         <locale name="dashboard.system.info">
-            <de><![CDATA[System Info]]></de>
+            <de><![CDATA[System-Info]]></de>
             <en><![CDATA[System Info]]></en>
+            <es><![CDATA[Información del sistema]]></es>
+            <pt><![CDATA[Informações do sistema]]></pt>
+            <fr><![CDATA[Informations système]]></fr>
+            <it><![CDATA[Informazioni di sistema]]></it>
+            <pl><![CDATA[Informacje o systemie]]></pl>
         </locale>
         <locale name="dashboard.system.info.quiqqer.version">
-            <de><![CDATA[QUIQQER Version]]></de>
+            <de><![CDATA[QUIQQER-Version]]></de>
             <en><![CDATA[QUIQQER Version]]></en>
+            <es><![CDATA[Versión de QUIQQER]]></es>
+            <pt><![CDATA[Versão do QUIQQER]]></pt>
+            <fr><![CDATA[Version de QUIQQER]]></fr>
+            <it><![CDATA[Versione di QUIQQER]]></it>
+            <pl><![CDATA[Wersja QUIQQER]]></pl>
         </locale>
         <locale name="dashboard.system.info.modules.count">
             <de><![CDATA[Anzahl Module]]></de>
             <en><![CDATA[Number of modules]]></en>
+            <es><![CDATA[Número de módulos]]></es>
+            <pt><![CDATA[Número de módulos]]></pt>
+            <fr><![CDATA[Nombre de modules]]></fr>
+            <it><![CDATA[Numero di moduli]]></it>
+            <pl><![CDATA[Liczba modułów]]></pl>
         </locale>
         <locale name="dashboard.system.info.devmode.active">
             <de><![CDATA[Entwicklermodus]]></de>
-            <en><![CDATA[Developer-Mode]]></en>
+            <en><![CDATA[Developer Mode]]></en>
+            <es><![CDATA[Modo de desarrollador]]></es>
+            <pt><![CDATA[Modo de programador]]></pt>
+            <fr><![CDATA[Mode développeur]]></fr>
+            <it><![CDATA[Modalità sviluppatore]]></it>
+            <pl><![CDATA[Tryb programisty]]></pl>
         </locale>
         <locale name="dashboard.system.info.devmode.active.true">
             <de><![CDATA[Aktiviert]]></de>
             <en><![CDATA[Active]]></en>
+            <es><![CDATA[Activado]]></es>
+            <pt><![CDATA[Ativado]]></pt>
+            <fr><![CDATA[Activé]]></fr>
+            <it><![CDATA[Attivata]]></it>
+            <pl><![CDATA[Włączony]]></pl>
         </locale>
         <locale name="dashboard.system.info.devmode.active.false">
             <de><![CDATA[Deaktiviert]]></de>
             <en><![CDATA[Disabled]]></en>
+            <es><![CDATA[Desactivado]]></es>
+            <pt><![CDATA[Desativado]]></pt>
+            <fr><![CDATA[Désactivé]]></fr>
+            <it><![CDATA[Disattivata]]></it>
+            <pl><![CDATA[Wyłączony]]></pl>
         </locale>
         <locale name="dashboard.system.info.cache.type">
-            <de><![CDATA[Cache Typ]]></de>
+            <de><![CDATA[Cache-Typ]]></de>
             <en><![CDATA[Cache Type]]></en>
+            <es><![CDATA[Tipo de caché]]></es>
+            <pt><![CDATA[Tipo de cache]]></pt>
+            <fr><![CDATA[Type de cache]]></fr>
+            <it><![CDATA[Tipo di cache]]></it>
+            <pl><![CDATA[Typ pamięci podręcznej]]></pl>
         </locale>
         <!-- endregion -->
 
         <!-- region Cron History -->
         <locale name="dashboard.cron.history">
-            <de><![CDATA[CRON Historie]]></de>
+            <de><![CDATA[CRON-Historie]]></de>
             <en><![CDATA[CRON History]]></en>
+            <es><![CDATA[Historial de tareas cron]]></es>
+            <pt><![CDATA[Histórico de tarefas cron]]></pt>
+            <fr><![CDATA[Historique des tâches cron]]></fr>
+            <it><![CDATA[Cronologia dei processi cron]]></it>
+            <pl><![CDATA[Historia zadań cron]]></pl>
         </locale>
         <locale name="dashboard.cron.history.date">
             <de><![CDATA[Datum]]></de>
             <en><![CDATA[Date]]></en>
+            <es><![CDATA[Fecha]]></es>
+            <pt><![CDATA[Data]]></pt>
+            <fr><![CDATA[Date]]></fr>
+            <it><![CDATA[Data]]></it>
+            <pl><![CDATA[Data]]></pl>
         </locale>
         <locale name="dashboard.cron.history.cron">
-            <de><![CDATA[CRON Titel]]></de>
+            <de><![CDATA[CRON-Titel]]></de>
             <en><![CDATA[CRON Title]]></en>
+            <es><![CDATA[Nombre de la tarea cron]]></es>
+            <pt><![CDATA[Nome da tarefa cron]]></pt>
+            <fr><![CDATA[Nom de la tâche cron]]></fr>
+            <it><![CDATA[Nome del processo cron]]></it>
+            <pl><![CDATA[Nazwa zadania cron]]></pl>
         </locale>
         <locale name="dashboard.cron.history.user">
             <de><![CDATA[Ausführender Benutzer]]></de>
             <en><![CDATA[Executing User]]></en>
+            <es><![CDATA[Usuario que ejecutó la tarea]]></es>
+            <pt><![CDATA[Utilizador que executou a tarefa]]></pt>
+            <fr><![CDATA[Utilisateur ayant exécuté la tâche]]></fr>
+            <it><![CDATA[Utente che ha eseguito il processo]]></it>
+            <pl><![CDATA[Użytkownik uruchamiający zadanie]]></pl>
         </locale>
         <!-- endregion -->
 
@@ -246,37 +552,71 @@
         <locale name="dashboard.filesystem.info">
             <de><![CDATA[Dateisystem]]></de>
             <en><![CDATA[Filesystem]]></en>
+            <es><![CDATA[Sistema de archivos]]></es>
+            <pt><![CDATA[Sistema de ficheiros]]></pt>
+            <fr><![CDATA[Système de fichiers]]></fr>
+            <it><![CDATA[File system]]></it>
+            <pl><![CDATA[System plików]]></pl>
         </locale>
 
         <locale name="dashboard.filesystem.info.unavailable">
-            <de>
-                <![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
-            <en><![CDATA[This value is not available. Change this, by running the corresponding CRON.]]></en>
+            <de><![CDATA[Dieser Wert ist nicht verfügbar. Um dies zu ändern, führen Sie den entsprechenden CRON aus.]]></de>
+            <en><![CDATA[This value is not available. Run the corresponding cron job to calculate it.]]></en>
+            <es><![CDATA[Este valor no está disponible. Ejecute la tarea cron correspondiente para calcularlo.]]></es>
+            <pt><![CDATA[Este valor não está disponível. Execute a tarefa cron correspondente para o calcular.]]></pt>
+            <fr><![CDATA[Cette valeur n’est pas disponible. Exécutez la tâche cron correspondante pour la calculer.]]></fr>
+            <it><![CDATA[Questo valore non è disponibile. Esegui il processo cron corrispondente per calcolarlo.]]></it>
+            <pl><![CDATA[Ta wartość jest niedostępna. Uruchom odpowiednie zadanie cron, aby ją obliczyć.]]></pl>
         </locale>
 
         <locale name="dashboard.filesystem.info.size.installation">
             <de><![CDATA[Gesamte Installation]]></de>
             <en><![CDATA[Whole Installation]]></en>
+            <es><![CDATA[Instalación completa]]></es>
+            <pt><![CDATA[Instalação completa]]></pt>
+            <fr><![CDATA[Installation complète]]></fr>
+            <it><![CDATA[Intera installazione]]></it>
+            <pl><![CDATA[Cała instalacja]]></pl>
         </locale>
 
         <locale name="dashboard.filesystem.info.size.packages">
             <de><![CDATA[Paket-Ordner]]></de>
-            <en><![CDATA[Packages-Folder]]></en>
+            <en><![CDATA[Packages Folder]]></en>
+            <es><![CDATA[Carpeta de paquetes]]></es>
+            <pt><![CDATA[Pasta de pacotes]]></pt>
+            <fr><![CDATA[Dossier des paquets]]></fr>
+            <it><![CDATA[Cartella dei pacchetti]]></it>
+            <pl><![CDATA[Folder pakietów]]></pl>
         </locale>
 
         <locale name="dashboard.filesystem.info.size.cache">
             <de><![CDATA[Cache-Ordner]]></de>
-            <en><![CDATA[Cache-Folder]]></en>
+            <en><![CDATA[Cache Folder]]></en>
+            <es><![CDATA[Carpeta de caché]]></es>
+            <pt><![CDATA[Pasta de cache]]></pt>
+            <fr><![CDATA[Dossier de cache]]></fr>
+            <it><![CDATA[Cartella della cache]]></it>
+            <pl><![CDATA[Folder pamięci podręcznej]]></pl>
         </locale>
 
         <locale name="dashboard.filesystem.info.size.var">
             <de><![CDATA[Var-Ordner]]></de>
-            <en><![CDATA[Var-Folder]]></en>
+            <en><![CDATA[Var Folder]]></en>
+            <es><![CDATA[Carpeta var]]></es>
+            <pt><![CDATA[Pasta var]]></pt>
+            <fr><![CDATA[Dossier var]]></fr>
+            <it><![CDATA[Cartella var]]></it>
+            <pl><![CDATA[Folder var]]></pl>
         </locale>
 
         <locale name="dashboard.filesystem.info.count.files">
             <de><![CDATA[Gesamtzahl Dateien]]></de>
             <en><![CDATA[Total number of files]]></en>
+            <es><![CDATA[Número total de archivos]]></es>
+            <pt><![CDATA[Número total de ficheiros]]></pt>
+            <fr><![CDATA[Nombre total de fichiers]]></fr>
+            <it><![CDATA[Numero totale di file]]></it>
+            <pl><![CDATA[Łączna liczba plików]]></pl>
         </locale>
         <!-- endregion -->
 
@@ -285,109 +625,229 @@
         <locale name="dashboard.links">
             <de><![CDATA[Nützliche Links]]></de>
             <en><![CDATA[Useful Links]]></en>
+            <es><![CDATA[Enlaces útiles]]></es>
+            <pt><![CDATA[Ligações úteis]]></pt>
+            <fr><![CDATA[Liens utiles]]></fr>
+            <it><![CDATA[Link utili]]></it>
+            <pl><![CDATA[Przydatne linki]]></pl>
         </locale>
 
 
         <locale name="dashboard.links.quiqqer">
             <de><![CDATA[QUIQQER Allgemein]]></de>
             <en><![CDATA[QUIQQER General]]></en>
+            <es><![CDATA[Información general sobre QUIQQER]]></es>
+            <pt><![CDATA[Informações gerais sobre o QUIQQER]]></pt>
+            <fr><![CDATA[Informations générales sur QUIQQER]]></fr>
+            <it><![CDATA[Informazioni generali su QUIQQER]]></it>
+            <pl><![CDATA[Informacje ogólne o QUIQQER]]></pl>
         </locale>
 
         <locale name="dashboard.links.quiqqer.help">
             <de><![CDATA[Hilfe]]></de>
             <en><![CDATA[Help]]></en>
+            <es><![CDATA[Ayuda]]></es>
+            <pt><![CDATA[Ajuda]]></pt>
+            <fr><![CDATA[Aide]]></fr>
+            <it><![CDATA[Aiuto]]></it>
+            <pl><![CDATA[Pomoc]]></pl>
         </locale>
         <locale name="dashboard.links.quiqqer.help.url">
             <de><![CDATA[https://www.quiqqer.de/Entdecken]]></de>
             <en><![CDATA[https://www.quiqqer.com/Discover]]></en>
+            <es><![CDATA[https://www.quiqqer.com/Discover]]></es>
+            <pt><![CDATA[https://www.quiqqer.com/Discover]]></pt>
+            <fr><![CDATA[https://www.quiqqer.com/Discover]]></fr>
+            <it><![CDATA[https://www.quiqqer.com/Discover]]></it>
+            <pl><![CDATA[https://www.quiqqer.com/Discover]]></pl>
         </locale>
         <locale name="dashboard.links.quiqqer.help.meta">
             <de><![CDATA[Dokumentation und Einstieg]]></de>
             <en><![CDATA[Documentation and onboarding]]></en>
+            <es><![CDATA[Documentación y primeros pasos]]></es>
+            <pt><![CDATA[Documentação e primeiros passos]]></pt>
+            <fr><![CDATA[Documentation et prise en main]]></fr>
+            <it><![CDATA[Documentazione e primi passi]]></it>
+            <pl><![CDATA[Dokumentacja i pierwsze kroki]]></pl>
         </locale>
 
         <locale name="dashboard.links.quiqqer.blog">
             <de><![CDATA[Blog]]></de>
             <en><![CDATA[Blog]]></en>
+            <es><![CDATA[Blog]]></es>
+            <pt><![CDATA[Blogue]]></pt>
+            <fr><![CDATA[Blog]]></fr>
+            <it><![CDATA[Blog]]></it>
+            <pl><![CDATA[Blog]]></pl>
         </locale>
         <locale name="dashboard.links.quiqqer.blog.url">
             <de><![CDATA[https://www.quiqqer.de/Blog]]></de>
             <en><![CDATA[https://www.quiqqer.com/Blog]]></en>
+            <es><![CDATA[https://www.quiqqer.com/Blog]]></es>
+            <pt><![CDATA[https://www.quiqqer.com/Blog]]></pt>
+            <fr><![CDATA[https://www.quiqqer.com/Blog]]></fr>
+            <it><![CDATA[https://www.quiqqer.com/Blog]]></it>
+            <pl><![CDATA[https://www.quiqqer.com/Blog]]></pl>
         </locale>
         <locale name="dashboard.links.quiqqer.blog.meta">
             <de><![CDATA[Neuigkeiten und Release-Artikel]]></de>
             <en><![CDATA[News and release articles]]></en>
+            <es><![CDATA[Noticias y artículos sobre nuevas versiones]]></es>
+            <pt><![CDATA[Novidades e artigos sobre novas versões]]></pt>
+            <fr><![CDATA[Actualités et articles sur les nouvelles versions]]></fr>
+            <it><![CDATA[Novità e articoli sulle nuove versioni]]></it>
+            <pl><![CDATA[Aktualności i artykuły o nowych wersjach]]></pl>
         </locale>
 
         <locale name="dashboard.links.quiqqer.packages">
             <de><![CDATA[Erweiterungen]]></de>
             <en><![CDATA[Packages]]></en>
+            <es><![CDATA[Extensiones]]></es>
+            <pt><![CDATA[Extensões]]></pt>
+            <fr><![CDATA[Extensions]]></fr>
+            <it><![CDATA[Estensioni]]></it>
+            <pl><![CDATA[Rozszerzenia]]></pl>
         </locale>
         <locale name="dashboard.links.quiqqer.packages.url">
             <de><![CDATA[https://store.quiqqer.de/]]></de>
             <en><![CDATA[https://store.quiqqer.com/]]></en>
+            <es><![CDATA[https://store.quiqqer.com/]]></es>
+            <pt><![CDATA[https://store.quiqqer.com/]]></pt>
+            <fr><![CDATA[https://store.quiqqer.com/]]></fr>
+            <it><![CDATA[https://store.quiqqer.com/]]></it>
+            <pl><![CDATA[https://store.quiqqer.com/]]></pl>
         </locale>
         <locale name="dashboard.links.quiqqer.packages.meta">
             <de><![CDATA[Extensions und Module]]></de>
             <en><![CDATA[Extensions and modules]]></en>
+            <es><![CDATA[Extensiones y módulos]]></es>
+            <pt><![CDATA[Extensões e módulos]]></pt>
+            <fr><![CDATA[Extensions et modules]]></fr>
+            <it><![CDATA[Estensioni e moduli]]></it>
+            <pl><![CDATA[Rozszerzenia i moduły]]></pl>
         </locale>
 
 
         <locale name="dashboard.links.social">
             <de><![CDATA[QUIQQER Social]]></de>
             <en><![CDATA[QUIQQER Social]]></en>
+            <es><![CDATA[Comunidad QUIQQER]]></es>
+            <pt><![CDATA[Comunidade QUIQQER]]></pt>
+            <fr><![CDATA[Communauté QUIQQER]]></fr>
+            <it><![CDATA[Community QUIQQER]]></it>
+            <pl><![CDATA[Społeczność QUIQQER]]></pl>
         </locale>
         <locale name="dashboard.links.social.gitlab">
             <de><![CDATA[GitLab]]></de>
             <en><![CDATA[GitLab]]></en>
+            <es><![CDATA[GitLab]]></es>
+            <pt><![CDATA[GitLab]]></pt>
+            <fr><![CDATA[GitLab]]></fr>
+            <it><![CDATA[GitLab]]></it>
+            <pl><![CDATA[GitLab]]></pl>
         </locale>
         <locale name="dashboard.links.social.gitlab.meta">
             <de><![CDATA[Entwicklungsplattform]]></de>
             <en><![CDATA[Development platform]]></en>
+            <es><![CDATA[Plataforma de desarrollo]]></es>
+            <pt><![CDATA[Plataforma de desenvolvimento]]></pt>
+            <fr><![CDATA[Plateforme de développement]]></fr>
+            <it><![CDATA[Piattaforma di sviluppo]]></it>
+            <pl><![CDATA[Platforma programistyczna]]></pl>
         </locale>
         <locale name="dashboard.links.social.github">
             <de><![CDATA[GitHub]]></de>
             <en><![CDATA[GitHub]]></en>
+            <es><![CDATA[GitHub]]></es>
+            <pt><![CDATA[GitHub]]></pt>
+            <fr><![CDATA[GitHub]]></fr>
+            <it><![CDATA[GitHub]]></it>
+            <pl><![CDATA[GitHub]]></pl>
         </locale>
         <locale name="dashboard.links.social.github.meta">
             <de><![CDATA[Quellcode und Issues]]></de>
             <en><![CDATA[Source code and issues]]></en>
+            <es><![CDATA[Código fuente e incidencias]]></es>
+            <pt><![CDATA[Código-fonte e problemas reportados]]></pt>
+            <fr><![CDATA[Code source et signalements]]></fr>
+            <it><![CDATA[Codice sorgente e segnalazioni]]></it>
+            <pl><![CDATA[Kod źródłowy i zgłoszenia]]></pl>
         </locale>
         <locale name="dashboard.links.social.twitter">
             <de><![CDATA[Twitter]]></de>
             <en><![CDATA[Twitter]]></en>
+            <es><![CDATA[Twitter]]></es>
+            <pt><![CDATA[Twitter]]></pt>
+            <fr><![CDATA[Twitter]]></fr>
+            <it><![CDATA[Twitter]]></it>
+            <pl><![CDATA[Twitter]]></pl>
         </locale>
         <locale name="dashboard.links.social.twitter.meta">
             <de><![CDATA[Kurzankündigungen]]></de>
             <en><![CDATA[Short announcements]]></en>
+            <es><![CDATA[Anuncios breves]]></es>
+            <pt><![CDATA[Anúncios breves]]></pt>
+            <fr><![CDATA[Annonces brèves]]></fr>
+            <it><![CDATA[Annunci brevi]]></it>
+            <pl><![CDATA[Krótkie ogłoszenia]]></pl>
         </locale>
         <locale name="dashboard.links.social.facebook">
             <de><![CDATA[Facebook]]></de>
             <en><![CDATA[Facebook]]></en>
+            <es><![CDATA[Facebook]]></es>
+            <pt><![CDATA[Facebook]]></pt>
+            <fr><![CDATA[Facebook]]></fr>
+            <it><![CDATA[Facebook]]></it>
+            <pl><![CDATA[Facebook]]></pl>
         </locale>
         <locale name="dashboard.links.social.facebook.meta">
-            <de><![CDATA[Community Updates]]></de>
+            <de><![CDATA[Community-Updates]]></de>
             <en><![CDATA[Community updates]]></en>
+            <es><![CDATA[Novedades de la comunidad]]></es>
+            <pt><![CDATA[Novidades da comunidade]]></pt>
+            <fr><![CDATA[Actualités de la communauté]]></fr>
+            <it><![CDATA[Novità della community]]></it>
+            <pl><![CDATA[Aktualności społeczności]]></pl>
         </locale>
         <locale name="dashboard.links.social.discord">
             <de><![CDATA[Discord]]></de>
             <en><![CDATA[Discord]]></en>
+            <es><![CDATA[Discord]]></es>
+            <pt><![CDATA[Discord]]></pt>
+            <fr><![CDATA[Discord]]></fr>
+            <it><![CDATA[Discord]]></it>
+            <pl><![CDATA[Discord]]></pl>
         </locale>
         <locale name="dashboard.links.social.discord.meta">
-            <de><![CDATA[Realtime Support-Chat]]></de>
-            <en><![CDATA[Realtime support chat]]></en>
+            <de><![CDATA[Support-Chat in Echtzeit]]></de>
+            <en><![CDATA[Real-time support chat]]></en>
+            <es><![CDATA[Chat de soporte en tiempo real]]></es>
+            <pt><![CDATA[Chat de apoio em tempo real]]></pt>
+            <fr><![CDATA[Assistance par chat en temps réel]]></fr>
+            <it><![CDATA[Chat di assistenza in tempo reale]]></it>
+            <pl><![CDATA[Czat pomocy w czasie rzeczywistym]]></pl>
         </locale>
         <!-- endregion -->
 
 
         <!-- region Blog Entry -->
         <locale name="dashboard.blogentry.title">
-            <de><![CDATA[Neueste QUIQQER Pakete]]></de>
+            <de><![CDATA[Neueste QUIQQER-Pakete]]></de>
             <en><![CDATA[Latest QUIQQER Packages]]></en>
+            <es><![CDATA[Últimos paquetes de QUIQQER]]></es>
+            <pt><![CDATA[Pacotes QUIQQER mais recentes]]></pt>
+            <fr><![CDATA[Derniers paquets QUIQQER]]></fr>
+            <it><![CDATA[Ultimi pacchetti QUIQQER]]></it>
+            <pl><![CDATA[Najnowsze pakiety QUIQQER]]></pl>
         </locale>
         <locale name="dashboard.blogentry.releases.title">
             <de><![CDATA[Neueste Releases]]></de>
             <en><![CDATA[Latest releases]]></en>
+            <es><![CDATA[Últimas versiones]]></es>
+            <pt><![CDATA[Versões mais recentes]]></pt>
+            <fr><![CDATA[Dernières versions]]></fr>
+            <it><![CDATA[Ultime versioni]]></it>
+            <pl><![CDATA[Najnowsze wersje]]></pl>
         </locale>
 
         <locale name="dashboard.blogentry.error.content">
@@ -399,7 +859,7 @@
                 </p>
                 <br>
                 <p>
-                    Mit einem Klick auf diese Karte gelangen Sie zum QUIQQER-Store
+                    Mit einem Klick auf diese Karte gelangen Sie zu den QUIQQER-Repositories auf GitLab.
                 </p>
             ]]></de>
             <en html="1"><![CDATA[
@@ -410,72 +870,187 @@
                 </p>
                 <br>
                 <p>
-                    Click on this card to open the QUIQQER store.
+                    Click on this card to open the QUIQQER repositories on GitLab.
                 </p>
             ]]></en>
+            <es html="1"><![CDATA[
+                <p>
+                    Se ha producido un error.<br>
+                    No se ha podido obtener la lista de paquetes.<br>
+                    Inténtelo de nuevo más tarde.<br>
+                </p>
+                <br>
+                <p>
+                    Haga clic en esta tarjeta para ver los repositorios de QUIQQER en GitLab.
+                </p>
+            ]]></es>
+            <pt html="1"><![CDATA[
+                <p>
+                    Ocorreu um erro.<br>
+                    Não foi possível obter a lista de pacotes.<br>
+                    Tente novamente mais tarde.<br>
+                </p>
+                <br>
+                <p>
+                    Clique neste cartão para ver os repositórios do QUIQQER no GitLab.
+                </p>
+            ]]></pt>
+            <fr html="1"><![CDATA[
+                <p>
+                    Une erreur s’est produite.<br>
+                    La liste des paquets n’a pas pu être récupérée.<br>
+                    Veuillez réessayer plus tard.<br>
+                </p>
+                <br>
+                <p>
+                    Cliquez sur cette carte pour accéder aux dépôts QUIQQER sur GitLab.
+                </p>
+            ]]></fr>
+            <it html="1"><![CDATA[
+                <p>
+                    Si è verificato un errore.<br>
+                    Impossibile recuperare l’elenco dei pacchetti.<br>
+                    Riprova più tardi.<br>
+                </p>
+                <br>
+                <p>
+                    Fai clic su questa scheda per accedere ai repository QUIQQER su GitLab.
+                </p>
+            ]]></it>
+            <pl html="1"><![CDATA[
+                <p>
+                    Wystąpił błąd.<br>
+                    Nie udało się pobrać listy pakietów.<br>
+                    Spróbuj ponownie później.<br>
+                </p>
+                <br>
+                <p>
+                    Kliknij tę kartę, aby przejść do repozytoriów QUIQQER w serwisie GitLab.
+                </p>
+            ]]></pl>
         </locale>
 
         <locale name="dashboard.blogentry.error.link">
-            <de>https://dev.quiqqer.com/quiqqer</de>
-            <en>https://dev.quiqqer.com/quiqqer</en>
+            <de><![CDATA[https://dev.quiqqer.com/quiqqer]]></de>
+            <en><![CDATA[https://dev.quiqqer.com/quiqqer]]></en>
+            <es><![CDATA[https://dev.quiqqer.com/quiqqer]]></es>
+            <pt><![CDATA[https://dev.quiqqer.com/quiqqer]]></pt>
+            <fr><![CDATA[https://dev.quiqqer.com/quiqqer]]></fr>
+            <it><![CDATA[https://dev.quiqqer.com/quiqqer]]></it>
+            <pl><![CDATA[https://dev.quiqqer.com/quiqqer]]></pl>
         </locale>
         <!-- endregion -->
 
         <!-- region Site-Stats -->
         <locale name="dashboard.sitestats.title">
-            <de>Seiten Statistiken</de>
-            <en>Site Statistics</en>
+            <de><![CDATA[Seitenstatistiken]]></de>
+            <en><![CDATA[Page Statistics]]></en>
+            <es><![CDATA[Estadísticas de páginas]]></es>
+            <pt><![CDATA[Estatísticas de páginas]]></pt>
+            <fr><![CDATA[Statistiques des pages]]></fr>
+            <it><![CDATA[Statistiche delle pagine]]></it>
+            <pl><![CDATA[Statystyki stron]]></pl>
         </locale>
 
         <locale name="dashboard.sitestats.rootSites">
-            <de>Seiten auf Wurzel-Ebene</de>
-            <en>Sites at root level</en>
+            <de><![CDATA[Seiten auf oberster Ebene]]></de>
+            <en><![CDATA[Top-level pages]]></en>
+            <es><![CDATA[Páginas de primer nivel]]></es>
+            <pt><![CDATA[Páginas de primeiro nível]]></pt>
+            <fr><![CDATA[Pages de premier niveau]]></fr>
+            <it><![CDATA[Pagine di primo livello]]></it>
+            <pl><![CDATA[Strony najwyższego poziomu]]></pl>
         </locale>
 
         <locale name="dashboard.sitestats.children">
-            <de>Seiten auf Kinder-Ebene</de>
-            <en>Sites at child level</en>
+            <de><![CDATA[Seiten auf untergeordneten Ebenen]]></de>
+            <en><![CDATA[Pages on lower levels]]></en>
+            <es><![CDATA[Páginas de niveles inferiores]]></es>
+            <pt><![CDATA[Páginas de níveis inferiores]]></pt>
+            <fr><![CDATA[Pages des niveaux inférieurs]]></fr>
+            <it><![CDATA[Pagine dei livelli inferiori]]></it>
+            <pl><![CDATA[Strony niższych poziomów]]></pl>
         </locale>
 
         <locale name="dashboard.sitestats.missing">
-            <de>Dieser Wert konnte nicht ermittelt werden, überprüfe die Log-Dateien.</de>
-            <en>This value could not be determined, check the log files.</en>
+            <de><![CDATA[Dieser Wert konnte nicht ermittelt werden. Überprüfen Sie die Log-Dateien.]]></de>
+            <en><![CDATA[This value could not be determined. Check the log files.]]></en>
+            <es><![CDATA[No se ha podido determinar este valor. Revise los archivos de registro.]]></es>
+            <pt><![CDATA[Não foi possível determinar este valor. Consulte os ficheiros de registo.]]></pt>
+            <fr><![CDATA[Impossible de déterminer cette valeur. Consultez les fichiers journaux.]]></fr>
+            <it><![CDATA[Impossibile determinare questo valore. Consulta i file di log.]]></it>
+            <pl><![CDATA[Nie udało się ustalić tej wartości. Sprawdź pliki dziennika.]]></pl>
         </locale>
 
         <locale name="dashboard.sitestats.missing.content">
-            <de>Seiten ohne Inhalt</de>
-            <en>Sites without content</en>
+            <de><![CDATA[Seiten ohne Inhalt]]></de>
+            <en><![CDATA[Pages without content]]></en>
+            <es><![CDATA[Páginas sin contenido]]></es>
+            <pt><![CDATA[Páginas sem conteúdo]]></pt>
+            <fr><![CDATA[Pages sans contenu]]></fr>
+            <it><![CDATA[Pagine senza contenuto]]></it>
+            <pl><![CDATA[Strony bez treści]]></pl>
         </locale>
 
         <locale name="dashboard.sitestats.missing.shortdesc">
-            <de>Seiten ohne Kurzbeschreibung</de>
-            <en>Sites without short description</en>
+            <de><![CDATA[Seiten ohne Kurzbeschreibung]]></de>
+            <en><![CDATA[Pages without a short description]]></en>
+            <es><![CDATA[Páginas sin descripción breve]]></es>
+            <pt><![CDATA[Páginas sem descrição breve]]></pt>
+            <fr><![CDATA[Pages sans description courte]]></fr>
+            <it><![CDATA[Pagine senza descrizione breve]]></it>
+            <pl><![CDATA[Strony bez krótkiego opisu]]></pl>
         </locale>
         <!-- endregion -->
 
         <locale name="control.managecards.button.text">
-            <de>Karten Verwalten</de>
-            <en>Manage Cards</en>
+            <de><![CDATA[Karten verwalten]]></de>
+            <en><![CDATA[Manage Cards]]></en>
+            <es><![CDATA[Gestionar tarjetas]]></es>
+            <pt><![CDATA[Gerir cartões]]></pt>
+            <fr><![CDATA[Gérer les cartes]]></fr>
+            <it><![CDATA[Gestisci schede]]></it>
+            <pl><![CDATA[Zarządzaj kartami]]></pl>
         </locale>
 
         <locale name="control.managecards.dialog.title">
-            <de>Karten Verwalten</de>
-            <en>Manage Cards</en>
+            <de><![CDATA[Karten verwalten]]></de>
+            <en><![CDATA[Manage Cards]]></en>
+            <es><![CDATA[Gestionar tarjetas]]></es>
+            <pt><![CDATA[Gerir cartões]]></pt>
+            <fr><![CDATA[Gérer les cartes]]></fr>
+            <it><![CDATA[Gestisci schede]]></it>
+            <pl><![CDATA[Zarządzaj kartami]]></pl>
         </locale>
 
         <locale name="control.managecards.dialog.enabled.label">
-            <de>Aktiviert</de>
-            <en>Enabled</en>
+            <de><![CDATA[Aktiviert]]></de>
+            <en><![CDATA[Enabled]]></en>
+            <es><![CDATA[Activada]]></es>
+            <pt><![CDATA[Ativado]]></pt>
+            <fr><![CDATA[Activée]]></fr>
+            <it><![CDATA[Attivata]]></it>
+            <pl><![CDATA[Włączona]]></pl>
         </locale>
 
         <locale name="control.managecards.dialog.priority.label">
-            <de>Priorität</de>
-            <en>Priorität</en>
+            <de><![CDATA[Priorität]]></de>
+            <en><![CDATA[Priority]]></en>
+            <es><![CDATA[Prioridad]]></es>
+            <pt><![CDATA[Prioridade]]></pt>
+            <fr><![CDATA[Priorité]]></fr>
+            <it><![CDATA[Priorità]]></it>
+            <pl><![CDATA[Priorytet]]></pl>
         </locale>
 
         <locale name="control.managecards.dialog.priority.placeholder">
-            <de>Standardwert der Karte</de>
-            <en>Card's Default Value</en>
+            <de><![CDATA[Standardwert der Karte]]></de>
+            <en><![CDATA[Card's Default Value]]></en>
+            <es><![CDATA[Valor predeterminado de la tarjeta]]></es>
+            <pt><![CDATA[Valor predefinido do cartão]]></pt>
+            <fr><![CDATA[Valeur par défaut de la carte]]></fr>
+            <it><![CDATA[Valore predefinito della scheda]]></it>
+            <pl><![CDATA[Domyślna wartość karty]]></pl>
         </locale>
     </groups>
 
@@ -483,26 +1058,49 @@
         <locale name="user.profile.title">
             <de><![CDATA[Dashboard]]></de>
             <en><![CDATA[Dashboard]]></en>
+            <es><![CDATA[Panel de control]]></es>
+            <pt><![CDATA[Painel de controlo]]></pt>
+            <fr><![CDATA[Tableau de bord]]></fr>
+            <it><![CDATA[Pannello di controllo]]></it>
+            <pl><![CDATA[Panel główny]]></pl>
         </locale>
 
         <locale name="user.profile.isDisabled">
             <de><![CDATA[Deaktiviert]]></de>
             <en><![CDATA[Disabled]]></en>
+            <es><![CDATA[Desactivado]]></es>
+            <pt><![CDATA[Desativado]]></pt>
+            <fr><![CDATA[Désactivé]]></fr>
+            <it><![CDATA[Disattivato]]></it>
+            <pl><![CDATA[Wyłączony]]></pl>
         </locale>
         <locale name="user.profile.isDisabled.description">
-            <de>
-                <![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
-            <en><![CDATA[You need to close the dashboard and/or reload the page, for changes to take effect.]]></en>
+            <de><![CDATA[Das Dashboard muss geschlossen und/oder die Seite neu geladen werden, damit die Änderungen wirksam werden.]]></de>
+            <en><![CDATA[You need to close the dashboard and/or reload the page for changes to take effect.]]></en>
+            <es><![CDATA[Cierre el panel de control y/o vuelva a cargar la página para que los cambios surtan efecto.]]></es>
+            <pt><![CDATA[Feche o painel de controlo e/ou recarregue a página para que as alterações tenham efeito.]]></pt>
+            <fr><![CDATA[Fermez le tableau de bord et/ou rechargez la page pour que les modifications prennent effet.]]></fr>
+            <it><![CDATA[Chiudi il pannello di controllo e/o ricarica la pagina per rendere effettive le modifiche.]]></it>
+            <pl><![CDATA[Aby zmiany zaczęły obowiązywać, zamknij panel główny i/lub odśwież stronę.]]></pl>
         </locale>
 
         <locale name="user.profile.cardSettings">
             <de><![CDATA[Karten]]></de>
             <en><![CDATA[Cards]]></en>
+            <es><![CDATA[Tarjetas]]></es>
+            <pt><![CDATA[Cartões]]></pt>
+            <fr><![CDATA[Cartes]]></fr>
+            <it><![CDATA[Schede]]></it>
+            <pl><![CDATA[Karty]]></pl>
         </locale>
         <locale name="user.profile.cardSettings.description">
-            <de>
-                <![CDATA[Klicken Sie auf die Schaltfläche oben, um Dashboard-Karten zu sortieren oder zu deaktivieren.]]></de>
+            <de><![CDATA[Klicken Sie auf die Schaltfläche oben, um Dashboard-Karten zu sortieren oder zu deaktivieren.]]></de>
             <en><![CDATA[Click the button above to sort and/or disable dashboard cards.]]></en>
+            <es><![CDATA[Haga clic en el botón de arriba para ordenar o desactivar las tarjetas del panel de control.]]></es>
+            <pt><![CDATA[Clique no botão acima para ordenar ou desativar os cartões do painel de controlo.]]></pt>
+            <fr><![CDATA[Cliquez sur le bouton ci-dessus pour réorganiser ou désactiver les cartes du tableau de bord.]]></fr>
+            <it><![CDATA[Fai clic sul pulsante qui sopra per riordinare o disattivare le schede del pannello di controllo.]]></it>
+            <pl><![CDATA[Kliknij przycisk powyżej, aby zmienić kolejność kart panelu głównego lub je wyłączyć.]]></pl>
         </locale>
     </groups>
 </locales>
