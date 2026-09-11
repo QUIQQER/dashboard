@@ -123,7 +123,7 @@ QUI::getAjax()->registerFunction(
         };
 
         $isIgnoredPackage = static function (string $packageName): bool {
-            return strtolower(trim($packageName)) === 'quiqqer/quiqqer';
+            return strtolower(trim($packageName)) === 'quiqqer/core';
         };
 
         $normalizeVersionForCompare = static function (string $version): string {
