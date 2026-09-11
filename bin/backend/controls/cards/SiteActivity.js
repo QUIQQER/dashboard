@@ -30,9 +30,9 @@ define('package/quiqqer/dashboard/bin/backend/controls/cards/SiteActivity', [
                 icon: 'fa fa-file-text-o',
                 title: QUILocale.get(lg, 'dashboard.page.changes'),
                 content: Mustache.render(contentTemplate, {
-                    id: QUILocale.get('quiqqer/system', 'id'),
-                    title: QUILocale.get('quiqqer/system', 'title'),
-                    date: QUILocale.get('quiqqer/system', 'e_date')
+                    id: QUILocale.get('quiqqer/core', 'id'),
+                    title: QUILocale.get('quiqqer/core', 'title'),
+                    date: QUILocale.get('quiqqer/core', 'e_date')
                 }),
                 footer: false,
                 styles: false,
