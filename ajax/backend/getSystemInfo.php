@@ -21,7 +21,7 @@ QUI::getAjax()->registerFunction(
 
         if ($activeCacheHandler) {
             $activeCacheHandlerTranslated = QUI::getLocale()->get(
-                'quiqqer/system',
+                'quiqqer/core',
                 'quiqqer.settings.cache.handler.' . $activeCacheHandler
             );
         }
