@@ -273,7 +273,7 @@ QUI::getEvents()->fireEvent('dashboardBodyBegin');
                         <div class="page-pretitle">
                             Overview
                         </div>
-                        <h2 class="page-title">
+                        <h2 class="page-title" data-name="page-title">
                             <?php
                             if ($Board) {
                                 echo $Board->getTitle();

@@ -43,21 +43,19 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         },
 
         /**
-         * @return {*}
+         * @return {Promise<string>}
          */
         getToolTipText: function () {
-            const self = this;
+            const fallback = this.getAttribute('title') || 'Dashboard';
 
-            return new Promise(function (resolve) {
-                const Title = self.$Frame.contentWindow.document.getElement('.page-title');
+            try {
+                const Title = this.$Frame?.contentDocument?.querySelector('[data-name="page-title"]');
 
-                if (Title) {
-                    resolve(Title.get('text').trim());
-                    return;
-                }
-
-                resolve('Dashboard');
-            });
+                return Promise.resolve(Title?.textContent.trim() || fallback);
+            } catch (error) {
+                // Navigation can temporarily make the iframe document inaccessible.
+                return Promise.resolve(fallback);
+            }
         },
 
         /**
