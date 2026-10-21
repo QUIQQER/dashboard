@@ -21,6 +21,7 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
         Binds: [
             '$onCreate',
             '$onInject',
+            '$onLoginSuccess',
             'refresh'
         ],
 
@@ -38,7 +39,10 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
 
             this.addEvents({
                 onCreate: this.$onCreate,
-                onInject: this.$onInject
+                onInject: this.$onInject,
+                onDestroy: () => {
+                    QUI.removeEvent('quiqqerUserAuthLoginSuccess', this.$onLoginSuccess);
+                }
             });
         },
 
@@ -76,7 +80,23 @@ define('package/quiqqer/dashboard/bin/backend/controls/Dashboard', [
                 scrolling: "auto"
             }).inject(this.getContent());
 
+            QUI.addEvent('quiqqerUserAuthLoginSuccess', this.$onLoginSuccess);
+
             this.getElm().getElement('.qui-panel-header').setStyle('background-color', '#f4f6fa');
+        },
+
+        $onLoginSuccess: function () {
+            const Frame = this.$Frame;
+
+            if (!Frame?.isConnected) {
+                return;
+            }
+
+            try {
+                Frame.contentWindow.location.reload();
+            } catch (error) {
+                Frame.src = Frame.src;
+            }
         },
 
         $onInject: function () {
